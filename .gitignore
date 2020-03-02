@@ -1,0 +1,7 @@
+# dependencies
+/node_modules
+node_modules/
+
+#environment config
+src/environments/environment.ts 
+src/environments/environment.prod.ts
