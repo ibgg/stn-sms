@@ -1,0 +1,56 @@
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$md-stn: (
+    50 : #ece4e5,
+    100 : #cfbcbf,
+    200 : #af9094,
+    300 : #8e6469,
+    400 : #764249,
+    500 : #5e2129,
+    600 : #561d24,
+    700 : #4c181f,
+    800 : #421419,
+    900 : #310b0f,
+    A100 : #ff6d77,
+    A200 : #ff3a47,
+    A400 : #ff0717,
+    A700 : #ec0010,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #ffffff,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+$stn-app-primary: mat-palette($md-stn);
+$stn-app-accent:  mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$stn-app-warn:    mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$stn-app-theme: mat-light-theme($stn-app-primary, $stn-app-accent, $stn-app-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($stn-app-theme);

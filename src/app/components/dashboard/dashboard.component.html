@@ -1,171 +1,45 @@
-<body id="page-top">
-
-	<!-- Page Wrapper -->
-	<div id="wrapper">
-  
-	  <!-- Sidebar -->
-	  <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-  
-		<!-- Sidebar - Brand -->
-		<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-		  <div class="sidebar-brand-icon">
-			<img class="center" src="../../../assets/images/seminario_vertical_blanco.png" width="70%">
-		  </div>
-		</a>
-  
-		<!-- Divider -->
-		<hr class="sidebar-divider my-0">
-  
-		<!-- Nav Item - Dashboard -->
-		<li class="nav-item active">
-		  <a class="nav-link" href="index.html">
-			<i class="fas fa-fw fa-tachometer-alt"></i>
-			<span>Dashboard</span></a>
-		</li>
-  
-		<!-- Divider -->
-		<hr class="sidebar-divider">
-  
-		<!-- Heading -->
-		<div class="sidebar-heading">
-		  Solicitud de inscripción
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+	<mat-toolbar color="primary" class="mat-elevation-z6">
+		<button mat-icon-button (click)="snav.toggle()">
+			<mat-icon>menu</mat-icon>
+		</button>
+		<img class="img-logo" src="../../../assets/images/logo-horizontal-blanco.png" width="70%">
+		<span class="headline example-app-name">Sistema de Inscripción de Alumnos</span>
+		<span class="example-spacer"></span>
+		<div class="nav-item dropdown no-arrow" *ngIf="authService.userData as user">
+			<span style="font-size:12px;">{{user.displayName}}</span>
+			<img class="img-profile rounded-circle"
+				src="{{(user.photoURL) ? user.photoURL : '../../../assets/images/avatar.png'}}">
 		</div>
-  
-		<!-- Nav Item - Pages Collapse Menu -->
-		<!-- Nav Item - Charts -->
-		<li class="nav-item">
-			<a class="nav-link" href="charts.html">
-			  <i class="fas fa-fw fa-chart-area"></i>
-			  <span>Información personal</span></a>
-		  </li>
-		<!-- Nav Item - Charts -->
-		<li class="nav-item">
-			<a class="nav-link" href="charts.html">
-				<i class="fas fa-fw fa-chart-area"></i>
-				<span>Información académica</span></a>
-			</li>
-		<!-- Nav Item - Charts -->
-		<li class="nav-item">
-			<a class="nav-link" href="charts.html">
-				<i class="fas fa-fw fa-chart-area"></i>
-				<span>Antecedentes laborales</span></a>
-			</li>
-			<!-- Nav Item - Charts -->
-		<li class="nav-item">
-			<a class="nav-link" href="charts.html">
-				<i class="fas fa-fw fa-chart-area"></i>
-				<span>Iglesia local</span></a>
-			</li>
-		<!-- Nav Item - Charts -->
-		<li class="nav-item">
-			<a class="nav-link" href="charts.html">
-				<i class="fas fa-fw fa-chart-area"></i>
-				<span>Datos del tutor</span></a>
-			</li>
-		<!-- Nav Item - Charts -->
-		<li class="nav-item">
-			<a class="nav-link" href="charts.html">
-				<i class="fas fa-fw fa-chart-area"></i>
-				<span>Datos de inscripción</span></a>
-			</li>
+		<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Main menu">
+			<mat-icon>more_vert</mat-icon>
+		</button>
+		<mat-menu #menu="matMenu">
+			<button mat-menu-item (click)="logout()"> Salir</button>
+		</mat-menu>
+	</mat-toolbar>
 
-	  </ul>
-	  <!-- End of Sidebar -->
-  
-	  <!-- Content Wrapper -->
-	  <div id="content-wrapper" class="d-flex flex-column">
-  
-		<!-- Main Content -->
-		<div id="content">
-  
-		  <!-- Topbar -->
-		  <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-  
-			<!-- Sidebar Toggle (Topbar) -->
-			<button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-			  <i class="fa fa-bars"></i>
-			</button>
+	<mat-sidenav-container class="sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+		<mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
+			fixedTopGap="56" class="sidenav">
+			<mat-nav-list class="navigation-list">
+				<a mat-list-item (click)="showComponent('register')" class="nav-item"><mat-icon class="material-icons">create</mat-icon><span class="navigation-item-label"> Solicitud de ingreso</span></a>
+				<mat-divider class="navigation-divider"></mat-divider>
+				<a mat-list-item (click)="showComponent('personal-test')" class="nav-item"><mat-icon class="material-icons">how_to_reg</mat-icon><span class="navigation-item-label"> Test personal</span></a>
+				<mat-divider class="navigation-divider"></mat-divider>
+				<a mat-list-item (click)="showComponent('personal-test')" class="nav-item"><mat-icon class="material-icons">sentiment_satisfied</mat-icon><span class="navigation-item-label"> Test psicológico</span></a>
+				<mat-divider class="navigation-divider"></mat-divider>
+				<a mat-list-item (click)="showComponent('personal-test')" class="nav-item"><mat-icon class="material-icons">menu_book</mat-icon><span class="navigation-item-label"> Test bíblico</span></a>
+				<mat-divider class="navigation-divider"></mat-divider>
+				<a mat-list-item (click)="showComponent('personal-test')" class="nav-item"><mat-icon class="material-icons">notes</mat-icon><span class="navigation-item-label"> Acuerdo de confesión</span></a>
+			</mat-nav-list>
+		</mat-sidenav>
 
-			<h3>Sistema de Inscripción de Alumnos</h3>
-  
-			<!-- Topbar Navbar -->
-			<ul class="navbar-nav ml-auto">
-  
-
-			  <!-- Nav Item - User Information -->
-			  <li class="nav-item dropdown no-arrow" *ngIf="authService.userData as user">
-				<a class="nav-link dropdown-toggle" href="!#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				  <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{user.email}}</span>
-				  
-				  <img class="img-profile rounded-circle" src="{{(user.photoURL) ? user.photoURL : '../../../assets/images/avatar.png'}}">
-				</a>
-			  </li>
-  
-			</ul>
-  
-		  </nav>
-		  <!-- End of Topbar -->
-  
-		  <!-- Begin Page Content -->
-		  <div class="container-fluid">
-			<form class="text-center" style="color: #757575;" action="#!">
-			  
-				<!-- Email -->
-				<div class="md-form">
-				  <input type="email" id="materialLoginFormEmail" class="form-control"  placeholder="Correo electrónico" #userEmail autofocus required>
-				</div>
-		  
-				<!-- Password -->
-				<div class="md-form">
-				  <input type="password" id="materialLoginFormPassword" class="form-control" placeholder="Contraseña" #userPassword required>					  
-				</div>
-		  
-				<div class="d-flex justify-content-around">
-				  <div>
-					<!-- Remember me -->
-					<div class="form-check">
-					  <input type="checkbox" class="form-check-input" id="materialLoginFormRemember">
-					  <label class="form-check-label" for="materialLoginFormRemember">Recordar contraseña</label>
-					</div>
-				  </div>
-				</div>
-		  
-				<!-- Sign in button -->
-
-				<button mdbBtn type="button" outline="true" mdbWavesEffect class="btn btn-outline-stn btn-rounded btn-block my-4 waves-effect z-depth-0" (click)="authService.SignUp(userEmail.value, userPassword.value)">Crear cuenta</button>
-				<div class="md-form">
-					<span class="or"><span class="orInner">O</span></span>
-				  </div>
-
-			<button type="button" mdbBtn class="btn btn-outline-gplus btn-rounded btn-block my-4 waves-effect z-depth-0" mdbWavesEffect (click)="authService.GoogleAuth()"><fa-icon [icon]="['fab', 'google']"></fa-icon>  Iniciar sesión con Google</button>
-
-				<!-- Register -->
-				<span>¿Ya tienes una cuenta?<a class="redirect" routerLink="/sign-in"> Inicia sesión</a></span>
-			  </form>
-		  </div>
-		  <!-- /.container-fluid -->
-  
-		</div>
-		<!-- End of Main Content -->
-  
-		<!-- Footer -->
-		<footer class="sticky-footer bg-white">
-		  <div class="container my-auto">
-			<div class="copyright text-center my-auto">
-			  <span>Copyright &copy; Seminario Todas las Naciones 2020</span>
+		<mat-sidenav-content style="align-content: center;">
+			<div class="container-fluid">
+				<app-register *ngIf="currentComponent == 'register'"></app-register>
 			</div>
-		  </div>
-		</footer>
-		<!-- End of Footer -->
-  
-	  </div>
-	  <!-- End of Content Wrapper -->
-  
-	</div>
-	<!-- End of Page Wrapper -->
-  
-	<!-- Scroll to Top Button-->
-	<a class="scroll-to-top rounded" href="#page-top">
-	  <i class="fas fa-angle-up"></i>
-	</a>
-  </body>
+			<!-- /.container-fluid -->
+		</mat-sidenav-content>
+	</mat-sidenav-container>
+</div>

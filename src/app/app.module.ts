@@ -21,6 +21,58 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 
 import { AuthService } from '../shared/services/auth.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import {A11yModule} from '@angular/cdk/a11y';
+import {ClipboardModule} from '@angular/cdk/clipboard';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import {PortalModule} from '@angular/cdk/portal';
+import {ScrollingModule} from '@angular/cdk/scrolling';
+import {CdkStepperModule} from '@angular/cdk/stepper';
+import {CdkTableModule} from '@angular/cdk/table';
+import {CdkTreeModule} from '@angular/cdk/tree';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatBadgeModule} from '@angular/material/badge';
+import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
+import {MatButtonModule} from '@angular/material/button';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatCardModule} from '@angular/material/card';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatIconModule} from '@angular/material/icon';
+import {MatInputModule} from '@angular/material/input';
+import {MatListModule} from '@angular/material/list';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatNativeDateModule, MatRippleModule} from '@angular/material/core';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatSelectModule} from '@angular/material/select';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatSliderModule} from '@angular/material/slider';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatSortModule} from '@angular/material/sort';
+import {MatTableModule} from '@angular/material/table';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatTreeModule} from '@angular/material/tree';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {TextFieldModule} from '@angular/cdk/text-field';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { RegisterComponent } from './components/register/register.component';
+import { TestPersonalComponent } from './components/test-personal/test-personal.component';
+import { TestPsicologicoComponent } from './components/test-psicologico/test-psicologico.component';
+import { TestBiblicoComponent } from './components/test-biblico/test-biblico.component';
+
 
 @NgModule({
   declarations: [
@@ -29,7 +81,11 @@ import { AuthService } from '../shared/services/auth.service';
     SignInComponent,
     SignUpComponent,
 	ForgotPasswordComponent,
-	VerifyEmailComponent  
+	VerifyEmailComponent,
+	RegisterComponent,
+	TestPersonalComponent,
+	TestPsicologicoComponent,
+	TestBiblicoComponent
 ],
   imports: [
 	BrowserModule,
@@ -38,7 +94,54 @@ import { AuthService } from '../shared/services/auth.service';
 	AngularFireModule.initializeApp(environment.firebaseConfig),
 	AngularFireAuthModule,
 	AngularFirestoreModule,
-	MDBBootstrapModule.forRoot()
+	MDBBootstrapModule.forRoot(),
+	BrowserAnimationsModule,
+	MatCheckboxModule,
+	MatFormFieldModule,
+	TextFieldModule,
+	MatRadioModule,
+	MatInputModule,
+	MatSelectModule,
+	CdkStepperModule,
+	MatButtonModule,
+	FormsModule,
+	ReactiveFormsModule,
+	MatStepperModule,
+	MatSliderModule,
+	MatSidenavModule,
+	MatToolbarModule,
+	MatMenuModule,
+	MatListModule,
+	MatIconModule,
+	MatDividerModule,
+	A11yModule,
+	ClipboardModule,
+	DragDropModule,
+	PortalModule,
+	ScrollingModule,
+	CdkTableModule,
+	CdkTreeModule,
+	MatAutocompleteModule,
+	MatBadgeModule,
+	MatBottomSheetModule,
+	MatButtonToggleModule,
+	MatCardModule,
+	MatChipsModule,
+	MatDatepickerModule,
+	MatDialogModule,
+	MatExpansionModule,
+	MatGridListModule,
+	MatNativeDateModule,
+	MatPaginatorModule,
+	MatProgressBarModule,
+	MatProgressSpinnerModule,
+	MatSlideToggleModule,
+	MatSnackBarModule,
+	MatSortModule,
+	MatTableModule,
+	MatTreeModule,
+	MatTabsModule,
+	MatTooltipModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],

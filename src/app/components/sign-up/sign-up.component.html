@@ -1,60 +1,98 @@
 <!-- Material form login -->
+
 <body>
 	<div class="container">
-	  <div class="row">
-		<div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-			<div class="card card-signin my-5">
-				<h5 class="card-header stn-color white-text text-center py-4">
-				  <div><img class="center" src="../../../assets/images/seminario_vertical_blanco.png"></div>
-				  <h5 class="card-title text-center" style="margin-top:20px;">Sistema de Inscripción de Alumnos</h5>
-				  <h6 class="card-title text-center" style="margin-top:20px;">CREAR USUARIO</h6>
-				</h5>
-			  
-				<!--Card content-->
-				<div class="card-body px-lg-5 pt-0">
-			  
-				  <!-- Form -->
-				  <form class="text-center" style="color: #757575;" action="#!">
-			  
-					<!-- Email -->
-					<div class="md-form">
-					  <input type="email" id="materialLoginFormEmail" class="form-control"  placeholder="Correo electrónico" #userEmail autofocus required>
-					</div>
-			  
-					<!-- Password -->
-					<div class="md-form">
-					  <input type="password" id="materialLoginFormPassword" class="form-control" placeholder="Contraseña" #userPassword required>					  
-					</div>
-			  
-					<div class="d-flex justify-content-around">
-					  <div>
-						<!-- Remember me -->
-						<div class="form-check">
-						  <input type="checkbox" class="form-check-input" id="materialLoginFormRemember">
-						  <label class="form-check-label" for="materialLoginFormRemember">Recordar contraseña</label>
-						</div>
-					  </div>
-					</div>
-			  
-					<!-- Sign in button -->
+		<div class="row">
+			<div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+				<div class="card card-signin my-5">
+					<h5 class="card-header stn-color white-text text-center py-4">
+						<div><img class="center" src="../../../assets/images/seminario_vertical_blanco.png"></div>
+						<h2 class="card-title text-center" style="margin-top:10px;">Sistema de Inscripción de Alumnos</h2>
+						<h3 class="card-title text-center" style="margin-top:10px;">CREAR USUARIO</h3>
+					</h5>
 
-					<button mdbBtn type="button" outline="true" mdbWavesEffect class="btn btn-outline-stn btn-rounded btn-block my-4 waves-effect z-depth-0" (click)="authService.SignUp(userEmail.value, userPassword.value)">Crear cuenta</button>
-					<div class="md-form">
-						<span class="or"><span class="orInner">O</span></span>
-					  </div>
+					<!--Card content-->
+					<div class="card-body px-lg-5 pt-0 form-login-signup-container">
 
-				<button type="button" mdbBtn class="btn btn-outline-gplus btn-rounded btn-block my-4 waves-effect z-depth-0" mdbWavesEffect (click)="authService.GoogleAuth()"><fa-icon [icon]="['fab', 'google']"></fa-icon>  Iniciar sesión con Google</button>
+						<!-- Form -->
+						<form [formGroup]="signUpFormGroup">
+							<div class="row">
+								<div class="col-sm-6">
+									<mat-form-field class="example-full-width">
+										<mat-label>Nombre</mat-label>
+										<input matInput formControlName="name" required #name>
+										<mat-error
+											*ngIf="signUpFormGroup.controls['name'].invalid">
+											<span *ngIf="signUpFormGroup.controls['name'].errors.required">El nombre es <strong>requerido</strong></span>
+										</mat-error>
+									</mat-form-field>
+								</div>
+								<div class="col-sm-6">
+									<mat-form-field class="example-full-width">
+										<mat-label>Apellidos</mat-label>
+										<input matInput formControlName="lastname" required #lastname>
+										<mat-error
+											*ngIf="signUpFormGroup.controls['lastname'].invalid">
+											<span *ngIf="signUpFormGroup.controls['lastname'].errors.required">Los apelldios son <strong>requerido</strong></span>
+										</mat-error>
+									</mat-form-field>
+								</div>
+							</div>
+							<mat-form-field class="example-full-width">
+								<mat-label>Correo electrónico</mat-label>
+								<input matInput formControlName="email" required #email>
+								<mat-error
+									*ngIf="signUpFormGroup.controls['email'].invalid">
+									<span *ngIf="signUpFormGroup.controls['email'].errors.email">El correo electrónico no es válido</span>
+									<span *ngIf="signUpFormGroup.controls['email'].errors.required">El correo electrónico es <strong>requerido</strong></span>
+								</mat-error>
+							</mat-form-field>
 
-					<!-- Register -->
-					<span>¿Ya tienes una cuenta?<a class="redirect" routerLink="/sign-in"> Inicia sesión</a></span>
-				  </form>
-				  <!-- Form -->
-			  
+							<mat-form-field class="example-full-width">
+								<mat-label>Contraseña</mat-label>
+								<input type="password" matInput formControlName="password" required #password>
+								<mat-error
+									*ngIf="signUpFormGroup.controls['password'].invalid">
+									<span *ngIf="signUpFormGroup.controls['password'].errors.required">La contraseña <strong>es requerida</strong></span>
+									<span *ngIf="signUpFormGroup.controls['password'].errors.minlength">La contraseña debe tener <strong>por lo menos 8 caracteres</strong></span>
+								</mat-error>
+
+							</mat-form-field>
+
+							<mat-form-field class="example-full-width">
+								<mat-label>Confirmar contraseña</mat-label>
+								<input type="password" matInput formControlName="passConfirm" required #confirmPassword>
+								<mat-error
+									*ngIf="signUpFormGroup.controls['passConfirm'].invalid && !signUpFormGroup.controls['passConfirm'].errors.match">
+									Las contraseñas <strong>no coinciden</strong>
+									{{signUpFormGroup.controls['passConfirm'].errors | json}}
+								</mat-error>
+							</mat-form-field>
+
+
+							<section class="centered-vertical" style="margin-bottom: 30px;">
+								<mat-checkbox class="">Recordar contraseña</mat-checkbox>
+							</section>
+		
+							<!-- Sign up button -->
+
+							<button [disabled]="!signUpFormGroup.valid" mat-stroked-button color="primary" (click)="authService.signUp(email.value, password.value, name.value, lastname.value)" class="button-large">Crear cuenta</button>
+							<div>
+								<span class="or"><span class="orInner">O</span></span>
+							  </div>
+							<button mat-stroked-button style="color: #dd4b39;" (click)="authService.googleAuth()" class="button-large"><fa-icon [icon]="['fab', 'google']"></fa-icon> Iniciar sesión con Google</button>
+		
+							<!-- Register -->
+							<div class="span-vspaced">¿Ya tienes una cuenta?<a class="redirect" routerLink="/sign-in"> Inicia sesión</a></div>
+							<span style="color:#b11921">{{authService.error}}</span>
+						</form>
+						<!-- Form -->
+
+					</div>
+
 				</div>
-			  
-			  </div>
-			  <!-- Material form login -->
-		</div>  
-	   </div>
-	   </div>
+				<!-- Material form login -->
+			</div>
+		</div>
+	</div>
 </body>
