@@ -166,3 +166,17 @@ mat-form-field {
 .form-login-signup-container {
 	padding-top: 20px !important;
 }
+
+.card-dashboard-form {
+	width: 70%;	
+	margin-bottom: 40px;
+	margin-top: 40px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;  
+}
+
+button:focus, button:active:focus, button.active:focus,  div:focus, div:active:focus{
+	outline: none !important;
+	outline-style: none !important;
+	}

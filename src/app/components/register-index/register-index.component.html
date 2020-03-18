@@ -1,0 +1,101 @@
+<div class="row" style="margin-bottom:20px;">
+	<div class="col img-profile-container">
+		<div *ngIf="authService.userData as user">
+			<img src="{{(user.photoURL) ? user.photoURL : '../../../assets/images/avatar.png'}}"
+				class="img-profile rounded-circle img-fluid">
+		</div>
+	</div>
+	<div class="col-sm-10" *ngIf="authService.userData as user">
+		<div style="padding:8% 0">
+			<div class="label-h1"><strong>Nombre:</strong> {{user.displayName}}</div>
+			<div class="label-h1"><strong>E-mail:</strong> {{user.email}}</div>
+			<mat-progress-bar class="example-margin" color="principal" mode="determinate" value=100 bufferValue=75
+				style="margin-top:20px;">
+			</mat-progress-bar>
+		</div>
+	</div>
+</div>
+<div class="row" style="justify-content: center;">
+	<div class="col-sm-4" style=" margin-bottom:20px">
+		<mat-card class="card-style">
+			<mat-card-header style="justify-content: center;">
+				<mat-card-title style="text-align: center;">
+					<mat-icon class="material-icons" style="text-align: center; font-size: 40px; margin: auto;">create
+					</mat-icon>
+				</mat-card-title>
+				<mat-card-title style="text-align: center;">Solicitud de Ingreso</mat-card-title>
+			</mat-card-header>
+			<mat-card-content>
+				<mat-progress-spinner class="example-margin" color="primary" mode="determinate" value=75 diameter=40
+					style="margin: auto;">
+				</mat-progress-spinner>
+			</mat-card-content>
+		</mat-card>
+	</div>
+	<div class="col-sm-4" style=" margin-bottom:20px">
+		<mat-card class="card-style">
+			<mat-card-header style="justify-content: center;">
+				<mat-card-title style="text-align: center;">
+					<mat-icon class="material-icons" style="text-align: center; font-size: 40px; margin: auto;">how_to_reg
+					</mat-icon>
+				</mat-card-title>
+				<mat-card-title style="text-align: center;">Test personal</mat-card-title>
+			</mat-card-header>
+			<mat-card-content>
+				<mat-progress-spinner class="example-margin" color="primary" mode="determinate" value=75 diameter=40
+					style="margin: auto;">
+				</mat-progress-spinner>
+			</mat-card-content>
+		</mat-card>
+	</div>
+	<div class="col-sm-4" style=" margin-bottom:20px">
+		<mat-card class="card-style">
+			<mat-card-header style="justify-content: center;">
+				<mat-card-title style="text-align: center;">
+					<mat-icon class="material-icons" style="text-align: center; font-size: 40px; margin: auto;">sentiment_satisfied
+					</mat-icon>
+				</mat-card-title>
+				<mat-card-title style="text-align: center;">Test Psicológico</mat-card-title>
+			</mat-card-header>
+			<mat-card-content>
+				<mat-progress-spinner class="example-margin" color="primary" mode="determinate" value=75 diameter=40
+					style="margin: auto;">
+				</mat-progress-spinner>
+			</mat-card-content>
+		</mat-card>
+	</div>
+</div>
+<div class="row">
+	<div class="col-sm-4" style=" margin-bottom:20px">
+		<mat-card class="card-style">
+			<mat-card-header style="justify-content: center;">
+				<mat-card-title style="text-align: center;">
+					<mat-icon class="material-icons" style="text-align: center; font-size: 40px; margin: auto;">menu_book
+					</mat-icon>
+				</mat-card-title>
+				<mat-card-title style="text-align: center;">Test Bíblico</mat-card-title>
+			</mat-card-header>
+			<mat-card-content>
+				<mat-progress-spinner class="example-margin" color="primary" mode="determinate" value=75 diameter=40
+					style="margin: auto;">
+				</mat-progress-spinner>
+			</mat-card-content>
+		</mat-card>
+	</div>
+	<div class="col-sm-4" style=" margin-bottom:20px">
+		<mat-card class="card-style">
+			<mat-card-header style="justify-content: center;">
+				<mat-card-title style="text-align: center;">
+					<mat-icon class="material-icons" style="text-align: center; font-size: 40px; margin: auto;">notes
+					</mat-icon>
+				</mat-card-title>
+				<mat-card-title style="text-align: center;">Acuerdo de Confesión</mat-card-title>
+			</mat-card-header>
+			<mat-card-content>
+				<mat-progress-spinner class="example-margin" color="primary" mode="determinate" value=75 diameter=40
+					style="margin: auto;">
+				</mat-progress-spinner>
+			</mat-card-content>
+		</mat-card>
+	</div>
+</div>

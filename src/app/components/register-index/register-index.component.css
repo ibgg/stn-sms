@@ -1,0 +1,25 @@
+.label-h1{
+	font: 500 20px/32px Roboto, "Helvetica Neue", sans-serif;
+}
+
+.card-style {
+	margin: auto;
+	width: 80%;
+}
+
+
+.img-profile {
+	margin-left: 10px;
+	margin-right: 2px;
+	height: 100px;
+	width: 100px;
+	margin: auto;
+  }
+
+  .img-profile-container {
+	margin-left: 10px;
+	margin-right: 2px;
+	height: 100px;
+	width: 100px;
+	margin: auto;  
+  }

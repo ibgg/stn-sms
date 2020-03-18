@@ -1,45 +1,18 @@
-  .example-sidenav-container {
-	/* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
-	   causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
+.example-sidenav-container {
 	flex: 1;
-  }
-  
-  .example-is-mobile .example-sidenav-container {
-	/* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
-	   `<body>` to be our scrolling element for mobile layouts. */
-	flex: 1 0 auto;
-  }
-
-  .example-spacer {
-	flex: 1 1 auto;
-  }
-
-.img-profile {
-	margin-left: 10px;
-	margin-right: 2px;
-	height: 2rem;
-	width: 2rem;
-  }
-
-.img-logo {
-	margin-left: 10px;
-	margin-right: 20px;
-	width: 10%;
 }
 
+.example-is-mobile .example-sidenav-container {
+	flex: 1 0 auto;
+}
+
+.example-spacer {
+	flex: 1 1 auto;
+}
 
 @import '~@angular/material/theming';
 .mat-checkbox-layout {
-  white-space: normal !important;
-}
-
-
-@media screen and (max-width: 768px) {
-	.card-dashboard-form {
-		width: 100%;	
-		margin-bottom: 20px;
-		margin-top: 20px;	
-	}
+	white-space: normal !important;
 }
 
 .nav-bar-style {
@@ -48,105 +21,243 @@
 
 .sidenav-container {
 	height: 100%;
-  }
-  .sidenav-container .sidenav {
+}
+.sidenav-container .sidenav {
 	width: 250px;
 	background-color: #fff;
 	box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
-  }
-  .sidenav-container .sidenav .home-button {
+}
+.sidenav-container .sidenav .home-button {
 	width: 100%;
 	padding-top: 60px;
 	margin-bottom: 30px;
 	display: inline-block;
-  }
-  .sidenav-container .sidenav .home-button .app-logo {
+}
+.sidenav-container .sidenav .home-button .app-logo {
 	width: 120px;
 	margin: 0 auto;
 	display: block;
-  }
-  .sidenav-container .sidenav .mat-toolbar {
+}
+.sidenav-container .sidenav .mat-toolbar {
 	background: inherit;
-  }
-  .sidenav-container .sidenav .navigation-list {
+}
+.sidenav-container .sidenav .navigation-list {
 	padding-top: 30px;
 	color:#656565;
-  }
-  .sidenav-container .sidenav .navigation-list .navigation-item.active {
+}
+.sidenav-container .sidenav .navigation-list .navigation-item.active {
 	background: #dcf0fb;
 	color: #062639;
-  }
-  .sidenav-container .sidenav .navigation-list .navigation-item .mat-icon {
+}
+.sidenav-container .sidenav .navigation-list .navigation-item .mat-icon {
 	margin-right: 5px;
-  }
-  .sidenav-container .sidenav .navigation-list .navigation-item .navigation-item-label {
+}
+.sidenav-container .sidenav .navigation-list .navigation-item .navigation-item-label {
 	padding-top: 2px;
 	padding-left: 10px;
-  }
-  .sidenav-container .sidenav .navigation-list .navigation-divider {
+}
+.sidenav-container .sidenav .navigation-list .navigation-divider {
 	color: #dcf0fb;
 	border-color: #dcf0fb;
-  }
-  .sidenav-container .sidenav-content .sidenav-content-toolbar {
+}
+.sidenav-container .sidenav-content .sidenav-content-toolbar {
 	background: #062639;
 	color: #fff;
 	padding-left: 60px;
-  }
-  .sidenav-container .sidenav-content .sidenav-content-toolbar .menu-button {
+}
+.sidenav-container .sidenav-content .sidenav-content-toolbar .menu-button {
 	color: #fff;
 	background: #062639;
-  }
-  .sidenav-container .sidenav-content .sidenav-content-toolbar .menu-button:focus {
+}
+.sidenav-container .sidenav-content .sidenav-content-toolbar .menu-button:focus {
 	outline: none;
-  }
-  .sidenav-container .sidenav-content .sidenav-content-toolbar .navbar-link {
+}
+.sidenav-container .sidenav-content .sidenav-content-toolbar .navbar-link {
 	color: #fff;
 	padding-right: 10px;
 	cursor: pointer;
-  }
-  .sidenav-container .sidenav-content .sidenav-content-toolbar .navbar-link:hover {
+}
+.sidenav-container .sidenav-content .sidenav-content-toolbar .navbar-link:hover {
 	color: #fff;
-  }
-  .sidenav-container .sidenav-content .sidenav-content-toolbar .navbar-link:focus {
+}
+.sidenav-container .sidenav-content .sidenav-content-toolbar .navbar-link:focus {
 	outline: none;
-  }
-  .sidenav-container .sidenav-content .sidenav-content-toolbar .gifts a {
+}
+.sidenav-container .sidenav-content .sidenav-content-toolbar .gifts a {
 	color: #fff;
 	display: inline-block;
 	padding-top: 7px;
 	padding-right: 20px;
 	position: relative;
-  }
-  .sidenav-container .sidenav-content .sidenav-content-toolbar .gifts a .mat-badge-content {
+}
+.sidenav-container .sidenav-content .sidenav-content-toolbar .gifts a .mat-badge-content {
 	background: #d3544d;
-  }
-  .sidenav-container .sidenav-content .sidenav-content-toolbar .gifts:focus {
+}
+.sidenav-container .sidenav-content .sidenav-content-toolbar .gifts:focus {
 	outline: none;
-  }
-  .sidenav-container .sidenav-content .filler {
+}
+.sidenav-container .sidenav-content .filler {
 	flex: 1 1 auto;
-  }
-  .sidenav-container .mat-toolbar.mat-primary {
+}
+.sidenav-container .mat-toolbar.mat-primary {
 	position: sticky;
 	top: 0;
 	z-index: 1;
-  }
-  /*left sidenav style override*/
-  mat-sidenav:not(.mat-drawer-opened) {
+}
+
+mat-sidenav:not(.mat-drawer-opened) {
 	transform: translate3d(0, 0, 0) !important;
 	visibility: visible !important;
 	width: 60px !important;
 	overflow: hidden;
-  }
-  mat-sidenav:not(.mat-drawer-opened) .navigation-item-label {
+}
+mat-sidenav:not(.mat-drawer-opened) .navigation-item-label {
 	display: none !important;
-  }
-  mat-sidenav:not(.mat-drawer-opened) .home-button {
+}
+mat-sidenav:not(.mat-drawer-opened) .home-button {
 	display: none !important;
-  }
-  
-  .navigation-item-label {
+}
+
+.navigation-item-label {
 	padding-top: 2px;
 	padding-left: 10px;
 	font-size: 14px;
-  }
+}
+
+.menu-open-dashboard-content {
+	padding-left: 160px;
+	padding-right: 100px;
+	padding-top:50px;
+	padding-bottom: 50px;
+}
+
+.menu-closed-dashboard-content {
+	padding-left: 100px;
+	padding-right: 100px;
+	padding-top:50px;
+	padding-bottom: 50px;
+}
+
+/* navbar */
+.docs-navbar-header {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	padding: 8px 16px;
+}
+
+.flex-spacer {
+	flex-grow: 1;
+}
+
+.docs-angular-logo {
+	height: 50px;
+	margin: 0 4px 3px 0;
+	vertical-align: middle;
+}
+
+.docs-github-logo {
+	height: 21px;
+	margin: 0 7px 2px 0;
+	vertical-align: middle;
+}
+
+.docs-navbar-link {
+	text-decoration: inherit;
+	flex: 1;
+}
+
+.docs-navbar {
+	display: none;
+}
+
+.docs-navbar-show-small {
+	display: none;
+}
+
+
+.img-profile {
+	margin-left: 10px;
+	margin-right: 2px;
+	height: 2rem;
+	width: 2rem;
+}
+
+.img-logo {
+	margin-left: 10px;
+	margin-right: 20px;
+	width: 15%;
+}
+
+nav {
+	background-color: #5E2129;
+}
+
+.title-header {
+	font: 500 20px/32px Roboto, 'Helvetica Neue', 'sans-serif'; 
+	color: #fff; 
+	margin-left: 10px;
+}
+
+.username-header {
+	font-size:12px; 
+	color: #fff;
+}
+
+@media screen and (max-width: 720px) {
+	.card-dashboard-form {
+		width: 100%;	
+		margin-bottom: 20px;
+		margin-top: 20px;	
+	}
+
+	.menu-open-dashboard-content {
+		padding-left: 70px;
+		padding-right: 10px;
+		padding-top:20px;
+		padding-bottom: 20px;
+	}
+
+	.menu-closed-dashboard-content {
+		padding-left: 10px;
+		padding-right: 10px;
+		padding-top:20px;
+		padding-bottom: 20px;
+	}
+
+	.docs-navbar-hide-small {
+		display: none;
+	}
+	
+	.docs-navbar-show-small {
+		display: block;
+	}
+	
+	.docs-navbar {
+		display: flex;
+	}
+	
+	.docs-navbar--github-logo {
+		margin: 0;
+	}
+
+	.docs-angular-logo {
+		height: 35px;
+		margin: 0 4px 3px 0;
+		vertical-align: middle;
+	}
+
+
+	.title-header {
+	font: 500 20px/32px Roboto, 'Helvetica Neue', 'sans-serif'; 
+		color: #fff; 
+		margin-left: 10px;
+		display: none;
+	}
+
+	.username-header {
+		font-size:12px; 
+		color: #fff;
+		display: none;
+	}
+}

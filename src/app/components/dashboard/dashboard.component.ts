@@ -11,7 +11,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
 })
 export class DashboardComponent implements OnInit, OnDestroy {
 	mobileQuery: MediaQueryList;
-	private currentComponent: string = "register";
+	private currentComponent: string = "register-index";
 
 	private _mobileQueryListener: () => void;
 
@@ -27,7 +27,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
 	}
 
 	ngOnInit(): void {
-
 	}
 
 	ngOnDestroy(): void {
@@ -39,5 +38,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
 	public showComponent(componentName: string){
 		this.currentComponent = componentName;
+	}
+
+	isOpened(){
+		console.log("MEnu open...");
 	}
 }

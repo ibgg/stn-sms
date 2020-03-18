@@ -1,28 +1,31 @@
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
-	<mat-toolbar color="primary" class="mat-elevation-z6">
+	<nav  color="primary"  class="docs-navbar-header" aria-label="Top Toolbar">
 		<button mat-icon-button (click)="snav.toggle()">
-			<mat-icon>menu</mat-icon>
+			<mat-icon style="color: #fff;">menu</mat-icon>
 		</button>
-		<img class="img-logo" src="../../../assets/images/logo-horizontal-blanco.png" width="70%">
-		<span class="headline example-app-name">Sistema de Inscripción de Alumnos</span>
-		<span class="example-spacer"></span>
+			<img class="docs-angular-logo img-fluid" src="../../../assets/images/logo-horizontal-blanco.png" alt="angular">
+			<span class="headline example-app-name" class="title-header">Sistema de Inscripción de Alumnos</span>
+
+		<div class="flex-spacer"></div>
 		<div class="nav-item dropdown no-arrow" *ngIf="authService.userData as user">
-			<span style="font-size:12px;">{{user.displayName}}</span>
-			<img class="img-profile rounded-circle"
+			<span class="username-header">{{user.displayName}}</span>
+			<img class="img-profile rounded-circle img-fluid"
 				src="{{(user.photoURL) ? user.photoURL : '../../../assets/images/avatar.png'}}">
 		</div>
 		<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Main menu">
-			<mat-icon>more_vert</mat-icon>
+			<mat-icon style="color: #fff;">more_vert</mat-icon>
 		</button>
 		<mat-menu #menu="matMenu">
 			<button mat-menu-item (click)="logout()"> Salir</button>
 		</mat-menu>
-	</mat-toolbar>
+	</nav>
 
-	<mat-sidenav-container class="sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
-		<mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
+	<mat-sidenav-container class="sidenav-container">
+		<mat-sidenav [overlapTrigger]="false" (toggle)="isOpened()" #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
 			fixedTopGap="56" class="sidenav">
 			<mat-nav-list class="navigation-list">
+				<a mat-list-item (click)="showComponent('register-index')" class="nav-item"><mat-icon class="material-icons">home</mat-icon><span class="navigation-item-label"> Dasboard</span></a>
+				<mat-divider class="navigation-divider"></mat-divider>
 				<a mat-list-item (click)="showComponent('register')" class="nav-item"><mat-icon class="material-icons">create</mat-icon><span class="navigation-item-label"> Solicitud de ingreso</span></a>
 				<mat-divider class="navigation-divider"></mat-divider>
 				<a mat-list-item (click)="showComponent('personal-test')" class="nav-item"><mat-icon class="material-icons">how_to_reg</mat-icon><span class="navigation-item-label"> Test personal</span></a>
@@ -35,9 +38,11 @@
 			</mat-nav-list>
 		</mat-sidenav>
 
-		<mat-sidenav-content style="align-content: center;">
-			<div class="container-fluid">
+		<mat-sidenav-content class="" style="align-content: center;">
+			
+			<div class="container-fluid"  [ngClass]="{'menu-open-dashboard-content': !snav.opened, 'menu-closed-dashboard-content': snav.opened}">
 				<app-register *ngIf="currentComponent == 'register'"></app-register>
+				<app-register-index *ngIf="currentComponent == 'register-index'"></app-register-index>
 			</div>
 			<!-- /.container-fluid -->
 		</mat-sidenav-content>
