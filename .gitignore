@@ -5,3 +5,13 @@ node_modules/
 #environment config
 src/environments/environment.ts 
 src/environments/environment.prod.ts
+
+#Firebase config
+firebase.json
+database.rules.json
+.firebase/
+/..firebase/
+
+#build folder
+dist/
+/dist

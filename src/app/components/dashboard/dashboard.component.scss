@@ -204,6 +204,11 @@ nav {
 	color: #fff;
 }
 
+.nav-item-selected{
+	background-color: #5E2129;
+	color: #fff !important;
+}
+
 @media screen and (max-width: 720px) {
 	.card-dashboard-form {
 		width: 100%;	

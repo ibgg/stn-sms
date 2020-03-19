@@ -1,1 +1,173 @@
-<p>test-personal works!</p>
+<mat-card>
+	<mat-horizontal-stepper linear="false" labelPosition="bottom" #stepper >
+		<mat-step [stepControl]="conversionFG" optional=false>
+			<form [formGroup]="conversionFG">
+				<ng-template matStepLabel>Conversión y Llamado</ng-template>
+				<h1>Conversión y Llamado</h1>
+				<div class="form-row">
+					<div class="col-sm-12">
+						<mat-form-field class="example-full-width">
+							<mat-label>¿Cómo conoció a Cristo? Explique la manera como lo aceptó.</mat-label>
+							<textarea matInput formControlName="christEncounterDescription" required rows="5"></textarea>
+							<mat-error *ngIf="conversionFG.controls['christEncounterDescription'].invalid">
+								Este campo es <strong>requerido</strong>
+							</mat-error>
+						</mat-form-field>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="col-sm-12">
+						<mat-form-field class="example-full-width">
+							<mat-label>¿Cómo era su vida antes de conocer a Cristo?</mat-label>
+							<textarea matInput formControlName="christBeforeDescription" required rows="5"></textarea>
+							<mat-error *ngIf="conversionFG.controls['christBeforeDescription'].invalid">
+								Este campo es <strong>requerido</strong>
+							</mat-error>
+						</mat-form-field>
+					</div>
+				  </div>
+				<div class="form-row">
+					<div class="col-sm-12">
+						<mat-form-field class="example-full-width">
+							<mat-label>¿Qué ha pasado en su vida desde su conversión?</mat-label>
+							<textarea matInput formControlName="christAfterDescription" required rows="5"></textarea>
+							<mat-error *ngIf="conversionFG.controls['christAfterDescription'].invalid">
+								Este campo es <strong>requerido</strong>
+							</mat-error>
+						</mat-form-field>
+					</div>
+				  </div>
+				<div class="form-row">
+					<div class="col-sm-12">
+						<mat-form-field class="example-full-width">
+							<mat-label>Describa su experiencia de bautismo en agua.</mat-label>
+							<textarea matInput formControlName="baptismDescription" required rows="5"></textarea>
+							<mat-error *ngIf="conversionFG.controls['baptismDescription'].invalid">
+								Este campo es <strong>requerido</strong>
+							</mat-error>
+						</mat-form-field>
+					</div>
+				  </div>
+				<div class="form-row">
+					<div class="col-sm-12">
+						<mat-form-field class="example-full-width">
+							<mat-label>Explique de que manera recibió el llamado de servir al Señor y que fruto ha habido hasta hoy.</mat-label>
+							<textarea matInput formControlName="baptismDescription" required rows="5"></textarea>
+							<mat-error *ngIf="conversionFG.controls['baptismDescription'].invalid">
+								Este campo es <strong>requerido</strong>
+							</mat-error>
+						</mat-form-field>
+					</div>
+
+				</div>
+				<div style="margin-top: 20px;">
+					<button mat-raised-button [disabled]="!conversionFG.valid" color="primary" matStepperNext (click)="next()">Siguiente</button>
+				  </div>
+			  </form>
+		</mat-step>
+		<mat-step [stepControl]="convicionsFG" optional=false>
+			<form [formGroup]="convicionsFG">
+				<ng-template matStepLabel>Convicciones Morales</ng-template>
+				<h1>Convicciones Morales</h1>
+				<div class="form-row">
+					<div class="col-sm-12">
+						<mat-form-field class="example-full-width">
+							<mat-label>Explique ¿Cual es su convicción personal sobre los siguientes problemas de tipo moral? Homosexualidad, lesbianismo, masturbación, pornografía, adulterio y fornicación.</mat-label>
+							<textarea matInput formControlName="moralConvictionsDescription" required rows="5"></textarea>
+							<mat-error *ngIf="convicionsFG.controls['moralConvictionsDescription'].invalid">
+								Este campo es <strong>requerido</strong>
+							</mat-error>
+						</mat-form-field>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="col-sm-12">
+						<mat-form-field class="example-full-width">
+							<mat-label>¿Se ha visto usted inmiscuido en algunos de estos problemas de tipo moral? Explique su respuesta.</mat-label>
+							<textarea matInput formControlName="moralInvolvementDescription" required rows="5"></textarea>
+							<mat-error *ngIf="convicionsFG.controls['moralInvolvementDescription'].invalid">
+								Este campo es <strong>requerido</strong>
+							</mat-error>
+						</mat-form-field>
+					</div>
+				  </div>
+				<div class="form-row">
+					<div class="col-sm-12">
+						<mat-form-field class="example-full-width">
+							<mat-label>¿Ha consumido alcohol o algún tipo de droga? Si su respuesta es positiva ¿cuál?</mat-label>
+							<textarea matInput formControlName="alcoholDrugsDescription" required rows="5"></textarea>
+							<mat-error *ngIf="convicionsFG.controls['alcoholDrugsDescription'].invalid">
+								Este campo es <strong>requerido</strong>
+							</mat-error>
+						</mat-form-field>
+					</div>
+				  </div>
+				<div style="margin-top: 20px;">
+					<button mat-raised-button [disabled]="!convicionsFG.valid" color="primary" matStepperNext (click)="next()">Siguiente</button>
+				  </div>
+			  </form>
+		</mat-step>
+		<mat-step [stepControl]="courtshipAndMarriageFG" optional=false>
+			<form [formGroup]="courtshipAndMarriageFG">
+				<ng-template matStepLabel>Noviazgo y Matrimonio</ng-template>
+				<h1>Noviazgo y Matrimonio</h1>
+				<div class="form-row">
+					<div class="col-sm-12">
+						<mat-form-field class="example-full-width">
+							<mat-label>¿Qué piensa sobre el noviazgo?</mat-label>
+							<textarea matInput formControlName="courtshipThought" required rows="5"></textarea>
+							<mat-error *ngIf="courtshipAndMarriageFG.controls['courtshipThought'].invalid">
+								Este campo es <strong>requerido</strong>
+							</mat-error>
+						</mat-form-field>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="col-sm-12">
+						<mat-form-field class="example-full-width">
+							<mat-label>¿Qué piensa sobre el matrimonio?</mat-label>
+							<textarea matInput formControlName="marriageThought" required rows="5"></textarea>
+							<mat-error *ngIf="courtshipAndMarriageFG.controls['marriageThought'].invalid">
+								Este campo es <strong>requerido</strong>
+							</mat-error>
+						</mat-form-field>
+					</div>
+				  </div>
+				<div style="margin-top: 20px;">
+					<button mat-raised-button [disabled]="!courtshipAndMarriageFG.valid" color="primary" matStepperNext (click)="next()">Siguiente</button>
+				  </div>
+			  </form>
+		</mat-step>
+		<mat-step [stepControl]="spiritualGrowthFG" optional=false>
+			<form [formGroup]="spiritualGrowthFG">
+				<ng-template matStepLabel>Crecimiento Espiritual</ng-template>
+				<h1>Crecimiento Espiritual</h1>
+				<div class="form-row">
+					<div class="col-sm-12">
+						<mat-form-field class="example-full-width">
+							<mat-label>Explique la importancia de mantener una relación intima con Dios, y las estrategias que usted sigue para experimentar esa comunión plena con su Señor.</mat-label>
+							<textarea matInput formControlName="godsRelationshipDescription" required rows="5"></textarea>
+							<mat-error *ngIf="spiritualGrowthFG.controls['godsRelationshipDescription'].invalid">
+								Este campo es <strong>requerido</strong>
+							</mat-error>
+						</mat-form-field>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="col-sm-12">
+						<mat-form-field class="example-full-width">
+							<mat-label>Explique cuán importante es la obediencia en la vida cristiana hacia las autoridades espirituales que Dios ha puesto en nuestro entorno. Sean estos pastores, lideres juveniles, profesores u otros.</mat-label>
+							<textarea matInput formControlName="authorityThought" required rows="5"></textarea>
+							<mat-error *ngIf="spiritualGrowthFG.controls['authorityThought'].invalid">
+								Este campo es <strong>requerido</strong>
+							</mat-error>
+						</mat-form-field>
+					</div>
+				  </div>
+				<div style="margin-top: 20px;">
+					<button mat-raised-button [disabled]="!spiritualGrowthFG.valid" color="primary" matStepperNext (click)="next()">Siguiente</button>
+				  </div>
+			  </form>
+		</mat-step>
+	</mat-horizontal-stepper>
+	</mat-card>

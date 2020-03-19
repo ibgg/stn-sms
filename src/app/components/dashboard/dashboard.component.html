@@ -24,15 +24,15 @@
 		<mat-sidenav [overlapTrigger]="false" (toggle)="isOpened()" #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
 			fixedTopGap="56" class="sidenav">
 			<mat-nav-list class="navigation-list">
-				<a mat-list-item (click)="showComponent('register-index')" class="nav-item"><mat-icon class="material-icons">home</mat-icon><span class="navigation-item-label"> Dasboard</span></a>
+				<a mat-list-item (click)="showComponent('register-index')" class="nav-item" [ngClass]="{'nav-item-selected': currentComponent == 'register-index'}"><mat-icon class="material-icons">home</mat-icon><span class="navigation-item-label"> Dasboard</span></a>
 				<mat-divider class="navigation-divider"></mat-divider>
-				<a mat-list-item (click)="showComponent('register')" class="nav-item"><mat-icon class="material-icons">create</mat-icon><span class="navigation-item-label"> Solicitud de ingreso</span></a>
+				<a mat-list-item (click)="showComponent('register')" class="nav-item" [ngClass]="{'nav-item-selected': currentComponent == 'register'}"><mat-icon class="material-icons">create</mat-icon><span class="navigation-item-label"> Solicitud de ingreso</span></a>
 				<mat-divider class="navigation-divider"></mat-divider>
-				<a mat-list-item (click)="showComponent('personal-test')" class="nav-item"><mat-icon class="material-icons">how_to_reg</mat-icon><span class="navigation-item-label"> Test personal</span></a>
+				<a mat-list-item (click)="showComponent('personal-test')" class="nav-item" [ngClass]="{'nav-item-selected': currentComponent == 'personal-test'}"><mat-icon class="material-icons">how_to_reg</mat-icon><span class="navigation-item-label"> Test personal</span></a>
 				<mat-divider class="navigation-divider"></mat-divider>
-				<a mat-list-item (click)="showComponent('personal-test')" class="nav-item"><mat-icon class="material-icons">sentiment_satisfied</mat-icon><span class="navigation-item-label"> Test psicológico</span></a>
+				<a mat-list-item (click)="showComponent('test-psicologico')" class="nav-item" [ngClass]="{'nav-item-selected': currentComponent == 'test-psicologico'}"><mat-icon class="material-icons">sentiment_satisfied</mat-icon><span class="navigation-item-label"> Test psicológico</span></a>
 				<mat-divider class="navigation-divider"></mat-divider>
-				<a mat-list-item (click)="showComponent('personal-test')" class="nav-item"><mat-icon class="material-icons">menu_book</mat-icon><span class="navigation-item-label"> Test bíblico</span></a>
+				<a mat-list-item (click)="showComponent('test-biblico')" class="nav-item" [ngClass]="{'nav-item-selected': currentComponent == 'test-biblico'}"><mat-icon class="material-icons">menu_book</mat-icon><span class="navigation-item-label"> Test bíblico</span></a>
 				<mat-divider class="navigation-divider"></mat-divider>
 				<a mat-list-item (click)="showComponent('personal-test')" class="nav-item"><mat-icon class="material-icons">notes</mat-icon><span class="navigation-item-label"> Acuerdo de confesión</span></a>
 			</mat-nav-list>
@@ -43,6 +43,9 @@
 			<div class="container-fluid"  [ngClass]="{'menu-open-dashboard-content': !snav.opened, 'menu-closed-dashboard-content': snav.opened}">
 				<app-register *ngIf="currentComponent == 'register'"></app-register>
 				<app-register-index *ngIf="currentComponent == 'register-index'"></app-register-index>
+				<app-test-personal *ngIf="currentComponent == 'personal-test'"></app-test-personal>
+				<app-test-psicologico *ngIf="currentComponent == 'test-psicologico'"></app-test-psicologico>
+				<app-test-biblico *ngIf="currentComponent == 'test-biblico'"></app-test-biblico>
 			</div>
 			<!-- /.container-fluid -->
 		</mat-sidenav-content>
