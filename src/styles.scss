@@ -74,8 +74,13 @@ body {
   .mat-checkbox-layout {
 	white-space: normal !important;
 	}
-
-
+	.mat-form-field.mat-form-field-invalid .mat-form-field-label {
+		white-space: normal !important;
+	}
+	
+	.mat-form-field.mat-form-field .mat-form-field-label {
+		white-space: normal !important;
+	}
 /********************************************************************************************************
 *********************************** Dashboard styles ****************************************************
 *********************************************************************************************************/

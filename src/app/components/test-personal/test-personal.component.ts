@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, Form } from '@angular/forms';
 
 @Component({
 	selector: 'app-test-personal',
@@ -11,6 +11,9 @@ export class TestPersonalComponent implements OnInit {
 	convicionsFG: FormGroup;
 	courtshipAndMarriageFG: FormGroup;
 	spiritualGrowthFG: FormGroup;
+	calledFG: FormGroup;
+	healthFG: FormGroup;
+	saveAttempt: Boolean = false;
 
 	constructor(private formBuilder: FormBuilder) { }
 
@@ -23,8 +26,7 @@ export class TestPersonalComponent implements OnInit {
 			christEncounterDescription:['', Validators.required],
 			christBeforeDescription:['', Validators.required],
 			christAfterDescription:['', Validators.required],
-			baptismDescription:['', Validators.required],
-			calledDescription:['', Validators.required]
+			baptismDescription:['', Validators.required]
 		});
 
 		this.convicionsFG = this.formBuilder.group({
@@ -41,6 +43,29 @@ export class TestPersonalComponent implements OnInit {
 		this.spiritualGrowthFG = this.formBuilder.group({
 			godsRelationshipDescription: ['', Validators.required],
 			authorityThought: ['', Validators.required]
-		})
+		});
+
+		this.calledFG = this.formBuilder.group({
+			calledDescription:['', Validators.required],
+			personalMinisterialGoals: ['', Validators.required],
+			personalGospelUnderstanding: ['', Validators.required]
+		});
+
+		this.healthFG= this.formBuilder.group({
+			healthCondition: ['', Validators.required],
+			drugAllergy:['', Validators.required],
+			chronicIllness: ['', Validators.required],
+			controlledDrug: ['', Validators.required],
+			visualProblems: ['', Validators.required],
+			speakingIllness: ['', Validators.required],
+			vaccinesCompletition: ['', Validators.required],
+			contagiousIllness: ['', Validators.required],
+			sexualTransmisionIllness: ['', Validators.required],
+			agrementCheck: [false, [Validators.requiredTrue]]
+		});
+	}
+
+	private saveData() {
+		this.saveAttempt = true;
 	}
 }
