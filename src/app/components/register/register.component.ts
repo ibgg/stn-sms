@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 	styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+	@Input() mobileQuery: MediaQueryList;
 	personalInformationFormGroup: FormGroup;
 	professionalAndAcademicFormGroup: FormGroup;
 	christianExperience: FormGroup;
