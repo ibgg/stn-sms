@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, Form } from '@angular/forms';
 
 @Component({
@@ -7,6 +7,7 @@ import { FormGroup, FormBuilder, Validators, Form } from '@angular/forms';
 	styleUrls: ['./test-personal.component.css']
 })
 export class TestPersonalComponent implements OnInit {
+	@Input() mobileQuery: MediaQueryList;
 	conversionFG: FormGroup;
 	convicionsFG: FormGroup;
 	courtshipAndMarriageFG: FormGroup;

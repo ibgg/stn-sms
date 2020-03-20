@@ -3,7 +3,7 @@ export class Chrono {
 	timerId: any = 0;
 	started:boolean = false;
 	
-	chronoLabel:string = "";
+	chronoLabel:string = "00:00:00";
 
 	constructor(){
 

@@ -1,20 +1,19 @@
 <div class="row" style="margin-bottom:20px;">
-	<div class="col img-profile-container">
-		<div *ngIf="authService.userData as user">
+	<div class="col-sm-12" *ngIf="authService.userData as user">
+		<div *ngIf="authService.userData as user" class="img-profile-container">
 			<img src="{{(user.photoURL) ? user.photoURL : '../../../assets/images/avatar.png'}}"
 				class="img-profile rounded-circle img-fluid">
 		</div>
-	</div>
-	<div class="col-sm-10" *ngIf="authService.userData as user">
-		<div style="padding:8% 0">
-			<div class="label-h1"><strong>Nombre:</strong> {{user.displayName}}</div>
-			<div class="label-h1"><strong>E-mail:</strong> {{user.email}}</div>
-			<mat-progress-bar class="example-margin" color="principal" mode="determinate" value=100 bufferValue=75
-				style="margin-top:20px;">
-			</mat-progress-bar>
+		<div class="profile-description" style="position: absolute; top: 18%;">
+			<div class="label-h1 username"><strong class="label-name">Nombre:</strong> {{user.displayName}}</div>
+			<div class="label-h1 useremail"><strong class="label-email">E-mail:</strong> {{user.email}}</div>
 		</div>
 	</div>
 </div>
+<mat-progress-bar class="example-margin" color="principal" mode="determinate" value=100 bufferValue=75
+style="margin-top:20px; margin-bottom: 20px;">
+</mat-progress-bar>
+
 <div class="row" style="justify-content: center;">
 	<div class="col-sm-4" style=" margin-bottom:20px">
 		<mat-card class="card-style">

@@ -222,7 +222,7 @@ nav {
 	}
 
 	.menu-open-dashboard-content {
-		padding-left: 70px;
+		padding-left: 10px;
 		padding-right: 10px;
 		padding-top:20px;
 		padding-bottom: 20px;
@@ -270,4 +270,29 @@ nav {
 		color: #fff;
 		display: none;
 	}
+
+	.nav-item-selected{
+		background-color: #5E2129 !important;
+		color: #fff !important;
+	}
+	
+	.nav-item:hover, .nav-item-selected:hover {
+		background-color: #5E2129;
+		color: #fff !important;
+	}	
+
+	mat-sidenav:not(.mat-drawer-opened) {
+		transform: translate3d(0, 0, 0) !important;
+		visibility: hidden;
+		width: 60px !important;
+		overflow: hidden;
+		display: none;
+	}
+	mat-sidenav:not(.mat-drawer-opened) .navigation-item-label {
+		display: none !important;
+	}
+	mat-sidenav:not(.mat-drawer-opened) .home-button {
+		display: none !important;
+	}
+	
 }

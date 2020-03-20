@@ -12,7 +12,6 @@ import { MediaMatcher } from '@angular/cdk/layout';
 export class DashboardComponent implements OnInit, OnDestroy {
 	mobileQuery: MediaQueryList;
 	private currentComponent: string = "register-index";
-
 	private _mobileQueryListener: () => void;
 
 	constructor(
@@ -27,6 +26,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 	}
 
 	ngOnInit(): void {
+		
 	}
 
 	ngOnDestroy(): void {

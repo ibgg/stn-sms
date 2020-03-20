@@ -21,16 +21,20 @@ export class TestPsicologicoComponent implements OnInit {
 		let group = {};
 
 		for (let i = 0; i < this.psicoQuestions.length; i++){
-			group["question"+i] = new FormControl('', [Validators.required]);
+			group["question"+i] = new FormControl({value: '', disabled:!this.started}, Validators.required);
 		}
 
 		this.psicologicalTestFG = new FormGroup(group);
 		this.chronometer = new Chrono();
-		this.chronometer.startTimer();
 	}
 
 	start():void {
 		this.started = true;
+		this.chronometer.startTimer();
+
+		for (const field in this.psicologicalTestFG.controls){
+			this.psicologicalTestFG.get(field).enable();
+		}
 	}
 
 	saveData():void {

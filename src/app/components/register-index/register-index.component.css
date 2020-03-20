@@ -21,5 +21,42 @@
 	margin-right: 2px;
 	height: 100px;
 	width: 100px;
-	margin: auto;  
+	margin: auto;
+	float: left;  
   }
+
+.profile-description {
+	margin-left: 110px;
+}  
+
+@media screen and (max-width: 720px) {
+	.img-profile-container {
+		margin-left: 10px;
+		margin-right: 2px;
+		height: 80px;
+		width: 80px;
+		margin: auto;  
+		float: left;
+	  }	
+
+	  .img-profile {
+		margin-left: 10px;
+		margin-right: 2px;
+		height: 80px;
+		width: 80px;
+		margin: auto;
+	  }	
+	  .label-name{
+		  display: none;
+	  }
+	  .label-email {
+		  display: none;
+	  }
+	  
+	  .username {
+		  font-size: 16px;
+	  }
+	  .useremail{
+		  font-size: 16px;
+	  }
+}
