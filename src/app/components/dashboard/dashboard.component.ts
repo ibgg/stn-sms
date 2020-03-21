@@ -3,6 +3,7 @@ import { AuthService } from '../../../shared/services/auth.service';
 import { Router } from '@angular/router';
 import { ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
 	selector: 'app-dashboard',
@@ -36,11 +37,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
 		this.authService.signOut();
 	}
 
-	public showComponent(componentName: string){
+	public showComponent(componentName: string, snav: MatSidenav){
 		this.currentComponent = componentName;
+		if (this.mobileQuery.matches) snav.toggle();
 	}
 
 	isOpened(){
-		console.log("MEnu open...");
+		
 	}
 }

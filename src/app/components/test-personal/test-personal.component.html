@@ -287,10 +287,10 @@
 				<label id="example-radio-group-label">¿Cómo considera su estado de salud?</label>
 				<div>
 					<mat-radio-group aria-label="Seleccione una opción" formControlName="healthCondition" required>
-						<mat-radio-button value="Yes">Bueno</mat-radio-button>
-						<mat-radio-button value="Yes">Muy bueno</mat-radio-button>
-						<mat-radio-button value="Yes">Regular</mat-radio-button>
-						<mat-radio-button value="Yes">Malo</mat-radio-button>
+						<mat-radio-button value="Bueno">Bueno</mat-radio-button>
+						<mat-radio-button value="Muy bueno">Muy bueno</mat-radio-button>
+						<mat-radio-button value="Regular">Regular</mat-radio-button>
+						<mat-radio-button value="Malo">Malo</mat-radio-button>
 						<mat-error *ngIf="healthFG.controls['healthCondition'].invalid && saveAttempt == true">
 							Este campo es <strong>requerido</strong>
 						</mat-error>

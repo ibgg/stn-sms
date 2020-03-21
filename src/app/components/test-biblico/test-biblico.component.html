@@ -1,1 +1,567 @@
-<p>test-biblico works!</p>
+<mat-card>
+	<mat-horizontal-stepper linear="false" labelPosition="bottom" #stepper *ngIf="!mobileQuery.matches">
+		<mat-step [stepControl]="jesusLifeFG" optional=false>
+			<ng-template matStepLabel style="padding-left: 0px !important;">Sobre la vida de nuestro Señor Jesucristo
+			</ng-template>
+			<ng-container *ngTemplateOutlet="f1"></ng-container>
+			<div style="margin-top: 20px;">
+				<button mat-raised-button color="primary" matStepperNext>Siguiente</button>
+			</div>
+		</mat-step>
+		<mat-step [stepControl]="bibleDescriptionFG" optional=false>
+			<ng-template matStepLabel style="padding-left: 0px !important;">Conocimiento Bíblico General</ng-template>
+			<ng-container *ngTemplateOutlet="f2"></ng-container>
+			<div style="margin-top: 20px;">
+				<button mat-raised-button color="primary" matStepperNext>Siguiente</button>
+			</div>
+		</mat-step>
+		<mat-step [stepControl]="bibleQuestionsFG" optional=false>
+			<ng-template matStepLabel style="padding-left: 0px !important;">Examen de Conocimiento Bíblico</ng-template>
+			<ng-container *ngTemplateOutlet="f3"></ng-container>
+			<div style="margin-top: 20px;">
+				<button mat-raised-button color="primary">Terminar</button>
+			</div>
+		</mat-step>
+	</mat-horizontal-stepper>
+	<mat-vertical-stepper linear="false"  #stepper *ngIf="mobileQuery.matches">
+		<mat-step [stepControl]="jesusLifeFG" optional=false>
+			<ng-template matStepLabel style="padding-left: 0px !important;">Sobre la vida de nuestro Señor Jesucristo
+			</ng-template>
+			<ng-container *ngTemplateOutlet="f1"></ng-container>
+			<div style="margin-top: 20px;">
+				<button mat-raised-button color="primary" matStepperNext>Siguiente</button>
+			</div>
+		</mat-step>
+		<mat-step [stepControl]="bibleDescriptionFG" optional=false>
+			<ng-template matStepLabel style="padding-left: 0px !important;">Conocimiento Bíblico General</ng-template>
+			<ng-container *ngTemplateOutlet="f2"></ng-container>
+			<div style="margin-top: 20px;">
+				<button mat-raised-button color="primary" matStepperNext>Siguiente</button>
+			</div>
+		</mat-step>
+		<mat-step [stepControl]="bibleQuestionsFG" optional=false>
+			<ng-template matStepLabel style="padding-left: 0px !important;">Examen de Conocimiento Bíblico</ng-template>
+			<ng-container *ngTemplateOutlet="f3"></ng-container>
+			<div style="margin-top: 20px;">
+				<button mat-raised-button color="primary">Terminar</button>
+			</div>
+		</mat-step>
+	</mat-vertical-stepper>
+</mat-card>
+
+<ng-template #f1>
+	<form [formGroup]="jesusLifeFG">
+		<h1>Sobre la vida de nuestro Señor Jesucristo</h1>
+		<div class="form-row">
+			<div class="col-sm-12">
+				<mat-form-field class="example-full-width">
+					<mat-label>Redacta en un mínimo de {{MINJESUSLIFEWORDS}} palabras la vida de Jesús el Hijo de Dios
+					</mat-label>
+					<textarea matInput formControlName="jesusLifeDescription" rows="10" #message></textarea>
+					<mat-hint align="end" *ngIf="message.value.match(regex)!=null">{{message.value.match(regex).length}}
+						/ {{MINJESUSLIFEWORDS}}</mat-hint>
+					<mat-error *ngIf="jesusLifeFG.controls['jesusLifeDescription'].invalid">
+						<span *ngIf="jesusLifeFG.controls['jesusLifeDescription'].errors.required">Este campo es
+							<strong>requerido</strong></span>
+						<span *ngIf="jesusLifeFG.controls['jesusLifeDescription'].errors.minWords">Debes escribir por lo
+							menos {{MINJESUSLIFEWORDS}} palabras</span>
+					</mat-error>
+				</mat-form-field>
+			</div>
+		</div>
+	</form>
+</ng-template>
+
+<ng-template #f2>
+	<form [formGroup]="bibleDescriptionFG">
+		<h1>Conocimiento Bíblico General</h1>
+		<div class="form-row">
+			<div class="col-sm-12">
+				<mat-form-field class="example-full-width">
+					<mat-label>Describa de forma general sobre que trata el libro de Génesis</mat-label>
+					<textarea matInput formControlName="genesisDesc" rows="4"></textarea>
+					<mat-error *ngIf="bibleDescriptionFG.controls['genesisDesc'].invalid">
+						Nombre es <strong>requerido</strong>
+					</mat-error>
+				</mat-form-field>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="col-sm-12">
+				<mat-form-field class="example-full-width">
+					<mat-label>Describa de forma general sobre que trata el libro de Éxodo</mat-label>
+					<textarea matInput formControlName="exodusDesc" rows="4"></textarea>
+					<mat-error *ngIf="bibleDescriptionFG.controls['exodusDesc'].invalid">
+						Nombre es <strong>requerido</strong>
+					</mat-error>
+				</mat-form-field>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="col-sm-12">
+				<mat-form-field class="example-full-width">
+					<mat-label>Describa de forma general sobre que trata el libro de Números</mat-label>
+					<textarea matInput formControlName="numbersDesc" rows="4"></textarea>
+					<mat-error *ngIf="bibleDescriptionFG.controls['numbersDesc'].invalid">
+						Nombre es <strong>requerido</strong>
+					</mat-error>
+				</mat-form-field>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="col-sm-12">
+				<mat-form-field class="example-full-width">
+					<mat-label>Describa de forma general sobre que trata el libro de Deuteronomio</mat-label>
+					<textarea matInput formControlName="deuteronomyDesc" rows="4"></textarea>
+					<mat-error *ngIf="bibleDescriptionFG.controls['deuteronomyDesc'].invalid">
+						Nombre es <strong>requerido</strong>
+					</mat-error>
+				</mat-form-field>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="col-sm-12">
+				<mat-form-field class="example-full-width">
+					<mat-label>¿Sobre qué tratan los libros de las crónicas y los reyes?</mat-label>
+					<textarea matInput formControlName="chrKingsDesc" rows="4"></textarea>
+					<mat-error *ngIf="bibleDescriptionFG.controls['chrKingsDesc'].invalid">
+						Nombre es <strong>requerido</strong>
+					</mat-error>
+				</mat-form-field>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="col-sm-12">
+				<mat-form-field class="example-full-width">
+					<mat-label>¿Sobre qué tratan los libros de los profetas?</mat-label>
+					<textarea matInput formControlName="prophetsDesc" rows="4"></textarea>
+					<mat-error *ngIf="bibleDescriptionFG.controls['prophetsDesc'].invalid">
+						Nombre es <strong>requerido</strong>
+					</mat-error>
+				</mat-form-field>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="col-sm-12">
+				<mat-form-field class="example-full-width">
+					<mat-label>Mencione los evangelios</mat-label>
+					<textarea matInput formControlName="gospelsDesc" rows="4"></textarea>
+					<mat-error *ngIf="bibleDescriptionFG.controls['gospelsDesc'].invalid">
+						Nombre es <strong>requerido</strong>
+					</mat-error>
+				</mat-form-field>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="col-sm-12">
+				<mat-form-field class="example-full-width">
+					<mat-label>¿Sobre qué trata el libro de los hechos?</mat-label>
+					<textarea matInput formControlName="actsDesc" rows="4"></textarea>
+					<mat-error *ngIf="bibleDescriptionFG.controls['actsDesc'].invalid">
+						Nombre es <strong>requerido</strong>
+					</mat-error>
+				</mat-form-field>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="col-sm-12">
+				<mat-form-field class="example-full-width">
+					<mat-label>¿Sobre qué trata el apocalipsis?</mat-label>
+					<textarea matInput formControlName="revelationsDesc" rows="4"></textarea>
+					<mat-error *ngIf="bibleDescriptionFG.controls['revelationsDesc'].invalid">
+						Nombre es <strong>requerido</strong>
+					</mat-error>
+				</mat-form-field>
+			</div>
+		</div>
+	</form>
+</ng-template>
+
+<ng-template #f3>
+	<form [formGroup]="bibleQuestionsFG">
+		<h1>Examen de Conocimiento Bíblico</h1>
+		<div class="form-row">
+			<div class="col-sm-12">
+				<mat-label>¿Cuántos libros contiene la Biblia?</mat-label>
+				<div>
+					<mat-radio-group class="question-radio-group" aria-label="Seleccione una opción" formControlName="bibleBooksNumber" required>
+						<mat-radio-button value="150">150</mat-radio-button>
+						<mat-radio-button value="66">66</mat-radio-button>
+						<mat-radio-button value="37">37</mat-radio-button>
+						<mat-radio-button value="29">29</mat-radio-button>
+						<mat-error *ngIf="bibleQuestionsFG.controls['bibleBooksNumber'].invalid && saveAttempt == true">
+							Este campo es <strong>requerido</strong>
+						</mat-error>
+					</mat-radio-group>
+				</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="col-sm-12">
+				<mat-label>Mencione algunas características de los siguientes personajes bíblicos:</mat-label>
+				<div>
+					<div class="col-sm-12">
+						<mat-form-field class="example-full-width">
+							<mat-label>Abraham:</mat-label>
+							<input matInput formControlName="abrahamDescription">
+							<mat-error *ngIf="bibleQuestionsFG.controls['abrahamDescription'].invalid">
+								Este campo es <strong>requerido</strong>
+							</mat-error>
+						</mat-form-field>
+					</div>
+					<div class="col-sm-12">
+						<mat-form-field class="example-full-width">
+							<mat-label>Samuel:</mat-label>
+							<input matInput formControlName="samDescription">
+							<mat-error *ngIf="bibleQuestionsFG.controls['samDescription'].invalid">
+								Este campo es <strong>requerido</strong>
+							</mat-error>
+						</mat-form-field>
+					</div>
+					<div class="col-sm-12">
+						<mat-form-field class="example-full-width">
+							<mat-label>Moisés:</mat-label>
+							<input matInput formControlName="mosesDescription">
+							<mat-error *ngIf="bibleQuestionsFG.controls['mosesDescription'].invalid">
+								Este campo es <strong>requerido</strong>
+							</mat-error>
+						</mat-form-field>
+					</div>
+					<div class="col-sm-12">
+						<mat-form-field class="example-full-width">
+							<mat-label>David:</mat-label>
+							<input matInput formControlName="davidDescription">
+							<mat-error *ngIf="bibleQuestionsFG.controls['davidDescription'].invalid">
+								Este campo es <strong>requerido</strong>
+							</mat-error>
+						</mat-form-field>
+					</div>
+					<div class="col-sm-12">
+						<mat-form-field class="example-full-width">
+							<mat-label>Pablo:</mat-label>
+							<input matInput formControlName="pabloDescription">
+							<mat-error *ngIf="bibleQuestionsFG.controls['pabloDescription'].invalid">
+								Este campo es <strong>requerido</strong>
+							</mat-error>
+						</mat-form-field>
+					</div>
+					<div class="col-sm-12">
+						<mat-form-field class="example-full-width">
+							<mat-label>Pedro:</mat-label>
+							<input matInput formControlName="pedroDescription">
+							<mat-error *ngIf="bibleQuestionsFG.controls['pedroDescription'].invalid">
+								Este campo es <strong>requerido</strong>
+							</mat-error>
+						</mat-form-field>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="col-sm-12">
+				<mat-label>¿Cuántas esposas tenia Salomón?</mat-label>
+				<div>
+					<mat-radio-group class="question-radio-group" aria-label="Seleccione una opción" formControlName="salomonsWifes" required>
+						<mat-radio-button value="1 esposa y 3 concubinas">1 esposa y 3 concubinas</mat-radio-button>
+						<mat-radio-button value="1000 esposas">1000 esposas</mat-radio-button>
+						<mat-radio-button value="700 esposas y 300 concubinas">700 esposas y 300 concubinas
+						</mat-radio-button>
+						<mat-radio-button value="300 esposas y 700 concubinas">300 esposas y 700 concubinas
+						</mat-radio-button>
+						<mat-error *ngIf="bibleQuestionsFG.controls['salomonsWifes'].invalid && saveAttempt == true">
+							Este campo es <strong>requerido</strong>
+						</mat-error>
+					</mat-radio-group>
+				</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="col-sm-12">
+
+				<mat-label>Una de las pruebas más difíciles para Abraham involucro a su hijo, ¿Cuál fue?</mat-label>
+				<div>
+					<mat-radio-group class="question-radio-group" aria-label="Seleccione una opción" formControlName="abrahamProof" required>
+						<mat-radio-button value="Llevarlo a Egipto">Llevarlo a Egipto</mat-radio-button>
+						<mat-radio-button value="Desheredarlo">Desheredarlo</mat-radio-button>
+						<mat-radio-button value="Asesinarlo como sacrificio">Asesinarlo como sacrificio
+						</mat-radio-button>
+						<mat-radio-button value="Mandarlo al frente de la batalla">Mandarlo al frente de la batalla
+						</mat-radio-button>
+						<mat-error *ngIf="bibleQuestionsFG.controls['abrahamProof'].invalid && saveAttempt == true">
+							Este campo es <strong>requerido</strong>
+						</mat-error>
+					</mat-radio-group>
+				</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="col-sm-12">
+
+				<mat-label>¿Quién escribió la mayoría de los Proverbios?</mat-label>
+				<div>
+					<mat-radio-group class="question-radio-group" aria-label="Seleccione una opción" formControlName="proverbsWriter" required>
+						<mat-radio-button value="David">David</mat-radio-button>
+						<mat-radio-button value="Moisés">Moisés</mat-radio-button>
+						<mat-radio-button value="Salomón">Salomón</mat-radio-button>
+						<mat-radio-button value="Los hijos de Coré">Los hijos de Coré</mat-radio-button>
+						<mat-error *ngIf="bibleQuestionsFG.controls['proverbsWriter'].invalid && saveAttempt == true">
+							Este campo es <strong>requerido</strong>
+						</mat-error>
+					</mat-radio-group>
+				</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="col-sm-12">
+				<mat-label>¿Dónde fue la primera victoria de Israel en la Tierra Prometida?</mat-label>
+				<div>
+					<mat-radio-group class="question-radio-group" aria-label="Seleccione una opción" formControlName="israelsLandVictory" required>
+						<mat-radio-button value="Jerusalén">Jerusalén</mat-radio-button>
+						<mat-radio-button value="Jericó">Jericó</mat-radio-button>
+						<mat-radio-button value="Samaria">Samaria</mat-radio-button>
+						<mat-radio-button value="Gilgal">Gilgal</mat-radio-button>
+						<mat-error
+							*ngIf="bibleQuestionsFG.controls['israelsLandVictory'].invalid && saveAttempt == true">
+							Este campo es <strong>requerido</strong>
+						</mat-error>
+					</mat-radio-group>
+				</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="col-sm-12">
+
+				<mat-label>¿Cuál es el tema general que abunda en los Salmos?</mat-label>
+				<div>
+					<mat-radio-group class="question-radio-group" aria-label="Seleccione una opción" formControlName="psalmsTopic" required>
+						<mat-radio-button value="Arrepentimiento">Arrepentimiento</mat-radio-button>
+						<mat-radio-button value="Súplica">Súplica</mat-radio-button>
+						<mat-radio-button value="Guerra espiritual">Guerra espiritual</mat-radio-button>
+						<mat-radio-button value="Alabanza">Alabanza</mat-radio-button>
+						<mat-error *ngIf="bibleQuestionsFG.controls['psalmsTopic'].invalid && saveAttempt == true">
+							Este campo es <strong>requerido</strong>
+						</mat-error>
+					</mat-radio-group>
+				</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="col-sm-12">
+
+				<mat-label>¿A quién de estos se le denomina el “Profeta Mesiánico”?</mat-label>
+				<div>
+					<mat-radio-group class="question-radio-group" aria-label="Seleccione una opción" formControlName="mesianicProphet" required>
+						<mat-radio-button value="Isaías">Isaías</mat-radio-button>
+						<mat-radio-button value="Ezequiel">Ezequiel</mat-radio-button>
+						<mat-radio-button value="Jeremías">Jeremías</mat-radio-button>
+						<mat-radio-button value="Oseas">Oseas</mat-radio-button>
+						<mat-error *ngIf="bibleQuestionsFG.controls['mesianicProphet'].invalid && saveAttempt == true">
+							Este campo es <strong>requerido</strong>
+						</mat-error>
+					</mat-radio-group>
+				</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="col-sm-12">
+				<mat-label>¿Qué diferencia hay para describir quienes son “profetas mayores o menores”?</mat-label>
+				<div>
+					<mat-radio-group class="question-radio-group" aria-label="Seleccione una opción" formControlName="mayMinProphets" required>
+						<mat-radio-button value="Su edad">Su edad</mat-radio-button>
+						<mat-radio-button value="Su profundidad">Su profundidad</mat-radio-button>
+						<mat-radio-button value="Época en que vivió">Época en que vivió</mat-radio-button>
+						<mat-radio-button value="Numero de capítulos">Numero de capítulos</mat-radio-button>
+						<mat-error *ngIf="bibleQuestionsFG.controls['mayMinProphets'].invalid && saveAttempt == true">
+							Este campo es <strong>requerido</strong>
+						</mat-error>
+					</mat-radio-group>
+				</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="col-sm-12">
+				<mat-label>¿Quién fue el primer rey de Israel?</mat-label>
+				<div>
+					<mat-radio-group class="question-radio-group" aria-label="Seleccione una opción" formControlName="firstIsraelKing" required>
+						<mat-radio-button value="Jeroboam">Jeroboam</mat-radio-button>
+						<mat-radio-button value="Saúl">Saúl</mat-radio-button>
+						<mat-radio-button value="Acab">Acab</mat-radio-button>
+						<mat-radio-button value="Joram">Joram</mat-radio-button>
+						<mat-error *ngIf="bibleQuestionsFG.controls['firstIsraelKing'].invalid && saveAttempt == true">
+							Este campo es <strong>requerido</strong>
+						</mat-error>
+					</mat-radio-group>
+				</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="col-sm-12">
+				<mat-label>¿De quién se dice que era “conforme al corazón de Dios”?</mat-label>
+				<div>
+					<mat-radio-group class="question-radio-group" aria-label="Seleccione una opción" formControlName="godsHearth" required>
+						<mat-radio-button value="David">David</mat-radio-button>
+						<mat-radio-button value="Daniel">Daniel</mat-radio-button>
+						<mat-radio-button value="Salomón">Salomón</mat-radio-button>
+						<mat-radio-button value="Samuel">Samuel</mat-radio-button>
+						<mat-error *ngIf="bibleQuestionsFG.controls['godsHearth'].invalid && saveAttempt == true">
+							Este campo es <strong>requerido</strong>
+						</mat-error>
+					</mat-radio-group>
+				</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="col-sm-12">
+				<mat-label>¿Quién fue el tesorero de los discípulos?</mat-label>
+				<div>
+					<mat-radio-group class="question-radio-group" aria-label="Seleccione una opción" formControlName="treasureDis" required>
+						<mat-radio-button value="Mateo">Mateo</mat-radio-button>
+						<mat-radio-button value="Juan">Juan</mat-radio-button>
+						<mat-radio-button value="Judas">Judas</mat-radio-button>
+						<mat-radio-button value="Jacobo">Jacobo</mat-radio-button>
+						<mat-error *ngIf="bibleQuestionsFG.controls['treasureDis'].invalid && saveAttempt == true">
+							Este campo es <strong>requerido</strong>
+						</mat-error>
+					</mat-radio-group>
+				</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="col-sm-12">
+				<mat-label>Jesús sano a la suegra de uno de los apóstoles ¿Quién fue?</mat-label>
+				<div>
+					<mat-radio-group class="question-radio-group" aria-label="Seleccione una opción" formControlName="motherinlawHeal" required>
+						<mat-radio-button value="Juan">Juan</mat-radio-button>
+						<mat-radio-button value="Pedro">Pedro</mat-radio-button>
+						<mat-radio-button value="Bartolomé">Bartolomé</mat-radio-button>
+						<mat-radio-button value="Lucas">Lucas</mat-radio-button>
+						<mat-error *ngIf="bibleQuestionsFG.controls['motherinlawHeal'].invalid && saveAttempt == true">
+							Este campo es <strong>requerido</strong>
+						</mat-error>
+					</mat-radio-group>
+				</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="col-sm-12">
+				<mat-label>Antes de su conversión ¿Qué hacía Pablo?</mat-label>
+				<div>
+					<mat-radio-group class="question-radio-group" aria-label="Seleccione una opción" formControlName="paulsBefConv" required>
+						<mat-radio-button value="Enseñaba en la iglesia">Enseñaba en la iglesia</mat-radio-button>
+						<mat-radio-button value="Perseguía a los cristianos">Perseguía a los cristianos
+						</mat-radio-button>
+						<mat-radio-button value="Pescaba en Galilea">Pescaba en Galilea</mat-radio-button>
+						<mat-radio-button value="Era médico">Era médico</mat-radio-button>
+						<mat-error *ngIf="bibleQuestionsFG.controls['paulsBefConv'].invalid && saveAttempt == true">
+							Este campo es <strong>requerido</strong>
+						</mat-error>
+					</mat-radio-group>
+				</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="col-sm-12">
+				<mat-label>¿Quién escribió la mayoría de las cartas de Nuevo Testamento?</mat-label>
+				<div>
+					<mat-radio-group class="question-radio-group" aria-label="Seleccione una opción" formControlName="ntWriter" required>
+						<mat-radio-button value="Pedro">Pedro</mat-radio-button>
+						<mat-radio-button value="Pablo">Pablo</mat-radio-button>
+						<mat-radio-button value="Santiago">Santiago</mat-radio-button>
+						<mat-radio-button value="Juan">Juan</mat-radio-button>
+						<mat-error *ngIf="bibleQuestionsFG.controls['ntWriter'].invalid && saveAttempt == true">
+							Este campo es <strong>requerido</strong>
+						</mat-error>
+					</mat-radio-group>
+				</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="col-sm-12">
+				<mat-label>¿Cómo resumió Jesús toda la ley?</mat-label>
+				<div>
+					<mat-radio-group class="question-radio-group" aria-label="Seleccione una opción" formControlName="lawsResume" required>
+						<mat-radio-button value="Debemos ser perfectos">Debemos ser perfectos</mat-radio-button>
+						<mat-radio-button value="Amar a Dios sobre todo, y al prójimo como a uno mismo">Amar a Dios
+							sobre todo, y al prójimo como a uno mismo</mat-radio-button>
+						<mat-radio-button value="Uno debe “Vivir y dejar vivir”">Uno debe “Vivir y dejar vivir”
+						</mat-radio-button>
+						<mat-radio-button value="Ojo por ojo y diente por diente.">Ojo por ojo y diente por diente.
+						</mat-radio-button>
+						<mat-error *ngIf="bibleQuestionsFG.controls['lawsResume'].invalid && saveAttempt == true">
+							Este campo es <strong>requerido</strong>
+						</mat-error>
+					</mat-radio-group>
+				</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="col-sm-12">
+				<mat-label>¿Qué significa la palabra “gracia” en su uso bíblico?</mat-label>
+				<div>
+					<mat-radio-group class="question-radio-group" aria-label="Seleccione una opción" formControlName="graceMeaning" required>
+						<mat-radio-button value="Una habilidad especial">Una habilidad especial</mat-radio-button>
+						<mat-radio-button value="Favor inmerecido">Favor inmerecido</mat-radio-button>
+						<mat-radio-button value="Buen sentido del humor">Buen sentido del humor</mat-radio-button>
+						<mat-radio-button value="Elegancia">Elegancia</mat-radio-button>
+						<mat-error *ngIf="bibleQuestionsFG.controls['graceMeaning'].invalid && saveAttempt == true">
+							Este campo es <strong>requerido</strong>
+						</mat-error>
+					</mat-radio-group>
+				</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="col-sm-12">
+				<mat-label>¿Cuáles son las dos ordenanzas o sacramentos de la iglesia cristiana?</mat-label>
+				<div>
+					<mat-radio-group class="question-radio-group" aria-label="Seleccione una opción" formControlName="ntCommands" required>
+						<mat-radio-button value="Matrimonio y Bautismo">Matrimonio y Bautismo</mat-radio-button>
+						<mat-radio-button value="Santa Cena y Extremaunción">Santa Cena y Extremaunción
+						</mat-radio-button>
+						<mat-radio-button value="Confesión y Confirmación">Confesión y Confirmación</mat-radio-button>
+						<mat-radio-button value="Bautismo y Santa Cena">Bautismo y Santa Cena</mat-radio-button>
+						<mat-error *ngIf="bibleQuestionsFG.controls['ntCommands'].invalid && saveAttempt == true">
+							Este campo es <strong>requerido</strong>
+						</mat-error>
+					</mat-radio-group>
+				</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="col-sm-12">
+				<mat-form-field class="example-full-width">
+					<mat-label>Escriba por lo menos tres pasajes que hablen de la Salvación, la gracia, el perdón divino
+						y el amor incondicional de Dios.</mat-label>
+					<input matInput formControlName="salvationPassages">
+					<mat-error *ngIf="bibleQuestionsFG.controls['salvationPassages'].invalid">
+						Este campo <strong>requerido</strong>
+					</mat-error>
+				</mat-form-field>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="col-sm-12">
+				<mat-form-field class="example-full-width">
+					<mat-label>Escriba algunos de los dones espirituales que la Biblia menciona.</mat-label>
+					<input matInput formControlName="spiritualGifts">
+					<mat-error *ngIf="bibleQuestionsFG.controls['spiritualGifts'].invalid">
+						Este campo <strong>requerido</strong>
+					</mat-error>
+				</mat-form-field>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="col-sm-12">
+				<mat-form-field class="example-full-width">
+					<mat-label>Escriba en orden todos los libros de la Biblia.</mat-label>
+					<textarea matInput formControlName="bibleBooks" rows="2"></textarea>
+					<mat-error *ngIf="bibleQuestionsFG.controls['bibleBooks'].invalid">
+						<span *ngIf="bibleQuestionsFG.controls['bibleBooks'].errors.required">Este campo es
+							<strong>requerido</strong></span>
+					</mat-error>
+				</mat-form-field>
+			</div>
+		</div>
+
+	</form>
+</ng-template>

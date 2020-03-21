@@ -1,17 +1,17 @@
 <mat-card>
 	<form [formGroup]="psicologicalTestFG">
-		<div>Instrucciones: A continuación hay 60 frases incompletas. Lea cada una y complétela con lo primero que venga a  su mente. Trabaje tan a prisa como le sea posible.</div>
-		<span id="chronotime"><h1 style="text-align: center;">{{chronometer.chronoLabel}}</h1></span>
+		<div>Instrucciones: A continuación hay 60 frases incompletas. Lea cada una y complétela con lo primero que venga a  su mente. Trabaje tan a prisa como le sea posible. Presione <strong>Comenzar</strong> para empezar el test</div>
+		<span id="chronotime"><h1 style="text-align: center;  font-size: 36px; color: #5E2129; margin-top: 20px;">{{chronometer.chronoLabel}}</h1></span>
 		<div style="text-align: center;">
 			<button mat-raised-button  color="primary"
 				(click)="start()" [disabled]="started">Comenzar</button>
 		</div>
 		
 		<div class="form-row" [formGroup]="psicologicalTestFG"  *ngFor="let question of psicoQuestions; let i=index" [hidden]="!started">
-			<div class="col-sm-12">
+			<div class="col-sm-12"> 
 				<mat-form-field class="example-full-width">
 					<mat-label>{{question}}</mat-label>
-					<input [disabled]="!started" matInput formControlName="{{'question'+i}}" required>
+					<input matInput formControlName="{{'question'+i}}" required>
 					<mat-error
 						*ngIf="psicologicalTestFG.controls['question'+i].invalid">
 						Este campo es <strong>requerido</strong>

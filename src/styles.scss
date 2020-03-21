@@ -99,7 +99,7 @@ body {
 	padding-right: 8px;
   }
 
-  .mat-radio-button ~ .mat-radio-button {
+  .mat-radio-button {
 	margin-left: 16px;
   }
 
@@ -186,6 +186,11 @@ button:focus, button:active:focus, button.active:focus,  div:focus, div:active:f
 	outline-style: none !important;
 	}
 
+.question-radio-group {
+	display: flex;
+	flex-direction: column;
+	margin: 15px 0;
+	}
 @media screen and (max-width: 720px) {
 	.mat-vertical-stepper-header {
 		display: flex;
