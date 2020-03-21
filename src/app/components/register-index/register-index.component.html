@@ -1,6 +1,6 @@
-<div class="row" style="margin-bottom:20px;">
-	<div class="col-sm-12" *ngIf="authService.userData as user">
-		<div *ngIf="authService.userData as user" class="img-profile-container">
+<div class="row" *ngIf="authService.userData as user else loadingProfile">
+	<div class="col-sm-12">
+		<div class="img-profile-container">
 			<img src="{{(user.photoURL) ? user.photoURL : '../../../assets/images/avatar.png'}}"
 				class="img-profile rounded-circle img-fluid">
 		</div>
@@ -10,12 +10,25 @@
 		</div>
 	</div>
 </div>
+<ng-template #loadingProfile>
+	<div class="row">
+	<div class="col-sm-12">
+		<div class="img-profile-container">
+			<img src="../../../assets/images/avatar.png" class="img-profile rounded-circle img-fluid">
+		</div>
+		<div class="profile-description" style="position: absolute; top: 18%;">
+		</div>
+	</div>
+</div>
+</ng-template>
+
 <mat-progress-bar class="example-margin" color="principal" mode="determinate" value=100 bufferValue=75
-style="margin-top:20px; margin-bottom: 20px;">
+	style="margin-top:20px; margin-bottom: 20px;">
 </mat-progress-bar>
 
 <div class="row" style="justify-content: center;">
 	<div class="col-sm-4" style=" margin-bottom:20px">
+		<a (click)="emmitNavigationClick('register')">
 		<mat-card class="card-style">
 			<mat-card-header style="justify-content: center;">
 				<mat-card-title style="text-align: center;">
@@ -30,12 +43,15 @@ style="margin-top:20px; margin-bottom: 20px;">
 				</mat-progress-spinner>
 			</mat-card-content>
 		</mat-card>
+		</a>
 	</div>
 	<div class="col-sm-4" style=" margin-bottom:20px">
+		<a (click)="emmitNavigationClick('personal-test')">
 		<mat-card class="card-style">
 			<mat-card-header style="justify-content: center;">
 				<mat-card-title style="text-align: center;">
-					<mat-icon class="material-icons" style="text-align: center; font-size: 40px; margin: auto;">how_to_reg
+					<mat-icon class="material-icons" style="text-align: center; font-size: 40px; margin: auto;">
+						how_to_reg
 					</mat-icon>
 				</mat-card-title>
 				<mat-card-title style="text-align: center;">Test personal</mat-card-title>
@@ -46,12 +62,15 @@ style="margin-top:20px; margin-bottom: 20px;">
 				</mat-progress-spinner>
 			</mat-card-content>
 		</mat-card>
+		</a>
 	</div>
 	<div class="col-sm-4" style=" margin-bottom:20px">
+		<a (click)="emmitNavigationClick('test-psicologico')">
 		<mat-card class="card-style">
 			<mat-card-header style="justify-content: center;">
 				<mat-card-title style="text-align: center;">
-					<mat-icon class="material-icons" style="text-align: center; font-size: 40px; margin: auto;">sentiment_satisfied
+					<mat-icon class="material-icons" style="text-align: center; font-size: 40px; margin: auto;">
+						sentiment_satisfied
 					</mat-icon>
 				</mat-card-title>
 				<mat-card-title style="text-align: center;">Test Psicológico</mat-card-title>
@@ -62,10 +81,12 @@ style="margin-top:20px; margin-bottom: 20px;">
 				</mat-progress-spinner>
 			</mat-card-content>
 		</mat-card>
+		</a>
 	</div>
 </div>
 <div class="row">
 	<div class="col-sm-4" style=" margin-bottom:20px">
+		<a (click)="emmitNavigationClick('test-biblico')">
 		<mat-card class="card-style">
 			<mat-card-header style="justify-content: center;">
 				<mat-card-title style="text-align: center;">
@@ -80,8 +101,10 @@ style="margin-top:20px; margin-bottom: 20px;">
 				</mat-progress-spinner>
 			</mat-card-content>
 		</mat-card>
+		</a>
 	</div>
 	<div class="col-sm-4" style=" margin-bottom:20px">
+		<a (click)="emmitNavigationClick('agreement')">
 		<mat-card class="card-style">
 			<mat-card-header style="justify-content: center;">
 				<mat-card-title style="text-align: center;">
@@ -96,5 +119,6 @@ style="margin-top:20px; margin-bottom: 20px;">
 				</mat-progress-spinner>
 			</mat-card-content>
 		</mat-card>
+		</a>
 	</div>
 </div>

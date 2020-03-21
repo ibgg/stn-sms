@@ -127,8 +127,8 @@ mat-sidenav:not(.mat-drawer-opened) .home-button {
 .menu-open-dashboard-content {
 	padding-left: 160px;
 	padding-right: 100px;
-	padding-top:50px;
-	padding-bottom: 50px;
+	padding-top:30px;
+	padding-bottom: 30px;
 }
 
 .menu-closed-dashboard-content {
@@ -143,7 +143,7 @@ mat-sidenav:not(.mat-drawer-opened) .home-button {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
-	padding: 8px 16px;
+	padding: 8px 6px;
 }
 
 .flex-spacer {
@@ -152,7 +152,7 @@ mat-sidenav:not(.mat-drawer-opened) .home-button {
 
 .docs-angular-logo {
 	height: 50px;
-	margin: 0 4px 3px 0;
+	margin: 0 4px 3px 15px;
 	vertical-align: middle;
 }
 
@@ -197,6 +197,7 @@ nav {
 	font: 500 20px/32px Roboto, 'Helvetica Neue', 'sans-serif'; 
 	color: #fff; 
 	margin-left: 10px;
+	vertical-align: middle;
 }
 
 .username-header {

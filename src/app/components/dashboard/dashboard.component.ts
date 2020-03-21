@@ -37,12 +37,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
 		this.authService.signOut();
 	}
 
-	public showComponent(componentName: string, snav: MatSidenav){
+	public showComponent(componentName: string, snav: MatSidenav, fromChild:boolean){
 		this.currentComponent = componentName;
-		if (this.mobileQuery.matches) snav.toggle();
+		if (this.mobileQuery.matches && snav.opened) snav.toggle();
 	}
 
-	isOpened(){
-		
+	isOpened(value:string){
+
 	}
 }

@@ -3,14 +3,17 @@
 		<button mat-icon-button (click)="snav.toggle()">
 			<mat-icon style="color: #fff;">menu</mat-icon>
 		</button>
+		<a mat-list-item (click)="showComponent('register-index', snav)">
 			<img class="docs-angular-logo img-fluid" src="../../../assets/images/logo-horizontal-blanco.png" alt="angular">
 			<span class="headline example-app-name" class="title-header">Sistema de Inscripción de Alumnos</span>
-
+		</a>
 		<div class="flex-spacer"></div>
 		<div class="nav-item dropdown no-arrow" *ngIf="authService.userData as user">
+			<a mat-list-item (click)="showComponent('register-index', snav)">
 			<span class="username-header">{{user.displayName}}</span>
 			<img class="img-profile rounded-circle img-fluid"
 				src="{{(user.photoURL) ? user.photoURL : '../../../assets/images/avatar.png'}}">
+			</a>
 		</div>
 		<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Main menu">
 			<mat-icon style="color: #fff;">more_vert</mat-icon>
@@ -36,17 +39,18 @@
 				<mat-divider class="navigation-divider"></mat-divider>
 				<a mat-list-item (click)="showComponent('test-biblico', snav)" class="nav-item" [ngClass]="{'nav-item-selected': currentComponent == 'test-biblico'}"><mat-icon class="material-icons">book</mat-icon><span class="navigation-item-label"> Test bíblico</span></a>
 				<mat-divider class="navigation-divider"></mat-divider>
-				<a mat-list-item (click)="showComponent('confesion', snav)" class="nav-item"><mat-icon class="material-icons">notes</mat-icon><span class="navigation-item-label"> Acuerdo de confesión</span></a>
+				<a mat-list-item (click)="showComponent('agreement', snav)" class="nav-item"><mat-icon class="material-icons">notes</mat-icon><span class="navigation-item-label"> Acuerdo de confesión</span></a>
 			</mat-nav-list>
 		</mat-sidenav>
 
 		<mat-sidenav-content class="" style="align-content: center;">
 			<div class="container-fluid"  [ngClass]="{'menu-open-dashboard-content': !snav.opened, 'menu-closed-dashboard-content': snav.opened}">
 				<app-register *ngIf="currentComponent == 'register'" [mobileQuery]="mobileQuery"></app-register>
-				<app-register-index *ngIf="currentComponent == 'register-index'" [mobileQuery]="mobileQuery"></app-register-index>
+				<app-register-index *ngIf="currentComponent == 'register-index'" [mobileQuery]="mobileQuery"  (navigationEmitter)='showComponent($event, snav)'></app-register-index>
 				<app-test-personal *ngIf="currentComponent == 'personal-test'" [mobileQuery]="mobileQuery"></app-test-personal>
 				<app-test-psicologico *ngIf="currentComponent == 'test-psicologico'" [mobileQuery]="mobileQuery"></app-test-psicologico>
 				<app-test-biblico *ngIf="currentComponent == 'test-biblico'" [mobileQuery]="mobileQuery"></app-test-biblico>
+				<app-agreement *ngIf="currentComponent == 'agreement'" [mobileQuery]="mobileQuery"></app-agreement>
 			</div>
 			<!-- /.container-fluid -->
 		</mat-sidenav-content>

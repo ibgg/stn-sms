@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AuthService } from 'src/shared/services/auth.service';
 
 @Component({
@@ -7,6 +7,8 @@ import { AuthService } from 'src/shared/services/auth.service';
 	styleUrls: ['./register-index.component.css']
 })
 export class RegisterIndexComponent implements OnInit {
+	@Output() navigationEmitter = new EventEmitter<string>();
+
 	username: string;
 	userpic: string;
 	useremail: string;
@@ -14,5 +16,9 @@ export class RegisterIndexComponent implements OnInit {
 	constructor(public authService: AuthService) { }
 
 	ngOnInit(): void {
+	}
+
+	emmitNavigationClick(componentName: string){
+		this.navigationEmitter.emit(componentName);
 	}
 }

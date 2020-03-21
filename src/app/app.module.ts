@@ -73,6 +73,7 @@ import { TestPersonalComponent } from './components/test-personal/test-personal.
 import { TestPsicologicoComponent } from './components/test-psicologico/test-psicologico.component';
 import { TestBiblicoComponent } from './components/test-biblico/test-biblico.component';
 import { RegisterIndexComponent } from './components/register-index/register-index.component';
+import { AgreementComponent } from './components/agreement/agreement.component';
 
 
 @NgModule({
@@ -88,6 +89,7 @@ import { RegisterIndexComponent } from './components/register-index/register-ind
 	TestPsicologicoComponent,
 	TestBiblicoComponent,
 	RegisterIndexComponent,
+	AgreementComponent,
 ],
   imports: [
 	BrowserModule,
