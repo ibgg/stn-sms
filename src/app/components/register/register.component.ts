@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { EnrollmentQuestions } from '../../../shared/questions/enrollment-questions.es';
 
 @Component({
 	selector: 'app-register',
@@ -13,6 +14,9 @@ export class RegisterComponent implements OnInit {
 	christianExperience: FormGroup;
 	tutorFormGroup: FormGroup;
 	institutionFormGroup: FormGroup;
+
+	enrollmentQuestions: any = EnrollmentQuestions;
+
 	tickInterval = 5;
 
 	constructor(private formBuilder: FormBuilder) { }
@@ -34,7 +38,7 @@ export class RegisterComponent implements OnInit {
 			state: ['', Validators.required],
 			zipCode: ['', Validators.required],
 			phone: ['', Validators.required],
-			cellphone: ['', Validators.required],
+			cellphone: [''],
 			disability: [false, Validators.required],
 			disabilityDescription: ['']
 		});

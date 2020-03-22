@@ -84,36 +84,36 @@
 </mat-card>
 
 <ng-template #f1>
-	<form [formGroup]="personalInformationFormGroup">
-		<h1>Información personal</h1>
+	<form [formGroup]="personalInformationFormGroup" *ngIf="enrollmentQuestions.personalInformation.questions as questions">
+		<h1>{{enrollmentQuestions.personalInformation.label}}</h1>
 		<div class="form-row">
 			<div class="col-sm-4">
 				<mat-form-field class="example-full-width">
-					<mat-label>Nombre</mat-label>
+					<mat-label>{{questions.name}}</mat-label>
 					<input matInput formControlName="name" required>
 					<mat-error *ngIf="personalInformationFormGroup.controls['name'].invalid">
-						Nombre es <strong>requerido</strong>
+						{{questions.name}} es <strong>requerido</strong>
 					  </mat-error>
 				</mat-form-field>
 			</div>
 			<div class="col-sm-4">
 				<mat-form-field class="example-full-width">
-					<mat-label>Apellidos</mat-label>
+					<mat-label>{{questions.lastname}}</mat-label>
 					<input matInput formControlName="lastname" required>
 					<mat-error *ngIf="personalInformationFormGroup.controls['lastname'].invalid">
-						Apellidos es <strong>requerido</strong>
+						{{questions.lastname}} es <strong>requerido</strong>
 					  </mat-error>
 				</mat-form-field>
 			</div>
 			<div class="col-sm-4">
 				<mat-form-field class="example-full-width">
-					<mat-label>Sexo</mat-label>
+					<mat-label>{{questions.gender.label}}</mat-label>
 					<mat-select [(value)]="selected" formControlName="gender" required>
-					  <mat-option value="option1">Hombre</mat-option>
-					  <mat-option value="option2">Mujer</mat-option>
+					  <mat-option value="{{questions.gender.options[0]}}">{{questions.gender.options[0]}}</mat-option>
+					  <mat-option value="{{questions.gender.options[1]}}">{{questions.gender.options[1]}}</mat-option>
 					</mat-select>
 					<mat-error *ngIf="personalInformationFormGroup.controls['gender'].invalid">
-						Género es <strong>requerido</strong>
+						{{questions.gender.label}} es <strong>requerido</strong>
 					  </mat-error>
 				  </mat-form-field>
 			</div>
@@ -121,28 +121,28 @@
 		<div class="form-row">
 			<div class="col-sm-4">
 				<mat-form-field class="example-full-width">
-					<mat-label>CURP</mat-label>
+					<mat-label>{{questions.curp}}</mat-label>
 					<input matInput formControlName="curp" required>
 					<mat-error *ngIf="personalInformationFormGroup.controls['curp'].invalid">
-						CURP es <strong>requerido</strong>
+						{{questions.curp}} es <strong>requerido</strong>
 					  </mat-error>
 				</mat-form-field>
 			</div>
 			<div class="col-sm-4">
 				<mat-form-field class="example-full-width">
-					<mat-label>Estado Civil</mat-label>
+					<mat-label>{{questions.maritalStatus}}</mat-label>
 					<input matInput formControlName="maritalStatus" required>
 					<mat-error *ngIf="personalInformationFormGroup.controls['maritalStatus'].invalid">
-						Estado civil es <strong>requerido</strong>
+						{{questions.maritalStatus}} civil es <strong>requerido</strong>
 					  </mat-error>
 				</mat-form-field>
 			</div>
 			<div class="col-sm-4">
 				<mat-form-field class="example-full-width">
-					<mat-label>Nacionalidad</mat-label>
+					<mat-label>{{questions.nationality}}</mat-label>
 					<input matInput formControlName="nationality" required>
 					<mat-error *ngIf="personalInformationFormGroup.controls['nationality'].invalid">
-						Nacionalidad es <strong>requerido</strong>
+						{{questions.nationality}} es <strong>requerido</strong>
 					  </mat-error>
 				</mat-form-field>
 			</div>
@@ -150,10 +150,10 @@
 		<div class="form-row">
 			<div class="col-sm-12">
 				<mat-form-field class="example-full-width">
-					<mat-label>Dirección</mat-label>
+					<mat-label>{{questions.address}}</mat-label>
 					<input matInput formControlName="address" required>
 					<mat-error *ngIf="personalInformationFormGroup.controls['address'].invalid">
-						Dirección es <strong>requerido</strong>
+						{{questions.address}} es <strong>requerido</strong>
 					  </mat-error>
 				</mat-form-field>
 			</div>
@@ -161,28 +161,28 @@
 		<div class="form-row">
 			<div class="col-sm-4">
 				<mat-form-field class="example-full-width">
-					<mat-label>Ciudad</mat-label>
+					<mat-label>{{questions.city}}</mat-label>
 					<input matInput formControlName="city" required>
 					<mat-error *ngIf="personalInformationFormGroup.controls['city'].invalid">
-						Ciudad es <strong>requerido</strong>
+						{{questions.city}} es <strong>requerido</strong>
 					  </mat-error>
 				</mat-form-field>
 			</div>
 			<div class="col-sm-4">
 				<mat-form-field class="example-full-width">
-					<mat-label>Estado</mat-label>
+					<mat-label>{{questions.state}}</mat-label>
 					<input matInput  formControlName="state" required>
 					<mat-error *ngIf="personalInformationFormGroup.controls['state'].invalid">
-						Estado es <strong>requerido</strong>
+						{{questions.state}} es <strong>requerido</strong>
 					  </mat-error>
 				</mat-form-field>
 			</div>
 			<div class="col-sm-4">
 				<mat-form-field class="example-full-width">
-					<mat-label>Código postal</mat-label>
+					<mat-label>{{questions.zipCode}}</mat-label>
 					<input type="number" matInput formControlName="zipCode" required>
 					<mat-error *ngIf="personalInformationFormGroup.controls['zipCode'].invalid">
-						Código postal es <strong>requerido</strong>
+						{{questions.zipCode}} postal es <strong>requerido</strong>
 					  </mat-error>
 				</mat-form-field>
 			</div>
@@ -190,20 +190,17 @@
 		<div class="form-row">
 			<div class="col-sm-6">
 				<mat-form-field class="example-full-width">
-					<mat-label>Teléfono</mat-label>
+					<mat-label>{{questions.phone}}</mat-label>
 					<input type="tel" matInput formControlName="phone" required>
 					<mat-error *ngIf="personalInformationFormGroup.controls['phone'].invalid">
-						Teléfono es <strong>requerido</strong>
+						{{questions.phone}} es <strong>requerido</strong>
 					  </mat-error>
 				</mat-form-field>
 			</div>
 			<div class="col-sm-6">
 				<mat-form-field class="example-full-width">
-					<mat-label>Celular</mat-label>
-					<input type="tel" matInput formControlName="cellphone" required>
-					<mat-error *ngIf="personalInformationFormGroup.controls['cellphone'].invalid">
-						Celular es <strong>requerido</strong>
-					  </mat-error>
+					<mat-label>{{questions.cellphone}}</mat-label>
+					<input type="tel" matInput formControlName="cellphone">
 				</mat-form-field>
 			</div>
 		</div>
@@ -214,12 +211,12 @@
 					[(ngModel)]="checked"
 					labelPosition="before"
 					formControlName="disability" >
-					¿Sufre alguna discapacidad?
+					{{questions.disability}}
 				</mat-checkbox>
 			</div>
 			<div class="col-sm-6">
 				<mat-form-field class="example-full-width">
-					<mat-label>Especifique su discapacidad</mat-label>
+					<mat-label>{{questions.disabilityDescription}}</mat-label>
 					<input matInput formControlName="disabilityDescription">
 				</mat-form-field>
 			</div>
