@@ -107,12 +107,12 @@ export class AuthService {
 		this.error = "";
 		return this.afAuth.auth.signInWithPopup(provider)
 			.then((result) => {
-				/*
+				/* 
 				this.ngZone.run(() => {
 					this.router.navigate(['dashboard']);
 				});
 				*/
-				this.setUserData(result.user);
+				let userRef = this.setUserData(result.user);
 			}).catch((error) => {
 				window.alert(error);
 			});
@@ -128,6 +128,7 @@ export class AuthService {
 			photoURL: user.photoURL,
 			emailVerified: user.emailVerified
 		}
+		
 		return userRef.set(userData, {merge: true});
 	}
 

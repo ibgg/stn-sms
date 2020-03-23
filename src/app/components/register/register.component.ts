@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormGroupDirective } from '@angular/forms';
 
 @Component({
 	selector: 'app-register',
@@ -13,6 +13,11 @@ export class RegisterComponent implements OnInit {
 	christianExperience: FormGroup;
 	tutorFormGroup: FormGroup;
 	institutionFormGroup: FormGroup;
+
+	@ViewChild('personalInformationForm')
+    personalInformationForm: FormGroupDirective;
+
+
 	tickInterval = 5;
 
 	constructor(private formBuilder: FormBuilder) { }
@@ -94,5 +99,9 @@ export class RegisterComponent implements OnInit {
 			rulesAgreement: ['', Validators.required],
 			paymentAgreement: ['', Validators.required],
 		});
+	}
+
+	validatePersonalInformationForm():any {
+		this.personalInformationForm.onSubmit(undefined);
 	}
 }

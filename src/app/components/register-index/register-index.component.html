@@ -12,14 +12,14 @@
 </div>
 <ng-template #loadingProfile>
 	<div class="row">
-	<div class="col-sm-12">
-		<div class="img-profile-container">
-			<img src="../../../assets/images/avatar.png" class="img-profile rounded-circle img-fluid">
-		</div>
-		<div class="profile-description" style="position: absolute; top: 18%;">
+		<div class="col-sm-12">
+			<div class="img-profile-container">
+				<img src="../../../assets/images/avatar.png" class="img-profile rounded-circle img-fluid">
+			</div>
+			<div class="profile-description" style="position: absolute; top: 18%;">
+			</div>
 		</div>
 	</div>
-</div>
 </ng-template>
 
 <mat-progress-bar class="example-margin" color="principal" mode="determinate" value=100 bufferValue=75
@@ -29,96 +29,98 @@
 <div class="row" style="justify-content: center;">
 	<div class="col-sm-4" style=" margin-bottom:20px">
 		<a (click)="emmitNavigationClick('register')">
-		<mat-card class="card-style">
-			<mat-card-header style="justify-content: center;">
-				<mat-card-title style="text-align: center;">
-					<mat-icon class="material-icons" style="text-align: center; font-size: 40px; margin: auto;">create
-					</mat-icon>
-				</mat-card-title>
-				<mat-card-title style="text-align: center;">Solicitud de Ingreso</mat-card-title>
-			</mat-card-header>
-			<mat-card-content>
-				<mat-progress-spinner class="example-margin" color="primary" mode="determinate" value=75 diameter=40
-					style="margin: auto;">
-				</mat-progress-spinner>
-			</mat-card-content>
-		</mat-card>
+			<mat-card class="card-style">
+				<mat-card-header style="justify-content: center;">
+					<mat-card-title style="text-align: center;">
+						<mat-icon class="material-icons" style="text-align: center; font-size: 40px; margin: auto;">
+							create
+						</mat-icon>
+					</mat-card-title>
+					<mat-card-title style="text-align: center;">Solicitud de Ingreso</mat-card-title>
+				</mat-card-header>
+				<mat-card-content>
+					<mat-progress-spinner class="example-margin" color="primary" mode="determinate" value=75 diameter=40
+						style="margin: auto;">
+					</mat-progress-spinner>
+				</mat-card-content>
+			</mat-card>
 		</a>
 	</div>
 	<div class="col-sm-4" style=" margin-bottom:20px">
 		<a (click)="emmitNavigationClick('personal-test')">
-		<mat-card class="card-style">
-			<mat-card-header style="justify-content: center;">
-				<mat-card-title style="text-align: center;">
-					<mat-icon class="material-icons" style="text-align: center; font-size: 40px; margin: auto;">
-						how_to_reg
-					</mat-icon>
-				</mat-card-title>
-				<mat-card-title style="text-align: center;">Test personal</mat-card-title>
-			</mat-card-header>
-			<mat-card-content>
-				<mat-progress-spinner class="example-margin" color="primary" mode="determinate" value=75 diameter=40
-					style="margin: auto;">
-				</mat-progress-spinner>
-			</mat-card-content>
-		</mat-card>
+			<mat-card class="card-style">
+				<mat-card-header style="justify-content: center;">
+					<mat-card-title style="text-align: center;">
+						<mat-icon class="material-icons" style="text-align: center; font-size: 40px; margin: auto;">
+							how_to_reg
+						</mat-icon>
+					</mat-card-title>
+					<mat-card-title style="text-align: center;">Test personal</mat-card-title>
+				</mat-card-header>
+				<mat-card-content>
+					<mat-progress-spinner class="example-margin" color="primary" mode="determinate" value=75 diameter=40
+						style="margin: auto;">
+					</mat-progress-spinner>
+				</mat-card-content>
+			</mat-card>
 		</a>
 	</div>
 	<div class="col-sm-4" style=" margin-bottom:20px">
 		<a (click)="emmitNavigationClick('test-psicologico')">
-		<mat-card class="card-style">
-			<mat-card-header style="justify-content: center;">
-				<mat-card-title style="text-align: center;">
-					<mat-icon class="material-icons" style="text-align: center; font-size: 40px; margin: auto;">
-						sentiment_satisfied
-					</mat-icon>
-				</mat-card-title>
-				<mat-card-title style="text-align: center;">Test Psicológico</mat-card-title>
-			</mat-card-header>
-			<mat-card-content>
-				<mat-progress-spinner class="example-margin" color="primary" mode="determinate" value=75 diameter=40
-					style="margin: auto;">
-				</mat-progress-spinner>
-			</mat-card-content>
-		</mat-card>
+			<mat-card class="card-style">
+				<mat-card-header style="justify-content: center;">
+					<mat-card-title style="text-align: center;">
+						<mat-icon class="material-icons" style="text-align: center; font-size: 40px; margin: auto;">
+							sentiment_satisfied
+						</mat-icon>
+					</mat-card-title>
+					<mat-card-title style="text-align: center;">Test Psicológico</mat-card-title>
+				</mat-card-header>
+				<mat-card-content>
+					<mat-progress-spinner class="example-margin" color="primary" mode="determinate" value=75 diameter=40
+						style="margin: auto;">
+					</mat-progress-spinner>
+				</mat-card-content>
+			</mat-card>
 		</a>
 	</div>
 </div>
 <div class="row">
 	<div class="col-sm-4" style=" margin-bottom:20px">
 		<a (click)="emmitNavigationClick('test-biblico')">
-		<mat-card class="card-style">
-			<mat-card-header style="justify-content: center;">
-				<mat-card-title style="text-align: center;">
-					<mat-icon class="material-icons" style="text-align: center; font-size: 40px; margin: auto;">book
-					</mat-icon>
-				</mat-card-title>
-				<mat-card-title style="text-align: center;">Test Bíblico</mat-card-title>
-			</mat-card-header>
-			<mat-card-content>
-				<mat-progress-spinner class="example-margin" color="primary" mode="determinate" value=75 diameter=40
-					style="margin: auto;">
-				</mat-progress-spinner>
-			</mat-card-content>
-		</mat-card>
+			<mat-card class="card-style">
+				<mat-card-header style="justify-content: center;">
+					<mat-card-title style="text-align: center;">
+						<mat-icon class="material-icons" style="text-align: center; font-size: 40px; margin: auto;">book
+						</mat-icon>
+					</mat-card-title>
+					<mat-card-title style="text-align: center;">Test Bíblico</mat-card-title>
+				</mat-card-header>
+				<mat-card-content>
+					<mat-progress-spinner class="example-margin" color="primary" mode="determinate" value=75 diameter=40
+						style="margin: auto;">
+					</mat-progress-spinner>
+				</mat-card-content>
+			</mat-card>
 		</a>
 	</div>
 	<div class="col-sm-4" style=" margin-bottom:20px">
 		<a (click)="emmitNavigationClick('agreement')">
-		<mat-card class="card-style">
-			<mat-card-header style="justify-content: center;">
-				<mat-card-title style="text-align: center;">
-					<mat-icon class="material-icons" style="text-align: center; font-size: 40px; margin: auto;">notes
-					</mat-icon>
-				</mat-card-title>
-				<mat-card-title style="text-align: center;">Acuerdo de Confesión</mat-card-title>
-			</mat-card-header>
-			<mat-card-content>
-				<mat-progress-spinner class="example-margin" color="primary" mode="determinate" value=75 diameter=40
-					style="margin: auto;">
-				</mat-progress-spinner>
-			</mat-card-content>
-		</mat-card>
+			<mat-card class="card-style">
+				<mat-card-header style="justify-content: center;">
+					<mat-card-title style="text-align: center;">
+						<mat-icon class="material-icons" style="text-align: center; font-size: 40px; margin: auto;">
+							notes
+						</mat-icon>
+					</mat-card-title>
+					<mat-card-title style="text-align: center;">Acuerdo de Confesión</mat-card-title>
+				</mat-card-header>
+				<mat-card-content>
+					<mat-progress-spinner class="example-margin" color="primary" mode="determinate" value=75 diameter=40
+						style="margin: auto;">
+					</mat-progress-spinner>
+				</mat-card-content>
+			</mat-card>
 		</a>
 	</div>
 </div>
