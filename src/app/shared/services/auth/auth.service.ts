@@ -94,8 +94,11 @@ export class AuthService {
 	}
 
 	get isLoggedIn() : boolean {
+		return this.userData == null ? false : true;
+		/*
 		const user = JSON.parse(localStorage.getItem('user'));
 		return (user !== null && user.emailVerified !== false) ? true : false;
+		*/
 	}
 
 	googleAuth(){
