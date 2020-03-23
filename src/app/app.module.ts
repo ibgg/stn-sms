@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 
-import { AppRoutingModule } from '../shared/routing/app-routing.module';
+import { AppRoutingModule } from './shared/routing/app-routing.module';
 import { AppComponent } from './app.component';
 
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
@@ -20,7 +20,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 
-import { AuthService } from '../shared/services/auth.service';
+import { AuthService } from './shared/services/auth/auth.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {A11yModule} from '@angular/cdk/a11y';

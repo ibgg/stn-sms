@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { AuthService } from 'src/shared/services/auth.service';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
 
 @Component({
 	selector: 'app-register-index',

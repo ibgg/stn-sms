@@ -1,5 +1,5 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-import { AuthService } from '../../../shared/services/auth.service';
+import { AuthService } from '../../shared/services/auth/auth.service';
 import { Router } from '@angular/router';
 import { ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
