@@ -71,22 +71,22 @@
 
 
 							<section class="centered-vertical" style="margin-bottom: 30px;">
-								<mat-checkbox class="">Recordar contraseña</mat-checkbox>
+								<mat-checkbox class="" #rememberme>Recuérdame</mat-checkbox>
 							</section>
 		
 							<!-- Sign up button -->
 
-							<button [disabled]="!signUpFormGroup.valid" mat-stroked-button color="primary" (click)="authService.signUp(email.value, password.value, name.value, lastname.value)" class="button-large">Crear cuenta</button>
+							<button [disabled]="!signUpFormGroup.valid" mat-stroked-button color="primary" (click)="authService.signUp(email.value, password.value, name.value, lastname.value, rememberme.checked)" class="button-large">Crear cuenta</button>
 							<div>
 								<span class="or"><span class="orInner">O</span></span>
 							  </div>
-							<button mat-stroked-button style="color: #dd4b39;" (click)="authService.googleAuth()" class="button-large"><fa-icon [icon]="['fab', 'google']"></fa-icon> Iniciar sesión con Google</button>
-		
-							<!-- Register -->
-							<div class="span-vspaced">¿Ya tienes una cuenta?<a class="redirect" routerLink="/sign-in"> Inicia sesión</a></div>
-							<span style="color:#b11921">{{authService.error}}</span>
 						</form>
 						<!-- Form -->
+						<button mat-stroked-button style="color: #dd4b39;" (click)="authService.googleAuth()" class="button-large"><fa-icon [icon]="['fab', 'google']"></fa-icon> Iniciar sesión con Google</button>
+		
+						<!-- Register -->
+						<div class="span-vspaced">¿Ya tienes una cuenta?<a class="redirect" routerLink="/sign-in"> Inicia sesión</a></div>
+						<span style="color:#b11921">{{authService.error}}</span>
 
 					</div>
 

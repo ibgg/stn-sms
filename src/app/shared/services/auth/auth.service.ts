@@ -34,24 +34,41 @@ export class AuthService {
 		});
 	}
 
-	async signIn(email: string, password: string){
+	async signIn(email: string, password: string, rememberMe:boolean){
 		let me = this;
 		this.error = "";
-		return this.afAuth.auth.signInWithEmailAndPassword(email, password)
-			.then((result) => {
-				/*
-				this.ngZone.run(() => {
-					this.router.navigate(['dashboard']);
-				});
-				*/
-				this.error = null;
-				this.setUserData(result.user);
+		if (rememberMe !== null && !rememberMe) {
+			this.afAuth.auth.setPersistence(auth.Auth.Persistence.SESSION).then(async () => {
+				try {
+					const result = await this.afAuth.auth.signInWithEmailAndPassword(email, password);
+					this.error = null;
+					this.setUserData(result.user);
+				}
+				catch (error) {
+					me.error = error;
+				}	
 			}).catch(function (error) {
-				me.error = error;
-			});
+				var errorCode = error.code;
+				var errorMessage = error.message;			
+			})
+		}else if (rememberMe){
+			this.afAuth.auth.setPersistence(auth.Auth.Persistence.LOCAL).then(async () => {
+				try {
+					const result = await this.afAuth.auth.signInWithEmailAndPassword(email, password);
+					this.error = null;
+					this.setUserData(result.user);
+				}
+				catch (error) {
+					me.error = error;
+				}	
+			}).catch(function (error) {
+				var errorCode = error.code;
+				var errorMessage = error.message;			
+			})
+		}
 	}
 
-	async signUp(email: string, password: string, name: string, lastname: string){
+	async signUp(email: string, password: string, name: string, lastname: string, rememberMe:boolean){
 		this.error = "";
 		try {
 			let me = this;
@@ -64,7 +81,7 @@ export class AuthService {
 					me.setUserData(res.user);
 					//me.sendVerificationMail();
 					me.setUserData(user);
-					me.signIn(email, password);
+					me.signIn(email, password, rememberMe);
 				}).catch(function (error){
 					console.log("Impossible update username")
 				});

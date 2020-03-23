@@ -1,61 +1,74 @@
 <!-- Material form login -->
+
 <body>
 	<div class="container">
-	  <div class="row">
-		<div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-			<div class="card card-signin my-5">
-				<h5 class="card-header stn-color white-text text-center py-4">
-				  <div><img class="center" src="../../../assets/images/seminario_vertical_blanco.png"></div>
-				  <h2 class="card-title text-center" style="margin-top:10px;">Sistema de Inscripción de Alumnos</h2>
-				  <h3 class="card-title text-center" style="margin-top:10px;">INICIO DE SESIÓN</h3>
-				</h5>
-			  
-				<!--Card content-->
-				<div class="card-body px-lg-5 pt-0 form-login-signup-container">
-			  
-				  <!-- Form -->
-				  <form [formGroup]="loginFormGroup">
-					<mat-form-field class="example-full-width">
-						<mat-label>Correo electrónico</mat-label>
-						<input matInput formControlName="email" required #userName>
-						  <mat-error *ngIf="loginFormGroup.controls['email'].invalid">
-							<span *ngIf="loginFormGroup.controls['email'].errors.email">El correo electrónico no es válido</span>
-							<span *ngIf="loginFormGroup.controls['email'].errors.required">El correo electrónico es <strong>requerido</strong></span>
-						  </mat-error>
-					</mat-form-field>
-			  
-					<!-- Password -->
-					<mat-form-field class="example-full-width">
-						<mat-label>Contraseña</mat-label>
-						<input type="password" matInput formControlName="password" required #userPassword>
-						<mat-error *ngIf="loginFormGroup.controls['password'].invalid && loginFormGroup.controls['password'].errors.required">
-							La contraseña <strong>requerida</strong>
-						  </mat-error>
-					</mat-form-field>
-						<!-- Remember me -->
-					<section class="centered-vertical" style="margin-bottom: 30px;">
-						<mat-checkbox class="">Recordar contraseña</mat-checkbox>
-						<a class="right-aligned accent-color" routerLink="/forgot-password"><label>Olvidé mi contraseña</label></a>
-					</section>
-			  
-					<!-- Sign in button -->
+		<div class="row">
+			<div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+				<div class="card card-signin my-5">
+					<h5 class="card-header stn-color white-text text-center py-4">
+						<div><img class="center" src="../../../assets/images/seminario_vertical_blanco.png"></div>
+						<h2 class="card-title text-center" style="margin-top:10px;">Sistema de Inscripción de Alumnos
+						</h2>
+						<h3 class="card-title text-center" style="margin-top:10px;">INICIO DE SESIÓN</h3>
+					</h5>
 
-					<button [disabled]="!loginFormGroup.valid" mat-stroked-button color="primary" (click)="authService.signIn(userName.value, userPassword.value)" class="button-large">Iniciar sesión</button>
-					<div>
-						<span class="or"><span class="orInner">O</span></span>
-					  </div>
-					<button mat-stroked-button style="color: #dd4b39;" (click)="authService.googleAuth()" class="button-large"><fa-icon [icon]="['fab', 'google']"></fa-icon> Iniciar sesión con Google</button>
-					<!-- Register -->
-					<div class="span-vspaced" >¿Aún no tienes cuenta?<a class="redirect" routerLink="/register-user"> Regístrate</a></div>
-					<span style="color:#b11921">{{authService.error}}</span>
-				  </form>
-				  <!-- Form -->
-			  
+					<!--Card content-->
+					<div class="card-body px-lg-5 pt-0 form-login-signup-container">
+
+						<!-- Form -->
+						<form [formGroup]="loginFormGroup">
+							<mat-form-field class="example-full-width">
+								<mat-label>Correo electrónico</mat-label>
+								<input matInput formControlName="email" required #userName>
+								<mat-error *ngIf="loginFormGroup.controls['email'].invalid">
+									<span *ngIf="loginFormGroup.controls['email'].errors.email">El correo electrónico no
+										es válido</span>
+									<span *ngIf="loginFormGroup.controls['email'].errors.required">El correo electrónico
+										es <strong>requerido</strong></span>
+								</mat-error>
+							</mat-form-field>
+
+							<!-- Password -->
+							<mat-form-field class="example-full-width">
+								<mat-label>Contraseña</mat-label>
+								<input type="password" matInput formControlName="password" required #userPassword>
+								<mat-error
+									*ngIf="loginFormGroup.controls['password'].invalid && loginFormGroup.controls['password'].errors.required">
+									La contraseña <strong>requerida</strong>
+								</mat-error>
+							</mat-form-field>
+							<!-- Remember me -->
+							<section class="centered-vertical" style="margin-bottom: 30px;">
+								<mat-checkbox class="" #rememberme>Recuérdame</mat-checkbox>
+								<a class="right-aligned accent-color" routerLink="/forgot-password"><label>Olvidé mi
+										contraseña</label></a>
+							</section>
+
+							<!-- Sign in button -->
+
+							<button [disabled]="!loginFormGroup.valid" mat-stroked-button color="primary"
+								(click)="authService.signIn(userName.value, userPassword.value, rememberme.checked)"
+								class="button-large">Iniciar sesión</button>
+							<div>
+								<span class="or"><span class="orInner">O</span></span>
+							</div>
+						</form>
+						<button mat-stroked-button style="color: #dd4b39;" (click)="authService.googleAuth()"
+							class="button-large">
+							<fa-icon [icon]="['fab', 'google']"></fa-icon> Iniciar sesión con Google
+						</button>
+						<!-- Register -->
+						<div class="span-vspaced">¿Aún no tienes cuenta?<a class="redirect" routerLink="/register-user">
+								Regístrate</a></div>
+						<span style="color:#b11921">{{authService.error}}</span>
+
+						<!-- Form -->
+
+					</div>
+
 				</div>
-			  
-			  </div>
-			  <!-- Material form login -->
-		</div>  
-	   </div>
-	   </div>
+				<!-- Material form login -->
+			</div>
+		</div>
+	</div>
 </body>
