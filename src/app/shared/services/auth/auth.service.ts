@@ -12,6 +12,7 @@ import { Router } from '@angular/router'
 export class AuthService {
 	userData: any;
 	error: any;
+	defaultPhotoUrl: string = "gs://tsn-sms.appspot.com/avatar.png";
 
 	constructor( 
 		public afs: AngularFirestore,
@@ -21,17 +22,33 @@ export class AuthService {
 	) { 
 		this.afAuth.authState.subscribe(user => {
 			if (user){
-				this.userData = user;
-				localStorage.setItem('user', JSON.stringify(this.userData));
-				JSON.parse(localStorage.getItem('user'));
+				if (this.userData == null){
+					this.userData = {
+						uid: user.uid,
+						email: user.email,
+						displayName: user.displayName,
+						photoURL: user.photoURL !== null ? user.photoURL : '../../../../assets/images/avatar.png',
+						emailVerified: user.emailVerified
+					}
+				}
 				this.ngZone.run(() => {
 					this.router.navigate(['dashboard']);
 				});
 			}else{
-				localStorage.setItem('user', null);
-				JSON.parse(localStorage.getItem('user'));
 			}
 		});
+	}
+
+	async signInWithEmailAndPassword(email:string , password: string){
+		let me = this;
+		try {
+			const result = await this.afAuth.auth.signInWithEmailAndPassword(email, password);
+			this.error = null;
+			this.setUserData(result.user);
+		}
+		catch (error) {
+			me.error = error;
+		}	
 	}
 
 	async signIn(email: string, password: string, rememberMe:boolean){
@@ -39,28 +56,14 @@ export class AuthService {
 		this.error = "";
 		if (rememberMe !== null && !rememberMe) {
 			this.afAuth.auth.setPersistence(auth.Auth.Persistence.SESSION).then(async () => {
-				try {
-					const result = await this.afAuth.auth.signInWithEmailAndPassword(email, password);
-					this.error = null;
-					this.setUserData(result.user);
-				}
-				catch (error) {
-					me.error = error;
-				}	
+				this.signInWithEmailAndPassword(email, password);
 			}).catch(function (error) {
 				var errorCode = error.code;
 				var errorMessage = error.message;			
 			})
 		}else if (rememberMe){
 			this.afAuth.auth.setPersistence(auth.Auth.Persistence.LOCAL).then(async () => {
-				try {
-					const result = await this.afAuth.auth.signInWithEmailAndPassword(email, password);
-					this.error = null;
-					this.setUserData(result.user);
-				}
-				catch (error) {
-					me.error = error;
-				}	
+				this.signInWithEmailAndPassword(email, password);	
 			}).catch(function (error) {
 				var errorCode = error.code;
 				var errorMessage = error.message;			
@@ -80,7 +83,6 @@ export class AuthService {
 				}).then(function () {
 					me.setUserData(res.user);
 					//me.sendVerificationMail();
-					me.setUserData(user);
 					me.signIn(email, password, rememberMe);
 				}).catch(function (error){
 					console.log("Impossible update username")
@@ -127,11 +129,6 @@ export class AuthService {
 		this.error = "";
 		return this.afAuth.auth.signInWithPopup(provider)
 			.then((result) => {
-				/* 
-				this.ngZone.run(() => {
-					this.router.navigate(['dashboard']);
-				});
-				*/
 				let userRef = this.setUserData(result.user);
 			}).catch((error) => {
 				window.alert(error);
@@ -141,20 +138,19 @@ export class AuthService {
 	async setUserData(user){
 		this.error = "";
 		const userRef: AngularFirestoreDocument <any> = this.afs.doc(`users/${user.uid}`);
-		const userData: User = {
+		this.userData = {
 			uid: user.uid,
 			email: user.email,
 			displayName: user.displayName,
-			photoURL: user.photoURL,
+			photoURL: user.photoURL !== null ? user.photoURL : '../../../../assets/images/avatar',
 			emailVerified: user.emailVerified
 		}
 		
-		return userRef.set(userData, {merge: true});
+		return userRef.set(this.userData, {merge: true});
 	}
 
 	async signOut(){
 		return this.afAuth.auth.signOut().then(() => {
-			localStorage.removeItem('user');
 			this.router.navigate(['sign-in']);
 		})
 	}

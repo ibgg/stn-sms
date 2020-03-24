@@ -106,16 +106,28 @@
 				</mat-form-field>
 			</div>
 			<div class="col-sm-4">
-				<mat-form-field class="example-full-width">
-					<mat-label>Sexo</mat-label>
-					<mat-select [(value)]="selected" formControlName="gender" required>
-					  <mat-option value="Hombre">Hombre</mat-option>
-					  <mat-option value="Mujer">Mujer</mat-option>
-					</mat-select>
-					<mat-error *ngIf="personalInformationFormGroup.controls['gender'].invalid">
-						Género es <strong>requerido</strong>
-					  </mat-error>
-				  </mat-form-field>
+				<div class="form-row">
+					<div class="col-sm-6">
+						<mat-form-field class="example-full-width">
+							<mat-label>Edad</mat-label>
+							<input matInput [matDatepicker]="picker" formControlName="bornDate" required>
+							<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+							<mat-datepicker #picker></mat-datepicker>						  
+						</mat-form-field>	
+					</div>
+					<div class="col-sm-6">
+						<mat-form-field class="example-full-width">
+							<mat-label>Sexo</mat-label>
+							<mat-select [(value)]="selected" formControlName="gender" required>
+							  <mat-option value="Hombre">Hombre</mat-option>
+							  <mat-option value="Mujer">Mujer</mat-option>
+							</mat-select>
+							<mat-error *ngIf="personalInformationFormGroup.controls['gender'].invalid">
+								Género es <strong>requerido</strong>
+							  </mat-error>
+						  </mat-form-field>	
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class="form-row">

@@ -30,6 +30,7 @@ export class RegisterComponent implements OnInit {
 		this.personalInformationFormGroup = this.formBuilder.group({
 			name: ['', Validators.required],
 			lastname: ['', Validators.required],
+			bornDate: ['', Validators.required],
 			gender: ['', Validators.required],
 			curp: ['', Validators.required],
 			maritalStatus: ['', Validators.required],
