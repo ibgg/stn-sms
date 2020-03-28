@@ -40,7 +40,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
 	public showComponent(componentName: string, snav: MatSidenav, fromChild:boolean){
 		this.currentComponent = componentName;
-		if (this.mobileQuery.matches && snav.opened) snav.toggle();
+		if (this.mobileQuery.matches && snav && snav.opened) snav.toggle();
 	}
 
 	isOpened(value:string){

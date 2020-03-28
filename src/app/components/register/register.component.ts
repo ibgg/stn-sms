@@ -26,7 +26,7 @@ export class RegisterComponent implements OnInit {
 		this.initializeForms();
 	}
 
-	initializeForms():any {
+	async initializeForms() {
 		this.personalInformationFormGroup = this.formBuilder.group({
 			name: ['', Validators.required],
 			lastname: ['', Validators.required],
