@@ -15,3 +15,6 @@ database.rules.json
 #build folder
 dist/
 /dist
+
+#.DS_Store
+.DS_Store

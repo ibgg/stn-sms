@@ -1,5 +1,5 @@
 <mat-card>
-	<mat-vertical-stepper linear="false" #stepper *ngIf="mobileQuery.matches">
+	<mat-vertical-stepper linear=false #stepper *ngIf="mobileQuery.matches">
 		<mat-step [stepControl]="personalInformationFormGroup" optional=false >
 			<ng-template matStepLabel  style="padding-left: 0px !important;">Información personal</ng-template>
 			<ng-container *ngTemplateOutlet="f1"></ng-container>
@@ -40,7 +40,7 @@
 			</div>
 		</mat-step>
 	</mat-vertical-stepper>
-	<mat-horizontal-stepper linear=true labelPosition="bottom"  #stepper *ngIf="!mobileQuery.matches">
+	<mat-horizontal-stepper linear=false labelPosition="bottom"  #stepper *ngIf="!mobileQuery.matches">
 		<mat-step [stepControl]="personalInformationFormGroup" optional=false >
 			<ng-template matStepLabel>Información personal</ng-template>
 			<ng-container *ngTemplateOutlet="f1"></ng-container>
@@ -89,7 +89,7 @@
 		<div class="form-row">
 			<div class="col-sm-4">
 				<mat-form-field class="example-full-width">
-					<mat-label>Nombre</mat-label>
+					<mat-label>Nombre(s)</mat-label>
 					<input matInput formControlName="name" required>
 					<mat-error *ngIf="personalInformationFormGroup.controls['name'].invalid">
 						Nombre es <strong>requerido</strong>
@@ -109,7 +109,7 @@
 				<div class="form-row">
 					<div class="col-sm-6">
 						<mat-form-field class="example-full-width">
-							<mat-label>Edad</mat-label>
+							<mat-label>Fecha de nacimiento</mat-label>
 							<input matInput [matDatepicker]="picker" formControlName="bornDate" required>
 							<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
 							<mat-datepicker #picker></mat-datepicker>						  
@@ -257,7 +257,7 @@
 			<div class="col-sm-4">
 				<mat-form-field class="example-full-width">
 					<mat-label>Año de inicio</mat-label>
-					<input matInput formControlName="highschoolStartYear" required>
+					<input type="number" matInput formControlName="highschoolStartYear" required>
 					<mat-error *ngIf="professionalAndAcademicFormGroup.controls['highschoolStartYear'].invalid">
 						Año de inicio <strong>requerido</strong>
 					  </mat-error>
@@ -266,7 +266,7 @@
 			<div class="col-sm-4">
 				<mat-form-field class="example-full-width">
 					<mat-label>Año de fin</mat-label>
-					<input matInput formControlName="highschoolEndYear">
+					<input type="number" matInput formControlName="highschoolEndYear">
 					<mat-error *ngIf="professionalAndAcademicFormGroup.controls['highschoolEndYear'].invalid">
 						Año de fin <strong>requerido</strong>
 					  </mat-error>
@@ -291,7 +291,7 @@
 			<div class="col-sm-4">
 				<mat-form-field class="example-full-width">
 					<mat-label>Año de inicio</mat-label>
-					<input matInput formControlName="academicDegreeStartYear" required>
+					<input type="number" matInput formControlName="academicDegreeStartYear" required>
 					<mat-error *ngIf="professionalAndAcademicFormGroup.controls['academicDegreeStartYear'].invalid">
 						Año de inicio es <strong>requerido</strong>
 					  </mat-error>
@@ -300,7 +300,7 @@
 			<div class="col-sm-4">
 				<mat-form-field class="example-full-width">
 					<mat-label>Año de fin</mat-label>
-					<input matInput formControlName="academicDegreeEndYear" required>
+					<input type="number" matInput formControlName="academicDegreeEndYear" required>
 					<mat-error *ngIf="professionalAndAcademicFormGroup.controls['academicDegreeEndYear'].invalid">
 						Año de fin es <strong>requerido</strong>
 					  </mat-error>
@@ -395,7 +395,9 @@
 			<div class="col-sm-6">
 				<mat-form-field class="example-full-width">
 					<mat-label>Fecha de conversión</mat-label>
-					<input matInput formControlName="newbirthDate" required>
+					<input matInput [matDatepicker]="newbirthPicker" formControlName="newbirthDate" required>
+					<mat-datepicker-toggle matSuffix [for]="newbirthPicker"></mat-datepicker-toggle>
+					<mat-datepicker #newbirthPicker></mat-datepicker>						  
 					<mat-error *ngIf="christianExperience.controls['newbirthDate'].invalid">
 						Este campo es <strong>requerido</strong>
 					  </mat-error>
@@ -404,7 +406,10 @@
 			<div class="col-sm-6">
 				<mat-form-field class="example-full-width">
 					<mat-label>Fecha de bautismo</mat-label>
-					<input matInput formControlName="baptismDate" required>
+					<!-- <input matInput formControlName="baptismDate" required> -->
+					<input matInput [matDatepicker]="baptismPicker" formControlName="baptismDate" required>
+					<mat-datepicker-toggle matSuffix [for]="baptismPicker"></mat-datepicker-toggle>
+					<mat-datepicker #baptismPicker></mat-datepicker>						  
 					<mat-error *ngIf="christianExperience.controls['baptismDate'].invalid">
 						Este campo es <strong>requerido</strong>
 					  </mat-error>
@@ -627,10 +632,11 @@
 				<mat-form-field class="example-full-width">
 					<mat-label>Seleccione el programa a cursar</mat-label>
 					<mat-select [(value)]="selected" formControlName="programTarget" required>
-					  <mat-option value="Preparatoria">Preparatoria</mat-option>
-					  <mat-option value="Licenciatura">Licenciatura</mat-option>
-					  <mat-option value="Maestria">Maestría</mat-option>
-					  <mat-option value="Tecnica">Carrera técnica</mat-option>
+					  <mat-option value="Certificado en Ministerio">Certificado en Ministerio</mat-option>
+					  <mat-option value="Bachillerato en Ministerio">Bachillerato en Ministerio</mat-option>
+					  <mat-option value="Licenciatura en teología STN">Licenciatura en teología STN</mat-option>
+					  <mat-option value="Licenciatura en teología acreditada por la SEP">Licenciatura en teología acreditada por la SEP</mat-option>
+					  <mat-option value="Técnico profesional en música y adoración">Técnico profesional en música y adoración</mat-option>
 					</mat-select>
 					<mat-error *ngIf="institutionFormGroup.controls['programTarget'].invalid">
 						<strong>Debe</strong> seleccionar un programa a cursar
