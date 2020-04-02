@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormGroupDirective } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormGroupDirective, ValidationErrors } from '@angular/forms';
+import { EnrollmentServiceService } from 'src/app/shared/services/db/enrollment-service.service';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 @Component({
 	selector: 'app-register',
@@ -8,6 +10,10 @@ import { FormBuilder, FormGroup, Validators, FormGroupDirective } from '@angular
 })
 export class RegisterComponent implements OnInit {
 	@Input() mobileQuery: MediaQueryList;
+	@Input() private userId: string;
+
+	ad: any;
+
 	personalInformationFormGroup: FormGroup;
 	professionalAndAcademicFormGroup: FormGroup;
 	christianExperience: FormGroup;
@@ -15,22 +21,24 @@ export class RegisterComponent implements OnInit {
 	institutionFormGroup: FormGroup;
 
 	@ViewChild('personalInformationForm')
-    personalInformationForm: FormGroupDirective;
+	personalInformationForm: FormGroupDirective;
 
 
 	tickInterval = 5;
 
-	constructor(private formBuilder: FormBuilder) { }
+	constructor(private formBuilder: FormBuilder, private enrollmentService: EnrollmentServiceService) { }
 
 	ngOnInit(): void {
 		this.initializeForms();
 	}
 
 	async initializeForms() {
+		this.enrollmentService.setUserId(this.userId);
+
 		this.personalInformationFormGroup = this.formBuilder.group({
 			name: ['', Validators.required],
 			lastname: ['', Validators.required],
-			bornDate: ['', Validators.required],
+			bornDate: [new Date("April 22, 2020 at 12:00:00 AM UTC-6"), Validators.required],
 			gender: ['', Validators.required],
 			curp: ['', Validators.required],
 			maritalStatus: ['', Validators.required],
@@ -100,9 +108,54 @@ export class RegisterComponent implements OnInit {
 			rulesAgreement: ['', Validators.required],
 			paymentAgreement: ['', Validators.required],
 		});
+
+		this.listenPersonalInformation();
 	}
 
-	validatePersonalInformationForm():any {
+	validatePersonalInformationForm(): any {
 		this.personalInformationForm.onSubmit(undefined);
+	}
+
+	listenPersonalInformation(): void {
+		this.ad = this.enrollmentService.listenPersonalInformation();
+
+		// Listen enrollment document for changes and update form value
+		this.ad.subscribe(ad => {
+			if (ad != undefined && ad != null) {
+				this.personalInformationFormGroup.patchValue(ad);
+				for (let key in ad) {
+					if (ad[key] != null && ad[key] != null && ad[key].constructor.name == "Timestamp") {
+						this.personalInformationFormGroup.get(key).setValue(ad[key].toDate());
+					}
+				}
+			}
+		});
+	}
+
+	getFormValidationErrors() {
+		Object.keys(this.personalInformationFormGroup.controls).forEach(key => {
+
+			const controlErrors: ValidationErrors = this.personalInformationFormGroup.get(key).errors;
+			if (controlErrors != null) {
+				Object.keys(controlErrors).forEach(keyError => {
+					console.log('Key control: ' + key + ', keyError: ' + keyError + ', err value: ', controlErrors[keyError]);
+				});
+			}
+		});
+	}
+
+	savePersonalInformation(keyControl: string): void {
+		console.debug("Trying save form data %s...", keyControl);
+
+		if (this.personalInformationFormGroup.get(keyControl).errors != null) {
+			console.debug("Impossible save data for this control...", this.personalInformationFormGroup.get(keyControl).errors);
+			return;
+		}
+
+		const fieldValue = this.personalInformationFormGroup.get(keyControl).value;
+		let data = {};
+		data[keyControl] = fieldValue;
+		console.log(data);
+		this.enrollmentService.updatePersonalInformation(data);
 	}
 }

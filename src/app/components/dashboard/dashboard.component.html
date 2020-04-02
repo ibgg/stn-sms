@@ -45,8 +45,8 @@
 
 		<mat-sidenav-content class="" style="align-content: center;">
 			<div class="container-fluid"  [ngClass]="{'menu-open-dashboard-content': !snav.opened, 'menu-closed-dashboard-content': snav.opened}">
-				<app-register *ngIf="currentComponent == 'register'" [mobileQuery]="mobileQuery"></app-register>
 				<app-register-index *ngIf="currentComponent == 'register-index'" [mobileQuery]="mobileQuery"  (navigationEmitter)='showComponent($event, snav)'></app-register-index>
+				<app-register *ngIf="currentComponent == 'register'" [mobileQuery]="mobileQuery" [userId]="authService.userData.uid"></app-register>
 				<app-test-personal *ngIf="currentComponent == 'personal-test'" [mobileQuery]="mobileQuery"></app-test-personal>
 				<app-test-psicologico *ngIf="currentComponent == 'test-psicologico'" [mobileQuery]="mobileQuery"></app-test-psicologico>
 				<app-test-biblico *ngIf="currentComponent == 'test-biblico'" [mobileQuery]="mobileQuery"></app-test-biblico>

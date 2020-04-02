@@ -142,7 +142,7 @@ export class AuthService {
 			uid: user.uid,
 			email: user.email,
 			displayName: user.displayName,
-			photoURL: user.photoURL !== null ? user.photoURL : '../../../../assets/images/avatar',
+			photoURL: user.photoURL !== null ? user.photoURL : '../../../../assets/images/avatar.png',
 			emailVerified: user.emailVerified
 		}
 		
