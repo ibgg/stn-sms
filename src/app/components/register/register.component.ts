@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormGroupDirective, ValidationErrors } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormGroupDirective, ValidationErrors, Form } from '@angular/forms';
 import { EnrollmentServiceService } from 'src/app/shared/services/db/enrollment-service.service';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { BrowserStack } from 'protractor/built/driverProviders';
 
 @Component({
 	selector: 'app-register',
@@ -14,11 +15,7 @@ export class RegisterComponent implements OnInit {
 
 	ad: any;
 
-	personalInformationFormGroup: FormGroup;
-	professionalAndAcademicFormGroup: FormGroup;
-	christianExperience: FormGroup;
-	tutorFormGroup: FormGroup;
-	institutionFormGroup: FormGroup;
+	enrollmentInfoFormGroup:FormGroup[] = new Array(5);
 
 	@ViewChild('personalInformationForm')
 	personalInformationForm: FormGroupDirective;
@@ -35,7 +32,7 @@ export class RegisterComponent implements OnInit {
 	async initializeForms() {
 		this.enrollmentService.setUserId(this.userId);
 
-		this.personalInformationFormGroup = this.formBuilder.group({
+		this.enrollmentInfoFormGroup[0] = this.formBuilder.group({
 			name: ['', Validators.required],
 			lastname: ['', Validators.required],
 			bornDate: [new Date("April 22, 2020 at 12:00:00 AM UTC-6"), Validators.required],
@@ -53,7 +50,7 @@ export class RegisterComponent implements OnInit {
 			disabilityDescription: ['']
 		});
 
-		this.professionalAndAcademicFormGroup = this.formBuilder.group({
+		this.enrollmentInfoFormGroup[1] = this.formBuilder.group({
 			highschoolName: ['', Validators.required],
 			highschoolStartYear: ['', Validators.required],
 			highschoolEndYear: ['', Validators.required],
@@ -69,7 +66,8 @@ export class RegisterComponent implements OnInit {
 			abilities: ['', Validators.required],
 			englishLevel: ['', Validators.required]
 		});
-		this.christianExperience = this.formBuilder.group({
+
+		this.enrollmentInfoFormGroup[2] = this.formBuilder.group({
 			newbirthDate: ['', Validators.required],
 			baptismDate: ['', Validators.required],
 			churchName: ['', Validators.required],
@@ -81,9 +79,10 @@ export class RegisterComponent implements OnInit {
 			churchState: ['', Validators.required],
 			churchZipCode: ['', Validators.required],
 			churchLifeDescription: ['', Validators.required],
-			churchMinistres: ['', Validators.required],
+			churchMinistres: ['', Validators.required]
 		});
-		this.tutorFormGroup = this.formBuilder.group({
+
+		this.enrollmentInfoFormGroup[3] = this.formBuilder.group({
 			name: ['', Validators.required],
 			lastname: ['', Validators.required],
 			academicDegree: ['', Validators.required],
@@ -94,9 +93,10 @@ export class RegisterComponent implements OnInit {
 			city: ['', Validators.required],
 			state: ['', Validators.required],
 			zipCode: ['', Validators.required],
-			christianParents: [null, Validators.required],
+			christianParents: [null, Validators.required]
 		});
-		this.institutionFormGroup = this.formBuilder.group({
+
+		this.enrollmentInfoFormGroup[4] = this.formBuilder.group({
 			programTarget: ['', Validators.required],
 			seminaryReason: ['', Validators.required],
 			seminaryKnow: ['', Validators.required],
@@ -106,56 +106,55 @@ export class RegisterComponent implements OnInit {
 			devotionalLife: ['', Validators.required],
 			trustworthyAgreement: ['', Validators.required],
 			rulesAgreement: ['', Validators.required],
-			paymentAgreement: ['', Validators.required],
+			paymentAgreement: ['', Validators.required]
 		});
-
-		this.listenPersonalInformation();
+		this.ad = this.enrollmentService.listenEnrollmentInformation(0);
+		this.updateEnrollmentInfo({selectedIndex:0});
 	}
 
 	validatePersonalInformationForm(): any {
 		this.personalInformationForm.onSubmit(undefined);
 	}
 
-	listenPersonalInformation(): void {
-		this.ad = this.enrollmentService.listenPersonalInformation();
+	// Listen for incomming changes in db
+	updateEnrollmentInfo(event: any): void {
+		this.ad = this.enrollmentService.listenEnrollmentInformation(event.selectedIndex);
 
-		// Listen enrollment document for changes and update form value
 		this.ad.subscribe(ad => {
 			if (ad != undefined && ad != null) {
-				this.personalInformationFormGroup.patchValue(ad);
+				this.enrollmentInfoFormGroup[event.selectedIndex].patchValue(ad);
 				for (let key in ad) {
-					if (ad[key] != null && ad[key] != null && ad[key].constructor.name == "Timestamp") {
-						this.personalInformationFormGroup.get(key).setValue(ad[key].toDate());
+					if (ad[key] != null && ad[key] != null && (ad[key].constructor.name == "Timestamp" || ad[key].constructor.name == 't')) {
+						ad[key].seconds += 100;
+						this.enrollmentInfoFormGroup[event.selectedIndex].get(key).setValue(ad[key].toDate());
 					}
 				}
 			}
 		});
 	}
 
-	getFormValidationErrors() {
-		Object.keys(this.personalInformationFormGroup.controls).forEach(key => {
+	// Save data to firestoredb
+	saveEnrollmentInfo(formId: number, keyControl: string): void {
+		if (this.enrollmentInfoFormGroup[formId].get(keyControl).errors != null) {
+			console.debug("Impossible save data for this control...", this.enrollmentInfoFormGroup[formId].get(keyControl).errors);
+			return;
+		}
 
-			const controlErrors: ValidationErrors = this.personalInformationFormGroup.get(key).errors;
+		const fieldValue = this.enrollmentInfoFormGroup[formId].get(keyControl).value;
+		let data = {};
+		data[keyControl] = fieldValue;
+		this.enrollmentService.updateEnrollmentInformation(formId, data);
+	}
+
+	getFormValidationErrors() {
+		Object.keys(this.enrollmentInfoFormGroup[0].controls).forEach(key => {
+
+			const controlErrors: ValidationErrors = this.enrollmentInfoFormGroup[0].get(key).errors;
 			if (controlErrors != null) {
 				Object.keys(controlErrors).forEach(keyError => {
 					console.log('Key control: ' + key + ', keyError: ' + keyError + ', err value: ', controlErrors[keyError]);
 				});
 			}
 		});
-	}
-
-	savePersonalInformation(keyControl: string): void {
-		console.debug("Trying save form data %s...", keyControl);
-
-		if (this.personalInformationFormGroup.get(keyControl).errors != null) {
-			console.debug("Impossible save data for this control...", this.personalInformationFormGroup.get(keyControl).errors);
-			return;
-		}
-
-		const fieldValue = this.personalInformationFormGroup.get(keyControl).value;
-		let data = {};
-		data[keyControl] = fieldValue;
-		console.log(data);
-		this.enrollmentService.updatePersonalInformation(data);
 	}
 }
