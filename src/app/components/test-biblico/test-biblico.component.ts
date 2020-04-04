@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, Form, ValidatorFn, AbstractControl } from '@angular/forms';
+import { BiblicalTestService } from 'src/app/shared/services/db/biblical-test.service';
 
 @Component({
 	selector: 'app-test-biblico',
@@ -8,25 +9,31 @@ import { FormBuilder, FormGroup, Validators, Form, ValidatorFn, AbstractControl 
 })
 export class TestBiblicoComponent implements OnInit {
 	@Input() mobileQuery: MediaQueryList;
-	jesusLifeFG: FormGroup;
-	bibleDescriptionFG: FormGroup;
-	bibleQuestionsFG: FormGroup;
+	@Input() private userId: string;
+
+	serviceListener: any;
+
+	private biblicalTestFG: FormGroup[] = new Array(3);
 	saveAttempt: Boolean = false;
 
 	regex: RegExp = /\S+/g;
-	MINJESUSLIFEWORDS:number = 800;
+	MINJESUSLIFEWORDS:number = 5;
 
-	constructor(private formBuilder: FormBuilder) { }
+	constructor(private formBuilder: FormBuilder, private biblicalTestService: BiblicalTestService) { }
 
 	ngOnInit(): void {
+		this.biblicalTestService.setUserId(this.userId);
 		this.buildForms();
 	}
 
 	buildForms() {
-		this.jesusLifeFG = this.formBuilder.group({
+		//this.jesusLifeFG = this.formBuilder.group({
+		this.biblicalTestFG[0] = this.formBuilder.group({
 			jesusLifeDescription: ['', [Validators.required, this.minWordsValidator()]],
 		});
-		this.bibleDescriptionFG = this.formBuilder.group({
+
+		//this.bibleDescriptionFG = this.formBuilder.group({
+		this.biblicalTestFG[1] = this.formBuilder.group({
 			genesisDesc : ['', Validators.required],
 			exodusDesc : ['', Validators.required],
 			numbersDesc : ['', Validators.required],
@@ -38,7 +45,8 @@ export class TestBiblicoComponent implements OnInit {
 			revelationsDesc : ['', Validators.required],
 		});
 
-		this.bibleQuestionsFG = this.formBuilder.group({
+		//this.bibleQuestionsFG = this.formBuilder.group({
+		this.biblicalTestFG[2] = this.formBuilder.group({
 			bibleBooksNumber:['', Validators.required],
 			abrahamDescription: ['', Validators.required],
 			samDescription:['', Validators.required],
@@ -66,6 +74,37 @@ export class TestBiblicoComponent implements OnInit {
 			spiritualGifts: ['', Validators.required],
 			bibleBooks:['', Validators.required]
 		});
+
+		this.serviceListener = this.biblicalTestService.listenBiblicalTestInformation(0);
+		this.updateBiblicalTestInformation({selectedIndex:0});
+	}
+
+	private updateBiblicalTestInformation(event: any): void {
+		this.serviceListener = this.biblicalTestService.listenBiblicalTestInformation(event.selectedIndex);
+
+		this.serviceListener.subscribe(ad => {
+			if (ad != undefined && ad != null) {
+				this.biblicalTestFG[event.selectedIndex].patchValue(ad);
+				for (let key in ad) {
+					if (ad[key] != null && ad[key] != null && (ad[key].constructor.name == "Timestamp" || ad[key].constructor.name == 't')) {
+						ad[key].seconds += 100;
+						this.biblicalTestFG[event.selectedIndex].get(key).setValue(ad[key].toDate());
+					}
+				}
+			}
+		});
+	}
+
+	saveBiblicalTestInfo(formId: number, keyControl: string): void {
+		if (this.biblicalTestFG[formId].get(keyControl).errors != null) {
+			console.debug("Impossible save data for this control...", this.biblicalTestFG[formId].get(keyControl).errors);
+			return;
+		}
+
+		const fieldValue = this.biblicalTestFG[formId].get(keyControl).value;
+		let data = {};
+		data[keyControl] = fieldValue;
+		this.biblicalTestService.updateBiblicalTestInformation(formId, data);
 	}
 
 	minWordsValidator():ValidatorFn {
