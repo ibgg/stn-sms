@@ -1,5 +1,5 @@
 <mat-card>
-	<mat-vertical-stepper linear=false #stepper *ngIf="mobileQuery.matches">
+	<mat-vertical-stepper linear=false #stepper *ngIf="mobileQuery.matches" (selectionChange)="updateEnrollmentInfo($event)">
 		<mat-step [stepControl]="enrollmentInfoFormGroup[0]" optional=false >
 			<ng-template matStepLabel  style="padding-left: 0px !important;">Información personal</ng-template>
 			<ng-container *ngTemplateOutlet="f0"></ng-container>
