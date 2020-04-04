@@ -5,8 +5,6 @@
 		<div style="text-align: center;">
 			<button mat-raised-button  color="primary"
 				(click)="start()" [disabled]="started">Comenzar</button>
-				{{!psicologicalTestFG.invalid}}
-				{{psicologicalTestFG.errors | json}}
 		</div>
 		
 		<div class="form-row" [formGroup]="psicologicalTestFG"  *ngFor="let question of psicoQuestions; let i=index" [hidden]="started==false && psicologicalTestFG.invalid==true">
@@ -23,7 +21,6 @@
 		</div>
 			<div style="margin-top: 20px;">
 				<button mat-raised-button [disabled]="!psicologicalTestFG.valid && psicologicalTestFG.enabled" color="primary" (click)="saveData()">Terminar</button>
-				{{!psicologicalTestFG.enabled}}
 			</div>
 	</form>
 </mat-card>
