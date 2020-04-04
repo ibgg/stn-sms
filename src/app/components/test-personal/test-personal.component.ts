@@ -88,12 +88,6 @@ export class TestPersonalComponent implements OnInit {
 		this.serviceListener.subscribe(ad => {
 			if (ad != undefined && ad != null) {
 				this.testPersonalFG[event.selectedIndex].patchValue(ad);
-				for (let key in ad) {
-					if (ad[key] != null && ad[key] != null && (ad[key].constructor.name == "Timestamp" || ad[key].constructor.name == 't')) {
-						ad[key].seconds += 100;
-						this.testPersonalFG[event.selectedIndex].get(key).setValue(ad[key].toDate());
-					}
-				}
 			}
 		});
 	}

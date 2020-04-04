@@ -11,7 +11,7 @@ export class TestBiblicoComponent implements OnInit {
 	@Input() mobileQuery: MediaQueryList;
 	@Input() private userId: string;
 
-	serviceListener: any;
+	private serviceListener: any;
 
 	private biblicalTestFG: FormGroup[] = new Array(3);
 	saveAttempt: Boolean = false;
@@ -85,12 +85,6 @@ export class TestBiblicoComponent implements OnInit {
 		this.serviceListener.subscribe(ad => {
 			if (ad != undefined && ad != null) {
 				this.biblicalTestFG[event.selectedIndex].patchValue(ad);
-				for (let key in ad) {
-					if (ad[key] != null && ad[key] != null && (ad[key].constructor.name == "Timestamp" || ad[key].constructor.name == 't')) {
-						ad[key].seconds += 100;
-						this.biblicalTestFG[event.selectedIndex].get(key).setValue(ad[key].toDate());
-					}
-				}
 			}
 		});
 	}

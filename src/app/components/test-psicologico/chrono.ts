@@ -1,40 +1,68 @@
+import { start } from 'repl';
+import { Observable, Subscription } from 'rxjs';
+
 export class Chrono {
-	now:number = 0;
+	public now:number = 0;
+	public timer:Observable<number>;
+	public subscriberTimer: Subscription;
 	timerId: any = 0;
 	started:boolean = false;
 	
 	chronoLabel:string = "00:00:00";
 
 	constructor(){
-
+		
 	}
 
-	chrono():void{
+	chrono(): Observable<number> {
 		let me = this;
 
-		this.timerId = setInterval(function (){
-			me.now++;
-			let remain = me.now;
-			
-			let hours: any = Math.floor(remain / 3600);
-			remain -= hours * 3600;
+		return this.timer = new Observable ((observer) => {
+			this.timerId = setInterval(function (){
+				me.now++;
+				let remain = me.now;
+				
+				let hours: any = Math.floor(remain / 3600);
+				remain -= hours * 3600;
+	
+				let mins: any = Math.floor(remain / 60);
+				remain -= mins * 60;
+	
+				let secs: any = remain;
+	
+				if (hours < 10) hours = "0"+ hours;
+				if (mins < 10) mins = "0"+mins;
+				if (secs < 10) secs = "0"+secs;
+	
+				me.chronoLabel = hours +":"+ mins +":"+ secs;
 
-			let mins: any = Math.floor(remain / 60);
-			remain -= mins * 60;
-
-			let secs: any = remain;
-
-			if (hours < 10) hours = "0"+ hours;
-			if (mins < 10) mins = "0"+mins;
-			if (secs < 10) secs = "0"+secs;
-
-			me.chronoLabel = hours +":"+ mins +":"+ secs;
-		}, 1000);
+				observer.next(me.now);
+			}, 1000);
+		});
 	}
 
-	startTimer(): void {
+	setupStartTime(startTime: number):void{
+		this.now = startTime;
+		let remain = this.now;
+			
+		let hours: any = Math.floor(remain / 3600);
+		remain -= hours * 3600;
+
+		let mins: any = Math.floor(remain / 60);
+		remain -= mins * 60;
+
+		let secs: any = remain;
+
+		if (hours < 10) hours = "0"+ hours;
+		if (mins < 10) mins = "0"+mins;
+		if (secs < 10) secs = "0"+secs;
+
+		this.chronoLabel = hours +":"+ mins +":"+ secs;
+	}
+
+	startTimer(): Observable<number> {
 		if (this.started==true) return;
-		this.chrono();
+		return this.chrono();
 	}
 
 	stopTimer():void {
