@@ -1,9 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, Validator, FormArray, FormControl } from '@angular/forms';
 import { PsicoQuestions } from './psico-questions';
 import { Chrono } from './chrono';
 import { PsychologicalService } from 'src/app/shared/services/db/psychological.service';
 import { Subscription } from 'rxjs';
+import { MediaMatcher } from '@angular/cdk/layout';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
 
 @Component({
 	selector: 'app-test-psicologico',
@@ -11,7 +13,7 @@ import { Subscription } from 'rxjs';
 	styleUrls: ['./test-psicologico.component.css']
 })
 export class TestPsicologicoComponent implements OnInit {
-	@Input() private userId: string;
+	private userId: string;
 	private psicologicalTestFG: FormGroup;
 
 	private serviceListener: any;
@@ -21,10 +23,14 @@ export class TestPsicologicoComponent implements OnInit {
 	private chronometer: Chrono;
 	private subscriberChrono:Subscription;
 	
-	constructor(private formBuilder: FormBuilder, private psychoTestService: PsychologicalService) { 
+	constructor(private formBuilder: FormBuilder, 
+		private psychoTestService: PsychologicalService,		
+		public authService: AuthService) {
 	}
 
+
 	ngOnInit(): void {
+		this.userId = this.authService.userData.uid;
 		this.psychoTestService.setUserId(this.userId);
 		let group = {};
 

@@ -9,15 +9,40 @@ import { ForgotPasswordComponent } from '../../components/forgot-password/forgot
 import { VerifyEmailComponent } from '../../components/verify-email/verify-email.component';
 
 // Import canActivate guard services
-import { AuthGuard } from "../guard/auth.guard";
-import { SecureInnerPagesGuard } from "../guard/secure-inner-pages.guard";
+//import { AuthGuard } from "../guard/auth.guard";
+//import { SecureInnerPagesGuard } from "../guard/secure-inner-pages.guard";
+import { RegisterComponent } from 'src/app/components/dashboard/register/register.component';
+import { RegisterIndexComponent } from 'src/app/components/dashboard/register-index/register-index.component';
+import { TestPersonalComponent } from 'src/app/components/dashboard/test-personal/test-personal.component';
+import { TestPsicologicoComponent } from 'src/app/components/dashboard/test-psicologico/test-psicologico.component';
+import { TestBiblicoComponent } from 'src/app/components/dashboard/test-biblico/test-biblico.component';
+import { AgreementComponent } from 'src/app/components/dashboard/agreement/agreement.component';
 
 
 const routes: Routes = [
 	{ path: '', redirectTo: '/sign-in', pathMatch: 'full' },
 	{ path: 'sign-in', component: SignInComponent },
 	{ path: 'register-user', component: SignUpComponent },
-	{ path: 'dashboard', component: DashboardComponent },
+	{ path: 'dashboard', component: DashboardComponent, children: [
+		{
+			path:'', component: RegisterIndexComponent
+		},
+		{
+			path:'enrollment', component: RegisterComponent
+		},
+		{
+			path:'personal-test', component: TestPersonalComponent
+		},
+		{
+			path:'psychological-test', component: TestPsicologicoComponent
+		},
+		{
+			path:'biblical-test', component: TestBiblicoComponent
+		},
+		{
+			path:'agreement', component: AgreementComponent
+		},
+	] },
 	{ path: 'forgot-password', component:ForgotPasswordComponent },
 	{ path: 'verify-email-address', component:VerifyEmailComponent }
 ];

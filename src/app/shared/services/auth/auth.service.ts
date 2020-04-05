@@ -20,6 +20,7 @@ export class AuthService {
 		public router: Router,
 		public ngZone: NgZone
 	) { 
+		this.getUserData();
 		this.afAuth.authState.subscribe(user => {
 			if (user){
 				if (this.userData == null){
@@ -30,10 +31,11 @@ export class AuthService {
 						photoURL: user.photoURL !== null ? user.photoURL : '../../../../assets/images/avatar.png',
 						emailVerified: user.emailVerified
 					}
+					this.saveUseData(this.userData);
+					this.ngZone.run(() => {
+						this.router.navigate(['dashboard']);
+					});	
 				}
-				this.ngZone.run(() => {
-					this.router.navigate(['dashboard']);
-				});
 			}else{
 			}
 		});
@@ -81,8 +83,6 @@ export class AuthService {
 				user.updateProfile({
 					displayName: name + " " + lastname
 				}).then(function () {
-					me.setUserData(res.user);
-					//me.sendVerificationMail();
 					me.signIn(email, password, rememberMe);
 				}).catch(function (error){
 					console.log("Impossible update username")
@@ -129,7 +129,7 @@ export class AuthService {
 		this.error = "";
 		return this.afAuth.auth.signInWithPopup(provider)
 			.then((result) => {
-				let userRef = this.setUserData(result.user);
+				//let userRef = this.setUserData(result.user);
 			}).catch((error) => {
 				window.alert(error);
 			});
@@ -151,7 +151,23 @@ export class AuthService {
 
 	async signOut(){
 		return this.afAuth.auth.signOut().then(() => {
+			this.userData = null;
+			window.localStorage.setItem('userData', this.userData);
 			this.router.navigate(['sign-in']);
-		})
+		});
+	}
+
+	// Para mejorar el performance
+	// Persistir localmente los datos del usuario
+	// Si la autenticación falla, eliminar los datos persistidos
+	// En el constructor, obtener los datos desde el store local
+	// Si la autenticación es correcta, se persisten los datos en local
+
+	private saveUseData(userData: User): void {
+		window.localStorage.setItem('userData', JSON.stringify(userData));
+	}
+
+	private getUserData(){
+		this.userData = JSON.parse(window.localStorage.getItem('userData'));
 	}
 }

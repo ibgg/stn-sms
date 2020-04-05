@@ -1,8 +1,11 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormGroupDirective, ValidationErrors, Form } from '@angular/forms';
 import { EnrollmentServiceService } from 'src/app/shared/services/db/enrollment-service.service';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { BrowserStack } from 'protractor/built/driverProviders';
+import { ActivatedRoute } from '@angular/router';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
+import { MediaMatcher } from '@angular/cdk/layout';
 
 @Component({
 	selector: 'app-register',
@@ -10,8 +13,9 @@ import { BrowserStack } from 'protractor/built/driverProviders';
 	styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-	@Input() mobileQuery: MediaQueryList;
-	@Input() private userId: string;
+	mobileQuery: MediaQueryList;
+	private _mobileQueryListener: () => void;
+	private userId: string;
 
 	ad: any;
 
@@ -23,9 +27,18 @@ export class RegisterComponent implements OnInit {
 
 	tickInterval = 5;
 
-	constructor(private formBuilder: FormBuilder, private enrollmentService: EnrollmentServiceService) { }
+	constructor(private formBuilder: FormBuilder, 
+		private enrollmentService: EnrollmentServiceService, 
+		public authService: AuthService,
+		changeDetectorRef: ChangeDetectorRef, media: MediaMatcher
+		) { 
+			this.mobileQuery = media.matchMedia('(max-width: 600px)');
+			this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+			this.mobileQuery.addListener(this._mobileQueryListener);	
+		}
 
 	ngOnInit(): void {
+		this.userId = this.authService.userData.uid;
 		this.initializeForms();
 	}
 

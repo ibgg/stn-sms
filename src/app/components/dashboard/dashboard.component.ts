@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 		public ngZone: NgZone,
 		changeDetectorRef: ChangeDetectorRef, media: MediaMatcher
 	) {
-		if (!authService.isLoggedIn) this.router.navigate(['sign-in']);
+		//if (!authService.isLoggedIn) this.router.navigate(['sign-in']);
 		this.mobileQuery = media.matchMedia('(max-width: 600px)');
 		this._mobileQueryListener = () => changeDetectorRef.detectChanges();
 		this.mobileQuery.addListener(this._mobileQueryListener);

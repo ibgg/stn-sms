@@ -3,13 +3,13 @@
 		<button mat-icon-button (click)="snav.toggle()">
 			<mat-icon style="color: #fff;">menu</mat-icon>
 		</button>
-		<a mat-list-item (click)="showComponent('register-index', snav)">
+		<a mat-list-item routerLink="/dashboard">
 			<img class="docs-angular-logo img-fluid" src="../../../assets/images/logo-horizontal-blanco.png" alt="angular">
 			<span class="headline example-app-name" class="title-header">Sistema de Inscripción de Alumnos</span>
 		</a>
 		<div class="flex-spacer"></div>
 		<div class="nav-item dropdown no-arrow" *ngIf="authService.userData as user">
-			<a mat-list-item (click)="showComponent('register-index', snav)">
+			<a mat-list-item routerLink="/dashboard">
 			<span class="username-header">{{authService.userData.displayName}}</span>
 			<img class="img-profile rounded-circle img-fluid"
 				[src]="authService.userData.photoURL">
@@ -28,31 +28,24 @@
 			fixedTopGap="56" class="sidenav">
 			
 			<mat-nav-list class="navigation-list">
-				<!-- <a mat-list-item (click)="showComponent('register-index', snav)" class="nav-item" [ngClass]="{'nav-item-selected': currentComponent == 'register-index'}"><mat-icon fontSet="material-icons-outlined">home_outline</mat-icon><span class="navigation-item-label"> Dasboard</span></a> -->
-				<a mat-list-item (click)="showComponent('register-index', snav)" class="nav-item" [ngClass]="{'nav-item-selected': currentComponent == 'register-index'}"><mat-icon class="material-icons">home_outline</mat-icon><span class="navigation-item-label"> Dasboard</span></a>
+				<a mat-list-item [routerLink]="['/dashboard']" class="nav-item" routerLinkActive="nav-item-selected" [routerLinkActiveOptions]="{exact:true}"><mat-icon class="material-icons">home_outline</mat-icon><span class="navigation-item-label"> Dasboard</span></a>
 				<mat-divider class="navigation-divider"></mat-divider>
-				<a mat-list-item (click)="showComponent('register', snav)" class="nav-item" [ngClass]="{'nav-item-selected': currentComponent == 'register'}"><mat-icon class="material-icons">create</mat-icon><span class="navigation-item-label"> Solicitud de ingreso</span></a>
+				<a mat-list-item  [routerLink]="['/dashboard/enrollment']" class="nav-item" routerLinkActive="nav-item-selected"><mat-icon class="material-icons">create</mat-icon><span class="navigation-item-label"> Solicitud de ingreso</span></a>
 				<mat-divider class="navigation-divider"></mat-divider>
-				<a mat-list-item (click)="showComponent('personal-test', snav)" class="nav-item" [ngClass]="{'nav-item-selected': currentComponent == 'personal-test'}"><mat-icon class="material-icons">how_to_reg</mat-icon><span class="navigation-item-label"> Test personal</span></a>
+				<a mat-list-item [routerLink]="['/dashboard/personal-test']" routerLinkActive="nav-item-selected" class="nav-item"><mat-icon class="material-icons">how_to_reg</mat-icon><span class="navigation-item-label"> Test personal</span></a>
 				<mat-divider class="navigation-divider"></mat-divider>
-				<a mat-list-item (click)="showComponent('test-psicologico', snav)" class="nav-item" [ngClass]="{'nav-item-selected': currentComponent == 'test-psicologico'}"><mat-icon class="material-icons">sentiment_satisfied</mat-icon><span class="navigation-item-label"> Test psicológico</span></a>
+				<a mat-list-item [routerLink]="['/dashboard/psychological-test']" routerLinkActive="nav-item-selected" class="nav-item"><mat-icon class="material-icons">sentiment_satisfied</mat-icon><span class="navigation-item-label"> Test psicológico</span></a>
 				<mat-divider class="navigation-divider"></mat-divider>
-				<a mat-list-item (click)="showComponent('test-biblico', snav)" class="nav-item" [ngClass]="{'nav-item-selected': currentComponent == 'test-biblico'}"><mat-icon class="material-icons">book</mat-icon><span class="navigation-item-label"> Test bíblico</span></a>
+				<a mat-list-item [routerLink]="['/dashboard/biblical-test']" routerLinkActive="nav-item-selected" class="nav-item"><mat-icon class="material-icons">book</mat-icon><span class="navigation-item-label"> Test bíblico</span></a>
 				<mat-divider class="navigation-divider"></mat-divider>
-				<a mat-list-item (click)="showComponent('agreement', snav)" class="nav-item"><mat-icon class="material-icons">notes</mat-icon><span class="navigation-item-label"> Acuerdo de confesión</span></a>
+				<a mat-list-item [routerLink]="['/dashboard/agreement']" routerLinkActive="nav-item-selected" class="nav-item"><mat-icon class="material-icons">notes</mat-icon><span class="navigation-item-label"> Acuerdo de confesión</span></a>
 			</mat-nav-list>
 		</mat-sidenav>
 
 		<mat-sidenav-content class="" style="align-content: center;">
 			<div class="container-fluid"  [ngClass]="{'menu-open-dashboard-content': !snav.opened, 'menu-closed-dashboard-content': snav.opened}">
-				<app-register-index *ngIf="currentComponent == 'register-index'" [mobileQuery]="mobileQuery"  (navigationEmitter)='showComponent($event, snav)'></app-register-index>
-				<app-register *ngIf="currentComponent == 'register'" [mobileQuery]="mobileQuery" [userId]="authService.userData.uid"></app-register>
-				<app-test-personal *ngIf="currentComponent == 'personal-test'" [mobileQuery]="mobileQuery" [userId]="authService.userData.uid"></app-test-personal>
-				<app-test-psicologico *ngIf="currentComponent == 'test-psicologico'" [mobileQuery]="mobileQuery" [userId]="authService.userData.uid"></app-test-psicologico>
-				<app-test-biblico *ngIf="currentComponent == 'test-biblico'" [mobileQuery]="mobileQuery" [userId]="authService.userData.uid"></app-test-biblico>
-				<app-agreement *ngIf="currentComponent == 'agreement'" [mobileQuery]="mobileQuery"></app-agreement>
+				<router-outlet></router-outlet>
 			</div>
-			<!-- /.container-fluid -->
 		</mat-sidenav-content>
 	</mat-sidenav-container>
 </div>

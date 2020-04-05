@@ -46,8 +46,8 @@
 	color:#656565;
 }
 .sidenav-container .sidenav .navigation-list .navigation-item.active {
-	background: #f5f5f5;
-	color: #062639;
+	background: #5E2129;
+	color: #fff;
 }
 .sidenav-container .sidenav .navigation-list .navigation-item .mat-icon {
 	margin-right: 5px;
@@ -206,7 +206,7 @@ nav {
 }
 
 .nav-item-selected{
-	background-color: #5E2129;
+	background-color: #5E2129 !important;
 	color: #fff !important;
 }
 
@@ -278,7 +278,7 @@ nav {
 	}
 	
 	.nav-item:hover, .nav-item-selected:hover {
-		background-color: #5E2129;
+		background-color: #5E2129 !important;
 		color: #fff !important;
 	}	
 

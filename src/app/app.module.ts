@@ -68,12 +68,12 @@ import {MatTreeModule} from '@angular/material/tree';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TextFieldModule} from '@angular/cdk/text-field';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { RegisterComponent } from './components/register/register.component';
-import { TestPersonalComponent } from './components/test-personal/test-personal.component';
-import { TestPsicologicoComponent } from './components/test-psicologico/test-psicologico.component';
-import { TestBiblicoComponent } from './components/test-biblico/test-biblico.component';
-import { RegisterIndexComponent } from './components/register-index/register-index.component';
-import { AgreementComponent } from './components/agreement/agreement.component';
+import { RegisterComponent } from './components/dashboard/register/register.component';
+import { TestPersonalComponent } from './components/dashboard/test-personal/test-personal.component';
+import { TestPsicologicoComponent } from './components/dashboard/test-psicologico/test-psicologico.component';
+import { TestBiblicoComponent } from './components/dashboard/test-biblico/test-biblico.component';
+import { RegisterIndexComponent } from './components/dashboard/register-index/register-index.component';
+import { AgreementComponent } from './components/dashboard/agreement/agreement.component';
 
 
 @NgModule({

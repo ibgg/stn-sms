@@ -1,6 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, Form, ValidatorFn, AbstractControl } from '@angular/forms';
 import { BiblicalTestService } from 'src/app/shared/services/db/biblical-test.service';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
+import { MediaMatcher } from '@angular/cdk/layout';
 
 @Component({
 	selector: 'app-test-biblico',
@@ -8,8 +10,9 @@ import { BiblicalTestService } from 'src/app/shared/services/db/biblical-test.se
 	styleUrls: ['./test-biblico.component.css']
 })
 export class TestBiblicoComponent implements OnInit {
-	@Input() mobileQuery: MediaQueryList;
-	@Input() private userId: string;
+	private mobileQuery: MediaQueryList;
+	private _mobileQueryListener: () => void;
+	private userId: string;
 
 	private serviceListener: any;
 
@@ -19,9 +22,17 @@ export class TestBiblicoComponent implements OnInit {
 	regex: RegExp = /\S+/g;
 	MINJESUSLIFEWORDS:number = 5;
 
-	constructor(private formBuilder: FormBuilder, private biblicalTestService: BiblicalTestService) { }
+	constructor(private formBuilder: FormBuilder, 
+		private biblicalTestService: BiblicalTestService,
+		public authService: AuthService,
+		changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+			this.mobileQuery = media.matchMedia('(max-width: 600px)');
+			this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+			this.mobileQuery.addListener(this._mobileQueryListener);	
+	}
 
 	ngOnInit(): void {
+		this.userId = this.authService.userData.uid;
 		this.biblicalTestService.setUserId(this.userId);
 		this.buildForms();
 	}

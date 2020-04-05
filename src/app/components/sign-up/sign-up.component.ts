@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { AuthService } from '../../shared/services/auth/auth.service';
 import { FormBuilder, FormGroup, Validators, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-sign-up',
@@ -10,7 +11,16 @@ import { FormBuilder, FormGroup, Validators, ValidatorFn, AbstractControl, Valid
 export class SignUpComponent implements OnInit {
 	signUpFormGroup: FormGroup;
 	
-	constructor(public authService: AuthService, private formBuilder: FormBuilder) { }
+	constructor(public authService: AuthService, 
+		private formBuilder: FormBuilder,
+		public router: Router,
+		public ngZone: NgZone) { 
+		if (this.authService.userData != null){
+			this.ngZone.run(() => {
+				this.router.navigate(['dashboard']);
+			});	
+		}
+	}
 
 	ngOnInit(): void {
 		this.initializeSignUpForm();
