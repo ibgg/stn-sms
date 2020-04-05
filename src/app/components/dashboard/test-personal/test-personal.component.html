@@ -1,4 +1,7 @@
 <mat-card>
+	<mat-card-header class="questions-header">
+		<mat-card-title><h1 class="questions-title">TEST PERSONAL</h1></mat-card-title>
+	</mat-card-header>
 	<mat-vertical-stepper linear="false" #stepper *ngIf="mobileQuery.matches" (selectionChange)="updatePersonalTestInformation($event)">
 		<mat-step [stepControl]="testPersonalFG[0]" optional=false >
 			<ng-template matStepLabel>Testimonio de Conversión</ng-template>
@@ -91,7 +94,7 @@
 
 <ng-template #f0>
 	<form [formGroup]="testPersonalFG[0]">
-	<h1>Testimonio de Conversión</h1>
+	<div class="form-title">Testimonio de Conversión</div>
 	<div class="mat-card-subtitle">Le suplicamos que sea tan amable de responder con toda verdad y claridad cada una de las preguntas.</div>
 	<div class="form-row">
 		<div class="col-sm-12">
@@ -142,7 +145,7 @@
 
 <ng-template #f1>
 	<form [formGroup]="testPersonalFG[1]">
-		<h1>Convicciones Morales</h1>
+		<div class="form-title">Convicciones Morales</div>
 		<div class="mat-card-subtitle">Le suplicamos que sea tan amable de responder con toda verdad y claridad cada una de las preguntas.</div>
 		<div class="form-row">
 			<div class="col-sm-12">
@@ -182,7 +185,7 @@
 
 <ng-template #f2>
 	<form [formGroup]="testPersonalFG[2]">
-		<h1>Noviazgo y Matrimonio</h1>
+		<div class="form-title">Noviazgo y Matrimonio</div>
 		<div class="mat-card-subtitle">Le suplicamos que sea tan amable de responder con toda verdad y claridad cada una de las preguntas.</div>
 		<div class="form-row">
 			<div class="col-sm-12">
@@ -211,7 +214,7 @@
 
 <ng-template #f3>
 	<form [formGroup]="testPersonalFG[3]">
-		<h1>Crecimiento Espiritual</h1>
+		<div class="form-title">Crecimiento Espiritual</div>
 		<div class="mat-card-subtitle">Le suplicamos que sea tan amable de responder con toda verdad y claridad cada una de las preguntas.</div>
 		<div class="form-row">
 			<div class="col-sm-12">
@@ -240,7 +243,7 @@
 
 <ng-template #f4>
 	<form [formGroup]="testPersonalFG[4]">
-		<h1>Llamado ministerial</h1>
+		<div class="form-title">Llamado ministerial</div>
 		<div class="mat-card-subtitle">Le suplicamos que sea tan amable de responder con toda verdad y claridad cada una de las preguntas.</div>
 		<div class="form-row">
 			<div class="col-sm-12">
@@ -280,7 +283,7 @@
 
 <ng-template #f5>
 	<form [formGroup]="testPersonalFG[5]">
-		<h1>Llamado ministerial</h1>
+		<div class="form-title">Llamado ministerial</div>
 		<div class="mat-card-subtitle">Le suplicamos que sea tan amable de responder con toda verdad y claridad cada una de las preguntas.</div>
 		<div class="form-row">
 			<div class="col-sm-12">

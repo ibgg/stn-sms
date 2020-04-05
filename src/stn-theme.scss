@@ -6,6 +6,7 @@
 // Be sure that you only ever include this mixin once!
 @include mat-core();
 
+
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
@@ -53,4 +54,21 @@ $stn-app-theme: mat-light-theme($stn-app-primary, $stn-app-accent, $stn-app-warn
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
+
+$custom-typography: mat-typography-config(
+  $font-family: 'sans-serif',
+  $headline: mat-typography-level(24px, 30px, 400), 
+  $body-1: mat-typography-level(14px, 22px, 100),
+  $caption: mat-typography-level(14px, 22px, 100),
+  $input: mat-typography-level(1, 1.125, 100)
+);
+
 @include angular-material-theme($stn-app-theme);
+
+// Override typography CSS classes (e.g., mat-h1, mat-display-1, mat-typography, etc.).
+@include mat-base-typography($custom-typography);
+
+// Override typography for all Angular Material, including mat-base-typography and all components.
+@include angular-material-typography($custom-typography);
+
+@include mat-core($custom-typography);
