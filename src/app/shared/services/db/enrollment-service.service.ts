@@ -18,22 +18,17 @@ export class EnrollmentServiceService {
 	}
 
 	public getEnrollmentInformation(id:number):Promise<any> {
-		//return this.afs.doc(`users/${this.userId}/psychoTest/psychoTime`).ref;
 		switch(id){
 			case 0:
 				return this.afs.doc(`users/${this.userId}/enrollment/personalInformation`).ref.get();
 			case 1:
 				return this.afs.doc(`users/${this.userId}/enrollment/professionalAndAcademicInfo`).ref.get();
-				//return this.afs.doc(`users/${this.userId}`).collection('enrollment').doc<ProfessionalAndAcademicInfo>('professionalAndAcademicInfo').valueChanges();
 			case 2:
 				return this.afs.doc(`users/${this.userId}/enrollment/christianExperience`).ref.get();
-				//return this.afs.doc(`users/${this.userId}`).collection('enrollment').doc<ChristianExperience>('christianExperience').valueChanges();
 			case 3:
 				return this.afs.doc(`users/${this.userId}/enrollment/tutorInformation`).ref.get();
-				//return this.afs.doc(`users/${this.userId}`).collection('enrollment').doc<TutorInformation>('tutorInformation').valueChanges();
 			case 4:
 				return this.afs.doc(`users/${this.userId}/enrollment/seminaryInformation`).ref.get();
-				//return this.afs.doc(`users/${this.userId}`).collection('enrollment').doc<any>('seminaryInformation').valueChanges();
 		}
 	}
 

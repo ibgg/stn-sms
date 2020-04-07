@@ -2,7 +2,7 @@
 	<mat-card-header class="questions-header">
 		<mat-card-title><h1 class="questions-title">SOLICITUD DE INGRESO</h1></mat-card-title>
 	</mat-card-header>
-	<mat-vertical-stepper linear=false #stepper *ngIf="mobileQuery.matches" (selectionChange)="updateEnrollmentInfo($event)">
+	<mat-vertical-stepper linear=false #stepper *ngIf="mobileQuery.matches" (selectionChange)="evaluateCurrentForm($event)">
 		<mat-step [stepControl]="enrollmentInfoFormGroup[0]" [hasError]="this.enrollmentInfoFormGroup[0].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false >
 			<ng-template matStepLabel  style="padding-left: 0px !important;">Información personal</ng-template>
 			<ng-container *ngTemplateOutlet="f0"></ng-container>
@@ -43,15 +43,15 @@
 			</div>
 		</mat-step>
 	</mat-vertical-stepper>
-	<mat-horizontal-stepper linear=false labelPosition="bottom"  #stepper *ngIf="!mobileQuery.matches" (selectionChange)="updateEnrollmentInfo($event)">
-		<mat-step [stepControl]="enrollmentInfoFormGroup[0]" [hasError]="this.enrollmentInfoFormGroup[0].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false >
+	<mat-horizontal-stepper linear=false labelPosition="bottom"  #stepper *ngIf="!mobileQuery.matches" (selectionChange)="evaluateCurrentForm($event)" [selectedIndex]="selectedIndex">
+		<mat-step [stepControl]="enrollmentInfoFormGroup[0]" [hasError]="this.enrollmentInfoFormGroup[0].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false [completed]="this.enrollmentInfoFormGroup[0].valid">
 			<ng-template matStepLabel>Información personal</ng-template>
 			<ng-container *ngTemplateOutlet="f0"></ng-container>
 			<div style="margin-top: 20px;">
 				<button mat-raised-button color="primary" matStepperNext matStepperNext (click)="validatePersonalInformationForm()">Siguiente</button>
 			  </div>	
 		</mat-step>
-		<mat-step [stepControl]="enrollmentInfoFormGroup[1]" [hasError]="this.enrollmentInfoFormGroup[1].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false >
+		<mat-step [stepControl]="enrollmentInfoFormGroup[1]" [hasError]="this.enrollmentInfoFormGroup[1].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false [completed]="this.enrollmentInfoFormGroup[1].valid">
 			<ng-template matStepLabel>Información profesional y académica</ng-template>
 			<ng-container *ngTemplateOutlet="f1"></ng-container>
 			<div style="margin-top: 20px;">
@@ -59,7 +59,7 @@
 				<button mat-raised-button color="primary" matStepperNext>Siguiente</button>
 			</div>	
 		</mat-step>
-		<mat-step [stepControl]="enrollmentInfoFormGroup[2]" [hasError]="this.enrollmentInfoFormGroup[2].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false >
+		<mat-step [stepControl]="enrollmentInfoFormGroup[2]" [hasError]="this.enrollmentInfoFormGroup[2].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false [completed]="this.enrollmentInfoFormGroup[2].valid">
 			<ng-template matStepLabel>Experiencia cristiana</ng-template>
 			<ng-container *ngTemplateOutlet="f2"></ng-container>
 			<div style="margin-top: 20px;">
@@ -67,7 +67,7 @@
 				<button mat-raised-button color="primary" matStepperNext>Siguiente</button>
 			</div>	
 		</mat-step>
-		<mat-step [stepControl]="enrollmentInfoFormGroup[3]" [hasError]="this.enrollmentInfoFormGroup[3].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false >
+		<mat-step [stepControl]="enrollmentInfoFormGroup[3]" [hasError]="this.enrollmentInfoFormGroup[3].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false [completed]="this.enrollmentInfoFormGroup[3].valid">
 			<ng-template matStepLabel>Datos del tutor</ng-template>
 			<ng-container *ngTemplateOutlet="f3"></ng-container>
 			<div style="margin-top: 20px;">
@@ -75,7 +75,7 @@
 				<button mat-raised-button color="primary" matStepperNext>Siguiente</button>
 			</div>	
 		</mat-step>
-		<mat-step [stepControl]="enrollmentInfoFormGroup[4]" [hasError]="this.enrollmentInfoFormGroup[4].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false >
+		<mat-step [stepControl]="enrollmentInfoFormGroup[4]" [hasError]="this.enrollmentInfoFormGroup[4].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false [completed]="this.enrollmentInfoFormGroup[4].valid">
 			<ng-template matStepLabel>Datos para la institución</ng-template>
 			<ng-container *ngTemplateOutlet="f4"></ng-container>
 			<div>

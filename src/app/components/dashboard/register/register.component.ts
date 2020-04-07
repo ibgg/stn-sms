@@ -1,9 +1,6 @@
 import { Component, OnInit, Input, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormGroupDirective, ValidationErrors, Form } from '@angular/forms';
 import { EnrollmentServiceService } from 'src/app/shared/services/db/enrollment-service.service';
-import { MatDatepickerInputEvent } from '@angular/material/datepicker';
-import { BrowserStack } from 'protractor/built/driverProviders';
-import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Subscription } from 'rxjs';
@@ -26,6 +23,7 @@ export class RegisterComponent implements OnInit {
 	private ad: any;
 	private enrollmentInfoFormGroup:FormGroup[] = new Array(5);
 	private filledOneTest:boolean = false;
+	private selectedIndex:number = 0;
 
 	@ViewChild('enrollmentInfoForm0')
 	private enrollmentInfoForm0: FormGroupDirective;
@@ -132,12 +130,12 @@ export class RegisterComponent implements OnInit {
 			paymentAgreement: ['', Validators.required]
 		});
 		//this.ad = this.enrollmentService.listenEnrollmentInformation(0);
-		this.updateEnrollmentInfo({selectedIndex:0});
-		this.showErrorForms();
+		this.fillForms();
+		this.evaluateCurrentForm({selectedIndex:0});
 	}
 	
 	// Get data for validation errors
-	showErrorForms():void {
+	fillForms():void {
 		for (let i = 0; i < 5; i++){
 			this.enrollmentService.getEnrollmentInformation(i).then(snap => {
 				if (snap.data() != undefined && snap.data() != null){
@@ -147,36 +145,23 @@ export class RegisterComponent implements OnInit {
 							snap.data()[key].seconds += 100;
 							this.enrollmentInfoFormGroup[i].get(key).setValue(snap.data()[key].toDate());
 						}
-					}	
+					}
 					this.enrollmentInfoFormGroup[i].markAsDirty();
-					this.getFormValidationErrors(i);
 					this.filledOneTest = true;
+					if (this.enrollmentInfoFormGroup[i].invalid && (this.selectedIndex < 1)){
+						this.selectedIndex = i;
+					}
 				}
 			});	
 		}
 	}
 
 	// Listen for incomming changes in db
-	updateEnrollmentInfo(event: any): void {
-		if (this.formSubscription !=null) this.formSubscription.unsubscribe();
-		this.ad = this.enrollmentService.listenEnrollmentInformation(event.selectedIndex);
-
+	evaluateCurrentForm(event: any): void {
 		if (this.enrollmentInfoFormGroup[event.selectedIndex].dirty){
 			let evaluate = "this.enrollmentInfoForm"+event.selectedIndex+".onSubmit('undefined')";
 			eval(evaluate);
 		}
-
-		this.formSubscription = this.ad.subscribe(add => {
-			if (add != undefined && add != null) {
-				this.enrollmentInfoFormGroup[event.selectedIndex].patchValue(add);
-				for (let key in add) {
-					if (add[key] != null && add[key] != null && (add[key].constructor.name == "Timestamp" || add[key].constructor.name == 't')) {
-						add[key].seconds += 100;
-						this.enrollmentInfoFormGroup[event.selectedIndex].get(key).setValue(add[key].toDate());
-					}
-				}
-			}
-		});
 	}
 
 	// Save data to firestoredb
