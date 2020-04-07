@@ -43,7 +43,7 @@ $md-stn: (
     )
 );
 $stn-app-primary: mat-palette($md-stn);
-$stn-app-accent:  mat-palette($mat-pink, A200, A100, A400);
+$stn-app-accent:  mat-palette($mat-indigo, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
 $stn-app-warn:    mat-palette($mat-red);

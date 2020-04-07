@@ -3,15 +3,22 @@ import { FormGroup, FormBuilder, Validators, Form } from '@angular/forms';
 import { PersonalTestService } from 'src/app/shared/services/db/personal-test.service';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import { Subscription } from 'rxjs';
 
 @Component({
 	selector: 'app-test-personal',
 	templateUrl: './test-personal.component.html',
-	styleUrls: ['./test-personal.component.css']
+	styleUrls: ['./test-personal.component.css'],
+	providers: [{
+		provide: STEPPER_GLOBAL_OPTIONS, useValue: {displayDefaultIndicatorType: false, showError: true}
+	  }]
 })
 export class TestPersonalComponent implements OnInit {
+	private errorMessage:string = "Formulario incompleto";
 	private mobileQuery: MediaQueryList;
 	private _mobileQueryListener: () => void;
+	private formSubscription:Subscription = null;
 	private userId: string;
 
 	serviceListener: any;
@@ -95,9 +102,10 @@ export class TestPersonalComponent implements OnInit {
 	}
 
 	private updatePersonalTestInformation(event: any): void {
+		if (this.formSubscription !=null) this.formSubscription.unsubscribe();
 		this.serviceListener = this.personalTestService.listenPersonalTestInformation(event.selectedIndex);
 
-		this.serviceListener.subscribe(ad => {
+		this.formSubscription = this.serviceListener.subscribe(ad => {
 			if (ad != undefined && ad != null) {
 				this.testPersonalFG[event.selectedIndex].patchValue(ad);
 			}

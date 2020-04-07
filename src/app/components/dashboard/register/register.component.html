@@ -3,14 +3,14 @@
 		<mat-card-title><h1 class="questions-title">SOLICITUD DE INGRESO</h1></mat-card-title>
 	</mat-card-header>
 	<mat-vertical-stepper linear=false #stepper *ngIf="mobileQuery.matches" (selectionChange)="updateEnrollmentInfo($event)">
-		<mat-step [stepControl]="enrollmentInfoFormGroup[0]" optional=false >
+		<mat-step [stepControl]="enrollmentInfoFormGroup[0]" [hasError]="this.enrollmentInfoFormGroup[0].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false >
 			<ng-template matStepLabel  style="padding-left: 0px !important;">Información personal</ng-template>
 			<ng-container *ngTemplateOutlet="f0"></ng-container>
 			<div style="margin-top: 20px;">
 				<button mat-raised-button color="primary" matStepperNext>Siguiente</button>
 			  </div>	
 		</mat-step>
-		<mat-step [stepControl]="enrollmentInfoFormGroup[1]" optional=false >
+		<mat-step [stepControl]="enrollmentInfoFormGroup[1]" [hasError]="this.enrollmentInfoFormGroup[1].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false >
 			<ng-template matStepLabel>Información profesional y académica</ng-template>
 			<ng-container *ngTemplateOutlet="f1"></ng-container>
 			<div style="margin-top: 20px;">
@@ -18,7 +18,7 @@
 				<button mat-raised-button color="primary" matStepperNext>Siguiente</button>
 			</div>	
 		</mat-step>
-		<mat-step [stepControl]="enrollmentInfoFormGroup[2]" optional=false >
+		<mat-step [stepControl]="enrollmentInfoFormGroup[2]" [hasError]="this.enrollmentInfoFormGroup[2].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false >
 			<ng-template matStepLabel>Experiencia cristiana</ng-template>
 			<ng-container *ngTemplateOutlet="f2"></ng-container>
 			<div style="margin-top: 20px;">
@@ -26,7 +26,7 @@
 				<button mat-raised-button color="primary" matStepperNext>Siguiente</button>
 			</div>	
 		</mat-step>
-		<mat-step [stepControl]="enrollmentInfoFormGroup[3]" optional=false >
+		<mat-step [stepControl]="enrollmentInfoFormGroup[3]" [hasError]="this.enrollmentInfoFormGroup[3].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false >
 			<ng-template matStepLabel>Datos del tutor</ng-template>
 			<ng-container *ngTemplateOutlet="f3"></ng-container>
 			<div style="margin-top: 20px;">
@@ -34,7 +34,7 @@
 				<button mat-raised-button color="primary" matStepperNext>Siguiente</button>
 			</div>	
 		</mat-step>
-		<mat-step [stepControl]="enrollmentInfoFormGroup[4]" optional=false >
+		<mat-step [stepControl]="enrollmentInfoFormGroup[4]" [hasError]="this.enrollmentInfoFormGroup[4].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false >
 			<ng-template matStepLabel>Datos para la institución</ng-template>
 			<ng-container *ngTemplateOutlet="f4"></ng-container>
 			<div>
@@ -44,14 +44,14 @@
 		</mat-step>
 	</mat-vertical-stepper>
 	<mat-horizontal-stepper linear=false labelPosition="bottom"  #stepper *ngIf="!mobileQuery.matches" (selectionChange)="updateEnrollmentInfo($event)">
-		<mat-step [stepControl]="enrollmentInfoFormGroup[0]" optional=false >
+		<mat-step [stepControl]="enrollmentInfoFormGroup[0]" [hasError]="this.enrollmentInfoFormGroup[0].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false >
 			<ng-template matStepLabel>Información personal</ng-template>
 			<ng-container *ngTemplateOutlet="f0"></ng-container>
 			<div style="margin-top: 20px;">
-				<button mat-raised-button color="primary" matStepperNext (click)="validatePersonalInformationForm()">Siguiente</button>
+				<button mat-raised-button color="primary" matStepperNext matStepperNext (click)="validatePersonalInformationForm()">Siguiente</button>
 			  </div>	
 		</mat-step>
-		<mat-step [stepControl]="enrollmentInfoFormGroup[1]" optional=false >
+		<mat-step [stepControl]="enrollmentInfoFormGroup[1]" [hasError]="this.enrollmentInfoFormGroup[1].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false >
 			<ng-template matStepLabel>Información profesional y académica</ng-template>
 			<ng-container *ngTemplateOutlet="f1"></ng-container>
 			<div style="margin-top: 20px;">
@@ -59,7 +59,7 @@
 				<button mat-raised-button color="primary" matStepperNext>Siguiente</button>
 			</div>	
 		</mat-step>
-		<mat-step [stepControl]="enrollmentInfoFormGroup[2]" optional=false >
+		<mat-step [stepControl]="enrollmentInfoFormGroup[2]" [hasError]="this.enrollmentInfoFormGroup[2].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false >
 			<ng-template matStepLabel>Experiencia cristiana</ng-template>
 			<ng-container *ngTemplateOutlet="f2"></ng-container>
 			<div style="margin-top: 20px;">
@@ -67,7 +67,7 @@
 				<button mat-raised-button color="primary" matStepperNext>Siguiente</button>
 			</div>	
 		</mat-step>
-		<mat-step [stepControl]="enrollmentInfoFormGroup[3]" optional=false >
+		<mat-step [stepControl]="enrollmentInfoFormGroup[3]" [hasError]="this.enrollmentInfoFormGroup[3].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false >
 			<ng-template matStepLabel>Datos del tutor</ng-template>
 			<ng-container *ngTemplateOutlet="f3"></ng-container>
 			<div style="margin-top: 20px;">
@@ -75,7 +75,7 @@
 				<button mat-raised-button color="primary" matStepperNext>Siguiente</button>
 			</div>	
 		</mat-step>
-		<mat-step [stepControl]="enrollmentInfoFormGroup[4]" optional=false >
+		<mat-step [stepControl]="enrollmentInfoFormGroup[4]" [hasError]="this.enrollmentInfoFormGroup[4].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false >
 			<ng-template matStepLabel>Datos para la institución</ng-template>
 			<ng-container *ngTemplateOutlet="f4"></ng-container>
 			<div>
@@ -87,8 +87,8 @@
 </mat-card>
 
 <ng-template #f0>
-	<form [formGroup]="enrollmentInfoFormGroup[0]" #personalInformationForm="ngForm" novalidate>
-		<div class="form-title">Información personal</div>
+	<form [formGroup]="enrollmentInfoFormGroup[0]" #enrollmentInfoForm0="ngForm">
+		<div class="form-title">Información personal</div> 
 		<div class="form-row">
 			<div class="col-sm-4">
 				<mat-form-field class="example-full-width">
@@ -246,7 +246,7 @@
 </ng-template>
 
 <ng-template #f1>	
-	<form [formGroup]="enrollmentInfoFormGroup[1]">
+	<form [formGroup]="enrollmentInfoFormGroup[1]" #enrollmentInfoForm1="ngForm">
 		<div class="form-title">Información profesional y académica</div>
 		<div class="form-row">
 			<div class="col-sm-4">
@@ -393,7 +393,7 @@
 </ng-template>
 
 <ng-template #f2>	
-	<form [formGroup]="enrollmentInfoFormGroup[2]">
+	<form [formGroup]="enrollmentInfoFormGroup[2]" #enrollmentInfoForm2="ngForm">
 		<div class="form-title">Experiencia cristiana</div>
 		<div class="form-row">
 			<div class="col-sm-6">
@@ -522,7 +522,7 @@
 </ng-template>
 
 <ng-template #f3>	
-	<form [formGroup]="enrollmentInfoFormGroup[3]">
+	<form [formGroup]="enrollmentInfoFormGroup[3]" #enrollmentInfoForm3="ngForm">
 		<div class="form-title">Datos del tutor</div>
 		<div class="form-row">
 			<div class="col-sm-6">
@@ -629,7 +629,7 @@
 </ng-template>
 
 <ng-template #f4>
-	<form [formGroup]="enrollmentInfoFormGroup[4]">
+	<form [formGroup]="enrollmentInfoFormGroup[4]" #enrollmentInfoForm4="ngForm">
 		<div class="form-title">Datos para la institución</div>
 		<div class="form-row">
 			<div class="col-sm-12">

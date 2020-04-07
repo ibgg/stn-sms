@@ -6,26 +6,37 @@ import { BrowserStack } from 'protractor/built/driverProviders';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { Subscription } from 'rxjs';
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
 @Component({
 	selector: 'app-register',
 	templateUrl: './register.component.html',
-	styleUrls: ['./register.component.css']
+	styleUrls: ['./register.component.css'],
+	providers: [{
+		provide: STEPPER_GLOBAL_OPTIONS, useValue: {displayDefaultIndicatorType: false, showError: true}
+	  }]
 })
 export class RegisterComponent implements OnInit {
-	mobileQuery: MediaQueryList;
+	private errorMessage:string = "Formulario incompleto";
+	private mobileQuery: MediaQueryList;
 	private _mobileQueryListener: () => void;
 	private userId: string;
+	private formSubscription:Subscription = null;
+	private ad: any;
+	private enrollmentInfoFormGroup:FormGroup[] = new Array(5);
+	private filledOneTest:boolean = false;
 
-	ad: any;
-
-	enrollmentInfoFormGroup:FormGroup[] = new Array(5);
-
-	@ViewChild('personalInformationForm')
-	personalInformationForm: FormGroupDirective;
-
-
-	tickInterval = 5;
+	@ViewChild('enrollmentInfoForm0')
+	private enrollmentInfoForm0: FormGroupDirective;
+	@ViewChild('enrollmentInfoForm1')
+	private enrollmentInfoForm1: FormGroupDirective;
+	@ViewChild('enrollmentInfoForm2')
+	private enrollmentInfoForm2: FormGroupDirective;
+	@ViewChild('enrollmentInfoForm3')
+	private enrollmentInfoForm3: FormGroupDirective;
+	@ViewChild('enrollmentInfoForm4')
+	private enrollmentInfoForm4: FormGroupDirective;
 
 	constructor(private formBuilder: FormBuilder, 
 		private enrollmentService: EnrollmentServiceService, 
@@ -81,7 +92,7 @@ export class RegisterComponent implements OnInit {
 		});
 
 		this.enrollmentInfoFormGroup[2] = this.formBuilder.group({
-			newbirthDate: ['', Validators.required],
+			newbirthDate: [undefined, Validators.required],
 			baptismDate: ['', Validators.required],
 			churchName: ['', Validators.required],
 			denomination: ['', Validators.required],
@@ -99,7 +110,6 @@ export class RegisterComponent implements OnInit {
 			name: ['', Validators.required],
 			lastname: ['', Validators.required],
 			academicDegree: ['', Validators.required],
-			tutorAcademicDegree: ['', Validators.required],
 			occupation: ['', Validators.required],
 			address: ['', Validators.required],
 			phone: ['', Validators.required],
@@ -121,25 +131,48 @@ export class RegisterComponent implements OnInit {
 			rulesAgreement: ['', Validators.required],
 			paymentAgreement: ['', Validators.required]
 		});
-		this.ad = this.enrollmentService.listenEnrollmentInformation(0);
+		//this.ad = this.enrollmentService.listenEnrollmentInformation(0);
 		this.updateEnrollmentInfo({selectedIndex:0});
+		this.showErrorForms();
 	}
-
-	validatePersonalInformationForm(): any {
-		this.personalInformationForm.onSubmit(undefined);
+	
+	// Get data for validation errors
+	showErrorForms():void {
+		for (let i = 0; i < 5; i++){
+			this.enrollmentService.getEnrollmentInformation(i).then(snap => {
+				if (snap.data() != undefined && snap.data() != null){
+					this.enrollmentInfoFormGroup[i].patchValue(snap.data());	
+					for (let key in snap.data()) {
+						if (snap.data()[key] != null && snap.data()[key] != null && (snap.data()[key].constructor.name == "Timestamp" || snap.data()[key].constructor.name == 't')) {
+							snap.data()[key].seconds += 100;
+							this.enrollmentInfoFormGroup[i].get(key).setValue(snap.data()[key].toDate());
+						}
+					}	
+					this.enrollmentInfoFormGroup[i].markAsDirty();
+					this.getFormValidationErrors(i);
+					this.filledOneTest = true;
+				}
+			});	
+		}
 	}
 
 	// Listen for incomming changes in db
 	updateEnrollmentInfo(event: any): void {
+		if (this.formSubscription !=null) this.formSubscription.unsubscribe();
 		this.ad = this.enrollmentService.listenEnrollmentInformation(event.selectedIndex);
 
-		this.ad.subscribe(ad => {
-			if (ad != undefined && ad != null) {
-				this.enrollmentInfoFormGroup[event.selectedIndex].patchValue(ad);
-				for (let key in ad) {
-					if (ad[key] != null && ad[key] != null && (ad[key].constructor.name == "Timestamp" || ad[key].constructor.name == 't')) {
-						ad[key].seconds += 100;
-						this.enrollmentInfoFormGroup[event.selectedIndex].get(key).setValue(ad[key].toDate());
+		if (this.enrollmentInfoFormGroup[event.selectedIndex].dirty){
+			let evaluate = "this.enrollmentInfoForm"+event.selectedIndex+".onSubmit('undefined')";
+			eval(evaluate);
+		}
+
+		this.formSubscription = this.ad.subscribe(add => {
+			if (add != undefined && add != null) {
+				this.enrollmentInfoFormGroup[event.selectedIndex].patchValue(add);
+				for (let key in add) {
+					if (add[key] != null && add[key] != null && (add[key].constructor.name == "Timestamp" || add[key].constructor.name == 't')) {
+						add[key].seconds += 100;
+						this.enrollmentInfoFormGroup[event.selectedIndex].get(key).setValue(add[key].toDate());
 					}
 				}
 			}
@@ -159,10 +192,10 @@ export class RegisterComponent implements OnInit {
 		this.enrollmentService.updateEnrollmentInformation(formId, data);
 	}
 
-	getFormValidationErrors() {
-		Object.keys(this.enrollmentInfoFormGroup[0].controls).forEach(key => {
-
-			const controlErrors: ValidationErrors = this.enrollmentInfoFormGroup[0].get(key).errors;
+	getFormValidationErrors(i:number) {
+		console.log("VALIDATIONS FOR: ", i);
+		Object.keys(this.enrollmentInfoFormGroup[i].controls).forEach(key => {
+			const controlErrors: ValidationErrors = this.enrollmentInfoFormGroup[i].get(key).errors;
 			if (controlErrors != null) {
 				Object.keys(controlErrors).forEach(keyError => {
 					console.log('Key control: ' + key + ', keyError: ' + keyError + ', err value: ', controlErrors[keyError]);

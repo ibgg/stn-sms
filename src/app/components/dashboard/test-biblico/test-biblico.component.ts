@@ -3,24 +3,31 @@ import { FormBuilder, FormGroup, Validators, Form, ValidatorFn, AbstractControl 
 import { BiblicalTestService } from 'src/app/shared/services/db/biblical-test.service';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import { Subscription } from 'rxjs';
 
 @Component({
 	selector: 'app-test-biblico',
 	templateUrl: './test-biblico.component.html',
-	styleUrls: ['./test-biblico.component.css']
+	styleUrls: ['./test-biblico.component.css'],
+	providers: [{
+		provide: STEPPER_GLOBAL_OPTIONS, useValue: {displayDefaultIndicatorType: false, showError: true}
+	  }]
 })
 export class TestBiblicoComponent implements OnInit {
+	private errorMessage:string = "Formulario incompleto";
 	private mobileQuery: MediaQueryList;
 	private _mobileQueryListener: () => void;
+	private formSubscription:Subscription = null;
 	private userId: string;
 
 	private serviceListener: any;
 
 	private biblicalTestFG: FormGroup[] = new Array(3);
-	saveAttempt: Boolean = false;
+	private saveAttempt: Boolean = false;
 
 	regex: RegExp = /\S+/g;
-	MINJESUSLIFEWORDS:number = 5;
+	private MINJESUSLIFEWORDS:number = 800;
 
 	constructor(private formBuilder: FormBuilder, 
 		private biblicalTestService: BiblicalTestService,
@@ -91,9 +98,10 @@ export class TestBiblicoComponent implements OnInit {
 	}
 
 	private updateBiblicalTestInformation(event: any): void {
+		if (this.formSubscription !=null) this.formSubscription.unsubscribe();
 		this.serviceListener = this.biblicalTestService.listenBiblicalTestInformation(event.selectedIndex);
 
-		this.serviceListener.subscribe(ad => {
+		this.formSubscription = this.serviceListener.subscribe(ad => {
 			if (ad != undefined && ad != null) {
 				this.biblicalTestFG[event.selectedIndex].patchValue(ad);
 			}
