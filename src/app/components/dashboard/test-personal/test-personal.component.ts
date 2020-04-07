@@ -4,7 +4,6 @@ import { PersonalTestService } from 'src/app/shared/services/db/personal-test.se
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
-import { Subscription } from 'rxjs';
 
 @Component({
 	selector: 'app-test-personal',

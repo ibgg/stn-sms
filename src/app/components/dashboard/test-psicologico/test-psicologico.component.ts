@@ -1,10 +1,9 @@
 import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, Validator, FormArray, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { PsicoQuestions } from './psico-questions';
 import { Chrono } from './chrono';
 import { PsychologicalService } from 'src/app/shared/services/db/psychological.service';
 import { Subscription } from 'rxjs';
-import { MediaMatcher } from '@angular/cdk/layout';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 
 @Component({
@@ -23,8 +22,7 @@ export class TestPsicologicoComponent implements OnInit {
 	private chronometer: Chrono;
 	private subscriberChrono:Subscription;
 	
-	constructor(private formBuilder: FormBuilder, 
-		private psychoTestService: PsychologicalService,		
+	constructor(private psychoTestService: PsychologicalService,		
 		public authService: AuthService) {
 	}
 

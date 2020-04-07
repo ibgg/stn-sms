@@ -4,7 +4,6 @@ import { BiblicalTestService } from 'src/app/shared/services/db/biblical-test.se
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
-import { Subscription } from 'rxjs';
 
 @Component({
 	selector: 'app-test-biblico',
@@ -32,6 +31,7 @@ export class TestBiblicoComponent implements OnInit {
 	@ViewChild('biblicalTestForm1')
 	private biblicalTestForm1: FormGroupDirective;
 	@ViewChild('biblicalTestForm2')
+	private biblicalTestForm2: FormGroupDirective;
 
 	constructor(private formBuilder: FormBuilder, 
 		private biblicalTestService: BiblicalTestService,

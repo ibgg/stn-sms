@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators, FormGroupDirective, ValidationError
 import { EnrollmentServiceService } from 'src/app/shared/services/db/enrollment-service.service';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { MediaMatcher } from '@angular/cdk/layout';
-import { Subscription } from 'rxjs';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
 @Component({
@@ -19,8 +18,6 @@ export class RegisterComponent implements OnInit {
 	private mobileQuery: MediaQueryList;
 	private _mobileQueryListener: () => void;
 	private userId: string;
-	private formSubscription:Subscription = null;
-	private ad: any;
 	private enrollmentInfoFormGroup:FormGroup[] = new Array(5);
 	private filledOneTest:boolean = false;
 	private selectedIndex:number = 0;
