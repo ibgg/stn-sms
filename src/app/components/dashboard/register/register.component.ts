@@ -146,8 +146,9 @@ export class RegisterComponent implements OnInit {
 					this.enrollmentInfoFormGroup[i].markAsDirty();
 					this.filledOneTest = true;
 				}
-				if (this.enrollmentInfoFormGroup[i].invalid && (this.selectedIndex < 1)){
+				if (this.enrollmentInfoFormGroup[i].invalid && !this.enrollmentInfoFormGroup[0].invalid && this.selectedIndex < 1){
 					this.selectedIndex = i;
+					console.log("setup selected index ", this.selectedIndex);
 				}
 			});	
 		}

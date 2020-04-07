@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectorRef, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef, ViewChild, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, Form, ValidatorFn, AbstractControl, FormGroupDirective } from '@angular/forms';
 import { BiblicalTestService } from 'src/app/shared/services/db/biblical-test.service';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
@@ -13,7 +13,7 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 		provide: STEPPER_GLOBAL_OPTIONS, useValue: {displayDefaultIndicatorType: false, showError: true}
 	  }]
 })
-export class TestBiblicoComponent implements OnInit {
+export class TestBiblicoComponent implements OnInit, OnDestroy {
 	private errorMessage:string = "Formulario incompleto";
 	private mobileQuery: MediaQueryList;
 	private _mobileQueryListener: () => void;
@@ -46,6 +46,10 @@ export class TestBiblicoComponent implements OnInit {
 		this.userId = this.authService.userData.uid;
 		this.biblicalTestService.setUserId(this.userId);
 		this.buildForms();
+	}
+
+	ngOnDestroy(): void {
+		
 	}
 
 	buildForms() {
