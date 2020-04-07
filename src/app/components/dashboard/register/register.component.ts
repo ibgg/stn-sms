@@ -57,7 +57,7 @@ export class RegisterComponent implements OnInit {
 		this.enrollmentInfoFormGroup[0] = this.formBuilder.group({
 			name: ['', Validators.required],
 			lastname: ['', Validators.required],
-			bornDate: [new Date("April 22, 2020 at 12:00:00 AM UTC-6"), Validators.required],
+			bornDate: ['', Validators.required],
 			gender: ['', Validators.required],
 			curp: ['', Validators.required],
 			maritalStatus: ['', Validators.required],
@@ -90,7 +90,7 @@ export class RegisterComponent implements OnInit {
 		});
 
 		this.enrollmentInfoFormGroup[2] = this.formBuilder.group({
-			newbirthDate: [undefined, Validators.required],
+			newbirthDate: ['', Validators.required],
 			baptismDate: ['', Validators.required],
 			churchName: ['', Validators.required],
 			denomination: ['', Validators.required],
@@ -136,7 +136,7 @@ export class RegisterComponent implements OnInit {
 	
 	// Get data for validation errors
 	fillForms():void {
-		for (let i = 0; i < 5; i++){
+		for (let i = 0; i < this.enrollmentInfoFormGroup.length; i++){
 			this.enrollmentService.getEnrollmentInformation(i).then(snap => {
 				if (snap.data() != undefined && snap.data() != null){
 					this.enrollmentInfoFormGroup[i].patchValue(snap.data());	
@@ -148,16 +148,16 @@ export class RegisterComponent implements OnInit {
 					}
 					this.enrollmentInfoFormGroup[i].markAsDirty();
 					this.filledOneTest = true;
-					if (this.enrollmentInfoFormGroup[i].invalid && (this.selectedIndex < 1)){
-						this.selectedIndex = i;
-					}
+				}
+				if (this.enrollmentInfoFormGroup[i].invalid && (this.selectedIndex < 1)){
+					this.selectedIndex = i;
 				}
 			});	
 		}
 	}
 
 	// Listen for incomming changes in db
-	evaluateCurrentForm(event: any): void {
+	private evaluateCurrentForm(event: any): void {
 		if (this.enrollmentInfoFormGroup[event.selectedIndex].dirty){
 			let evaluate = "this.enrollmentInfoForm"+event.selectedIndex+".onSubmit('undefined')";
 			eval(evaluate);

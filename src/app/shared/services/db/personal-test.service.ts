@@ -20,6 +20,23 @@ export class PersonalTestService {
 		this.userId = userId;
 	}
 
+	public getPersonalTestInformation(id:number): Promise<any>{
+		switch(id){
+			case 0:
+				return this.afs.doc(`users/${this.userId}/personalTest/conversion`).ref.get();
+			case 1:
+				return this.afs.doc(`users/${this.userId}/personalTest/convictions`).ref.get();
+			case 2:
+				return this.afs.doc(`users/${this.userId}/personalTest/courtshipAndMarriage`).ref.get();
+			case 3:
+				return this.afs.doc(`users/${this.userId}/personalTest/spiritualGrowth`).ref.get();
+			case 4:
+				return this.afs.doc(`users/${this.userId}/personalTest/called`).ref.get();
+			case 5:
+				return this.afs.doc(`users/${this.userId}/personalTest/health`).ref.get();
+		}
+	}
+
 	public listenPersonalTestInformation(id:number): Observable<any>{
 		switch(id){
 			case 0:

@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, Form, ValidatorFn, AbstractControl } from '@angular/forms';
+import { Component, OnInit, Input, ChangeDetectorRef, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, Form, ValidatorFn, AbstractControl, FormGroupDirective } from '@angular/forms';
 import { BiblicalTestService } from 'src/app/shared/services/db/biblical-test.service';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { MediaMatcher } from '@angular/cdk/layout';
@@ -18,16 +18,20 @@ export class TestBiblicoComponent implements OnInit {
 	private errorMessage:string = "Formulario incompleto";
 	private mobileQuery: MediaQueryList;
 	private _mobileQueryListener: () => void;
-	private formSubscription:Subscription = null;
 	private userId: string;
-
-	private serviceListener: any;
+	private filledOneTest:boolean = false;
+	private selectedIndex:number = 0;
 
 	private biblicalTestFG: FormGroup[] = new Array(3);
-	private saveAttempt: Boolean = false;
 
-	regex: RegExp = /\S+/g;
+	private regex: RegExp = /\S+/g;
 	private MINJESUSLIFEWORDS:number = 800;
+
+	@ViewChild('biblicalTestForm0')
+	private biblicalTestForm0: FormGroupDirective;
+	@ViewChild('biblicalTestForm1')
+	private biblicalTestForm1: FormGroupDirective;
+	@ViewChild('biblicalTestForm2')
 
 	constructor(private formBuilder: FormBuilder, 
 		private biblicalTestService: BiblicalTestService,
@@ -93,19 +97,37 @@ export class TestBiblicoComponent implements OnInit {
 			bibleBooks:['', Validators.required]
 		});
 
-		this.serviceListener = this.biblicalTestService.listenBiblicalTestInformation(0);
-		this.updateBiblicalTestInformation({selectedIndex:0});
+		this.fillForms();
+		this.evaluateCurrentForm({selectedIndex:0});
 	}
 
-	private updateBiblicalTestInformation(event: any): void {
-		if (this.formSubscription !=null) this.formSubscription.unsubscribe();
-		this.serviceListener = this.biblicalTestService.listenBiblicalTestInformation(event.selectedIndex);
+	fillForms():void {
+		for (let i = 0; i < this.biblicalTestFG.length; i++){
+			this.biblicalTestService.getBiblicalTestInformation(i).then(snap => {
+				if (snap.data() != undefined && snap.data() != null){
+					this.biblicalTestFG[i].patchValue(snap.data());	
+					for (let key in snap.data()) {
+						if (snap.data()[key] != null && snap.data()[key] != null && (snap.data()[key].constructor.name == "Timestamp" || snap.data()[key].constructor.name == 't')) {
+							snap.data()[key].seconds += 100;
+							this.biblicalTestFG[i].get(key).setValue(snap.data()[key].toDate());
+						}
+					}
+					this.biblicalTestFG[i].markAsDirty();
+					this.filledOneTest = true;
+				}
+				if (this.biblicalTestFG[i].invalid && (this.selectedIndex < 1)){
+					this.selectedIndex = i;
+				}
+			});	
+		}
+	}
 
-		this.formSubscription = this.serviceListener.subscribe(ad => {
-			if (ad != undefined && ad != null) {
-				this.biblicalTestFG[event.selectedIndex].patchValue(ad);
-			}
-		});
+	// Listen for incomming changes in db
+	private evaluateCurrentForm(event: any): void {
+		if (this.biblicalTestFG[event.selectedIndex].dirty){
+			let evaluate = "this.biblicalTestForm"+event.selectedIndex+".onSubmit('undefined')";
+			eval(evaluate);
+		}
 	}
 
 	saveBiblicalTestInfo(formId: number, keyControl: string): void {

@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, Form } from '@angular/forms';
+import { Component, OnInit, Input, ChangeDetectorRef, ViewChild } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, Form, FormGroupDirective } from '@angular/forms';
 import { PersonalTestService } from 'src/app/shared/services/db/personal-test.service';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { MediaMatcher } from '@angular/cdk/layout';
@@ -18,19 +18,22 @@ export class TestPersonalComponent implements OnInit {
 	private errorMessage:string = "Formulario incompleto";
 	private mobileQuery: MediaQueryList;
 	private _mobileQueryListener: () => void;
-	private formSubscription:Subscription = null;
 	private userId: string;
+	private filledOneTest:boolean = false;
+	private selectedIndex:number = 0;
 
-	serviceListener: any;
+	private testPersonalFG: FormGroup[] = new Array(6);
 
-	testPersonalFG: FormGroup[] = new Array(6);
-	conversionFG: FormGroup;
-	convicionsFG: FormGroup;
-	courtshipAndMarriageFG: FormGroup;
-	spiritualGrowthFG: FormGroup;
-	calledFG: FormGroup;
-	healthFG: FormGroup;
-	saveAttempt: Boolean = false;
+	@ViewChild('personalTestForm0')
+	private personalTestForm0: FormGroupDirective;
+	@ViewChild('personalTestForm1')
+	private personalTestForm1: FormGroupDirective;
+	@ViewChild('personalTestForm2')
+	private personalTestForm2: FormGroupDirective;
+	@ViewChild('personalTestForm3')
+	private personalTestForm3: FormGroupDirective;
+	@ViewChild('personalTestForm4')
+	private personalTestForm4: FormGroupDirective;
 
 	constructor(private formBuilder: FormBuilder,
 		private personalTestService: PersonalTestService,
@@ -97,19 +100,36 @@ export class TestPersonalComponent implements OnInit {
 			agrementCheck: [false, [Validators.requiredTrue]]
 		});
 
-		this.serviceListener = this.personalTestService.listenPersonalTestInformation(0);
-		this.updatePersonalTestInformation({ selectedIndex: 0 });
+		this.fillForms();
+		this.evaluateCurrentForm({selectedIndex:0});
 	}
 
-	private updatePersonalTestInformation(event: any): void {
-		if (this.formSubscription !=null) this.formSubscription.unsubscribe();
-		this.serviceListener = this.personalTestService.listenPersonalTestInformation(event.selectedIndex);
+	fillForms():void {
+		for (let i = 0; i < this.testPersonalFG.length; i++){
+			this.personalTestService.getPersonalTestInformation(i).then(snap => {
+				if (snap.data() != undefined && snap.data() != null){
+					this.testPersonalFG[i].patchValue(snap.data());	
+					for (let key in snap.data()) {
+						if (snap.data()[key] != null && snap.data()[key] != null && (snap.data()[key].constructor.name == "Timestamp" || snap.data()[key].constructor.name == 't')) {
+							snap.data()[key].seconds += 100;
+							this.testPersonalFG[i].get(key).setValue(snap.data()[key].toDate());
+						}
+					}
+					this.testPersonalFG[i].markAsDirty();
+					this.filledOneTest = true;
+				}
+				if (this.testPersonalFG[i].invalid && (this.selectedIndex < 1)){
+					this.selectedIndex = i;
+				}
+			});	
+		}
+	}
 
-		this.formSubscription = this.serviceListener.subscribe(ad => {
-			if (ad != undefined && ad != null) {
-				this.testPersonalFG[event.selectedIndex].patchValue(ad);
-			}
-		});
+	evaluateCurrentForm(event: any): void {
+		if (this.testPersonalFG[event.selectedIndex].dirty){
+			let evaluate = "this.personalTestForm"+event.selectedIndex+".onSubmit('undefined')";
+			eval(evaluate);
+		}
 	}
 
 	savePersonalTestInfo(formId: number, keyControl: string): void {
@@ -122,9 +142,5 @@ export class TestPersonalComponent implements OnInit {
 		let data = {};
 		data[keyControl] = fieldValue;
 		this.personalTestService.updatePersonalTestInformation(formId, data);
-	}
-
-	private saveData() {
-		this.saveAttempt = true;
 	}
 }

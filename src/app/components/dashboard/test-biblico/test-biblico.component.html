@@ -2,8 +2,8 @@
 	<mat-card-header class="questions-header">
 		<mat-card-title><h1 class="questions-title">TEST BÍBLICO</h1></mat-card-title>
 	</mat-card-header>
-	<mat-horizontal-stepper linear="false" labelPosition="bottom" #stepper *ngIf="!mobileQuery.matches" (selectionChange)="updateBiblicalTestInformation($event)">
-		<mat-step [stepControl]="biblicalTestFG[0]" [errorMessage]="errorMessage" optional=false>
+	<mat-horizontal-stepper linear="false" labelPosition="bottom" #stepper *ngIf="!mobileQuery.matches" (selectionChange)="evaluateCurrentForm($event)" [selectedIndex]="selectedIndex">
+		<mat-step [stepControl]="biblicalTestFG[0]" [hasError]="this.biblicalTestFG[0].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false [completed]="this.biblicalTestFG[0].valid">
 			<ng-template matStepLabel style="padding-left: 0px !important;">Sobre la vida de nuestro Señor Jesucristo
 			</ng-template>
 			<ng-container *ngTemplateOutlet="f0"></ng-container>
@@ -11,14 +11,14 @@
 				<button mat-raised-button color="primary" matStepperNext>Siguiente</button>
 			</div>
 		</mat-step>
-		<mat-step [stepControl]="biblicalTestFG[1]" [errorMessage]="errorMessage" optional=false>
+		<mat-step [stepControl]="biblicalTestFG[1]" [hasError]="this.biblicalTestFG[1].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false [completed]="this.biblicalTestFG[1].valid">
 			<ng-template matStepLabel style="padding-left: 0px !important;">Conocimiento Bíblico General</ng-template>
 			<ng-container *ngTemplateOutlet="f1"></ng-container>
 			<div style="margin-top: 20px;">
 				<button mat-raised-button color="primary" matStepperNext>Siguiente</button>
 			</div>
 		</mat-step>
-		<mat-step [stepControl]="biblicalTestFG[2]" [errorMessage]="errorMessage" optional=false>
+		<mat-step [stepControl]="biblicalTestFG[2]" [hasError]="this.biblicalTestFG[2].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false [completed]="this.biblicalTestFG[2].valid">
 			<ng-template matStepLabel style="padding-left: 0px !important;">Examen de Conocimiento Bíblico</ng-template>
 			<ng-container *ngTemplateOutlet="f2"></ng-container>
 			<div style="margin-top: 20px;">
@@ -26,8 +26,8 @@
 			</div>
 		</mat-step>
 	</mat-horizontal-stepper>
-	<mat-vertical-stepper linear="false"  #stepper *ngIf="mobileQuery.matches" (selectionChange)="updateBiblicalTestInformation($event)">
-		<mat-step [stepControl]="biblicalTestFG[0]" [errorMessage]="errorMessage" optional=false>
+	<mat-vertical-stepper linear="false"  #stepper *ngIf="mobileQuery.matches" (selectionChange)="evaluateCurrentForm($event)" [selectedIndex]="selectedIndex">
+		<mat-step [stepControl]="biblicalTestFG[0]" [hasError]="this.biblicalTestFG[0].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false [completed]="this.biblicalTestFG[0].valid">
 			<ng-template matStepLabel style="padding-left: 0px !important;">Sobre la vida de nuestro Señor Jesucristo
 			</ng-template>
 			<ng-container *ngTemplateOutlet="f0"></ng-container>
@@ -35,14 +35,14 @@
 				<button mat-raised-button color="primary" matStepperNext>Siguiente</button>
 			</div>
 		</mat-step>
-		<mat-step [stepControl]="biblicalTestFG[1]" [errorMessage]="errorMessage" optional=false>
+		<mat-step [stepControl]="biblicalTestFG[1]" [hasError]="this.biblicalTestFG[1].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false [completed]="this.biblicalTestFG[1].valid">
 			<ng-template matStepLabel style="padding-left: 0px !important;">Conocimiento Bíblico General</ng-template>
 			<ng-container *ngTemplateOutlet="f1"></ng-container>
 			<div style="margin-top: 20px;">
 				<button mat-raised-button color="primary" matStepperNext>Siguiente</button>
 			</div>
 		</mat-step>
-		<mat-step [stepControl]="biblicalTestFG[2]" [errorMessage]="errorMessage" optional=false>
+		<mat-step [stepControl]="biblicalTestFG[2]" [hasError]="this.biblicalTestFG[2].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false [completed]="this.biblicalTestFG[2].valid">
 			<ng-template matStepLabel style="padding-left: 0px !important;">Examen de Conocimiento Bíblico</ng-template>
 			<ng-container *ngTemplateOutlet="f2"></ng-container>
 			<div style="margin-top: 20px;">
@@ -53,7 +53,7 @@
 </mat-card>
 
 <ng-template #f0>
-	<form [formGroup]="biblicalTestFG[0]">
+	<form [formGroup]="biblicalTestFG[0]" #biblicalTestForm0="ngForm">
 		<div class="form-title">Sobre la vida de nuestro Señor Jesucristo</div>
 		<div class="form-row">
 			<div class="col-sm-12">
@@ -76,7 +76,7 @@
 </ng-template>
 
 <ng-template #f1>
-	<form [formGroup]="biblicalTestFG[1]">
+	<form [formGroup]="biblicalTestFG[1]" #biblicalTestForm1="ngForm">
 		<div class="form-title">Conocimiento Bíblico General</div>
 		<div class="form-row">
 			<div class="col-sm-12">
@@ -181,7 +181,7 @@
 </ng-template>
 
 <ng-template #f2>
-	<form [formGroup]="biblicalTestFG[2]">
+	<form [formGroup]="biblicalTestFG[2]" #biblicalTestForm2="ngForm">
 		<div class="form-title">Examen de Conocimiento Bíblico</div>
 		<div class="form-row">
 			<div class="col-sm-12">

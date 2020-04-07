@@ -15,6 +15,17 @@ export class BiblicalTestService {
 		this.userId = userId;
 	}
 
+	public getBiblicalTestInformation(id: number): Promise<any> {
+		switch (id) {
+			case 0:
+				return this.afs.doc(`users/${this.userId}/biblicalTest/jesusLife`).ref.get();
+			case 1:
+				return this.afs.doc(`users/${this.userId}/biblicalTest/bibleDescription`).ref.get();
+			case 2:
+				return this.afs.doc(`users/${this.userId}/biblicalTest/bibleQuestions`).ref.get();
+		}
+	}
+
 	public listenBiblicalTestInformation(id: number): Observable<any> {
 		switch (id) {
 			case 0:
