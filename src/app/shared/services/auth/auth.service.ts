@@ -11,6 +11,7 @@ import { Router } from '@angular/router'
 })
 export class AuthService {
 	//verifiedEmail: boolean = false;
+	success:string;
 	email:string;
 	userData: any;
 	error: any;
@@ -24,10 +25,8 @@ export class AuthService {
 	) { 
 		this.getUserData();
 		this.afAuth.authState.subscribe(user => {
-			console.log("Authenticated user?");
 			if (user){
 				if (this.userData == null){
-					//this.email = user.email;
 					this.userData = {
 						uid: user.uid,
 						email: user.email,
@@ -36,18 +35,16 @@ export class AuthService {
 						emailVerified: user.emailVerified
 					}
 					if (user.emailVerified){
-						//this.verifiedEmail = true;
 						this.setUserData();
 						this.saveUserData(this.userData);
 						this.ngZone.run(() => {
 							this.router.navigate(['dashboard']);
 						});
 					}else{
-						console.log("Non verified user");
-						//this.verifiedEmail = false;
+						console.info("Non verified user");
 					}
 				}else{
-					console.log("user data not null");
+					console.info("user data not null");
 				}
 			}else{
 			}
@@ -55,6 +52,7 @@ export class AuthService {
 	}
 
 	async signInWithEmailAndPassword(email:string , password: string){
+		this.error = "";
 		let me = this;
 		try {
 			const result = await this.afAuth.auth.signInWithEmailAndPassword(email, password).then((resp)=>{
@@ -64,9 +62,9 @@ export class AuthService {
 					});	
 				}
 			}).catch((error)=>{
-
+				console.log("error trying sign with email and password", error.message);
+				this.error = error.message;
 			});
-			this.error = null;
 			//this.setUserData(result.user);
 		}
 		catch (error) {
@@ -81,15 +79,13 @@ export class AuthService {
 			this.afAuth.auth.setPersistence(auth.Auth.Persistence.SESSION).then(async () => {
 				this.signInWithEmailAndPassword(email, password);
 			}).catch(function (error) {
-				var errorCode = error.code;
-				var errorMessage = error.message;			
+				this.error = error.message;
 			});
 		}else if (rememberMe){
 			this.afAuth.auth.setPersistence(auth.Auth.Persistence.LOCAL).then(async () => {
 				this.signInWithEmailAndPassword(email, password);	
 			}).catch(function (error) {
-				var errorCode = error.code;
-				var errorMessage = error.message;			
+				this.error = error.message;		
 			})
 		}
 	}
@@ -100,28 +96,24 @@ export class AuthService {
 			let me = this;
 			let result = await this.afAuth.auth.createUserWithEmailAndPassword(email, password).then(function (res){
 				let user = res.user;
+				user.sendEmailVerification()
+				.then(() => {
+					me.ngZone.run(() => {
+						me.router.navigate(['verify-email-address']);
+					});
+				}).catch((error) => {
+					console.log("Error trying send email verification", error);
+					this.error = error.message;
+				});
 				user.updateProfile({
 					displayName: name + " " + lastname
 				}).then(function () {
-					console.log("Profile updated...");
-					user.sendEmailVerification()
-					.then(() => {
-						console.log("Sent email verification");
-						me.ngZone.run(() => {
-							me.router.navigate(['verify-email-address']);
-						});
-					}).catch((error) => {
-						console.log("Error trying send email verification");
-						console.log(error);
-					});
 				}).catch(function (error){
-					console.log("Impossible update profile");
-					console.log(error);
+					console.log("Impossible update profile", error);
 				});
-
 			}).catch((error) => {
-				console.log("Error creating user...");
-				console.log(error);
+				console.error("Error creating user...", error);
+				this.error = error.message;
 			});
 		}
 		catch (error) {
@@ -130,34 +122,30 @@ export class AuthService {
 	}
 
 	async sendVerificationMail(){
-		console.log("Sending verification mail...")
 		this.error = "";
 		return this.afAuth.auth.currentUser.sendEmailVerification()
 		.then(() => {
-			//this.setUserData();
 			this.router.navigate(['verify-email-address']);
 		}).catch((error) => {
-			console.log("Error trying send email verification");
-			console.log(error);
+			console.error("Error trying send email verification", error);
+			this.error = error.message;
 		});
 	}
 
-	async forgotPassword(passwordResetEmail: string){
+	async forgotPassword(email: string){
 		this.error = "";
-		return this.afAuth.auth.sendPasswordResetEmail(passwordResetEmail)
+		console.log("Here trying recover password...");
+		return this.afAuth.auth.sendPasswordResetEmail(email)
 		.then(() => {
-			window.alert('Se ha enviado un correo para restablecer tu contraseña, por favor revisa tu correo');
+			this.success = "Se ha enviado un correo para restablecer tu contraseña, por favor revisa tu correo";
+			//window.alert('Se ha enviado un correo para restablecer tu contraseña, por favor revisa tu correo');
 		}).catch((error) => {
-			window.alert(error);
-		});
+			this.error = error.message; 
+		});	
 	}
 
 	get isLoggedIn() : boolean {
 		return this.userData == null ? false : true;
-		/*
-		const user = JSON.parse(localStorage.getItem('user'));
-		return (user !== null && user.emailVerified !== false) ? true : false;
-		*/
 	}
 
 	googleAuth(){
@@ -170,9 +158,8 @@ export class AuthService {
 		return this.afAuth.auth.signInWithPopup(provider)
 			.then((result) => {
 				console.info("Signed in with google provider");
-				//let userRef = this.setUserData(result.user);
 			}).catch((error) => {
-				window.alert(error);
+				this.error = error.message;
 			});
 	}
 	
@@ -196,6 +183,8 @@ export class AuthService {
 			this.userData = null;
 			window.localStorage.setItem('userData', this.userData);
 			this.router.navigate(['sign-in']);
+		}).catch((error) => {
+			this.error = error.message;
 		});
 	}
 
