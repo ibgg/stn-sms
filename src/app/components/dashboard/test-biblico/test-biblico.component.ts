@@ -119,7 +119,7 @@ export class TestBiblicoComponent implements OnInit, OnDestroy {
 					this.biblicalTestFG[i].markAsDirty();
 					this.filledOneTest = true;
 				}
-				if (this.biblicalTestFG[i].invalid && (this.selectedIndex < 1)){
+				if (this.biblicalTestFG[i].invalid && !this.biblicalTestFG[0].invalid && this.selectedIndex < 1){
 					this.selectedIndex = i;
 				}
 			});	

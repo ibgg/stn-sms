@@ -103,7 +103,7 @@ export class AuthService {
 		}
 	}
 
-	sendVerificationMail(){
+	async sendVerificationMail(){
 		console.log("Sending verification mail...")
 		this.error = "";
 		return this.afAuth.auth.currentUser.sendEmailVerification()

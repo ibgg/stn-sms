@@ -117,7 +117,7 @@ export class TestPersonalComponent implements OnInit {
 					this.testPersonalFG[i].markAsDirty();
 					this.filledOneTest = true;
 				}
-				if (this.testPersonalFG[i].invalid && (this.selectedIndex < 1)){
+				if (this.testPersonalFG[i].invalid && !this.testPersonalFG[0].invalid && this.selectedIndex < 1){
 					this.selectedIndex = i;
 				}
 			});	
