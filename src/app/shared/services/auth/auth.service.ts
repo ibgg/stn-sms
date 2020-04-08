@@ -10,6 +10,8 @@ import { Router } from '@angular/router'
   providedIn: 'root'
 })
 export class AuthService {
+	//verifiedEmail: boolean = false;
+	email:string;
 	userData: any;
 	error: any;
 	defaultPhotoUrl: string = "gs://tsn-sms.appspot.com/avatar.png";
@@ -25,6 +27,7 @@ export class AuthService {
 			console.log("Authenticated user?");
 			if (user){
 				if (this.userData == null){
+					//this.email = user.email;
 					this.userData = {
 						uid: user.uid,
 						email: user.email,
@@ -32,14 +35,19 @@ export class AuthService {
 						photoURL: user.photoURL !== null ? user.photoURL : '../../../../assets/images/avatar.png',
 						emailVerified: user.emailVerified
 					}
-					if (this.userData.emailVerified){
+					if (user.emailVerified){
+						//this.verifiedEmail = true;
+						this.setUserData();
 						this.saveUserData(this.userData);
 						this.ngZone.run(() => {
 							this.router.navigate(['dashboard']);
-						});		
+						});
 					}else{
-						this.sendVerificationMail();
+						console.log("Non verified user");
+						//this.verifiedEmail = false;
 					}
+				}else{
+					console.log("user data not null");
 				}
 			}else{
 			}
@@ -49,7 +57,15 @@ export class AuthService {
 	async signInWithEmailAndPassword(email:string , password: string){
 		let me = this;
 		try {
-			const result = await this.afAuth.auth.signInWithEmailAndPassword(email, password);
+			const result = await this.afAuth.auth.signInWithEmailAndPassword(email, password).then((resp)=>{
+				if (!resp.user.emailVerified){
+					this.ngZone.run(() => {
+						this.router.navigate(['verify-email-address']);
+					});	
+				}
+			}).catch((error)=>{
+
+			});
 			this.error = null;
 			//this.setUserData(result.user);
 		}
@@ -67,7 +83,7 @@ export class AuthService {
 			}).catch(function (error) {
 				var errorCode = error.code;
 				var errorMessage = error.message;			
-			})
+			});
 		}else if (rememberMe){
 			this.afAuth.auth.setPersistence(auth.Auth.Persistence.LOCAL).then(async () => {
 				this.signInWithEmailAndPassword(email, password);	
@@ -88,6 +104,16 @@ export class AuthService {
 					displayName: name + " " + lastname
 				}).then(function () {
 					console.log("Profile updated...");
+					user.sendEmailVerification()
+					.then(() => {
+						console.log("Sent email verification");
+						me.ngZone.run(() => {
+							me.router.navigate(['verify-email-address']);
+						});
+					}).catch((error) => {
+						console.log("Error trying send email verification");
+						console.log(error);
+					});
 				}).catch(function (error){
 					console.log("Impossible update profile");
 					console.log(error);
@@ -108,7 +134,7 @@ export class AuthService {
 		this.error = "";
 		return this.afAuth.auth.currentUser.sendEmailVerification()
 		.then(() => {
-			this.setUserData(this.afAuth.auth.currentUser);
+			//this.setUserData();
 			this.router.navigate(['verify-email-address']);
 		}).catch((error) => {
 			console.log("Error trying send email verification");
@@ -143,22 +169,24 @@ export class AuthService {
 		this.error = "";
 		return this.afAuth.auth.signInWithPopup(provider)
 			.then((result) => {
-				let userRef = this.setUserData(result.user);
+				console.info("Signed in with google provider");
+				//let userRef = this.setUserData(result.user);
 			}).catch((error) => {
 				window.alert(error);
 			});
 	}
 	
-	async setUserData(user){
+	async setUserData(){
 		this.error = "";
-		const userRef: AngularFirestoreDocument <any> = this.afs.doc(`users/${user.uid}`);
-		this.userData = {
+		const userRef: AngularFirestoreDocument <any> = this.afs.doc(`users/${this.userData.uid}`);
+		/*
+		let userData = {
 			uid: user.uid,
 			email: user.email,
 			displayName: user.displayName,
 			photoURL: user.photoURL !== null ? user.photoURL : '../../../../assets/images/avatar.png',
 			emailVerified: user.emailVerified
-		}
+		}*/
 		
 		return userRef.set(this.userData, {merge: true});
 	}

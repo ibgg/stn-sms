@@ -15,7 +15,7 @@ export class SignUpComponent implements OnInit {
 		private formBuilder: FormBuilder,
 		public router: Router,
 		public ngZone: NgZone) { 
-		if (this.authService.userData != null){
+		if (this.authService.userData != null && this.authService.userData.emailVerified){
 			this.ngZone.run(() => {
 				this.router.navigate(['dashboard']);
 			});	
