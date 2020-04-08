@@ -9,7 +9,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class ForgotPasswordComponent implements OnInit {
 	recoverPasswordForm: FormGroup;
-	constructor(public authService: AuthService, private fb: FormBuilder) { }
+	constructor(public authService: AuthService, private fb: FormBuilder) { 
+		this.authService.error = "";
+	}
 
 	ngOnInit(): void {
 		this.initializeFormSettings();
