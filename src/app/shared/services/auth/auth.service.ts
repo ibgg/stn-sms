@@ -22,6 +22,7 @@ export class AuthService {
 	) { 
 		this.getUserData();
 		this.afAuth.authState.subscribe(user => {
+			console.log("Authenticated user?");
 			if (user){
 				if (this.userData == null){
 					this.userData = {
@@ -31,10 +32,14 @@ export class AuthService {
 						photoURL: user.photoURL !== null ? user.photoURL : '../../../../assets/images/avatar.png',
 						emailVerified: user.emailVerified
 					}
-					this.saveUseData(this.userData);
-					this.ngZone.run(() => {
-						this.router.navigate(['dashboard']);
-					});	
+					if (this.userData.emailVerified){
+						this.saveUserData(this.userData);
+						this.ngZone.run(() => {
+							this.router.navigate(['dashboard']);
+						});		
+					}else{
+						this.sendVerificationMail();
+					}
 				}
 			}else{
 			}
@@ -78,15 +83,19 @@ export class AuthService {
 		try {
 			let me = this;
 			let result = await this.afAuth.auth.createUserWithEmailAndPassword(email, password).then(function (res){
-				//this.sendVerificationMail();
 				let user = res.user;
 				user.updateProfile({
 					displayName: name + " " + lastname
 				}).then(function () {
-					me.signIn(email, password, rememberMe);
+					console.log("Profile updated...");
 				}).catch(function (error){
-					console.log("Impossible update username")
+					console.log("Impossible update profile");
+					console.log(error);
 				});
+
+			}).catch((error) => {
+				console.log("Error creating user...");
+				console.log(error);
 			});
 		}
 		catch (error) {
@@ -94,11 +103,16 @@ export class AuthService {
 		}
 	}
 
-	async sendVerificationMail(){
+	sendVerificationMail(){
+		console.log("Sending verification mail...")
 		this.error = "";
 		return this.afAuth.auth.currentUser.sendEmailVerification()
 		.then(() => {
+			this.setUserData(this.afAuth.auth.currentUser);
 			this.router.navigate(['verify-email-address']);
+		}).catch((error) => {
+			console.log("Error trying send email verification");
+			console.log(error);
 		});
 	}
 
@@ -129,7 +143,7 @@ export class AuthService {
 		this.error = "";
 		return this.afAuth.auth.signInWithPopup(provider)
 			.then((result) => {
-				//let userRef = this.setUserData(result.user);
+				let userRef = this.setUserData(result.user);
 			}).catch((error) => {
 				window.alert(error);
 			});
@@ -163,7 +177,7 @@ export class AuthService {
 	// En el constructor, obtener los datos desde el store local
 	// Si la autenticación es correcta, se persisten los datos en local
 
-	private saveUseData(userData: User): void {
+	private saveUserData(userData: User): void {
 		window.localStorage.setItem('userData', JSON.stringify(userData));
 	}
 
