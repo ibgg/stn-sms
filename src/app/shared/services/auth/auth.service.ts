@@ -45,6 +45,16 @@ export class AuthService {
 					}
 				}else{
 					console.info("user data not null");
+					if (user.emailVerified){
+						this.userData.emailVerified = true;
+						this.setUserData();
+						this.saveUserData(this.userData);
+						this.ngZone.run(() => {
+							this.router.navigate(['dashboard']);
+						});
+					}else{
+						console.info("Non verified user");
+					}
 				}
 			}else{
 			}
@@ -200,5 +210,19 @@ export class AuthService {
 
 	private getUserData(){
 		this.userData = JSON.parse(window.localStorage.getItem('userData'));
+	}
+
+
+	public handleVerifyEmail(actionCode:string): Promise<void>{
+		return this.afAuth.auth.applyActionCode(actionCode);
+	}
+
+	public verifyPasswordReset(actionCode: string): Promise<string>{
+		console.log("Trying resepassword for", actionCode);
+		return this.afAuth.auth.verifyPasswordResetCode(actionCode);
+	}
+
+	public confirmPasswordReset(actionCode:string, newPassword: string): Promise <void>{
+		return this.afAuth.auth.confirmPasswordReset(actionCode, newPassword);
 	}
 }

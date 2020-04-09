@@ -17,6 +17,7 @@ import { TestPersonalComponent } from 'src/app/components/dashboard/test-persona
 import { TestPsicologicoComponent } from 'src/app/components/dashboard/test-psicologico/test-psicologico.component';
 import { TestBiblicoComponent } from 'src/app/components/dashboard/test-biblico/test-biblico.component';
 import { AgreementComponent } from 'src/app/components/dashboard/agreement/agreement.component';
+import { UsermgmtComponent } from 'src/app/components/usermgmt/usermgmt.component';
 
 
 const routes: Routes = [
@@ -43,6 +44,7 @@ const routes: Routes = [
 			path:'agreement', component: AgreementComponent
 		},
 	] },
+	{ path: 'usermgmt', component:UsermgmtComponent },
 	{ path: 'forgot-password', component:ForgotPasswordComponent },
 	{ path: 'verify-email-address', component:VerifyEmailComponent }
 ];
