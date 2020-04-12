@@ -14,8 +14,8 @@ export class SignInComponent implements OnInit {
 		private formBuilder: FormBuilder,
 		public router: Router,
 		public ngZone: NgZone) {
+		this.authService.error = "";
 		if (this.authService.userData != null && this.authService.userData.emailVerified){
-			this.authService.error = "";
 			this.ngZone.run(() => {
 				this.router.navigate(['dashboard']);
 			});

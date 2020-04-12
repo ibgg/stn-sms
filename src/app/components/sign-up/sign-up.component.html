@@ -50,7 +50,7 @@
 
 							<mat-form-field class="example-full-width">
 								<mat-label>Contraseña</mat-label>
-								<input type="password" matInput formControlName="password" required #password>
+								<input type="password" matInput formControlName="password" required #password autocomplete="on">
 								<mat-error
 									*ngIf="signUpFormGroup.controls['password'].invalid">
 									<span *ngIf="signUpFormGroup.controls['password'].errors.required">La contraseña <strong>es requerida</strong></span>
@@ -61,7 +61,7 @@
 
 							<mat-form-field class="example-full-width">
 								<mat-label>Confirmar contraseña</mat-label>
-								<input type="password" matInput formControlName="passConfirm" required #confirmPassword>
+								<input type="password" matInput formControlName="passConfirm" required #confirmPassword autocomplete="on">
 								<mat-error
 									*ngIf="signUpFormGroup.controls['passConfirm'].invalid && !signUpFormGroup.controls['passConfirm'].errors.match">
 									Las contraseñas <strong>no coinciden</strong>

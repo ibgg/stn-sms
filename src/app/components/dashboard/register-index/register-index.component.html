@@ -32,14 +32,14 @@
 			<mat-card class="card-style">
 				<mat-card-header style="justify-content: center;">
 					<mat-card-title style="text-align: center;">
-						<mat-icon class="material-icons" style="text-align: center; font-size: 30px; margin: auto;">
+						<mat-icon class="material-icons primary" style="text-align: center; font-size: 30px; margin: auto;">
 							create
 						</mat-icon>
 					</mat-card-title>
 					<mat-card-title style="text-align: center;">Solicitud de Ingreso</mat-card-title>
 				</mat-card-header>
 				<mat-card-content style="text-align: center;">
-					<mat-icon class="material-icons" style="text-align: center; font-size: 30px; margin: auto;" class="text-primary">
+					<mat-icon class="material-icons primary" style="text-align: center; font-size: 30px; margin: auto;" *ngIf="authService.userData.enrollmentCompleteness==100; else elseBlock">
 						check_circle_outline
 					</mat-icon>
 				</mat-card-content>
@@ -51,14 +51,14 @@
 			<mat-card class="card-style">
 				<mat-card-header style="justify-content: center;">
 					<mat-card-title style="text-align: center;">
-						<mat-icon class="material-icons" style="text-align: center; font-size: 30px; margin: auto;">
+						<mat-icon class="material-icons primary" style="text-align: center; font-size: 30px; margin: auto;">
 							how_to_reg
 						</mat-icon>
 					</mat-card-title>
 					<mat-card-title style="text-align: center;">Test personal</mat-card-title>
 				</mat-card-header>
 				<mat-card-content style="text-align: center;">
-					<mat-icon class="material-icons" style="text-align: center; font-size: 30px; margin: auto;" class="text-primary">
+					<mat-icon class="material-icons primary" style="text-align: center; font-size: 30px; margin: auto;" *ngIf="authService.userData.enrollmentCompleteness==100; else elseBlock">
 						check_circle_outline
 					</mat-icon>
 				</mat-card-content>
@@ -70,15 +70,15 @@
 			<mat-card class="card-style">
 				<mat-card-header style="justify-content: center;">
 					<mat-card-title style="text-align: center;">
-						<mat-icon class="material-icons" style="text-align: center; font-size: 30px; margin: auto;">
+						<mat-icon class="material-icons primary" style="text-align: center; font-size: 30px; margin: auto;">
 							sentiment_satisfied
 						</mat-icon>
 					</mat-card-title>
 					<mat-card-title style="text-align: center;">Test Psicológico</mat-card-title>
 				</mat-card-header>
 				<mat-card-content style="text-align: center;">
-					<mat-icon class="material-icons" style="text-align: center; font-size: 30px; margin: auto;" class="text-warning">
-						error_outline
+					<mat-icon class="material-icons primary" style="text-align: center; font-size: 30px; margin: auto;" *ngIf="authService.userData.enrollmentCompleteness==100; else elseBlock">
+						check_circle_outline
 					</mat-icon>
 				</mat-card-content>
 			</mat-card>
@@ -91,13 +91,13 @@
 			<mat-card class="card-style">
 				<mat-card-header style="justify-content: center;">
 					<mat-card-title style="text-align: center;">
-						<mat-icon class="material-icons" style="text-align: center; font-size: 30px; margin: auto;">book
+						<mat-icon class="material-icons primary" style="text-align: center; font-size: 30px; margin: auto;">book
 						</mat-icon>
 					</mat-card-title>
 					<mat-card-title style="text-align: center;">Test Bíblico</mat-card-title>
 				</mat-card-header>
 				<mat-card-content style="text-align: center;">
-					<mat-icon class="material-icons" style="text-align: center; font-size: 30px; margin: auto;" class="text-primary">
+					<mat-icon class="material-icons primary" style="text-align: center; font-size: 30px; margin: auto;" *ngIf="authService.userData.enrollmentCompleteness==100; else elseBlock">
 						check_circle_outline
 					</mat-icon>
 				</mat-card-content>
@@ -109,14 +109,14 @@
 			<mat-card class="card-style">
 				<mat-card-header style="justify-content: center;">
 					<mat-card-title style="text-align: center;">
-						<mat-icon class="material-icons" style="text-align: center; font-size: 30px; margin: auto;">
+						<mat-icon class="material-icons primary" style="text-align: center; font-size: 30px; margin: auto;">
 							notes
 						</mat-icon>
 					</mat-card-title>
-					<mat-card-title style="text-align: center;">Acuerdo de Confesión</mat-card-title>
+					<mat-card-title style="text-align: center;">Confesión</mat-card-title>
 				</mat-card-header>
 				<mat-card-content style="text-align: center;">
-					<mat-icon class="material-icons" style="text-align: center; font-size: 30px; margin: auto;" class="text-primary">
+					<mat-icon class="material-icons primary" style="text-align: center; font-size: 30px; margin: auto;" *ngIf="authService.userData.enrollmentCompleteness==100; else elseBlock">
 						check_circle_outline
 					</mat-icon>
 				</mat-card-content>
@@ -124,3 +124,9 @@
 		</a>
 	</div>
 </div>
+
+<ng-template #elseBlock>
+	<mat-icon class="material-icons" style="text-align: center; font-size: 30px; margin: auto;" class="text-warning">
+		error_outline
+	</mat-icon>	
+</ng-template>

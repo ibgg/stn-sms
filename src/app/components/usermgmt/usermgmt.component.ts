@@ -59,6 +59,8 @@ export class UsermgmtComponent implements OnInit {
 	handleVerifyEmail():void {
 		this.authService.handleVerifyEmail(this.actionCode).then((resp) => {
 			this.successOperation = "Email confirmado exitosamente";
+			//this.authService.userData.emailVerified = true;
+			//this.authService.setUserData(this.authService.userData);
 		}).catch((error) => {
 			this.error = error.message;
 		})

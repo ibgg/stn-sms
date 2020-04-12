@@ -9,10 +9,6 @@ import { AuthService } from 'src/app/shared/services/auth/auth.service';
 export class RegisterIndexComponent implements OnInit {
 	@Output() navigationEmitter = new EventEmitter<string>();
 
-	username: string;
-	userpic: string;
-	useremail: string;
-
 	constructor(public authService: AuthService) { }
 
 	ngOnInit(): void {
