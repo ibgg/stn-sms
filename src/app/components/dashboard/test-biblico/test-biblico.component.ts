@@ -20,6 +20,7 @@ export class TestBiblicoComponent implements OnInit, OnDestroy {
 	private userId: string;
 	private filledOneTest:boolean = false;
 	private selectedIndex:number = 0;
+	private completeness:number = 0;
 
 	private biblicalTestFG: FormGroup[] = new Array(3);
 
@@ -103,9 +104,10 @@ export class TestBiblicoComponent implements OnInit, OnDestroy {
 
 		this.fillForms();
 		this.evaluateCurrentForm({selectedIndex:0});
+		this.listenFormStatus();
 	}
 
-	fillForms():void {
+	private fillForms():void {
 		for (let i = 0; i < this.biblicalTestFG.length; i++){
 			this.biblicalTestService.getBiblicalTestInformation(i).then(snap => {
 				if (snap.data() != undefined && snap.data() != null){
@@ -134,7 +136,7 @@ export class TestBiblicoComponent implements OnInit, OnDestroy {
 		}
 	}
 
-	saveBiblicalTestInfo(formId: number, keyControl: string): void {
+	private saveBiblicalTestInfo(formId: number, keyControl: string): void {
 		if (this.biblicalTestFG[formId].get(keyControl).errors != null) {
 			console.debug("Impossible save data for this control...", this.biblicalTestFG[formId].get(keyControl).errors);
 			return;
@@ -146,10 +148,22 @@ export class TestBiblicoComponent implements OnInit, OnDestroy {
 		this.biblicalTestService.updateBiblicalTestInformation(formId, data);
 	}
 
-	minWordsValidator():ValidatorFn {
+	private minWordsValidator():ValidatorFn {
 		return (control: AbstractControl): {[key: string]: any} | null => {
 			const words = control.value.match(this.regex) != null ? control.value.match(this.regex).length: 0;
 			return words < this.MINJESUSLIFEWORDS ? {'minWords': {value: true}} : null;
 		  };  
+	}
+
+	private listenFormStatus():void {
+		this.biblicalTestFG.forEach((formGroup) => {
+			let sub = formGroup.statusChanges.subscribe((status) => {
+				if (status == 'VALID') {
+					this.completeness += (1 / this.biblicalTestFG.length)*100;
+					this.authService.setFormCompletude(this.authService.userData.uid, {"biblicalTestCompleteness": this.completeness});
+					sub.unsubscribe();
+				}
+			});
+		});
 	}
 }

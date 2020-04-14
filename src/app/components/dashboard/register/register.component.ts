@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewChild, ChangeDetectorRef } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormGroupDirective, ValidationErrors, Form } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormGroupDirective, ValidationErrors, Form, AbstractControl } from '@angular/forms';
 import { EnrollmentServiceService } from 'src/app/shared/services/db/enrollment-service.service';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { MediaMatcher } from '@angular/cdk/layout';
@@ -21,6 +21,7 @@ export class RegisterComponent implements OnInit {
 	private enrollmentInfoFormGroup:FormGroup[] = new Array(5);
 	private filledOneTest:boolean = false;
 	private selectedIndex:number = 0;
+	private completeness:number = 0;
 
 	@ViewChild('enrollmentInfoForm0')
 	private enrollmentInfoForm0: FormGroupDirective;
@@ -48,7 +49,7 @@ export class RegisterComponent implements OnInit {
 		this.initializeForms();
 	}
 
-	async initializeForms() {
+	private async initializeForms() {
 		this.enrollmentService.setUserId(this.userId);
 
 		this.enrollmentInfoFormGroup[0] = this.formBuilder.group({
@@ -129,10 +130,11 @@ export class RegisterComponent implements OnInit {
 		//this.ad = this.enrollmentService.listenEnrollmentInformation(0);
 		this.fillForms();
 		this.evaluateCurrentForm({selectedIndex:0});
+		this.listenFormStatus();
 	}
 	
 	// Get data for validation errors
-	fillForms():void {
+	private fillForms():void {
 		for (let i = 0; i < this.enrollmentInfoFormGroup.length; i++){
 			this.enrollmentService.getEnrollmentInformation(i).then(snap => {
 				if (snap.data() != undefined && snap.data() != null){
@@ -148,7 +150,6 @@ export class RegisterComponent implements OnInit {
 				}
 				if (this.enrollmentInfoFormGroup[i].invalid && !this.enrollmentInfoFormGroup[0].invalid && this.selectedIndex < 1){
 					this.selectedIndex = i;
-					console.log("setup selected index ", this.selectedIndex);
 				}
 			});	
 		}
@@ -163,7 +164,7 @@ export class RegisterComponent implements OnInit {
 	}
 
 	// Save data to firestoredb
-	saveEnrollmentInfo(formId: number, keyControl: string): void {
+	private saveEnrollmentInfo(formId: number, keyControl: string): void {
 		if (this.enrollmentInfoFormGroup[formId].get(keyControl).errors != null) {
 			console.debug("Impossible save data for this control...", this.enrollmentInfoFormGroup[formId].get(keyControl).errors);
 			return;
@@ -175,7 +176,7 @@ export class RegisterComponent implements OnInit {
 		this.enrollmentService.updateEnrollmentInformation(formId, data);
 	}
 
-	getFormValidationErrors(i:number) {
+	private getFormValidationErrors(i:number) {
 		console.log("VALIDATIONS FOR: ", i);
 		Object.keys(this.enrollmentInfoFormGroup[i].controls).forEach(key => {
 			const controlErrors: ValidationErrors = this.enrollmentInfoFormGroup[i].get(key).errors;
@@ -184,6 +185,18 @@ export class RegisterComponent implements OnInit {
 					console.log('Key control: ' + key + ', keyError: ' + keyError + ', err value: ', controlErrors[keyError]);
 				});
 			}
+		});
+	}
+
+	private listenFormStatus():void {
+		this.enrollmentInfoFormGroup.forEach((formGroup) => {
+			let sub = formGroup.statusChanges.subscribe((status) => {
+				if (status == 'VALID') {
+					this.completeness += (1 / this.enrollmentInfoFormGroup.length)*100;
+					this.authService.setFormCompletude(this.authService.userData.uid, {"enrollmentCompleteness": this.completeness});
+					sub.unsubscribe();
+				}
+			});
 		});
 	}
 }

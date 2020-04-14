@@ -41,6 +41,7 @@ export class TestPsicologicoComponent implements OnInit {
 
 		this.serviceListener = this.psychoTestService.listenPsychoTestInformation(0);
 		this.updatePsychoTestInformation({selectedIndex:0});
+		this.listenFormStatus();
 	}
 
 	private updatePsychoTestInformation(event: any): void {
@@ -94,5 +95,13 @@ export class TestPsicologicoComponent implements OnInit {
 
 		this.psicologicalTestFG.disable();
 		this.chronometer.stopTimer();
+	}
+
+	private listenFormStatus():void {
+		this.psicologicalTestFG.statusChanges.subscribe((satus) => {
+			if (status == 'VALID'){
+				this.authService.setFormCompletude(this.authService.userData.uid, {"psychologicalTestCompleteness": 100});
+			}
+		});
 	}
 }

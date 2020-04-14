@@ -20,6 +20,7 @@ export class TestPersonalComponent implements OnInit {
 	private userId: string;
 	private filledOneTest:boolean = false;
 	private selectedIndex:number = 0;
+	private completeness:number = 0;
 
 	private testPersonalFG: FormGroup[] = new Array(6);
 
@@ -50,7 +51,7 @@ export class TestPersonalComponent implements OnInit {
 		this.initializeForms();
 	}
 
-	initializeForms(): any {
+	private initializeForms(): any {
 		//this.conversionFG = this.formBuilder.group({
 		this.testPersonalFG[0] = this.formBuilder.group({
 			christEncounterDescription: ['', Validators.required],
@@ -101,9 +102,10 @@ export class TestPersonalComponent implements OnInit {
 
 		this.fillForms();
 		this.evaluateCurrentForm({selectedIndex:0});
+		this.listenFormStatus();
 	}
 
-	fillForms():void {
+	private fillForms():void {
 		for (let i = 0; i < this.testPersonalFG.length; i++){
 			this.personalTestService.getPersonalTestInformation(i).then(snap => {
 				if (snap.data() != undefined && snap.data() != null){
@@ -124,14 +126,14 @@ export class TestPersonalComponent implements OnInit {
 		}
 	}
 
-	evaluateCurrentForm(event: any): void {
+	private evaluateCurrentForm(event: any): void {
 		if (this.testPersonalFG[event.selectedIndex].dirty){
 			let evaluate = "this.personalTestForm"+event.selectedIndex+".onSubmit('undefined')";
 			eval(evaluate);
 		}
 	}
 
-	savePersonalTestInfo(formId: number, keyControl: string): void {
+	private savePersonalTestInfo(formId: number, keyControl: string): void {
 		if (this.testPersonalFG[formId].get(keyControl).errors != null) {
 			console.debug("Impossible save data for this control...", this.testPersonalFG[formId].get(keyControl).errors);
 			return;
@@ -141,5 +143,17 @@ export class TestPersonalComponent implements OnInit {
 		let data = {};
 		data[keyControl] = fieldValue;
 		this.personalTestService.updatePersonalTestInformation(formId, data);
+	}
+
+	private listenFormStatus():void {
+		this.testPersonalFG.forEach((formGroup) => {
+			let sub = formGroup.statusChanges.subscribe((status) => {
+				if (status == 'VALID') {
+					this.completeness += (1 / this.testPersonalFG.length)*100;
+					this.authService.setFormCompletude(this.authService.userData.uid, {"personalTestCompleteness": this.completeness});
+					sub.unsubscribe();
+				}
+			});
+		});
 	}
 }
