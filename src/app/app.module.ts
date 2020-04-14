@@ -68,6 +68,7 @@ import {MatTreeModule} from '@angular/material/tree';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TextFieldModule} from '@angular/cdk/text-field';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { NgCircleProgressModule } from 'ng-circle-progress';
 import { RegisterComponent } from './components/dashboard/register/register.component';
 import { TestPersonalComponent } from './components/dashboard/test-personal/test-personal.component';
 import { TestPsicologicoComponent } from './components/dashboard/test-psicologico/test-psicologico.component';
@@ -147,7 +148,8 @@ import { UsermgmtComponent } from './components/usermgmt/usermgmt.component';
 	MatTableModule,
 	MatTreeModule,
 	MatTabsModule,
-	MatTooltipModule
+	MatTooltipModule,
+	NgCircleProgressModule.forRoot({})
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],

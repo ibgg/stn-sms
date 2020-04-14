@@ -21,6 +21,7 @@ export class TestPsicologicoComponent implements OnInit {
 	private psicoQuestions:any = PsicoQuestions;
 	private chronometer: Chrono;
 	private subscriberChrono:Subscription;
+	private completeness:number = 0;
 	
 	constructor(private psychoTestService: PsychologicalService,		
 		public authService: AuthService) {
@@ -41,7 +42,7 @@ export class TestPsicologicoComponent implements OnInit {
 
 		this.serviceListener = this.psychoTestService.listenPsychoTestInformation(0);
 		this.updatePsychoTestInformation({selectedIndex:0});
-		this.listenFormStatus();
+		//this.listenFormStatus();
 	}
 
 	private updatePsychoTestInformation(event: any): void {
@@ -62,8 +63,16 @@ export class TestPsicologicoComponent implements OnInit {
 				for (let key in ad) {
 					if (this.psicologicalTestFG.get(key).value == ad[key]) continue;
 					else this.psicologicalTestFG.get(key).setValue(ad[key]);
+					if (this.psicologicalTestFG.get(key).valid){
+						this.completeness++;
+						//this.completeness /= this.psicoQuestions.length;
+						console.log(this.completeness/this.psicoQuestions.length);
+						this.authService.setFormCompletude(this.authService.userData.uid, {"psychologicalTestCompleteness": (this.completeness/this.psicoQuestions.length)*100});
+					}
 					if (this.psicologicalTestFG.get(key).value != null && this.psicologicalTestFG.get(key).value != undefined && this.psicologicalTestFG.get(key).value != "") this.psicologicalTestFG.get(key).disable();
 				}
+
+				//this.completeness = 
 			}
 		});
 	}
@@ -102,6 +111,12 @@ export class TestPsicologicoComponent implements OnInit {
 			if (status == 'VALID'){
 				this.authService.setFormCompletude(this.authService.userData.uid, {"psychologicalTestCompleteness": 100});
 			}
+		});
+	}
+
+	private listenFormUpdates():void{
+		this.psicologicalTestFG.valueChanges.subscribe(value => {
+
 		});
 	}
 }

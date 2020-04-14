@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/shared/services/auth/auth.service';
 	styleUrls: ['./register-index.component.css']
 })
 export class RegisterIndexComponent implements OnInit {
+	iconTitle:string="<mat-icon>notes</mat-icon>";
 	@Output() navigationEmitter = new EventEmitter<string>();
 
 	constructor(public authService: AuthService) { }
