@@ -171,10 +171,24 @@
 					</mat-card-title>
 					<mat-card-title style="text-align: center; font-weight: 200;">Confesión</mat-card-title>
 				</mat-card-header>
-				<mat-card-content style="text-align: center;">
-					<mat-icon class="material-icons primary" style="text-align: center; font-size: 30px; margin: auto;" *ngIf="authService.userData.enrollmentCompleteness==100; else elseBlock">
-						check_circle_outline
-					</mat-icon>
+				<mat-card-content style="text-align: center; padding-left:40px; padding-right: 40px;">
+					<circle-progress
+					[percent]="authService.userData.agreementCompleteness == true ? 100 : 0"
+					[radius]="50"
+					[outerStrokeWidth]="7"
+					[innerStrokeWidth]="7"
+					[space] = "-7"
+					[outerStrokeColor]="'#600000'"
+					[innerStrokeColor]="'#e7e8ea'"
+					[titleFontSize]= "14"
+					[unitsFontSize]= "14"
+					[showSubtitle] = "true"
+					[animation]="true"
+					[animationDuration]="300"
+					[startFromZero]="false"
+					[responsive]="true"
+					subtitle="Progreso"
+				  ></circle-progress>	
 				</mat-card-content>
 			</mat-card>
 		</a>

@@ -26,6 +26,7 @@ export class AuthService {
 		public ngZone: NgZone
 	) {
 		this.getLocalUserData();
+		
 		this.afAuth.authState.subscribe(user => {
 			if (user) {
 				if (this.userData == null) {
@@ -33,9 +34,12 @@ export class AuthService {
 					if (user.emailVerified) {
 						this.userData.emailVerified = true;
 						this.listenUserData();
-						this.ngZone.run(() => {
-							this.router.navigate(['dashboard']);
-						});
+						if (this.router.url.search("dashboard") <= 0) {
+							this.ngZone.run(() => {
+								this.router.navigate(['dashboard']);
+							});
+	
+						}
 					} else {
 						console.info("Non verified email");
 					}

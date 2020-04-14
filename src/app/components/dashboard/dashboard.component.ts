@@ -27,6 +27,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 		this.mobileQuery.addListener(this._mobileQueryListener);
 		
 		if (authService.userData == null || !authService.userData.emailVerified){
+			console.log("Routing to sign-in");
 			this.ngZone.run(() => {
 				this.router.navigate(['sign-in']);
 			});	
