@@ -18,12 +18,14 @@ import { TestPsicologicoComponent } from 'src/app/components/dashboard/test-psic
 import { TestBiblicoComponent } from 'src/app/components/dashboard/test-biblico/test-biblico.component';
 import { AgreementComponent } from 'src/app/components/dashboard/agreement/agreement.component';
 import { UsermgmtComponent } from 'src/app/components/usermgmt/usermgmt.component';
+import { AdminComponent } from 'src/app/components/admin/admin.component';
 
 
 const routes: Routes = [
 	{ path: '', redirectTo: '/sign-in', pathMatch: 'full' },
 	{ path: 'sign-in', component: SignInComponent },
 	{ path: 'register-user', component: SignUpComponent },
+	{ path: 'admin', component: AdminComponent },
 	{ path: 'dashboard', component: DashboardComponent, children: [
 		{
 			path:'', component: RegisterIndexComponent

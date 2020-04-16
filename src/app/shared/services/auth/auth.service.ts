@@ -11,13 +11,11 @@ import { Subscription } from 'rxjs';
 	providedIn: 'root'
 })
 export class AuthService {
-	//verifiedEmail: boolean = false;
 	private userSubscription: Subscription;
 	success: string;
 	email: string;
 	userData: any;
 	error: any;
-	private defaultPhotoUrl: string = '../../../../assets/images/avatar.png';
 
 	constructor(
 		public afs: AngularFirestore,
@@ -34,25 +32,24 @@ export class AuthService {
 					if (user.emailVerified) {
 						this.userData.emailVerified = true;
 						this.listenUserData();
-						if (this.router.url.search("dashboard") <= 0) {
+/* 						if (this.router.url.search("dashboard") <= 0) {
 							this.ngZone.run(() => {
 								this.router.navigate(['dashboard']);
-							});
-	
+							});	
 						}
-					} else {
+ */					} else {
 						console.info("Non verified email");
 					}
 				} else {
 					if (user.emailVerified) {
 						this.userData.emailVerified = true;
 						this.listenUserData();
-						if (this.router.url.search("dashboard") <= 0) {
+/* 						if (this.router.url.search("dashboard") <= 0) {
 							this.ngZone.run(() => {
 								this.router.navigate(['dashboard']);
 							});
 						}
-					} else {
+ */					} else {
 						console.info("Non verified user");
 					}
 				}
@@ -155,7 +152,7 @@ export class AuthService {
 				}
 
 				res.user.updateProfile({
-					displayName: name + " " + lastname
+					displayName: name + " " + lastname	
 				}).then(function (response) {
 				}).catch(function (error) {
 					console.log("Impossible update profile", error);
@@ -236,8 +233,8 @@ export class AuthService {
 		return {
 			uid: user.uid,
 			email: user.email,
-			displayName: lastname != undefined ? user.displayName + " " + lastname : user.displayName,
-			photoURL: user.photoURL !== null ? user.photoURL : this.defaultPhotoUrl,
+			displayName: lastname != undefined ? user.displayName + " " + lastname : user.displayName
+//			photoURL: user.photoURL !== null ? user.photoURL : this.defaultPhotoUrl,
 		}
 	}
 
@@ -264,6 +261,16 @@ export class AuthService {
 	public listenUserData(): void {
 		this.userSubscription = this.afs.doc<User>(`users/${this.userData.uid}`).valueChanges().subscribe((userData) => {
 			this.userData = userData;
+			this.userData.emailVerified=true;
+			console.log("userdata", this.userData);
+			if (userData.role != undefined && userData.role =="admin"){
+				this.router.navigate(['admin']);
+			}else if (this.router.url.search("dashboard") <= 0) {
+				this.ngZone.run(() => {
+					console.log("Trying navigate to dashboard")
+					this.router.navigate(['dashboard']);
+				});	
+			}
 		});
 	}
 

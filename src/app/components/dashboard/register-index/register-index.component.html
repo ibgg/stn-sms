@@ -1,8 +1,13 @@
 <div class="row" *ngIf="authService.userData as user else loadingProfile">
 	<div class="col-sm-12">
 		<div class="img-profile-container">
-			<img src="{{(user.photoURL) ? user.photoURL : '../../../assets/images/avatar.png'}}"
+			<span *ngIf="authService.userData.photoURL != null && authService.userData.photoURL != undefined; else noAvatarBlock" style="vertical-align:middle; top:10%; position:absolute;">
+			<img [src]="user.photoURL"
 				class="img-profile rounded-circle img-fluid">
+			</span>
+			<ng-template #noAvatarBlock>
+				<span style="vertical-align: middle;"><mat-icon style="color: #c0c0c1; margin-left: 5px; font-size: 7em;">account_circle</mat-icon></span>
+			</ng-template>
 		</div>
 		<div class="profile-description" style="position: absolute; top: 18%;">
 			<div class="label-h1 username"><strong class="label-name">Nombre:</strong> {{user.displayName}}</div>
@@ -13,9 +18,7 @@
 <ng-template #loadingProfile>
 	<div class="row">
 		<div class="col-sm-12">
-			<div class="img-profile-container">
-				<img src="../../../assets/images/avatar.png" class="img-profile rounded-circle img-fluid">
-			</div>
+			<span style="vertical-align: middle;"><mat-icon style="color: #c0c0c1; margin-left: 5px; font-size: 7em;">account_circle</mat-icon></span>
 			<div class="profile-description" style="position: absolute; top: 18%;">
 			</div>
 		</div>

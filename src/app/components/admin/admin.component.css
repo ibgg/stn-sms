@@ -134,8 +134,8 @@ mat-sidenav:not(.mat-drawer-opened) .home-button {
 .menu-closed-dashboard-content {
 	padding-left: 100px;
 	padding-right: 100px;
-	padding-top:30px;
-	padding-bottom: 30px;
+	padding-top:50px;
+	padding-bottom: 50px;
 }
 
 /* navbar */
@@ -143,7 +143,7 @@ mat-sidenav:not(.mat-drawer-opened) .home-button {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
-	padding: 5px 6px;
+	padding: 8px 6px;
 }
 
 .flex-spacer {
@@ -178,8 +178,9 @@ mat-sidenav:not(.mat-drawer-opened) .home-button {
 
 .img-profile {
 	margin-left: 10px;
-	height: 1.5rem;
-	width: 1.5rem;
+	margin-right: 2px;
+	height: 2rem;
+	width: 2rem;
 }
 
 .img-logo {

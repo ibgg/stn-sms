@@ -1,0 +1,27 @@
+<div class="example-container">
+	<nav  color="primary"  class="docs-navbar-header" aria-label="Top Toolbar">
+		<a mat-list-item routerLink="/dashboard">
+			<img class="docs-angular-logo img-fluid" src="../../../assets/images/logo-horizontal-blanco.png" alt="angular">
+			<span class="headline example-app-name" class="title-header">Sistema de Inscripción de Alumnos</span>
+		</a>
+		<div class="flex-spacer"></div>
+		<div class="nav-item dropdown no-arrow" *ngIf="authService.userData as user">
+			<a mat-list-item routerLink="/dashboard">
+			<span class="username-header">{{authService.userData.displayName}}</span>
+				<span *ngIf="authService.userData.photoURL != null && authService.userData.photoURL != undefined; else elseBlock" style="vertical-align:middle; top:10%; position:absolute;">
+					<img class="img-profile rounded-circle img-fluid"
+						[src]="authService.userData.photoURL">
+				</span>
+				<ng-template #elseBlock>
+					<span style="vertical-align: middle;"><mat-icon style="color: #fff; margin-left: 5px; font-size: 2em; margin-top: 7px;">account_circle</mat-icon></span>
+				</ng-template>
+			</a>
+		</div>
+		<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Main menu">
+			<mat-icon style="color: #fff;">more_vert</mat-icon>
+		</button>
+		<mat-menu #menu="matMenu">
+			<button mat-menu-item (click)="logout()"> Salir</button>
+		</mat-menu>
+	</nav>
+</div>

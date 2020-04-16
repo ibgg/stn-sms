@@ -11,9 +11,8 @@
 .img-profile {
 	margin-left: 10px;
 	margin-right: 2px;
-	height: 100px;
-	width: 100px;
-	margin: auto;
+	height: 80px;
+	width: 80px;
   }
 
   .img-profile-container {
@@ -44,7 +43,6 @@
 		margin-right: 2px;
 		height: 80px;
 		width: 80px;
-		margin: auto;
 	  }	
 	  .label-name{
 		  display: none;

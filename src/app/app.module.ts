@@ -76,6 +76,7 @@ import { TestBiblicoComponent } from './components/dashboard/test-biblico/test-b
 import { RegisterIndexComponent } from './components/dashboard/register-index/register-index.component';
 import { AgreementComponent } from './components/dashboard/agreement/agreement.component';
 import { UsermgmtComponent } from './components/usermgmt/usermgmt.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 
 @NgModule({
@@ -93,6 +94,7 @@ import { UsermgmtComponent } from './components/usermgmt/usermgmt.component';
 	RegisterIndexComponent,
 	AgreementComponent,
 	UsermgmtComponent,
+	AdminComponent,
 ],
   imports: [
 	BrowserModule,
