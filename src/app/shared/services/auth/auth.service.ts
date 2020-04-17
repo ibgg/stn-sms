@@ -24,6 +24,7 @@ export class AuthService {
 		public ngZone: NgZone
 	) {
 		this.getLocalUserData();
+		if (this.userData == null || this.userData == undefined) this.getSessionUserData();
 		
 		this.afAuth.authState.subscribe(user => {
 			if (user) {
@@ -56,6 +57,10 @@ export class AuthService {
 			} else {
 				this.userData = null;
 				window.localStorage.setItem('userData', this.userData);
+				sessionStorage.setItem('userData', null);
+				this.ngZone.run(() => {
+					this.router.navigate(['sign-in']);
+				});		
 			}
 		});
 	}
@@ -88,6 +93,9 @@ export class AuthService {
 				if (rememberMe) {
 					userData.emailVerified = user.emailVerified;
 					this.saveLocalUserData(userData);
+				}else{
+					userData.emailVerified = user.emailVerified;
+					this.saveSessionUserData(userData);
 				}
 				this.setUserDataOnDB(userData);
 			}).catch((error) => {
@@ -105,11 +113,14 @@ export class AuthService {
 					this.ngZone.run(() => {
 						this.router.navigate(['verify-email-address']);
 					});
-				}
-				if (rememberMe) {
+				}else{
 					let userData = this.buildUserDataFromAuthService(user, undefined);
-					userData.emailVerified = user.emailVerified;
-					this.saveLocalUserData(userData);
+					if (rememberMe) {
+						userData.emailVerified = user.emailVerified;
+						this.saveLocalUserData(userData);
+					}else{
+						this.saveSessionUserData(userData);
+					}	
 				}
 			}).catch((error) => {
 				console.log("error trying sign with email and password", error.message);
@@ -149,6 +160,8 @@ export class AuthService {
 				me.setUserDataOnDB(userData);
 				if (rememberMe) {
 					this.saveLocalUserData(userData);
+				}else{
+					this.saveSessionUserData(userData);
 				}
 
 				res.user.updateProfile({
@@ -223,6 +236,7 @@ export class AuthService {
 		return this.afAuth.auth.signOut().then(() => {
 			this.userData = null;
 			window.localStorage.setItem('userData', this.userData);
+			window.sessionStorage.setItem('userData', null);
 			this.router.navigate(['sign-in']);
 		}).catch((error) => {
 			this.error = error.message;
@@ -242,8 +256,16 @@ export class AuthService {
 		window.localStorage.setItem('userData', JSON.stringify(userData));
 	}
 
+	private saveSessionUserData(userData: any): void {
+		window.sessionStorage.setItem('userData', JSON.stringify(userData));
+	}
+
 	private getLocalUserData(): void {
 		this.userData = JSON.parse(window.localStorage.getItem('userData'));
+	}
+
+	private getSessionUserData():void {
+		this.userData = JSON.parse(window.sessionStorage.getItem('userData'));
 	}
 
 	public async handleVerifyEmail(actionCode: string): Promise<void> {

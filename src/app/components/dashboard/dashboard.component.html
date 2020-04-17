@@ -48,7 +48,7 @@
 		</mat-sidenav>
 
 		<mat-sidenav-content class="" style="align-content: center;">
-			<div class="container-fluid"  [ngClass]="{'menu-open-dashboard-content': !snav.opened, 'menu-closed-dashboard-content': snav.opened}">
+			<div class="container-fluid"  [ngClass]="{'menu-open-dashboard-content': !snav.opened, 'menu-closed-dashboard-content': snav.opened}" *ngIf="authService.userData">
 				<router-outlet></router-outlet>
 			</div>
 		</mat-sidenav-content>
