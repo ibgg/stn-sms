@@ -77,6 +77,7 @@ import { RegisterIndexComponent } from './components/dashboard/register-index/re
 import { AgreementComponent } from './components/dashboard/agreement/agreement.component';
 import { UsermgmtComponent } from './components/usermgmt/usermgmt.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { StudentsListComponent } from './components/admin/students-list/students-list.component';
 
 
 @NgModule({
@@ -95,6 +96,7 @@ import { AdminComponent } from './components/admin/admin.component';
 	AgreementComponent,
 	UsermgmtComponent,
 	AdminComponent,
+	StudentsListComponent,
 ],
   imports: [
 	BrowserModule,

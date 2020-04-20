@@ -241,3 +241,9 @@ button:focus, button:active:focus, button.active:focus,  div:focus, div:active:f
 		position: relative;
 	}
 }
+
+.centered {
+	position: fixed; /* or absolute */
+	top: 50%;
+	left: 50%;	
+}

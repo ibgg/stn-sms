@@ -1,0 +1,58 @@
+<div class="mat-elevation-z8">
+	<mat-form-field>
+		<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtrar">
+	</mat-form-field>
+	
+	<table mat-table
+		[dataSource]="dataSource">
+		<ng-container matColumnDef="displayName">
+			<mat-header-cell *matHeaderCellDef class="students-list-header">Nombre</mat-header-cell>
+			<mat-cell *matCellDef="let student" data-label="Nombre"> {{ student.displayName }} </mat-cell>
+		  </ng-container>  
+	  
+		  <ng-container matColumnDef="email">
+			<mat-header-cell *matHeaderCellDef class="students-list-header">Email</mat-header-cell>
+			<mat-cell *matCellDef="let student" data-label="Email"> {{ student.email }} </mat-cell>
+		  </ng-container>
+	  
+		  <ng-container matColumnDef="emailVerified">
+			<mat-header-cell *matHeaderCellDef class="students-list-header mat-column-percents"> Estado </mat-header-cell>
+			<mat-cell *matCellDef="let student" data-label="Estado" class="mat-column-percents"> {{ student.emailVerified }} </mat-cell>
+		  </ng-container>
+	
+		  <ng-container matColumnDef="enrollmentCompleteness">
+			<mat-header-cell *matHeaderCellDef class="students-list-header mat-column-percents"> % Solicitud </mat-header-cell>
+			<mat-cell *matCellDef="let student" data-label="% Solicitud" class="mat-column-percents"> {{ student.enrollmentCompleteness }} </mat-cell>
+		  </ng-container>
+	
+		  <ng-container matColumnDef="personalTestCompleteness">
+			<mat-header-cell *matHeaderCellDef class="students-list-header mat-column-percents"> % Test Personal </mat-header-cell>
+			<mat-cell *matCellDef="let student" data-label="% Test Personal" class="mat-column-percents"> {{ student.personalTestCompleteness }} </mat-cell>
+		  </ng-container>
+	
+		  <ng-container matColumnDef="psychologicalTestCompleteness">
+			<mat-header-cell *matHeaderCellDef class="students-list-header mat-column-percents"> % Test Psicológico </mat-header-cell>
+			<mat-cell *matCellDef="let student" data-label="% Test Psic." class="mat-column-percents"> {{ student.psychologicalTestCompleteness }} </mat-cell>
+		  </ng-container>
+	
+		  <ng-container matColumnDef="biblicalTestCompleteness">
+			<mat-header-cell *matHeaderCellDef class="students-list-header mat-column-percents"> % Test Bíblico </mat-header-cell>
+			<mat-cell *matCellDef="let student" data-label="% Test Bíblico" class="mat-column-percents"> {{ student.biblicalTestCompleteness }} </mat-cell>
+		  </ng-container>
+	
+		  <ng-container matColumnDef="agreementCompleteness">
+			<mat-header-cell *matHeaderCellDef class="students-list-header mat-column-percents">Acuerdo firmado</mat-header-cell>
+			<mat-cell *matCellDef="let student" data-label="Acuerdo firmado" class="mat-column-percents"> {{ student.agreementCompleteness }} </mat-cell>
+		  </ng-container>
+	
+		  <ng-container matColumnDef="completeness">
+			<mat-header-cell *matHeaderCellDef class="students-list-header mat-column-percents"> Progreso </mat-header-cell>
+			<mat-cell *matCellDef="let student" data-label="Progreso" class="mat-column-percents"> {{ student.completeness }} </mat-cell>
+		  </ng-container>
+	  
+		  <mat-header-row *matHeaderRowDef="columnsNames; sticky: true"></mat-header-row>
+		  <mat-row *matRowDef="let row; columns: columnsNames;" class="animate row-element"> </mat-row>  
+	</table>
+	<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+	
+</div>

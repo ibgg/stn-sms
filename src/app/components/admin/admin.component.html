@@ -1,6 +1,6 @@
 <div class="example-container">
 	<nav  color="primary"  class="docs-navbar-header" aria-label="Top Toolbar">
-		<a mat-list-item routerLink="/dashboard">
+		<a mat-list-item routerLink="/dashboard" style="margin-left: 10px;">
 			<img class="docs-angular-logo img-fluid" src="../../../assets/images/logo-horizontal-blanco.png" alt="angular">
 			<span class="headline example-app-name" class="title-header">Sistema de Inscripción de Alumnos</span>
 		</a>
@@ -24,4 +24,12 @@
 			<button mat-menu-item (click)="logout()"> Salir</button>
 		</mat-menu>
 	</nav>
+	<mat-sidenav-container class="sidenav-container">
+		<mat-sidenav-content class="" style="align-content: center;">
+			<div class="container-fluid" class="admin-content">
+				<router-outlet></router-outlet>
+			</div>
+		</mat-sidenav-content>
+	</mat-sidenav-container>
+
 </div>

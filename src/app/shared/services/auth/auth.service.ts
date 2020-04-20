@@ -29,38 +29,32 @@ export class AuthService {
 		this.afAuth.authState.subscribe(user => {
 			if (user) {
 				if (this.userData == null) {
-					this.userData = this.buildUserDataFromAuthService(user, undefined);
 					if (user.emailVerified) {
+						this.userData = this.buildUserDataFromAuthService(user, undefined);
 						this.userData.emailVerified = true;
+						this.getUserDataFormServer();
 						this.listenUserData();
-/* 						if (this.router.url.search("dashboard") <= 0) {
-							this.ngZone.run(() => {
-								this.router.navigate(['dashboard']);
-							});	
-						}
- */					} else {
+					} else {
 						console.info("Non verified email");
 					}
 				} else {
 					if (user.emailVerified) {
 						this.userData.emailVerified = true;
+						this.getUserDataFormServer();
 						this.listenUserData();
-/* 						if (this.router.url.search("dashboard") <= 0) {
-							this.ngZone.run(() => {
-								this.router.navigate(['dashboard']);
-							});
-						}
- */					} else {
-						console.info("Non verified user");
+					} else {
+						this.signOut();
 					}
 				}
 			} else {
 				this.userData = null;
 				window.localStorage.setItem('userData', this.userData);
 				sessionStorage.setItem('userData', null);
-				this.ngZone.run(() => {
-					this.router.navigate(['sign-in']);
-				});		
+				if (this.router.url.search("dashboard")>0){
+					this.ngZone.run(() => {
+						this.router.navigate(['sign-in']);
+					});
+				}
 			}
 		});
 	}
@@ -107,6 +101,7 @@ export class AuthService {
 		this.error = "";
 		let me = this;
 		try {
+			//this.afAuth.auth.languageCode = 'es';
 			const result = await this.afAuth.auth.signInWithEmailAndPassword(email, password).then((resp) => {
 				let user = resp.user;
 				if (!user.emailVerified) {
@@ -123,7 +118,7 @@ export class AuthService {
 					}	
 				}
 			}).catch((error) => {
-				console.log("error trying sign with email and password", error.message);
+				console.error("error trying sign with email and password", error.message);
 				this.error = error.message;
 			});
 		}
@@ -161,14 +156,14 @@ export class AuthService {
 				if (rememberMe) {
 					this.saveLocalUserData(userData);
 				}else{
-					this.saveSessionUserData(userData);
+					//this.saveSessionUserData(userData);
 				}
 
 				res.user.updateProfile({
 					displayName: name + " " + lastname	
 				}).then(function (response) {
 				}).catch(function (error) {
-					console.log("Impossible update profile", error);
+					console.error("Impossible update profile", error);
 				});
 
 				me.sendVerificationMail(res.user);
@@ -232,6 +227,13 @@ export class AuthService {
 		return userRef.set(userData, { merge: true });
 	}
 
+	private async setVerifiedUserDataOnDB(uid, emailVerified: boolean): Promise<void> {
+		this.error = "";
+		const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${uid}`);
+
+		return userRef.set({emailVerified: emailVerified}, { merge: true });
+	}
+
 	async signOut() {
 		return this.afAuth.auth.signOut().then(() => {
 			this.userData = null;
@@ -247,8 +249,8 @@ export class AuthService {
 		return {
 			uid: user.uid,
 			email: user.email,
-			displayName: lastname != undefined ? user.displayName + " " + lastname : user.displayName
-//			photoURL: user.photoURL !== null ? user.photoURL : this.defaultPhotoUrl,
+			displayName: lastname != undefined ? user.displayName + " " + lastname : user.displayName,
+			photoURL: user.photoURL !== null ? user.photoURL : null,
 		}
 	}
 
@@ -280,19 +282,28 @@ export class AuthService {
 		return this.afAuth.auth.confirmPasswordReset(actionCode, newPassword);
 	}
 
+	public getUserDataFormServer():void{
+		this.afs.doc<User>(`users/${this.userData.uid}`).ref.get().then((snap)=>{
+			if (snap.data()){
+				this.userData = snap.data();
+				this.userData.emailVerified=true;
+				this.setVerifiedUserDataOnDB(this.userData.uid, true);
+				if (snap.data().role != undefined && snap.data().role =="admin"){
+					console.log("Trying navigate admin...");
+					this.router.navigate(['admin']);
+				}else if (this.router.url.search("dashboard") <= 0) {
+					this.ngZone.run(() => {
+						this.router.navigate(['dashboard']);
+					});	
+				}
+			}
+		})
+	}
+
 	public listenUserData(): void {
 		this.userSubscription = this.afs.doc<User>(`users/${this.userData.uid}`).valueChanges().subscribe((userData) => {
 			this.userData = userData;
 			this.userData.emailVerified=true;
-			console.log("userdata", this.userData);
-			if (userData.role != undefined && userData.role =="admin"){
-				this.router.navigate(['admin']);
-			}else if (this.router.url.search("dashboard") <= 0) {
-				this.ngZone.run(() => {
-					console.log("Trying navigate to dashboard")
-					this.router.navigate(['dashboard']);
-				});	
-			}
 		});
 	}
 

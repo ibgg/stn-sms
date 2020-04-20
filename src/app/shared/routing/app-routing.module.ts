@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 // Import all components for which navigation services has been activated
@@ -19,13 +19,16 @@ import { TestBiblicoComponent } from 'src/app/components/dashboard/test-biblico/
 import { AgreementComponent } from 'src/app/components/dashboard/agreement/agreement.component';
 import { UsermgmtComponent } from 'src/app/components/usermgmt/usermgmt.component';
 import { AdminComponent } from 'src/app/components/admin/admin.component';
+import { StudentsListComponent } from 'src/app/components/admin/students-list/students-list.component';
 
 
 const routes: Routes = [
 	{ path: '', redirectTo: '/sign-in', pathMatch: 'full' },
 	{ path: 'sign-in', component: SignInComponent },
 	{ path: 'register-user', component: SignUpComponent },
-	{ path: 'admin', component: AdminComponent },
+	{ path: 'admin', component: AdminComponent, children: [
+		{path: '', component:StudentsListComponent}
+	] },
 	{ path: 'dashboard', component: DashboardComponent, children: [
 		{
 			path:'', component: RegisterIndexComponent

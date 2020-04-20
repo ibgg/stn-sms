@@ -1,4 +1,4 @@
-<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches" *ngIf="authService.userData; else elseLoading">
 	<nav  color="primary"  class="docs-navbar-header" aria-label="Top Toolbar">
 		<button mat-icon-button (click)="snav.toggle()">
 			<mat-icon style="color: #fff;">menu</mat-icon>
@@ -48,9 +48,17 @@
 		</mat-sidenav>
 
 		<mat-sidenav-content class="" style="align-content: center;">
-			<div class="container-fluid"  [ngClass]="{'menu-open-dashboard-content': !snav.opened, 'menu-closed-dashboard-content': snav.opened}" *ngIf="authService.userData">
+			<div class="container-fluid"  [ngClass]="{'menu-open-dashboard-content': !snav.opened, 'menu-closed-dashboard-content': snav.opened}">
 				<router-outlet></router-outlet>
 			</div>
 		</mat-sidenav-content>
 	</mat-sidenav-container>
 </div>
+
+<ng-template #elseLoading>
+	<mat-spinner
+		class="centered"
+		diameter="50"
+		strokeWidth="2"
+	></mat-spinner>
+</ng-template>

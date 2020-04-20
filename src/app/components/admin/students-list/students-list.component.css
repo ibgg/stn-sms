@@ -1,0 +1,166 @@
+table {
+	width: 100%;
+  }
+  
+  tr.example-detail-row {
+	height: 0;
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):hover {
+	background: whitesmoke;
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):active {
+	background: #efefef;
+  }
+  
+  .example-element-row td {
+	border-bottom-width: 0;
+  }
+  
+  .example-element-detail {
+	overflow: hidden;
+	display: flex;
+  }
+  
+  .example-element-diagram {
+	min-width: 80px;
+	border: 2px solid black;
+	padding: 8px;
+	font-weight: lighter;
+	margin: 8px 0;
+	height: 104px;
+  }
+  
+  .example-element-symbol {
+	font-weight: bold;
+	font-size: 40px;
+	line-height: normal;
+  }
+  
+  .example-element-description {
+	padding: 16px;
+  }
+  
+  .example-element-description-attribution {
+	opacity: 0.5;
+  }
+
+  .mat-column-percents {
+	word-wrap: break-word !important;
+	white-space: unset !important;
+	flex: 0 0 100px !important;
+	width: 30% !important;
+	overflow-wrap: break-word;
+	word-wrap: break-word;
+  
+	-ms-word-break: break-all;
+	/* This is the dangerous one in WebKit, as it breaks things wherever */
+	word-break: break-all;
+	/* Instead use this non-standard one: */
+	word-break: break-word;
+  
+	/* Adds a hyphen where the word breaks, if supported (No Blink) */
+	-ms-hyphens: auto;
+	-moz-hyphens: auto;
+	-webkit-hyphens: auto;
+	hyphens: auto;
+  }
+  
+  @media screen and (max-width: 720px) {
+	.mat-table {
+	  border: 0;
+	  vertical-align: middle
+	}
+
+	.mat-header-row {
+		display: none !important;
+	}
+  
+	.mat-table caption {
+	  font-size: 1em;
+	}
+	
+	/*  Enable this to hide header 
+	.mat-table .mat-header-cell {
+	  
+	  border: 10px solid;
+	  clip: rect(0 0 0 0);
+	  height: 1px;
+	  margin: -1px;
+	  padding: 0;
+	  position: absolute;
+	  width: 1px;
+	}
+	*/
+
+	.mat-table .mat-row {
+	  border-bottom: 5px solid #ddd;
+	  display: block;
+	}
+	/*
+	.mat-table .mat-row:nth-child(even) {background: #CCC}
+	.mat-table .mat-row:nth-child(odd) {background: #FFF}
+	*/
+	.mat-table .mat-cell {
+	  border-bottom: 1px solid #ddd;
+	  display: block;
+	  font-size: 1em;
+	  text-align: right;
+	  padding-right: 20px;
+	  height:30px;
+	  margin-bottom: 4%;
+	  color: rgba(0,0,0,.87) !important;
+	  min-block-size: min-content;
+	}
+	.mat-table .mat-cell:before {
+	  /*
+	  * aria-label has no advantage, it won't be read inside a table
+	  content: attr(aria-label);
+	  */
+	  content: attr(data-label);
+	  float: left;
+	  text-transform: uppercase;
+	  font-weight: normal;
+	  font-size: .85em;
+	  padding-left: 20px;
+	}
+	.mat-table .mat-cell:last-child {
+	  border-bottom: 0;
+	}
+	  .mat-table .mat-cell:first-child {
+	  margin-top: 4%;
+	}
+
+	/* .students-list-header {
+		display: none;
+	} */
+
+	mat-cell:first-of-type, mat-header-cell:first-of-type, mat-footer-cell:first-of-type {
+		padding-left: 0px;
+	}
+
+	mat-row::after, mat-header-row::after, mat-footer-row::after {
+		display: none !important;
+		/* min-height: inherit; */
+		content: "";
+	}
+	.mat-column-percents {
+		width: 100% !important;
+	}
+  }
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+  padding-right: 20px;
+  padding-left: 20px;
+  border-bottom: 5px solid #ddd;
+}
+
+.mat-header-cell {
+	color: rgba(0,0,0,.87) !important;
+}
+
+.row-element:hover {
+	background: whitesmoke;
+  }

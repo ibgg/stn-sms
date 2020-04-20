@@ -10,7 +10,6 @@
 	flex: 1 1 auto;
 }
 
-@import '~@angular/material/theming';
 .mat-checkbox-layout {
 	white-space: normal !important;
 }
@@ -296,4 +295,11 @@ nav {
 		display: none !important;
 	}
 	
+}
+
+.admin-content {
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top:20px;
+	padding-bottom: 20px;
 }
