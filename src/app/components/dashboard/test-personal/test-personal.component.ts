@@ -34,6 +34,9 @@ export class TestPersonalComponent implements OnInit {
 	private personalTestForm3: FormGroupDirective;
 	@ViewChild('personalTestForm4')
 	private personalTestForm4: FormGroupDirective;
+	@ViewChild('personalTestForm5')
+	private personalTestForm5: FormGroupDirective;
+
 
 	constructor(private formBuilder: FormBuilder,
 		private personalTestService: PersonalTestService,
@@ -134,6 +137,7 @@ export class TestPersonalComponent implements OnInit {
 	}
 
 	private savePersonalTestInfo(formId: number, keyControl: string): void {
+		console.log("Trying save...", formId, keyControl);
 		if (this.testPersonalFG[formId].get(keyControl).errors != null) {
 			console.debug("Impossible save data for this control...", this.testPersonalFG[formId].get(keyControl).errors);
 			return;
@@ -142,6 +146,7 @@ export class TestPersonalComponent implements OnInit {
 		const fieldValue = this.testPersonalFG[formId].get(keyControl).value;
 		let data = {};
 		data[keyControl] = fieldValue;
+		console.log(data);
 		this.personalTestService.updatePersonalTestInformation(formId, data);
 	}
 

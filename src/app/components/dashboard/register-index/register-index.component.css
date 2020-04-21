@@ -4,7 +4,7 @@
 
 .card-style {
 	margin: auto;
-	width: 80%;
+	max-width: 250px;
 }
 
 

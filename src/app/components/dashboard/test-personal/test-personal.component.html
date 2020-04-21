@@ -362,7 +362,7 @@
 				<div>
 					<mat-radio-group aria-label="Seleccione una opción" formControlName="vaccinesCompletition" (change)="savePersonalTestInfo(5,'vaccinesCompletition')" required>
 						<mat-radio-button value="Yes">Sí</mat-radio-button>
-						<mat-radio-button value="Yes">No</mat-radio-button>
+						<mat-radio-button value="No">No</mat-radio-button>
 						<mat-error *ngIf="testPersonalFG[5].controls['vaccinesCompletition'].invalid && saveAttempt == true">
 							Este campo es <strong>requerido</strong>
 						</mat-error>
