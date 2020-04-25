@@ -1,22 +1,28 @@
-<div class="example-container" [class.example-is-mobile]="mobileQuery.matches" *ngIf="authService.userData; else elseLoading">
-	<nav  color="primary"  class="docs-navbar-header" aria-label="Top Toolbar">
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches"
+	*ngIf="authService.userData; else elseLoading">
+	<nav color="primary" class="docs-navbar-header" aria-label="Top Toolbar">
 		<button mat-icon-button (click)="snav.toggle()">
 			<mat-icon style="color: #fff;">menu</mat-icon>
 		</button>
 		<a mat-list-item routerLink="/dashboard">
-			<img class="docs-angular-logo img-fluid" src="../../../assets/images/logo-horizontal-blanco.png" alt="angular">
+			<img class="docs-angular-logo img-fluid" src="../../../assets/images/logo-horizontal-blanco.png"
+				alt="angular">
 			<span class="headline example-app-name" class="title-header">Sistema de Admisión de Alumnos</span>
 		</a>
 		<div class="flex-spacer"></div>
-		<div class="nav-item dropdown no-arrow" *ngIf="authService.userData as user">
-			<a mat-list-item routerLink="/dashboard">
-			<span class="username-header">{{authService.userData.displayName}}</span>
-				<span *ngIf="authService.userData.photoURL != null && authService.userData.photoURL != undefined; else elseBlock">
-					<img class="img-profile rounded-circle img-fluid"
-						[src]="authService.userData.photoURL">
-				</span>
-				<ng-template #elseBlock>
-					<span style="vertical-align: middle;"><mat-icon style="color: #fff; margin-left: 5px; font-size: 2em; margin-top: 7px;">account_circle</mat-icon></span>
+		<div class="" *ngIf="authService.userData as user">
+			<a routerLink="/dashboard" class="header-username-icon">
+				<div class="username-header">{{authService.userData.displayName}}</div>
+				<div
+					*ngIf="authService.userData.photoURL != null && authService.userData.photoURL != undefined; else elseBlock">
+					<img class="img-profile rounded-circle img-fluid" [src]="authService.userData.photoURL">
+				</div>
+				<ng-template #elseBlock
+					style="display:flex; align-items:center; justify-content:center; text-align:center;">
+					<div style="vertical-align: middle;">
+						<mat-icon style="color: #fff; margin-left: 5px; font-size: 2em; margin-top: 7px;">account_circle
+						</mat-icon>
+					</div>
 				</ng-template>
 			</a>
 		</div>
@@ -29,26 +35,51 @@
 	</nav>
 
 	<mat-sidenav-container class="sidenav-container">
-		<mat-sidenav [overlapTrigger]="false" (toggle)="isOpened()" #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
-			fixedTopGap="56" class="sidenav">
-			
+		<mat-sidenav [overlapTrigger]="false" (toggle)="isOpened()" #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+			[fixedInViewport]="mobileQuery.matches" fixedTopGap="56" class="sidenav">
+
 			<mat-nav-list class="navigation-list">
-				<a mat-list-item [routerLink]="['/dashboard']" class="nav-item" routerLinkActive="nav-item-selected" [routerLinkActiveOptions]="{exact:true}"><mat-icon class="material-icons">home_outline</mat-icon><span class="navigation-item-label"> Dasboard</span></a>
+				<a mat-list-item [routerLink]="['/dashboard']" class="nav-item" routerLinkActive="nav-item-selected"
+					[routerLinkActiveOptions]="{exact:true}">
+					<mat-icon class="material-icons">home_outline</mat-icon><span class="navigation-item-label">
+						Dasboard</span>
+				</a>
 				<mat-divider class="navigation-divider"></mat-divider>
-				<a mat-list-item  [routerLink]="['/dashboard/enrollment']" class="nav-item" routerLinkActive="nav-item-selected"><mat-icon class="material-icons">create</mat-icon><span class="navigation-item-label"> Solicitud de ingreso</span></a>
+				<a mat-list-item [routerLink]="['/dashboard/enrollment']" class="nav-item"
+					routerLinkActive="nav-item-selected">
+					<mat-icon class="material-icons">create</mat-icon><span class="navigation-item-label"> Solicitud de
+						ingreso</span>
+				</a>
 				<mat-divider class="navigation-divider"></mat-divider>
-				<a mat-list-item [routerLink]="['/dashboard/personal-test']" routerLinkActive="nav-item-selected" class="nav-item"><mat-icon class="material-icons">how_to_reg</mat-icon><span class="navigation-item-label"> Test personal</span></a>
+				<a mat-list-item [routerLink]="['/dashboard/personal-test']" routerLinkActive="nav-item-selected"
+					class="nav-item">
+					<mat-icon class="material-icons">how_to_reg</mat-icon><span class="navigation-item-label"> Test
+						personal</span>
+				</a>
 				<mat-divider class="navigation-divider"></mat-divider>
-				<a mat-list-item [routerLink]="['/dashboard/psychological-test']" routerLinkActive="nav-item-selected" class="nav-item"><mat-icon class="material-icons">sentiment_satisfied</mat-icon><span class="navigation-item-label"> Test psicológico</span></a>
+				<a mat-list-item [routerLink]="['/dashboard/psychological-test']" routerLinkActive="nav-item-selected"
+					class="nav-item">
+					<mat-icon class="material-icons">sentiment_satisfied</mat-icon><span class="navigation-item-label">
+						Test psicológico</span>
+				</a>
 				<mat-divider class="navigation-divider"></mat-divider>
-				<a mat-list-item [routerLink]="['/dashboard/biblical-test']" routerLinkActive="nav-item-selected" class="nav-item"><mat-icon class="material-icons">book</mat-icon><span class="navigation-item-label"> Test bíblico</span></a>
+				<a mat-list-item [routerLink]="['/dashboard/biblical-test']" routerLinkActive="nav-item-selected"
+					class="nav-item">
+					<mat-icon class="material-icons">book</mat-icon><span class="navigation-item-label"> Test
+						bíblico</span>
+				</a>
 				<mat-divider class="navigation-divider"></mat-divider>
-				<a mat-list-item [routerLink]="['/dashboard/agreement']" routerLinkActive="nav-item-selected" class="nav-item"><mat-icon class="material-icons">notes</mat-icon><span class="navigation-item-label"> Acuerdo de confesión</span></a>
+				<a mat-list-item [routerLink]="['/dashboard/agreement']" routerLinkActive="nav-item-selected"
+					class="nav-item">
+					<mat-icon class="material-icons">notes</mat-icon><span class="navigation-item-label"> Acuerdo de
+						confesión</span>
+				</a>
 			</mat-nav-list>
 		</mat-sidenav>
 
 		<mat-sidenav-content class="" style="align-content: center;">
-			<div class="container-fluid"  [ngClass]="{'menu-open-dashboard-content': !snav.opened, 'menu-closed-dashboard-content': snav.opened}">
+			<div class="container-fluid"
+				[ngClass]="{'menu-open-dashboard-content': !snav.opened, 'menu-closed-dashboard-content': snav.opened}">
 				<router-outlet></router-outlet>
 			</div>
 		</mat-sidenav-content>
@@ -56,9 +87,5 @@
 </div>
 
 <ng-template #elseLoading>
-	<mat-spinner
-		class="centered"
-		diameter="50"
-		strokeWidth="2"
-	></mat-spinner>
+	<mat-spinner class="centered" diameter="50" strokeWidth="2"></mat-spinner>
 </ng-template>

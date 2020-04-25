@@ -26,13 +26,13 @@
 </ng-template>
 
 <mat-progress-bar class="example-margin" color="principal" mode="determinate" value=100 bufferValue=75
-	style="margin-top:20px; margin-bottom: 20px;">
+	style="margin-top:20px; margin-bottom: 20px; height: 0.1em;">
 </mat-progress-bar>
 
 <div class="row" style="justify-content: center;">
 	<div class="col-sm-4" style=" margin-bottom:20px">
 		<a routerLink="/dashboard/enrollment" routerLinkActivate="active">
-			<mat-card class="card-style">
+			<mat-card class="card-style mat-elevation-z0 outline">
 				<mat-card-header style="justify-content: center;">
 					<mat-card-title style="text-align: center;">
 						<mat-icon class="material-icons primary" style="text-align: center; font-size: 30px; margin: auto;">
@@ -43,7 +43,7 @@
 				</mat-card-header>
 				<mat-card-content style="text-align: center; padding-left:40px; padding-right: 40px;">
 					<circle-progress
-					[percent]="authService.userData.enrollmentCompleteness"
+					[percent]="authService.userData.enrollmentCompleteness | number:'1.0-0'"
 					[radius]="50"
 					[outerStrokeWidth]="7"
 					[innerStrokeWidth]="7"
@@ -65,7 +65,7 @@
 	</div>
 	<div class="col-sm-4" style=" margin-bottom:20px">
 		<a routerLink="/dashboard/personal-test" routerLinkActivate="active">
-			<mat-card class="card-style">
+			<mat-card class="card-style mat-elevation-z0 outline">
 				<mat-card-header style="justify-content: center;">
 					<mat-card-title style="text-align: center;">
 						<mat-icon class="material-icons primary" style="text-align: center; font-size: 30px; margin: auto;">
@@ -76,7 +76,7 @@
 				</mat-card-header>
 				<mat-card-content style="text-align: center; padding-left:40px; padding-right: 40px;">
 					<circle-progress
-					[percent]="authService.userData.personalTestCompleteness"
+					[percent]="authService.userData.personalTestCompleteness | number:'1.0-0'"
 					[radius]="50"
 					[outerStrokeWidth]="7"
 					[innerStrokeWidth]="7"
@@ -98,7 +98,7 @@
 	</div>
 	<div class="col-sm-4" style=" margin-bottom:20px">
 		<a routerLink="/dashboard/psychological-test" routerLinkActivate="active">
-			<mat-card class="card-style">
+			<mat-card class="card-style mat-elevation-z0 outline">
 				<mat-card-header style="justify-content: center;">
 					<mat-card-title style="text-align: center;">
 						<mat-icon class="material-icons primary" style="text-align: center; font-size: 30px; margin: auto;">
@@ -109,7 +109,7 @@
 				</mat-card-header>
 				<mat-card-content style="text-align: center; padding-left:40px; padding-right: 40px;">
 					<circle-progress
-					[percent]="authService.userData.psychologicalTestCompleteness"
+					[percent]="authService.userData.psychologicalTestCompleteness | number:'1.0-0'"
 					[radius]="50"
 					[outerStrokeWidth]="7"
 					[innerStrokeWidth]="7"
@@ -133,7 +133,7 @@
 <div class="row">
 	<div class="col-sm-4" style=" margin-bottom:20px">
 		<a routerLink="/dashboard/biblical-test" routerLinkActivate="active">
-			<mat-card class="card-style">
+			<mat-card class="card-style mat-elevation-z0 outline">
 				<mat-card-header style="justify-content: center;">
 					<mat-card-title style="text-align: center;">
 						<mat-icon class="material-icons primary" style="text-align: center; font-size: 30px; margin: auto;">book
@@ -143,7 +143,7 @@
 				</mat-card-header>
 				<mat-card-content style="text-align: center; padding-left:40px; padding-right: 40px;">
 					<circle-progress
-					[percent]="authService.userData.biblicalTestCompleteness"
+					[percent]="authService.userData.biblicalTestCompleteness | number:'1.0-0'"
 					[radius]="50"
 					[outerStrokeWidth]="7"
 					[innerStrokeWidth]="7"
@@ -165,7 +165,7 @@
 	</div>
 	<div class="col-sm-4" style=" margin-bottom:20px">
 		<a routerLink="/dashboard/agreement" routerLinkActivate="active">
-			<mat-card class="card-style">
+			<mat-card class="card-style mat-elevation-z0 outline">
 				<mat-card-header style="justify-content: center;">
 					<mat-card-title style="text-align: center;">
 						<mat-icon class="material-icons primary" style="text-align: center; font-size: 30px; margin: auto;">

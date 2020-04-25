@@ -145,6 +145,7 @@ import { EnrollmentReportComponent } from './components/admin/enrollment-report/
 	MatExpansionModule,
 	MatGridListModule,
 	MatNativeDateModule,
+	MatRippleModule,
 	MatPaginatorModule,
 	MatProgressBarModule,
 	MatProgressSpinnerModule,

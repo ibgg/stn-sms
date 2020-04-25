@@ -58,3 +58,15 @@
 		  font-size: 16px;
 	  }
 }
+
+.outline {
+    border-style: solid;
+	border-width: thin;
+	border-color: #b7b5b5;
+}
+
+.outline:hover {
+    border-style: solid;
+	border-width: thin;
+	border-color: #5e2028;
+}
