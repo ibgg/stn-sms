@@ -5,8 +5,44 @@
 .card-style {
 	margin: auto;
 	max-width: 250px;
+    min-height: 250px;
+	max-height: 250px;
+	text-decoration:none; outline:none
 }
 
+.card-style:hover {
+	cursor: pointer;
+}
+
+.card-footer {
+    text-align-last: center;
+    border-top: solid #b7b5b5 1px;
+    position: absolute;
+    bottom: 17px;
+    max-height: 60px;
+    width: 100%;
+    -webkit-box-pack: center;
+    justify-content: center;
+    background-color: #fff;
+    text-align: center;
+    display: -webkit-inline-box;;
+}
+
+.card-footer:hover {
+	border-color: #5e2028;
+}
+
+.card-content {
+	text-align: center; 
+	padding-left:30px; 
+	padding-right: 30px;
+}
+
+.card-footer-text-content {
+    vertical-align: super;
+    text-align: center;
+    font-weight: 200;
+}
 
 .img-profile {
 	margin-left: 10px;

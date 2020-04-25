@@ -36,8 +36,7 @@
 
 	<mat-sidenav-container class="sidenav-container">
 		<mat-sidenav [overlapTrigger]="false" (toggle)="isOpened()" #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
-			[fixedInViewport]="mobileQuery.matches" fixedTopGap="56" class="sidenav">
-
+			[fixedInViewport]="mobileQuery.matches" fixedTopGap="45" class="sidenav">
 			<mat-nav-list class="navigation-list">
 				<a mat-list-item [routerLink]="['/dashboard']" class="nav-item" routerLinkActive="nav-item-selected"
 					[routerLinkActiveOptions]="{exact:true}">

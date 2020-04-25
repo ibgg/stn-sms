@@ -1,12 +1,15 @@
 <div class="row" *ngIf="authService.userData as user else loadingProfile">
 	<div class="col-sm-12">
 		<div class="img-profile-container">
-			<span *ngIf="authService.userData.photoURL != null && authService.userData.photoURL != undefined; else noAvatarBlock" style="vertical-align:middle; top:10%; position:absolute;">
-			<img [src]="user.photoURL"
-				class="img-profile rounded-circle img-fluid">
+			<span
+				*ngIf="authService.userData.photoURL != null && authService.userData.photoURL != undefined; else noAvatarBlock"
+				style="vertical-align:middle; top:10%; position:absolute;">
+				<img [src]="user.photoURL" class="img-profile rounded-circle img-fluid">
 			</span>
 			<ng-template #noAvatarBlock>
-				<span style="vertical-align: middle;"><mat-icon style="color: #c0c0c1; margin-left: 5px; font-size: 7em;">account_circle</mat-icon></span>
+				<span style="vertical-align: middle;">
+					<mat-icon style="color: #c0c0c1; margin-left: 5px; font-size: 7em;">account_circle</mat-icon>
+				</span>
 			</ng-template>
 		</div>
 		<div class="profile-description" style="position: absolute; top: 18%;">
@@ -18,7 +21,9 @@
 <ng-template #loadingProfile>
 	<div class="row">
 		<div class="col-sm-12">
-			<span style="vertical-align: middle;"><mat-icon style="color: #c0c0c1; margin-left: 5px; font-size: 7em;">account_circle</mat-icon></span>
+			<span style="vertical-align: middle;">
+				<mat-icon style="color: #c0c0c1; margin-left: 5px; font-size: 7em;">account_circle</mat-icon>
+			</span>
 			<div class="profile-description" style="position: absolute; top: 18%;">
 			</div>
 		</div>
@@ -31,175 +36,102 @@
 
 <div class="row" style="justify-content: center;">
 	<div class="col-sm-4" style=" margin-bottom:20px">
-		<a routerLink="/dashboard/enrollment" routerLinkActivate="active">
-			<mat-card class="card-style mat-elevation-z0 outline">
-				<mat-card-header style="justify-content: center;">
-					<mat-card-title style="text-align: center;">
-						<mat-icon class="material-icons primary" style="text-align: center; font-size: 30px; margin: auto;">
-							create
-						</mat-icon>
-					</mat-card-title>
-					<mat-card-title style="text-align: center; font-weight: 200;">Solicitud de Ingreso</mat-card-title>
-				</mat-card-header>
-				<mat-card-content style="text-align: center; padding-left:40px; padding-right: 40px;">
-					<circle-progress
-					[percent]="authService.userData.enrollmentCompleteness | number:'1.0-0'"
-					[radius]="50"
-					[outerStrokeWidth]="7"
-					[innerStrokeWidth]="7"
-					[space] = "-7"
-					[outerStrokeColor]="'#600000'"
-					[innerStrokeColor]="'#e7e8ea'"
-					[titleFontSize]= "14"
-					[unitsFontSize]= "14"
-					[showSubtitle] = "true"
-					[animation]="true"
-					[animationDuration]="300"
-					[startFromZero]="false"
-					[responsive]="true"
-					subtitle="Progreso"
-				  ></circle-progress>				
-				</mat-card-content>
-			</mat-card>
-		</a>
+		<mat-card class="card-style mat-elevation-z0 outline" routerLink="/dashboard/enrollment"
+			routerLinkActivate="active">
+			<mat-card-content class="card-content">
+				<circle-progress [percent]="authService.userData.enrollmentCompleteness | number:'1.0-0'" [radius]="50"
+					[outerStrokeWidth]="5" [innerStrokeWidth]="5" [space]="-5" [outerStrokeColor]="'#600000'"
+					[innerStrokeColor]="'#e7e8ea'" [titleFontSize]="14" [unitsFontSize]="14" [showSubtitle]="true"
+					[animation]="true" [animationDuration]="300" [startFromZero]="false" [responsive]="true"
+					subtitle="Progreso"></circle-progress>
+			</mat-card-content>
+			<mat-card-footer class="card-footer">
+				<mat-icon class="material-icons primary" style="text-align: center; font-size: 20px; margin: auto;">
+					create
+				</mat-icon>
+				<span class="card-footer-text-content">Solicitud de Ingreso</span>
+			</mat-card-footer>
+		</mat-card>
 	</div>
 	<div class="col-sm-4" style=" margin-bottom:20px">
-		<a routerLink="/dashboard/personal-test" routerLinkActivate="active">
-			<mat-card class="card-style mat-elevation-z0 outline">
-				<mat-card-header style="justify-content: center;">
-					<mat-card-title style="text-align: center;">
-						<mat-icon class="material-icons primary" style="text-align: center; font-size: 30px; margin: auto;">
-							how_to_reg
-						</mat-icon>
-					</mat-card-title>
-					<mat-card-title style="text-align: center; font-weight: 200;">Test personal</mat-card-title>
-				</mat-card-header>
-				<mat-card-content style="text-align: center; padding-left:40px; padding-right: 40px;">
-					<circle-progress
-					[percent]="authService.userData.personalTestCompleteness | number:'1.0-0'"
-					[radius]="50"
-					[outerStrokeWidth]="7"
-					[innerStrokeWidth]="7"
-					[space] = "-7"
-					[outerStrokeColor]="'#600000'"
-					[innerStrokeColor]="'#e7e8ea'"
-					[titleFontSize]= "14"
-					[unitsFontSize]= "14"
-					[showSubtitle] = "true"
-					[animation]="true"
-					[animationDuration]="300"
-					[startFromZero]="false"
-					[responsive]="true"
-					subtitle="Progreso"
-				  ></circle-progress>	
-				</mat-card-content>
-			</mat-card>
-		</a>
+		<mat-card class="card-style mat-elevation-z0 outline" routerLink="/dashboard/personal-test"
+			routerLinkActivate="active">
+			<mat-card-content class="card-content">
+				<circle-progress [percent]="authService.userData.personalTestCompleteness | number:'1.0-0'"
+					[radius]="50" [outerStrokeWidth]="5" [innerStrokeWidth]="5" [space]="-5"
+					[outerStrokeColor]="'#600000'" [innerStrokeColor]="'#e7e8ea'" [titleFontSize]="14"
+					[unitsFontSize]="14" [showSubtitle]="true" [animation]="true" [animationDuration]="300"
+					[startFromZero]="false" [responsive]="true" subtitle="Progreso"></circle-progress>
+			</mat-card-content>
+			<mat-card-footer class="card-footer">
+				<mat-icon class="material-icons primary" style="text-align: center; font-size: 20px; margin: auto;">
+					how_to_reg
+				</mat-icon>
+				<span class="card-footer-text-content">Test personal</span>
+			</mat-card-footer>
+
+		</mat-card>
 	</div>
 	<div class="col-sm-4" style=" margin-bottom:20px">
-		<a routerLink="/dashboard/psychological-test" routerLinkActivate="active">
-			<mat-card class="card-style mat-elevation-z0 outline">
-				<mat-card-header style="justify-content: center;">
-					<mat-card-title style="text-align: center;">
-						<mat-icon class="material-icons primary" style="text-align: center; font-size: 30px; margin: auto;">
-							sentiment_satisfied
-						</mat-icon>
-					</mat-card-title>
-					<mat-card-title style="text-align: center; font-weight: 200;">Test Psicológico</mat-card-title>
-				</mat-card-header>
-				<mat-card-content style="text-align: center; padding-left:40px; padding-right: 40px;">
-					<circle-progress
-					[percent]="authService.userData.psychologicalTestCompleteness | number:'1.0-0'"
-					[radius]="50"
-					[outerStrokeWidth]="7"
-					[innerStrokeWidth]="7"
-					[space] = "-7"
-					[outerStrokeColor]="'#600000'"
-					[innerStrokeColor]="'#e7e8ea'"
-					[titleFontSize]= "14"
-					[unitsFontSize]= "14"
-					[showSubtitle] = "true"
-					[animation]="true"
-					[animationDuration]="300"
-					[startFromZero]="false"
-					[responsive]="true"
-					subtitle="Progreso"
-				  ></circle-progress>	
-				</mat-card-content>
-			</mat-card>
-		</a>
+		<mat-card class="card-style mat-elevation-z0 outline" routerLink="/dashboard/psychological-test"
+			routerLinkActivate="active">
+			<mat-card-content class="card-content">
+				<circle-progress [percent]="authService.userData.psychologicalTestCompleteness | number:'1.0-0'"
+					[radius]="50" [outerStrokeWidth]="5" [innerStrokeWidth]="5" [space]="-5"
+					[outerStrokeColor]="'#600000'" [innerStrokeColor]="'#e7e8ea'" [titleFontSize]="14"
+					[unitsFontSize]="14" [showSubtitle]="true" [animation]="true" [animationDuration]="300"
+					[startFromZero]="false" [responsive]="true" subtitle="Progreso"></circle-progress>
+			</mat-card-content>
+			<mat-card-footer class="card-footer">
+				<mat-icon class="material-icons primary" style="text-align: center; font-size: 20px; margin: auto;">
+					sentiment_satisfied
+				</mat-icon>
+				<span class="card-footer-text-content">Test Psicológico</span>
+			</mat-card-footer>
+		</mat-card>
 	</div>
 </div>
 <div class="row">
 	<div class="col-sm-4" style=" margin-bottom:20px">
-		<a routerLink="/dashboard/biblical-test" routerLinkActivate="active">
-			<mat-card class="card-style mat-elevation-z0 outline">
-				<mat-card-header style="justify-content: center;">
-					<mat-card-title style="text-align: center;">
-						<mat-icon class="material-icons primary" style="text-align: center; font-size: 30px; margin: auto;">book
-						</mat-icon>
-					</mat-card-title>
-					<mat-card-title style="text-align: center; font-weight: 200;">Test Bíblico</mat-card-title>
-				</mat-card-header>
-				<mat-card-content style="text-align: center; padding-left:40px; padding-right: 40px;">
-					<circle-progress
-					[percent]="authService.userData.biblicalTestCompleteness | number:'1.0-0'"
-					[radius]="50"
-					[outerStrokeWidth]="7"
-					[innerStrokeWidth]="7"
-					[space] = "-7"
-					[outerStrokeColor]="'#600000'"
-					[innerStrokeColor]="'#e7e8ea'"
-					[titleFontSize]= "14"
-					[unitsFontSize]= "14"
-					[showSubtitle] = "true"
-					[animation]="true"
-					[animationDuration]="300"
-					[startFromZero]="false"
-					[responsive]="true"
-					subtitle="Progreso"
-				  ></circle-progress>	
-				</mat-card-content>
-			</mat-card>
-		</a>
+		<mat-card class="card-style mat-elevation-z0 outline" routerLink="/dashboard/biblical-test"
+			routerLinkActivate="active">
+			<mat-card-content class="card-content">
+				<circle-progress [percent]="authService.userData.biblicalTestCompleteness | number:'1.0-0'"
+					[radius]="50" [outerStrokeWidth]="5" [innerStrokeWidth]="5" [space]="-5"
+					[outerStrokeColor]="'#600000'" [innerStrokeColor]="'#e7e8ea'" [titleFontSize]="14"
+					[unitsFontSize]="14" [showSubtitle]="true" [animation]="true" [animationDuration]="300"
+					[startFromZero]="false" [responsive]="true" subtitle="Progreso"></circle-progress>
+			</mat-card-content>
+			<mat-card-footer class="card-footer">
+				<mat-icon class="material-icons primary" style="text-align: center; font-size: 20px; margin: auto;">
+					book
+				</mat-icon>
+				<span class="card-footer-text-content">Test Bíblico</span>
+			</mat-card-footer>
+		</mat-card>
 	</div>
 	<div class="col-sm-4" style=" margin-bottom:20px">
-		<a routerLink="/dashboard/agreement" routerLinkActivate="active">
-			<mat-card class="card-style mat-elevation-z0 outline">
-				<mat-card-header style="justify-content: center;">
-					<mat-card-title style="text-align: center;">
-						<mat-icon class="material-icons primary" style="text-align: center; font-size: 30px; margin: auto;">
-							notes
-						</mat-icon>
-					</mat-card-title>
-					<mat-card-title style="text-align: center; font-weight: 200;">Confesión</mat-card-title>
-				</mat-card-header>
-				<mat-card-content style="text-align: center; padding-left:40px; padding-right: 40px;">
-					<circle-progress
-					[percent]="authService.userData.agreementCompleteness == true ? 100 : 0"
-					[radius]="50"
-					[outerStrokeWidth]="7"
-					[innerStrokeWidth]="7"
-					[space] = "-7"
-					[outerStrokeColor]="'#600000'"
-					[innerStrokeColor]="'#e7e8ea'"
-					[titleFontSize]= "14"
-					[unitsFontSize]= "14"
-					[showSubtitle] = "true"
-					[animation]="true"
-					[animationDuration]="300"
-					[startFromZero]="false"
-					[responsive]="true"
-					subtitle="Progreso"
-				  ></circle-progress>	
-				</mat-card-content>
-			</mat-card>
-		</a>
+		<mat-card class="card-style mat-elevation-z0 outline" routerLink="/dashboard/agreement"
+			routerLinkActivate="active">
+			<mat-card-content class="card-content">
+				<circle-progress [percent]="authService.userData.agreementCompleteness == true ? 100 : 0" [radius]="50"
+					[outerStrokeWidth]="5" [innerStrokeWidth]="5" [space]="-5" [outerStrokeColor]="'#600000'"
+					[innerStrokeColor]="'#e7e8ea'" [titleFontSize]="14" [unitsFontSize]="14" [showSubtitle]="true"
+					[animation]="true" [animationDuration]="300" [startFromZero]="false" [responsive]="true"
+					subtitle="Progreso"></circle-progress>
+			</mat-card-content>
+			<mat-card-footer class="card-footer">
+				<mat-icon class="material-icons primary" style="text-align: center; font-size: 20px; margin: auto;">
+					notes
+				</mat-icon>
+				<span class="card-footer-text-content">Acuerdo de Confesión</span>
+			</mat-card-footer>
+		</mat-card>
 	</div>
 </div>
 
 <ng-template #elseBlock>
 	<mat-icon class="material-icons" style="text-align: center; font-size: 30px; margin: auto;" class="text-warning">
 		error_outline
-	</mat-icon>	
+	</mat-icon>
 </ng-template>
