@@ -7,39 +7,38 @@
 			<ng-template matStepLabel  style="padding-left: 0px !important;">Información personal</ng-template>
 			<ng-container *ngTemplateOutlet="f0"></ng-container>
 			<div style="margin-top: 20px;">
-				<button mat-raised-button color="primary" matStepperNext>Siguiente</button>
+				<button mat-stroked-button color="primary" matStepperNext>Siguiente</button>
 			  </div>	
 		</mat-step>
 		<mat-step [stepControl]="enrollmentInfoFormGroup[1]" [hasError]="this.enrollmentInfoFormGroup[1].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false [completed]="this.enrollmentInfoFormGroup[1].valid">
 			<ng-template matStepLabel>Información profesional y académica</ng-template>
 			<ng-container *ngTemplateOutlet="f1"></ng-container>
 			<div style="margin-top: 20px;">
-				<button mat-raised-button color="primary" matStepperPrevious style="margin-right:10px">Anterior</button>
-				<button mat-raised-button color="primary" matStepperNext>Siguiente</button>
+				<button mat-stroked-button color="primary" matStepperPrevious style="margin-right:10px">Anterior</button>
+				<button mat-stroked-button color="primary" matStepperNext>Siguiente</button>
 			</div>	
 		</mat-step>
 		<mat-step [stepControl]="enrollmentInfoFormGroup[2]" [hasError]="this.enrollmentInfoFormGroup[2].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false [completed]="this.enrollmentInfoFormGroup[2].valid">
 			<ng-template matStepLabel>Experiencia cristiana</ng-template>
 			<ng-container *ngTemplateOutlet="f2"></ng-container>
 			<div style="margin-top: 20px;">
-				<button mat-raised-button color="primary" matStepperPrevious style="margin-right:10px">Anterior</button>
-				<button mat-raised-button color="primary" matStepperNext>Siguiente</button>
+				<button mat-stroked-button color="primary" matStepperPrevious style="margin-right:10px">Anterior</button>
+				<button mat-stroked-button color="primary" matStepperNext>Siguiente</button>
 			</div>	
 		</mat-step>
 		<mat-step [stepControl]="enrollmentInfoFormGroup[3]" [hasError]="this.enrollmentInfoFormGroup[3].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false [completed]="this.enrollmentInfoFormGroup[3].valid">
 			<ng-template matStepLabel>Datos del tutor</ng-template>
 			<ng-container *ngTemplateOutlet="f3"></ng-container>
 			<div style="margin-top: 20px;">
-				<button mat-raised-button color="primary" matStepperPrevious style="margin-right:10px">Anterior</button>
-				<button mat-raised-button color="primary" matStepperNext>Siguiente</button>
+				<button mat-stroked-button color="primary" matStepperPrevious style="margin-right:10px">Anterior</button>
+				<button mat-stroked-button color="primary" matStepperNext>Siguiente</button>
 			</div>	
 		</mat-step>
 		<mat-step [stepControl]="enrollmentInfoFormGroup[4]" [hasError]="this.enrollmentInfoFormGroup[4].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false [completed]="this.enrollmentInfoFormGroup[4].valid">
 			<ng-template matStepLabel>Datos para la institución</ng-template>
 			<ng-container *ngTemplateOutlet="f4"></ng-container>
 			<div>
-				<button mat-raised-button color="primary" matStepperPrevious style="margin-right:10px">Anterior</button>
-				<button mat-raised-button color="primary">Finalizar</button>
+				<button mat-stroked-button color="primary" matStepperPrevious style="margin-right:10px">Anterior</button>
 			</div>
 		</mat-step>
 	</mat-vertical-stepper>
@@ -48,39 +47,38 @@
 			<ng-template matStepLabel>Información personal</ng-template>
 			<ng-container *ngTemplateOutlet="f0"></ng-container>
 			<div style="margin-top: 20px;">
-				<button mat-raised-button color="primary" matStepperNext matStepperNext (click)="validatePersonalInformationForm()">Siguiente</button>
+				<button mat-stroked-button color="primary" matStepperNext matStepperNext (click)="validatePersonalInformationForm()">Siguiente</button>
 			  </div>	
 		</mat-step>
 		<mat-step [stepControl]="enrollmentInfoFormGroup[1]" [hasError]="this.enrollmentInfoFormGroup[1].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false [completed]="this.enrollmentInfoFormGroup[1].valid">
 			<ng-template matStepLabel>Información profesional y académica</ng-template>
 			<ng-container *ngTemplateOutlet="f1"></ng-container>
 			<div style="margin-top: 20px;">
-				<button mat-raised-button color="primary" matStepperPrevious style="margin-right:10px">Anterior</button>
-				<button mat-raised-button color="primary" matStepperNext>Siguiente</button>
+				<button mat-stroked-button color="primary" matStepperPrevious style="margin-right:10px">Anterior</button>
+				<button mat-stroked-button color="primary" matStepperNext>Siguiente</button>
 			</div>	
 		</mat-step>
 		<mat-step [stepControl]="enrollmentInfoFormGroup[2]" [hasError]="this.enrollmentInfoFormGroup[2].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false [completed]="this.enrollmentInfoFormGroup[2].valid">
 			<ng-template matStepLabel>Experiencia cristiana</ng-template>
 			<ng-container *ngTemplateOutlet="f2"></ng-container>
 			<div style="margin-top: 20px;">
-				<button mat-raised-button color="primary" matStepperPrevious style="margin-right:10px">Anterior</button>
-				<button mat-raised-button color="primary" matStepperNext>Siguiente</button>
+				<button mat-stroked-button color="primary" matStepperPrevious style="margin-right:10px">Anterior</button>
+				<button mat-stroked-button color="primary" matStepperNext>Siguiente</button>
 			</div>	
 		</mat-step>
 		<mat-step [stepControl]="enrollmentInfoFormGroup[3]" [hasError]="this.enrollmentInfoFormGroup[3].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false [completed]="this.enrollmentInfoFormGroup[3].valid">
 			<ng-template matStepLabel>Datos del tutor</ng-template>
 			<ng-container *ngTemplateOutlet="f3"></ng-container>
 			<div style="margin-top: 20px;">
-				<button mat-raised-button color="primary" matStepperPrevious style="margin-right:10px">Anterior</button>
-				<button mat-raised-button color="primary" matStepperNext>Siguiente</button>
+				<button mat-stroked-button color="primary" matStepperPrevious style="margin-right:10px">Anterior</button>
+				<button mat-stroked-button color="primary" matStepperNext>Siguiente</button>
 			</div>	
 		</mat-step>
 		<mat-step [stepControl]="enrollmentInfoFormGroup[4]" [hasError]="this.enrollmentInfoFormGroup[4].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false [completed]="this.enrollmentInfoFormGroup[4].valid">
 			<ng-template matStepLabel>Datos para la institución</ng-template>
 			<ng-container *ngTemplateOutlet="f4"></ng-container>
 			<div>
-				<button mat-raised-button color="primary" matStepperPrevious style="margin-right:10px">Anterior</button>
-				<button mat-raised-button color="primary">Finalizar</button>
+				<button mat-stroked-button color="primary" matStepperPrevious style="margin-right:10px">Anterior</button>
 			</div>
 		</mat-step>
 	</mat-horizontal-stepper>

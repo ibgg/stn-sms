@@ -4,10 +4,10 @@
 
 .card-style {
 	margin: auto;
-	max-width: 250px;
-    min-height: 250px;
+	max-width: 230px;
+/*     min-height: 250px;
 	max-height: 250px;
-	text-decoration:none; outline:none
+ */	text-decoration:none; outline:none
 }
 
 .card-style:hover {
@@ -17,15 +17,16 @@
 .card-footer {
     text-align-last: center;
     border-top: solid #b7b5b5 1px;
-    position: absolute;
+/*     position: absolute; 
     bottom: 17px;
-    max-height: 60px;
-    width: 100%;
+     max-height: 60px; */
+    width: -webkit-fill-available;
     -webkit-box-pack: center;
     justify-content: center;
     background-color: #fff;
     text-align: center;
-    display: -webkit-inline-box;;
+	display: -webkit-inline-box;;
+	line-height: normal;
 }
 
 .card-footer:hover {
@@ -34,8 +35,8 @@
 
 .card-content {
 	text-align: center; 
-	padding-left:30px; 
-	padding-right: 30px;
+/* 	padding-left:30px; 
+	padding-right: 30px; */
 }
 
 .card-footer-text-content {

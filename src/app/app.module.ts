@@ -8,8 +8,6 @@ import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontaweso
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
-
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
@@ -107,7 +105,6 @@ import { EnrollmentReportComponent } from './components/admin/enrollment-report/
 	AngularFireModule.initializeApp(environment.firebaseConfig),
 	AngularFireAuthModule,
 	AngularFirestoreModule,
-	MDBBootstrapModule.forRoot(),
 	BrowserAnimationsModule,
 	MatCheckboxModule,
 	MatFormFieldModule,

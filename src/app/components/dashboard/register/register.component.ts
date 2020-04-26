@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormGroupDirective, ValidationErrors, Form, AbstractControl } from '@angular/forms';
 import { EnrollmentServiceService } from 'src/app/shared/services/db/enrollment-service.service';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
@@ -9,6 +9,7 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 	selector: 'app-register',
 	templateUrl: './register.component.html',
 	styleUrls: ['./register.component.css'],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	providers: [{
 		provide: STEPPER_GLOBAL_OPTIONS, useValue: {displayDefaultIndicatorType: false, showError: true}
 	  }]

@@ -8,21 +8,22 @@
 			</ng-template>
 			<ng-container *ngTemplateOutlet="f0"></ng-container>
 			<div style="margin-top: 20px;">
-				<button mat-raised-button color="primary" matStepperNext>Siguiente</button>
+				<button mat-stroked-button color="primary" matStepperNext>Siguiente</button>
 			</div>
 		</mat-step>
 		<mat-step [stepControl]="biblicalTestFG[1]" [hasError]="this.biblicalTestFG[1].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false [completed]="this.biblicalTestFG[1].valid">
 			<ng-template matStepLabel style="padding-left: 0px !important;">Conocimiento Bíblico General</ng-template>
 			<ng-container *ngTemplateOutlet="f1"></ng-container>
 			<div style="margin-top: 20px;">
-				<button mat-raised-button color="primary" matStepperNext>Siguiente</button>
+				<button mat-stroked-button color="primary" matStepperPrevious style="margin-right:10px">Anterior</button>
+				<button mat-stroked-button color="primary" matStepperNext>Siguiente</button>
 			</div>
 		</mat-step>
 		<mat-step [stepControl]="biblicalTestFG[2]" [hasError]="this.biblicalTestFG[2].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false [completed]="this.biblicalTestFG[2].valid">
 			<ng-template matStepLabel style="padding-left: 0px !important;">Examen de Conocimiento Bíblico</ng-template>
 			<ng-container *ngTemplateOutlet="f2"></ng-container>
 			<div style="margin-top: 20px;">
-				<button mat-raised-button color="primary">Terminar</button>
+				<button mat-stroked-button color="primary" matStepperPrevious style="margin-right:10px">Anterior</button>
 			</div>
 		</mat-step>
 	</mat-horizontal-stepper>
@@ -32,21 +33,22 @@
 			</ng-template>
 			<ng-container *ngTemplateOutlet="f0"></ng-container>
 			<div style="margin-top: 20px;">
-				<button mat-raised-button color="primary" matStepperNext>Siguiente</button>
+				<button mat-stroked-button color="primary" matStepperNext>Siguiente</button>
 			</div>
 		</mat-step>
 		<mat-step [stepControl]="biblicalTestFG[1]" [hasError]="this.biblicalTestFG[1].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false [completed]="this.biblicalTestFG[1].valid">
 			<ng-template matStepLabel style="padding-left: 0px !important;">Conocimiento Bíblico General</ng-template>
 			<ng-container *ngTemplateOutlet="f1"></ng-container>
 			<div style="margin-top: 20px;">
-				<button mat-raised-button color="primary" matStepperNext>Siguiente</button>
+				<button mat-stroked-button color="primary" matStepperPrevious style="margin-right:10px">Anterior</button>
+				<button mat-stroked-button color="primary" matStepperNext>Siguiente</button>
 			</div>
 		</mat-step>
 		<mat-step [stepControl]="biblicalTestFG[2]" [hasError]="this.biblicalTestFG[2].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false [completed]="this.biblicalTestFG[2].valid">
 			<ng-template matStepLabel style="padding-left: 0px !important;">Examen de Conocimiento Bíblico</ng-template>
 			<ng-container *ngTemplateOutlet="f2"></ng-container>
 			<div style="margin-top: 20px;">
-				<button mat-raised-button color="primary">Terminar</button>
+				<button mat-stroked-button color="primary" matStepperPrevious style="margin-right:10px">Anterior</button>
 			</div>
 		</mat-step>
 	</mat-vertical-stepper>

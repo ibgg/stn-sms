@@ -7,42 +7,46 @@
 			<ng-template matStepLabel>Testimonio de Conversión</ng-template>
 			<ng-container *ngTemplateOutlet="f0"></ng-container>
 			<div style="margin-top: 20px;">
-				<button mat-raised-button color="primary" matStepperNext>Siguiente</button>
+				<button mat-stroked-button color="primary" matStepperNext>Siguiente</button>
 			  </div>		
 		</mat-step>
 		<mat-step [stepControl]="testPersonalFG[1]" [hasError]="this.testPersonalFG[1].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false [completed]="this.testPersonalFG[1].valid">
 			<ng-template matStepLabel>Convicciones Morales</ng-template>
 			<ng-container *ngTemplateOutlet="f1"></ng-container>
 			<div style="margin-top: 20px;">
-				<button mat-raised-button color="primary" matStepperNext>Siguiente</button>
+				<button mat-stroked-button color="primary" matStepperPrevious style="margin-right:10px">Anterior</button>
+				<button mat-stroked-button color="primary" matStepperNext>Siguiente</button>
 			  </div>	
 		</mat-step>
 		<mat-step [stepControl]="testPersonalFG[2]" [hasError]="this.testPersonalFG[2].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false [completed]="this.testPersonalFG[2].valid">
 			<ng-template matStepLabel>Noviazgo y Matrimonio</ng-template>
 			<ng-container *ngTemplateOutlet="f2"></ng-container>
 			<div style="margin-top: 20px;">
-				<button mat-raised-button color="primary" matStepperNext>Siguiente</button>
+				<button mat-stroked-button color="primary" matStepperPrevious style="margin-right:10px">Anterior</button>
+				<button mat-stroked-button color="primary" matStepperNext>Siguiente</button>
 			  </div>	
 		</mat-step>
 		<mat-step [stepControl]="testPersonalFG[3]" [hasError]="this.testPersonalFG[3].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false [completed]="this.testPersonalFG[3].valid">
 			<ng-template matStepLabel>Crecimiento Espiritual</ng-template>
 			<ng-container *ngTemplateOutlet="f3"></ng-container>
 			<div style="margin-top: 20px;">
-				<button mat-raised-button color="primary" matStepperNext>Siguiente</button>
+				<button mat-stroked-button color="primary" matStepperPrevious style="margin-right:10px">Anterior</button>
+				<button mat-stroked-button color="primary" matStepperNext>Siguiente</button>
 			  </div>	
 		</mat-step>
 		<mat-step [stepControl]="testPersonalFG[4]" [hasError]="this.testPersonalFG[4].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false [completed]="this.testPersonalFG[4].valid">
 			<ng-template matStepLabel>Llamado ministerial</ng-template>
 			<ng-container *ngTemplateOutlet="f4"></ng-container>
 			<div style="margin-top: 20px;">
-				<button mat-raised-button color="primary" matStepperNext>Siguiente</button>
+				<button mat-stroked-button color="primary" matStepperPrevious style="margin-right:10px">Anterior</button>
+				<button mat-stroked-button color="primary" matStepperNext>Siguiente</button>
 			  </div>	
 		</mat-step>
 		<mat-step [stepControl]="testPersonalFG[5]" [hasError]="this.testPersonalFG[5].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false [completed]="this.testPersonalFG[5].valid">
 			<ng-template matStepLabel>Llamado ministerial</ng-template>
 			<ng-container *ngTemplateOutlet="f5"></ng-container>
 			<div style="margin-top: 20px;">
-				<button mat-raised-button color="primary" matStepperNext>Siguiente</button>
+				<button mat-stroked-button color="primary" matStepperPrevious style="margin-right:10px">Anterior</button>
 			  </div>	
 		</mat-step>
 	</mat-vertical-stepper>
@@ -51,42 +55,46 @@
 			<ng-template matStepLabel>Testimonio de Conversión</ng-template>
 			<ng-container *ngTemplateOutlet="f0"></ng-container>
 			<div style="margin-top: 20px;">
-				<button mat-raised-button color="primary" matStepperNext>Siguiente</button>
+				<button mat-stroked-button color="primary" matStepperNext>Siguiente</button>
 			  </div>		
 		</mat-step>
 		<mat-step [stepControl]="testPersonalFG[1]" [hasError]="this.testPersonalFG[1].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false [completed]="this.testPersonalFG[1].valid">
 			<ng-template matStepLabel>Convicciones Morales</ng-template>
 			<ng-container *ngTemplateOutlet="f1"></ng-container>
 			<div style="margin-top: 20px;">
-				<button mat-raised-button color="primary" matStepperNext>Siguiente</button>
+				<button mat-stroked-button color="primary" matStepperPrevious style="margin-right:10px">Anterior</button>
+				<button mat-stroked-button color="primary" matStepperNext>Siguiente</button>
 			  </div>	
 		</mat-step>
 		<mat-step [stepControl]="testPersonalFG[2]" [hasError]="this.testPersonalFG[2].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false [completed]="this.testPersonalFG[2].valid">
 			<ng-template matStepLabel>Noviazgo y Matrimonio</ng-template>
 			<ng-container *ngTemplateOutlet="f2"></ng-container>
 			<div style="margin-top: 20px;">
-				<button mat-raised-button color="primary" matStepperNext>Siguiente</button>
+				<button mat-stroked-button color="primary" matStepperPrevious style="margin-right:10px">Anterior</button>
+				<button mat-stroked-button color="primary" matStepperNext>Siguiente</button>
 			  </div>	
 		</mat-step>
 		<mat-step [stepControl]="testPersonalFG[3]" [hasError]="this.testPersonalFG[3].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false [completed]="this.testPersonalFG[3].valid">
 			<ng-template matStepLabel>Crecimiento Espiritual</ng-template>
 			<ng-container *ngTemplateOutlet="f3"></ng-container>
 			<div style="margin-top: 20px;">
-				<button mat-raised-button color="primary" matStepperNext>Siguiente</button>
+				<button mat-stroked-button color="primary" matStepperPrevious style="margin-right:10px">Anterior</button>
+				<button mat-stroked-button color="primary" matStepperNext>Siguiente</button>
 			  </div>	
 		</mat-step>
 		<mat-step [stepControl]="testPersonalFG[4]" [hasError]="this.testPersonalFG[4].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false [completed]="this.testPersonalFG[4].valid">
 			<ng-template matStepLabel>Llamado ministerial</ng-template>
 			<ng-container *ngTemplateOutlet="f4"></ng-container>
 			<div style="margin-top: 20px;">
-				<button mat-raised-button color="primary" matStepperNext>Siguiente</button>
+				<button mat-stroked-button color="primary" matStepperPrevious style="margin-right:10px">Anterior</button>
+				<button mat-stroked-button color="primary" matStepperNext>Siguiente</button>
 			  </div>	
 		</mat-step>
 		<mat-step [stepControl]="testPersonalFG[5]" [hasError]="this.testPersonalFG[5].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false [completed]="this.testPersonalFG[5].valid">
 			<ng-template matStepLabel>Llamado ministerial</ng-template>
 			<ng-container *ngTemplateOutlet="f5"></ng-container>
 			<div style="margin-top: 20px;">
-				<button mat-raised-button color="primary" matStepperNext>Siguiente</button>
+				<button mat-stroked-button color="primary" matStepperPrevious style="margin-right:10px">Anterior</button>
 			  </div>	
 		</mat-step>
 	</mat-horizontal-stepper>

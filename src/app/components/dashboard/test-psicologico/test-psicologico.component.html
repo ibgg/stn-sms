@@ -6,7 +6,7 @@
 		<div>Instrucciones: A continuación hay 60 frases incompletas. Lea cada una y complétela con lo primero que venga a  su mente. Trabaje tan a prisa como le sea posible. Presione <strong>Comenzar</strong> para empezar el test</div>
 		<span id="chronotime"><h1 style="text-align: center;  font-size: 36px; color: #5E2129; margin-top: 20px;">{{chronometer.chronoLabel}}</h1></span>
 		<div style="text-align: center;">
-			<button mat-raised-button  color="primary"
+			<button mat-stroked-button  color="primary"
 				(click)="start()" [disabled]="started">Comenzar</button>
 		</div>
 		
@@ -23,7 +23,7 @@
 			</div>
 		</div>
 			<div style="margin-top: 20px;">
-				<button mat-raised-button [disabled]="!psicologicalTestFG.valid && psicologicalTestFG.enabled" color="primary" (click)="saveData()">Terminar</button>
+				<button mat-stroked-button [disabled]="!psicologicalTestFG.valid && psicologicalTestFG.enabled" color="primary" (click)="saveData()">Terminar</button>
 			</div>
 	</form>
 </mat-card>
