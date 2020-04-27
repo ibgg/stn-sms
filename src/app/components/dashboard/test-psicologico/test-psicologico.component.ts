@@ -66,7 +66,6 @@ export class TestPsicologicoComponent implements OnInit {
 					if (this.psicologicalTestFG.get(key).valid){
 						this.completeness++;
 						//this.completeness /= this.psicoQuestions.length;
-						console.log(this.completeness/this.psicoQuestions.length);
 						this.authService.setFormCompletude(this.authService.userData.uid, {"psychologicalTestCompleteness": (this.completeness/this.psicoQuestions.length)*100});
 					}
 					if (this.psicologicalTestFG.get(key).value != null && this.psicologicalTestFG.get(key).value != undefined && this.psicologicalTestFG.get(key).value != "") this.psicologicalTestFG.get(key).disable();
@@ -78,7 +77,6 @@ export class TestPsicologicoComponent implements OnInit {
 	}
 
 	savePsychoTestInfo(formId: number, keyControl: string): void {
-		console.log("Trying save... ", keyControl);
 		if (this.psicologicalTestFG.get(keyControl).errors != null) {
 			console.debug("Impossible save data for this control...", this.psicologicalTestFG.get(keyControl).errors);
 			return;

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ChangeDetectorRef, ChangeDetectionStrategy, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormGroupDirective, ValidationErrors, Form, AbstractControl } from '@angular/forms';
 import { EnrollmentServiceService } from 'src/app/shared/services/db/enrollment-service.service';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
@@ -14,7 +14,7 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 		provide: STEPPER_GLOBAL_OPTIONS, useValue: {displayDefaultIndicatorType: false, showError: true}
 	  }]
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, AfterViewInit {
 	private errorMessage:string = "Formulario incompleto";
 	private mobileQuery: MediaQueryList;
 	private _mobileQueryListener: () => void;
@@ -46,8 +46,16 @@ export class RegisterComponent implements OnInit {
 		}
 
 	ngOnInit(): void {
+		console.log("---ngOnInit()---");
 		this.userId = this.authService.userData.uid;
 		this.initializeForms();
+	}
+
+	ngAfterViewInit() {
+		console.log("---ngAfterViewInit()---");
+		this.fillForms();
+		this.evaluateCurrentForm({selectedIndex:0});
+		this.listenFormStatus();
 	}
 
 	private async initializeForms() {
@@ -129,9 +137,6 @@ export class RegisterComponent implements OnInit {
 			paymentAgreement: ['', Validators.required]
 		});
 		//this.ad = this.enrollmentService.listenEnrollmentInformation(0);
-		this.fillForms();
-		this.evaluateCurrentForm({selectedIndex:0});
-		this.listenFormStatus();
 	}
 	
 	// Get data for validation errors

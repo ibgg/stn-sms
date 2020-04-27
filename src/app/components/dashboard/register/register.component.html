@@ -1,84 +1,117 @@
 <mat-card>
 	<mat-card-header class="questions-header">
-		<mat-card-title><h1 class="questions-title">SOLICITUD DE INGRESO</h1></mat-card-title>
+		<mat-card-title>
+			<h1 class="questions-title">SOLICITUD DE INGRESO</h1>
+		</mat-card-title>
 	</mat-card-header>
-	<mat-vertical-stepper linear=false #stepper *ngIf="mobileQuery.matches" (selectionChange)="evaluateCurrentForm($event)" [selectedIndex]="selectedIndex">
-		<mat-step [stepControl]="enrollmentInfoFormGroup[0]" [hasError]="this.enrollmentInfoFormGroup[0].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false [completed]="this.enrollmentInfoFormGroup[0].valid">
-			<ng-template matStepLabel  style="padding-left: 0px !important;">Información personal</ng-template>
+	<mat-vertical-stepper linear=false #stepper *ngIf="mobileQuery.matches"
+		(selectionChange)="evaluateCurrentForm($event)" [selectedIndex]="selectedIndex">
+		<mat-step [stepControl]="enrollmentInfoFormGroup[0]"
+			[hasError]="this.enrollmentInfoFormGroup[0].invalid && this.filledOneTest" [errorMessage]="errorMessage"
+			optional=false [completed]="this.enrollmentInfoFormGroup[0].valid">
+			<ng-template matStepLabel style="padding-left: 0px !important;">Información personal</ng-template>
 			<ng-container *ngTemplateOutlet="f0"></ng-container>
 			<div style="margin-top: 20px;">
 				<button mat-stroked-button color="primary" matStepperNext>Siguiente</button>
-			  </div>	
+			</div>
 		</mat-step>
-		<mat-step [stepControl]="enrollmentInfoFormGroup[1]" [hasError]="this.enrollmentInfoFormGroup[1].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false [completed]="this.enrollmentInfoFormGroup[1].valid">
+		<mat-step [stepControl]="enrollmentInfoFormGroup[1]"
+			[hasError]="this.enrollmentInfoFormGroup[1].invalid && this.filledOneTest" [errorMessage]="errorMessage"
+			optional=false [completed]="this.enrollmentInfoFormGroup[1].valid">
 			<ng-template matStepLabel>Información profesional y académica</ng-template>
 			<ng-container *ngTemplateOutlet="f1"></ng-container>
 			<div style="margin-top: 20px;">
-				<button mat-stroked-button color="primary" matStepperPrevious style="margin-right:10px">Anterior</button>
+				<button mat-stroked-button color="primary" matStepperPrevious
+					style="margin-right:10px">Anterior</button>
 				<button mat-stroked-button color="primary" matStepperNext>Siguiente</button>
-			</div>	
+			</div>
 		</mat-step>
-		<mat-step [stepControl]="enrollmentInfoFormGroup[2]" [hasError]="this.enrollmentInfoFormGroup[2].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false [completed]="this.enrollmentInfoFormGroup[2].valid">
+		<mat-step [stepControl]="enrollmentInfoFormGroup[2]"
+			[hasError]="this.enrollmentInfoFormGroup[2].invalid && this.filledOneTest" [errorMessage]="errorMessage"
+			optional=false [completed]="this.enrollmentInfoFormGroup[2].valid">
 			<ng-template matStepLabel>Experiencia cristiana</ng-template>
 			<ng-container *ngTemplateOutlet="f2"></ng-container>
 			<div style="margin-top: 20px;">
-				<button mat-stroked-button color="primary" matStepperPrevious style="margin-right:10px">Anterior</button>
+				<button mat-stroked-button color="primary" matStepperPrevious
+					style="margin-right:10px">Anterior</button>
 				<button mat-stroked-button color="primary" matStepperNext>Siguiente</button>
-			</div>	
+			</div>
 		</mat-step>
-		<mat-step [stepControl]="enrollmentInfoFormGroup[3]" [hasError]="this.enrollmentInfoFormGroup[3].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false [completed]="this.enrollmentInfoFormGroup[3].valid">
+		<mat-step [stepControl]="enrollmentInfoFormGroup[3]"
+			[hasError]="this.enrollmentInfoFormGroup[3].invalid && this.filledOneTest" [errorMessage]="errorMessage"
+			optional=false [completed]="this.enrollmentInfoFormGroup[3].valid">
 			<ng-template matStepLabel>Datos del tutor</ng-template>
 			<ng-container *ngTemplateOutlet="f3"></ng-container>
 			<div style="margin-top: 20px;">
-				<button mat-stroked-button color="primary" matStepperPrevious style="margin-right:10px">Anterior</button>
+				<button mat-stroked-button color="primary" matStepperPrevious
+					style="margin-right:10px">Anterior</button>
 				<button mat-stroked-button color="primary" matStepperNext>Siguiente</button>
-			</div>	
+			</div>
 		</mat-step>
-		<mat-step [stepControl]="enrollmentInfoFormGroup[4]" [hasError]="this.enrollmentInfoFormGroup[4].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false [completed]="this.enrollmentInfoFormGroup[4].valid">
+		<mat-step [stepControl]="enrollmentInfoFormGroup[4]"
+			[hasError]="this.enrollmentInfoFormGroup[4].invalid && this.filledOneTest" [errorMessage]="errorMessage"
+			optional=false [completed]="this.enrollmentInfoFormGroup[4].valid">
 			<ng-template matStepLabel>Datos para la institución</ng-template>
 			<ng-container *ngTemplateOutlet="f4"></ng-container>
 			<div>
-				<button mat-stroked-button color="primary" matStepperPrevious style="margin-right:10px">Anterior</button>
+				<button mat-stroked-button color="primary" matStepperPrevious
+					style="margin-right:10px">Anterior</button>
 			</div>
 		</mat-step>
 	</mat-vertical-stepper>
-	<mat-horizontal-stepper linear=false labelPosition="bottom"  #stepper *ngIf="!mobileQuery.matches" (selectionChange)="evaluateCurrentForm($event)" [selectedIndex]="selectedIndex">
-		<mat-step [stepControl]="enrollmentInfoFormGroup[0]" [hasError]="this.enrollmentInfoFormGroup[0].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false [completed]="this.enrollmentInfoFormGroup[0].valid">
+	<mat-horizontal-stepper linear=false labelPosition="bottom" #stepper *ngIf="!mobileQuery.matches"
+		(selectionChange)="evaluateCurrentForm($event)" [selectedIndex]="selectedIndex">
+		<mat-step [stepControl]="enrollmentInfoFormGroup[0]"
+			[hasError]="this.enrollmentInfoFormGroup[0].invalid && this.filledOneTest" [errorMessage]="errorMessage"
+			optional=false [completed]="this.enrollmentInfoFormGroup[0].valid">
 			<ng-template matStepLabel>Información personal</ng-template>
 			<ng-container *ngTemplateOutlet="f0"></ng-container>
 			<div style="margin-top: 20px;">
-				<button mat-stroked-button color="primary" matStepperNext matStepperNext (click)="validatePersonalInformationForm()">Siguiente</button>
-			  </div>	
+				<button mat-stroked-button color="primary" matStepperNext matStepperNext
+					(click)="validatePersonalInformationForm()">Siguiente</button>
+			</div>
 		</mat-step>
-		<mat-step [stepControl]="enrollmentInfoFormGroup[1]" [hasError]="this.enrollmentInfoFormGroup[1].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false [completed]="this.enrollmentInfoFormGroup[1].valid">
+		<mat-step [stepControl]="enrollmentInfoFormGroup[1]"
+			[hasError]="this.enrollmentInfoFormGroup[1].invalid && this.filledOneTest" [errorMessage]="errorMessage"
+			optional=false [completed]="this.enrollmentInfoFormGroup[1].valid">
 			<ng-template matStepLabel>Información profesional y académica</ng-template>
 			<ng-container *ngTemplateOutlet="f1"></ng-container>
 			<div style="margin-top: 20px;">
-				<button mat-stroked-button color="primary" matStepperPrevious style="margin-right:10px">Anterior</button>
+				<button mat-stroked-button color="primary" matStepperPrevious
+					style="margin-right:10px">Anterior</button>
 				<button mat-stroked-button color="primary" matStepperNext>Siguiente</button>
-			</div>	
+			</div>
 		</mat-step>
-		<mat-step [stepControl]="enrollmentInfoFormGroup[2]" [hasError]="this.enrollmentInfoFormGroup[2].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false [completed]="this.enrollmentInfoFormGroup[2].valid">
+		<mat-step [stepControl]="enrollmentInfoFormGroup[2]"
+			[hasError]="this.enrollmentInfoFormGroup[2].invalid && this.filledOneTest" [errorMessage]="errorMessage"
+			optional=false [completed]="this.enrollmentInfoFormGroup[2].valid">
 			<ng-template matStepLabel>Experiencia cristiana</ng-template>
 			<ng-container *ngTemplateOutlet="f2"></ng-container>
 			<div style="margin-top: 20px;">
-				<button mat-stroked-button color="primary" matStepperPrevious style="margin-right:10px">Anterior</button>
+				<button mat-stroked-button color="primary" matStepperPrevious
+					style="margin-right:10px">Anterior</button>
 				<button mat-stroked-button color="primary" matStepperNext>Siguiente</button>
-			</div>	
+			</div>
 		</mat-step>
-		<mat-step [stepControl]="enrollmentInfoFormGroup[3]" [hasError]="this.enrollmentInfoFormGroup[3].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false [completed]="this.enrollmentInfoFormGroup[3].valid">
+		<mat-step [stepControl]="enrollmentInfoFormGroup[3]"
+			[hasError]="this.enrollmentInfoFormGroup[3].invalid && this.filledOneTest" [errorMessage]="errorMessage"
+			optional=false [completed]="this.enrollmentInfoFormGroup[3].valid">
 			<ng-template matStepLabel>Datos del tutor</ng-template>
 			<ng-container *ngTemplateOutlet="f3"></ng-container>
 			<div style="margin-top: 20px;">
-				<button mat-stroked-button color="primary" matStepperPrevious style="margin-right:10px">Anterior</button>
+				<button mat-stroked-button color="primary" matStepperPrevious
+					style="margin-right:10px">Anterior</button>
 				<button mat-stroked-button color="primary" matStepperNext>Siguiente</button>
-			</div>	
+			</div>
 		</mat-step>
-		<mat-step [stepControl]="enrollmentInfoFormGroup[4]" [hasError]="this.enrollmentInfoFormGroup[4].invalid && this.filledOneTest" [errorMessage]="errorMessage" optional=false [completed]="this.enrollmentInfoFormGroup[4].valid">
+		<mat-step [stepControl]="enrollmentInfoFormGroup[4]"
+			[hasError]="this.enrollmentInfoFormGroup[4].invalid && this.filledOneTest" [errorMessage]="errorMessage"
+			optional=false [completed]="this.enrollmentInfoFormGroup[4].valid">
 			<ng-template matStepLabel>Datos para la institución</ng-template>
 			<ng-container *ngTemplateOutlet="f4"></ng-container>
 			<div>
-				<button mat-stroked-button color="primary" matStepperPrevious style="margin-right:10px">Anterior</button>
+				<button mat-stroked-button color="primary" matStepperPrevious
+					style="margin-right:10px">Anterior</button>
 			</div>
 		</mat-step>
 	</mat-horizontal-stepper>
@@ -86,542 +119,460 @@
 
 <ng-template #f0>
 	<form [formGroup]="enrollmentInfoFormGroup[0]" #enrollmentInfoForm0="ngForm">
-		<div class="form-title">Información personal</div> 
+		<div class="form-title">Información personal</div>
 		<div class="form-row">
-			<div class="col-sm-4">
-				<mat-form-field class="example-full-width">
-					<mat-label>Nombre(s)</mat-label>
-					<input matInput formControlName="name" (blur)="saveEnrollmentInfo(0,'name')" required>
-					<mat-error *ngIf="enrollmentInfoFormGroup[0].controls['name'].invalid">
-						Nombre es <strong>requerido</strong>
-					  </mat-error>
-				</mat-form-field>
-			</div>
-			<div class="col-sm-4">
-				<mat-form-field class="example-full-width">
-					<mat-label>Apellidos</mat-label>
-					<input matInput formControlName="lastname" (blur)="saveEnrollmentInfo(0,'lastname')" required>
-					<mat-error *ngIf="enrollmentInfoFormGroup[0].controls['lastname'].invalid">
-						Apellidos es <strong>requerido</strong>
-					  </mat-error>
-				</mat-form-field>
-			</div>
+			<mat-form-field class="col-sm-4 example-full-width">
+				<mat-label>Nombre(s)</mat-label>
+				<input matInput formControlName="name" (blur)="saveEnrollmentInfo(0,'name')" required>
+				<mat-error *ngIf="enrollmentInfoFormGroup[0].controls['name'].invalid">
+					Nombre es <strong>requerido</strong>
+				</mat-error>
+			</mat-form-field>
+			<mat-form-field class="col-sm-4 example-full-width">
+				<mat-label>Apellidos</mat-label>
+				<input matInput formControlName="lastname" (blur)="saveEnrollmentInfo(0,'lastname')" required>
+				<mat-error *ngIf="enrollmentInfoFormGroup[0].controls['lastname'].invalid">
+					Apellidos es <strong>requerido</strong>
+				</mat-error>
+			</mat-form-field>
 			<div class="col-sm-4">
 				<div class="form-row">
-					<div class="col-sm-6">
-						<mat-form-field class="example-full-width">
-							<mat-label>Fecha de nacimiento</mat-label>
-							<input matInput [matDatepicker]="picker" formControlName="bornDate" (dateChange)="saveEnrollmentInfo(0, 'bornDate')" required>
-							<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-							<mat-datepicker touchUi #picker></mat-datepicker>						  
-							<mat-error *ngIf="enrollmentInfoFormGroup[0].controls['bornDate'].invalid">
-								Este campo es <strong>requerido</strong>
-							  </mat-error>
-						</mat-form-field>	
-					</div>
-					<div class="col-sm-6">
-						<mat-form-field class="example-full-width">
-							<mat-label>Sexo</mat-label>
-							<mat-select [(value)]="selected" formControlName="gender"  (blur)="saveEnrollmentInfo(0,'gender')" required>
-							  <mat-option value="Hombre">Hombre</mat-option>
-							  <mat-option value="Mujer">Mujer</mat-option>
-							</mat-select>
-							<mat-error *ngIf="enrollmentInfoFormGroup[0].controls['gender'].invalid">
-								Género es <strong>requerido</strong>
-							  </mat-error>
-						  </mat-form-field>	
-					</div>
+					<mat-form-field class="col-sm-6 example-full-width">
+						<mat-label>Fecha de nacimiento</mat-label>
+						<input matInput [matDatepicker]="picker" formControlName="bornDate"
+							(dateChange)="saveEnrollmentInfo(0, 'bornDate')" required>
+						<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+						<mat-datepicker touchUi #picker></mat-datepicker>
+						<mat-error *ngIf="enrollmentInfoFormGroup[0].controls['bornDate'].invalid">
+							Este campo es <strong>requerido</strong>
+						</mat-error>
+					</mat-form-field>
+					<mat-form-field class="col-sm-6 example-full-width">
+						<mat-label>Sexo</mat-label>
+						<mat-select [(value)]="selected" formControlName="gender"
+							(blur)="saveEnrollmentInfo(0,'gender')" required>
+							<mat-option value="Hombre">Hombre</mat-option>
+							<mat-option value="Mujer">Mujer</mat-option>
+						</mat-select>
+						<mat-error *ngIf="enrollmentInfoFormGroup[0].controls['gender'].invalid">
+							Género es <strong>requerido</strong>
+						</mat-error>
+					</mat-form-field>
 				</div>
 			</div>
 		</div>
 		<div class="form-row">
-			<div class="col-sm-4">
-				<mat-form-field class="example-full-width">
-					<mat-label>CURP</mat-label>
-					<input matInput formControlName="curp" (blur)="saveEnrollmentInfo(0,'curp')" required>
-					<mat-error *ngIf="enrollmentInfoFormGroup[0].controls['curp'].invalid">
-						CURP es <strong>requerido</strong>
-					  </mat-error>
-				</mat-form-field>
-			</div>
-			<div class="col-sm-4">
-				<mat-form-field class="example-full-width">
-					<mat-label>Estado Civil</mat-label>
-					<input matInput formControlName="maritalStatus" (blur)="saveEnrollmentInfo(0,'maritalStatus')" required>
-					<mat-error *ngIf="enrollmentInfoFormGroup[0].controls['maritalStatus'].invalid">
-						Estado civil es <strong>requerido</strong>
-					  </mat-error>
-				</mat-form-field>
-			</div>
-			<div class="col-sm-4">
-				<mat-form-field class="example-full-width">
-					<mat-label>Nacionalidad</mat-label>
-					<input matInput formControlName="nationality" (blur)="saveEnrollmentInfo(0,'nationality')" required>
-					<mat-error *ngIf="enrollmentInfoFormGroup[0].controls['nationality'].invalid">
-						Nacionalidad es <strong>requerido</strong>
-					  </mat-error>
-				</mat-form-field>
-			</div>
-		  </div>
-		<div class="form-row">
-			<div class="col-sm-12">
-				<mat-form-field class="example-full-width">
-					<mat-label>Dirección</mat-label>
-					<input matInput formControlName="address" (blur)="saveEnrollmentInfo(0,'address')" required>
-					<mat-error *ngIf="enrollmentInfoFormGroup[0].controls['address'].invalid">
-						Dirección es <strong>requerido</strong>
-					  </mat-error>
-				</mat-form-field>
-			</div>
+			<mat-form-field class="col-sm-4 example-full-width">
+				<mat-label>CURP</mat-label>
+				<input matInput formControlName="curp" (blur)="saveEnrollmentInfo(0,'curp')" required>
+				<mat-error *ngIf="enrollmentInfoFormGroup[0].controls['curp'].invalid">
+					CURP es <strong>requerido</strong>
+				</mat-error>
+			</mat-form-field>
+			<mat-form-field class="col-sm-4 example-full-width">
+				<mat-label>Estado Civil</mat-label>
+				<input matInput formControlName="maritalStatus" (blur)="saveEnrollmentInfo(0,'maritalStatus')" required>
+				<mat-error *ngIf="enrollmentInfoFormGroup[0].controls['maritalStatus'].invalid">
+					Estado civil es <strong>requerido</strong>
+				</mat-error>
+			</mat-form-field>
+			<mat-form-field class="col-sm-4 example-full-width">
+				<mat-label>Nacionalidad</mat-label>
+				<input matInput formControlName="nationality" (blur)="saveEnrollmentInfo(0,'nationality')" required>
+				<mat-error *ngIf="enrollmentInfoFormGroup[0].controls['nationality'].invalid">
+					Nacionalidad es <strong>requerido</strong>
+				</mat-error>
+			</mat-form-field>
 		</div>
 		<div class="form-row">
-			<div class="col-sm-4">
-				<mat-form-field class="example-full-width">
-					<mat-label>Ciudad</mat-label>
-					<input matInput formControlName="city" (blur)="saveEnrollmentInfo(0,'city')" required>
-					<mat-error *ngIf="enrollmentInfoFormGroup[0].controls['city'].invalid">
-						Ciudad es <strong>requerido</strong>
-					  </mat-error>
-				</mat-form-field>
-			</div>
-			<div class="col-sm-4">
-				<mat-form-field class="example-full-width">
-					<mat-label>Estado</mat-label>
-					<input matInput  formControlName="state" (blur)="saveEnrollmentInfo(0,'state')" required>
-					<mat-error *ngIf="enrollmentInfoFormGroup[0].controls['state'].invalid">
-						Estado es <strong>requerido</strong>
-					  </mat-error>
-				</mat-form-field>
-			</div>
-			<div class="col-sm-4">
-				<mat-form-field class="example-full-width">
-					<mat-label>Código postal</mat-label>
-					<input type="number" matInput formControlName="zipCode" (blur)="saveEnrollmentInfo(0,'zipCode')" required>
-					<mat-error *ngIf="enrollmentInfoFormGroup[0].controls['zipCode'].invalid">
-						Código postal es <strong>requerido</strong>
-					  </mat-error>
-				</mat-form-field>
-			</div>
-		  </div>
-		<div class="form-row">
-			<div class="col-sm-6">
-				<mat-form-field class="example-full-width">
-					<mat-label>Teléfono</mat-label>
-					<input type="tel" matInput formControlName="phone" (blur)="saveEnrollmentInfo(0,'phone')" required>
-					<mat-error *ngIf="enrollmentInfoFormGroup[0].controls['phone'].invalid">
-						Teléfono es <strong>requerido</strong>
-					  </mat-error>
-				</mat-form-field>
-			</div>
-			<div class="col-sm-6">
-				<mat-form-field class="example-full-width">
-					<mat-label>Celular</mat-label>
-					<input type="tel" matInput formControlName="cellphone" (blur)="saveEnrollmentInfo(0,'cellphone')" required>
-					<mat-error *ngIf="enrollmentInfoFormGroup[0].controls['cellphone'].invalid">
-						Celular es <strong>requerido</strong>
-					  </mat-error>
-				</mat-form-field>
-			</div>
+			<mat-form-field class="col-sm-12 example-full-width">
+				<mat-label>Dirección</mat-label>
+				<input matInput formControlName="address" (blur)="saveEnrollmentInfo(0,'address')" required>
+				<mat-error *ngIf="enrollmentInfoFormGroup[0].controls['address'].invalid">
+					Dirección es <strong>requerido</strong>
+				</mat-error>
+			</mat-form-field>
 		</div>
 		<div class="form-row">
-			<div class="col-sm-6">
-				<mat-checkbox
-					class="example-margin"
-					labelPosition="before"
-					formControlName="disability"  (change)="saveEnrollmentInfo(0,'disability')">
-					¿Sufre alguna discapacidad?
-				</mat-checkbox>
-			</div>
-			<div class="col-sm-6">
-				<mat-form-field class="example-full-width">
-					<mat-label>Especifique su discapacidad</mat-label>
-					<input matInput formControlName="disabilityDescription" (blur)="saveEnrollmentInfo(0,'disabilityDescription')"
+			<mat-form-field class="col-sm-4 example-full-width">
+				<mat-label>Ciudad</mat-label>
+				<input matInput formControlName="city" (blur)="saveEnrollmentInfo(0,'city')" required>
+				<mat-error *ngIf="enrollmentInfoFormGroup[0].controls['city'].invalid">
+					Ciudad es <strong>requerido</strong>
+				</mat-error>
+			</mat-form-field>
+			<mat-form-field class="col-sm-4 example-full-width">
+				<mat-label>Estado</mat-label>
+				<input matInput formControlName="state" (blur)="saveEnrollmentInfo(0,'state')" required>
+				<mat-error *ngIf="enrollmentInfoFormGroup[0].controls['state'].invalid">
+					Estado es <strong>requerido</strong>
+				</mat-error>
+			</mat-form-field>
+			<mat-form-field class="col-sm-4 example-full-width">
+				<mat-label>Código postal</mat-label>
+				<input type="number" matInput formControlName="zipCode" (blur)="saveEnrollmentInfo(0,'zipCode')"
+					required>
+				<mat-error *ngIf="enrollmentInfoFormGroup[0].controls['zipCode'].invalid">
+					Código postal es <strong>requerido</strong>
+				</mat-error>
+			</mat-form-field>
+		</div>
+		<div class="form-row">
+			<mat-form-field class="col-sm-6 example-full-width">
+				<mat-label>Teléfono</mat-label>
+				<input type="tel" matInput formControlName="phone" (blur)="saveEnrollmentInfo(0,'phone')" required>
+				<mat-error *ngIf="enrollmentInfoFormGroup[0].controls['phone'].invalid">
+					Teléfono es <strong>requerido</strong>
+				</mat-error>
+			</mat-form-field>
+			<mat-form-field class="col-sm-6 example-full-width">
+				<mat-label>Celular</mat-label>
+				<input type="tel" matInput formControlName="cellphone" (blur)="saveEnrollmentInfo(0,'cellphone')"
+					required>
+				<mat-error *ngIf="enrollmentInfoFormGroup[0].controls['cellphone'].invalid">
+					Celular es <strong>requerido</strong>
+				</mat-error>
+			</mat-form-field>
+		</div>
+		<div class="form-row">
+			<mat-checkbox class="col-sm-6 example-margin" labelPosition="before" formControlName="disability"
+				(change)="saveEnrollmentInfo(0,'disability')">
+				¿Sufre alguna discapacidad?
+			</mat-checkbox>
+			<mat-form-field class="col-sm-6 example-full-width">
+				<mat-label>Especifique su discapacidad</mat-label>
+				<input matInput formControlName="disabilityDescription"
+					(blur)="saveEnrollmentInfo(0,'disabilityDescription')"
 					[required]="enrollmentInfoFormGroup[0].controls['disability'].value">
-				</mat-form-field>
-			</div>
+			</mat-form-field>
 		</div>
-	  </form>
+	</form>
 </ng-template>
 
-<ng-template #f1>	
+<ng-template #f1>
 	<form [formGroup]="enrollmentInfoFormGroup[1]" #enrollmentInfoForm1="ngForm">
 		<div class="form-title">Información profesional y académica</div>
 		<div class="form-row">
-			<div class="col-sm-4">
-				<mat-form-field class="example-full-width">
-					<mat-label>Secundaria</mat-label>
-					<input matInput formControlName="highschoolName" (blur)="saveEnrollmentInfo(1,'highschoolName')" required>
-					<mat-error *ngIf="enrollmentInfoFormGroup[1].controls['highschoolName'].invalid">
-						Nombre de secundaria es <strong>requerido</strong>
-					  </mat-error>
-				</mat-form-field>
-			</div>
-			<div class="col-sm-4">
-				<mat-form-field class="example-full-width">
-					<mat-label>Año de inicio</mat-label>
-					<input type="number" matInput formControlName="highschoolStartYear" (blur)="saveEnrollmentInfo(1,'highschoolStartYear')" required>
-					<mat-error *ngIf="enrollmentInfoFormGroup[1].controls['highschoolStartYear'].invalid">
-						Año de inicio <strong>requerido</strong>
-					  </mat-error>
-				</mat-form-field>
-			</div>
-			<div class="col-sm-4">
-				<mat-form-field class="example-full-width">
-					<mat-label>Año de fin</mat-label>
-					<input type="number" matInput formControlName="highschoolEndYear" (blur)="saveEnrollmentInfo(1,'highschoolEndYear')" required>
-					<mat-error *ngIf="enrollmentInfoFormGroup[1].controls['highschoolEndYear'].invalid">
-						Año de fin <strong>requerido</strong>
-					  </mat-error>
-				</mat-form-field>
-			</div>
+			<mat-form-field class="col-sm-4 example-full-width">
+				<mat-label>Secundaria</mat-label>
+				<input matInput formControlName="highschoolName" (blur)="saveEnrollmentInfo(1,'highschoolName')"
+					required>
+				<mat-error *ngIf="enrollmentInfoFormGroup[1].controls['highschoolName'].invalid">
+					Nombre de secundaria es <strong>requerido</strong>
+				</mat-error>
+			</mat-form-field>
+			<mat-form-field class="col-sm-4 example-full-width">
+				<mat-label>Año de inicio</mat-label>
+				<input type="number" matInput formControlName="highschoolStartYear"
+					(blur)="saveEnrollmentInfo(1,'highschoolStartYear')" required>
+				<mat-error *ngIf="enrollmentInfoFormGroup[1].controls['highschoolStartYear'].invalid">
+					Año de inicio <strong>requerido</strong>
+				</mat-error>
+			</mat-form-field>
+			<mat-form-field class="col-sm-4 example-full-width">
+				<mat-label>Año de fin</mat-label>
+				<input type="number" matInput formControlName="highschoolEndYear"
+					(blur)="saveEnrollmentInfo(1,'highschoolEndYear')" required>
+				<mat-error *ngIf="enrollmentInfoFormGroup[1].controls['highschoolEndYear'].invalid">
+					Año de fin <strong>requerido</strong>
+				</mat-error>
+			</mat-form-field>
 		</div>
 		<div class="form-row">
-			<div class="col-sm-4">
-				<mat-form-field class="example-full-width">
-					<mat-label>Grado de estudios</mat-label>
-					<mat-select [(value)]="selected" formControlName="academicDegree" (blur)="saveEnrollmentInfo(1,'academicDegree')" required>
-					  <mat-option value="Preparatoria">Preparatoria</mat-option>
-					  <mat-option value="Licenciatura">Licenciatura</mat-option>
-					  <mat-option value="Maestria">Maestría</mat-option>
-					  <mat-option value="Tecnica">Carrera técnica</mat-option>
-					</mat-select>
-					<mat-error *ngIf="enrollmentInfoFormGroup[1].controls['academicDegree'].invalid">
-						Grado de estudios es <strong>requerido</strong>
-					  </mat-error>
-				  </mat-form-field>
-			</div>							
-			<div class="col-sm-4">
-				<mat-form-field class="example-full-width">
-					<mat-label>Año de inicio</mat-label>
-					<input type="number" matInput formControlName="academicDegreeStartYear" (blur)="saveEnrollmentInfo(1, 'academicDegreeStartYear')" required>
-					<mat-error *ngIf="enrollmentInfoFormGroup[1].controls['academicDegreeStartYear'].invalid">
-						Año de inicio es <strong>requerido</strong>
-					  </mat-error>
-				</mat-form-field>
-			</div>
-			<div class="col-sm-4">
-				<mat-form-field class="example-full-width">
-					<mat-label>Año de fin</mat-label>
-					<input type="number" matInput formControlName="academicDegreeEndYear" (blur)="saveEnrollmentInfo(1, 'academicDegreeEndYear')" required>
-					<mat-error *ngIf="enrollmentInfoFormGroup[1].controls['academicDegreeEndYear'].invalid">
-						Año de fin es <strong>requerido</strong>
-					  </mat-error>
-				</mat-form-field>
-			</div>
+			<mat-form-field class="col-sm-4 example-full-width">
+				<mat-label>Grado de estudios</mat-label>
+				<mat-select [(value)]="selected" formControlName="academicDegree"
+					(blur)="saveEnrollmentInfo(1,'academicDegree')" required>
+					<mat-option value="Preparatoria">Preparatoria</mat-option>
+					<mat-option value="Licenciatura">Licenciatura</mat-option>
+					<mat-option value="Maestria">Maestría</mat-option>
+					<mat-option value="Tecnica">Carrera técnica</mat-option>
+				</mat-select>
+				<mat-error *ngIf="enrollmentInfoFormGroup[1].controls['academicDegree'].invalid">
+					Grado de estudios es <strong>requerido</strong>
+				</mat-error>
+			</mat-form-field>
+			<mat-form-field class="col-sm-4 example-full-width">
+				<mat-label>Año de inicio</mat-label>
+				<input type="number" matInput formControlName="academicDegreeStartYear"
+					(blur)="saveEnrollmentInfo(1, 'academicDegreeStartYear')" required>
+				<mat-error *ngIf="enrollmentInfoFormGroup[1].controls['academicDegreeStartYear'].invalid">
+					Año de inicio es <strong>requerido</strong>
+				</mat-error>
+			</mat-form-field>
+			<mat-form-field class="col-sm-4 example-full-width">
+				<mat-label>Año de fin</mat-label>
+				<input type="number" matInput formControlName="academicDegreeEndYear"
+					(blur)="saveEnrollmentInfo(1, 'academicDegreeEndYear')" required>
+				<mat-error *ngIf="enrollmentInfoFormGroup[1].controls['academicDegreeEndYear'].invalid">
+					Año de fin es <strong>requerido</strong>
+				</mat-error>
+			</mat-form-field>
 		</div>
 		<div class="form-row">
 			<div class="col-sm-4">
 				<label id="example-radio-group-label">¿Estudió en algún seminario o instituto bíblico?</label>
-				<mat-radio-group aria-label="Seleccione una opción" formControlName="theologicalStudy" (change)="saveEnrollmentInfo(1, 'theologicalStudy')" required>
+				<mat-radio-group aria-label="Seleccione una opción" formControlName="theologicalStudy"
+					(change)="saveEnrollmentInfo(1, 'theologicalStudy')" required>
 					<mat-radio-button value="Yes">Sí</mat-radio-button>
 					<mat-radio-button value="No">No</mat-radio-button>
 					<mat-error *ngIf="enrollmentInfoFormGroup[1].controls['theologicalStudy'].invalid">
 						Este campo es <strong>requerido</strong>
-					  </mat-error>
-				  </mat-radio-group>
-			</div>							
-			<div class="col-sm-4">
-				<mat-form-field class="example-full-width">
-					<mat-label>Nombre de la institución</mat-label>
-					<input matInput formControlName="theologicalInstitutionName" (blur)="saveEnrollmentInfo(1, 'theologicalInstitutionName')">
-				</mat-form-field>
+					</mat-error>
+				</mat-radio-group>
 			</div>
-			<div class="col-sm-4">
-				<mat-form-field class="example-full-width">
-					<mat-label>Título recibido</mat-label>
-					<input matInput formControlName="theologicalDegree" (blur)="saveEnrollmentInfo(1, 'theologicalDegree')">
-				</mat-form-field>
-			</div>
+			<mat-form-field class="col-sm-4 example-full-width">
+				<mat-label>Nombre de la institución</mat-label>
+				<input matInput formControlName="theologicalInstitutionName"
+					(blur)="saveEnrollmentInfo(1, 'theologicalInstitutionName')">
+			</mat-form-field>
+			<mat-form-field class="col-sm-4 example-full-width">
+				<mat-label>Título recibido</mat-label>
+				<input matInput formControlName="theologicalDegree" (blur)="saveEnrollmentInfo(1, 'theologicalDegree')">
+			</mat-form-field>
+		</div>
+		<div class="form-row">
+			<mat-form-field class="col-sm-12 example-full-width">
+				<mat-label>Describa los diplomados que haya recibido</mat-label>
+				<textarea matInput formControlName="certifications"
+					(blur)="saveEnrollmentInfo(1, 'certifications')"></textarea>
+			</mat-form-field>
+		</div>
+		<div class="form-row">
+			<mat-form-field class="col-sm-4 example-full-width">
+				<mat-label>Ocupación actual</mat-label>
+				<input matInput formControlName="occupation" (blur)="saveEnrollmentInfo(1, 'occupation')" required>
+				<mat-error *ngIf="enrollmentInfoFormGroup[1].controls['occupation'].invalid">
+					Ocupación es <strong>requerido</strong>
+				</mat-error>
+			</mat-form-field>
+			<mat-form-field class="col-sm-4 example-full-width">
+				<mat-label>Antecedentes laborales</mat-label>
+				<input matInput formControlName="workHistory" (blur)="saveEnrollmentInfo(1, 'workHistory')" required>
+				<mat-error *ngIf="enrollmentInfoFormGroup[1].controls['workHistory'].invalid">
+					Este campo es <strong>requerido</strong>
+				</mat-error>
+			</mat-form-field>
+			<mat-form-field class="col-sm-4 example-full-width">
+				<mat-label>Habilidades y/o talentos</mat-label>
+				<input matInput formControlName="abilities" (blur)="saveEnrollmentInfo(1,'abilities')" required>
+				<mat-error *ngIf="enrollmentInfoFormGroup[1].controls['abilities'].invalid">
+					Este campo es <strong>requerido</strong>
+				</mat-error>
+			</mat-form-field>
 		</div>
 		<div class="form-row">
 			<div class="col-sm-12">
-				<mat-form-field class="example-full-width">
-					<mat-label>Describa los diplomados que haya recibido</mat-label>
-					<textarea matInput formControlName="certifications" (blur)="saveEnrollmentInfo(1, 'certifications')"></textarea>
-				</mat-form-field>
-			</div>
-		</div>
-		<div class="form-row">
-			<div class="col-sm-4">
-				<mat-form-field class="example-full-width">
-					<mat-label>Ocupación actual</mat-label>
-					<input matInput formControlName="occupation" (blur)="saveEnrollmentInfo(1, 'occupation')" required>
-					<mat-error *ngIf="enrollmentInfoFormGroup[1].controls['occupation'].invalid">
-						Ocupación es <strong>requerido</strong>
-					  </mat-error>
-				</mat-form-field>
-			</div>
-			<div class="col-sm-4">
-				<mat-form-field class="example-full-width">
-					<mat-label>Antecedentes laborales</mat-label>
-					<input matInput formControlName="workHistory" (blur)="saveEnrollmentInfo(1, 'workHistory')" required>
-					<mat-error *ngIf="enrollmentInfoFormGroup[1].controls['workHistory'].invalid">
-						Este campo es <strong>requerido</strong>
-					  </mat-error>
-				</mat-form-field>
-			</div>
-			<div class="col-sm-4">
-				<mat-form-field class="example-full-width">
-					<mat-label>Habilidades y/o talentos</mat-label>
-					<input matInput formControlName="abilities" (blur)="saveEnrollmentInfo(1,'abilities')" required>
-					<mat-error *ngIf="enrollmentInfoFormGroup[1].controls['abilities'].invalid">
-						Este campo es <strong>requerido</strong>
-					  </mat-error>
-				</mat-form-field>
-			</div>
-		</div>
-		<div class="form-row">
-			<div class="col-sm-4">
-					<mat-label>Porcentaje de inglés</mat-label>
-					<mat-slider
-					class="example-margin"
-					max=100
-					min=0
-					step=5
-					thumbLabel=true
-					tickInterval=5
+				<mat-label>Porcentaje de inglés</mat-label>
+				<mat-slider class="example-margin" max=100 min=0 step=5 thumbLabel=true tickInterval=5
 					formControlName="englishLevel" (blur)="saveEnrollmentInfo(1,'englishLevel')" required>
 					<mat-error *ngIf="enrollmentInfoFormGroup[1].controls['englishLevel'].invalid">
 						Este campo es <strong>requerido</strong>
-					  </mat-error>
+					</mat-error>
 				</mat-slider>
-			</div>
-		</div>
-	  </form>
-</ng-template>
-
-<ng-template #f2>	
-	<form [formGroup]="enrollmentInfoFormGroup[2]" #enrollmentInfoForm2="ngForm">
-		<div class="form-title">Experiencia cristiana</div>
-		<div class="form-row">
-			<div class="col-sm-6">
-				<mat-form-field class="example-full-width">
-					<mat-label>Fecha de conversión</mat-label>
-					<input matInput [matDatepicker]="newbirthPicker" formControlName="newbirthDate"  (dateChange)="saveEnrollmentInfo(2, 'newbirthDate')" required>
-					<mat-datepicker-toggle matSuffix [for]="newbirthPicker"></mat-datepicker-toggle>
-					<mat-datepicker touchUi #newbirthPicker></mat-datepicker>						  
-					<mat-error *ngIf="enrollmentInfoFormGroup[2].controls['newbirthDate'].invalid">
-						Este campo es <strong>requerido</strong>
-					  </mat-error>
-				</mat-form-field>
-			</div>
-			<div class="col-sm-6">
-				<mat-form-field class="example-full-width">
-					<mat-label>Fecha de bautismo</mat-label>
-					<!-- <input matInput formControlName="baptismDate" required> -->
-					<input matInput [matDatepicker]="baptismPicker" formControlName="baptismDate" (dateChange)="saveEnrollmentInfo(2,'baptismDate')" required>
-					<mat-datepicker-toggle matSuffix [for]="baptismPicker"></mat-datepicker-toggle>
-					<mat-datepicker touchUi #baptismPicker></mat-datepicker>						  
-					<mat-error *ngIf="enrollmentInfoFormGroup[2].controls['baptismDate'].invalid">
-						Este campo es <strong>requerido</strong>
-					  </mat-error>
-				</mat-form-field>
-			</div>
-		</div>
-		<div class="form-row">
-			<div class="col-sm-4">
-				<mat-form-field class="example-full-width">
-					<mat-label>Nombre de iglesia actual</mat-label>
-					<input matInput formControlName="churchName" (blur)="saveEnrollmentInfo(2,'churchName')" required>
-					<mat-error *ngIf="enrollmentInfoFormGroup[2].controls['churchName'].invalid">
-						Este campo es <strong>requerido</strong>
-					  </mat-error>
-				</mat-form-field>
-			</div>
-			<div class="col-sm-4">
-				<mat-form-field class="example-full-width">
-					<mat-label>Denominación</mat-label>
-					<input matInput formControlName="denomination" (blur)="saveEnrollmentInfo(2,'denomination')" required>
-					<mat-error *ngIf="enrollmentInfoFormGroup[2].controls['denomination'].invalid">
-						Este campo es <strong>requerido</strong>
-					  </mat-error>
-				</mat-form-field>
-			</div>
-			<div class="col-sm-4">
-				<mat-form-field class="example-full-width">
-					<mat-label>Nombre del pastor principal</mat-label>
-					<input matInput formControlName="pastorName" (blur)="saveEnrollmentInfo(2,'pastorName')" required>
-					<mat-error *ngIf="enrollmentInfoFormGroup[2].controls['pastorName'].invalid">
-						Este campo es <strong>requerido</strong>
-					  </mat-error>
-				</mat-form-field>
-			</div>
-		</div>
-		<div class="form-row">
-			<div class="col-sm-6">
-				<mat-form-field class="example-full-width">
-					<mat-label>Dirección</mat-label>
-					<input matInput formControlName="churchAddress" (blur)="saveEnrollmentInfo(2,'churchAddress')" required>
-					<mat-error *ngIf="enrollmentInfoFormGroup[2].controls['churchAddress'].invalid">
-						Este campo es <strong>requerido</strong>
-					  </mat-error>
-				</mat-form-field>
-			</div>
-			<div class="col-sm-6">
-				<mat-form-field class="example-full-width">
-					<mat-label>Teléfono</mat-label>
-					<input matInput formControlName="churchPhone" (blur)="saveEnrollmentInfo(2,'churchPhone')" required>
-					<mat-error *ngIf="enrollmentInfoFormGroup[2].controls['churchAddress'].invalid">
-						Este campo es <strong>requerido</strong>
-					  </mat-error>
-				</mat-form-field>
-			</div>
-		</div>
-		<div class="form-row">
-			<div class="col-sm-4">
-				<mat-form-field class="example-full-width">
-					<mat-label>Ciudad</mat-label>
-					<input matInput formControlName="churchCity" (blur)="saveEnrollmentInfo(2,'churchCity')" >
-					<mat-error *ngIf="enrollmentInfoFormGroup[2].controls['churchCity'].invalid">
-						Este campo es <strong>requerido</strong>
-					  </mat-error>
-				</mat-form-field>
-			</div>
-			<div class="col-sm-4">
-				<mat-form-field class="example-full-width">
-					<mat-label>Estado</mat-label>
-					<input matInput formControlName="churchState" (blur)="saveEnrollmentInfo(2,'churchState')"  required>
-					<mat-error *ngIf="enrollmentInfoFormGroup[2].controls['churchState'].invalid">
-						Este campo es <strong>requerido</strong>
-					  </mat-error>
-				</mat-form-field>
-			</div>
-			<div class="col-sm-4">
-				<mat-form-field class="example-full-width">
-					<mat-label>Código postal</mat-label>
-					<input type="number" matInput formControlName="churchZipCode" (blur)="saveEnrollmentInfo(2,'churchZipCode')"  required>
-					<mat-error *ngIf="enrollmentInfoFormGroup[2].controls['churchZipCode'].invalid">
-						Este campo es <strong>requerido</strong>
-					  </mat-error>
-				</mat-form-field>
-			</div>
-		  </div>
-		<div class="form-row">
-			<div class="col-sm-12">
-				<mat-form-field class="example-full-width">
-					<mat-label>Describa a grandes razgos la vida de su iglesia</mat-label>
-					<textarea matInput formControlName="churchLifeDescription" (blur)="saveEnrollmentInfo(2,'churchLifeDescription')"  required rows="4"></textarea>
-					<mat-error *ngIf="enrollmentInfoFormGroup[2].controls['churchLifeDescription'].invalid">
-						Este campo es <strong>requerido</strong>
-					  </mat-error>
-				</mat-form-field>
-			</div>
-			<div class="col-sm-12">
-				<mat-form-field class="example-full-width">
-					<mat-label>Describa los ministerios que ha desarrollado y el tiempo invertido</mat-label>
-					<textarea matInput formControlName="churchMinistres" (blur)="saveEnrollmentInfo(2,'churchMinistres')"  required rows="4"></textarea>
-					<mat-error *ngIf="enrollmentInfoFormGroup[2].controls['churchMinistres'].invalid">
-						Este campo es <strong>requerido</strong>
-					  </mat-error>
-				</mat-form-field>
 			</div>
 		</div>
 	</form>
 </ng-template>
 
-<ng-template #f3>	
+<ng-template #f2>
+	<form [formGroup]="enrollmentInfoFormGroup[2]" #enrollmentInfoForm2="ngForm">
+		<div class="form-title">Experiencia cristiana</div>
+		<div class="form-row">
+			<mat-form-field class="col-sm-6 example-full-width">
+				<mat-label>Fecha de conversión</mat-label>
+				<input matInput [matDatepicker]="newbirthPicker" formControlName="newbirthDate"
+					(dateChange)="saveEnrollmentInfo(2, 'newbirthDate')" required>
+				<mat-datepicker-toggle matSuffix [for]="newbirthPicker"></mat-datepicker-toggle>
+				<mat-datepicker touchUi #newbirthPicker></mat-datepicker>
+				<mat-error *ngIf="enrollmentInfoFormGroup[2].controls['newbirthDate'].invalid">
+					Este campo es <strong>requerido</strong>
+				</mat-error>
+			</mat-form-field>
+			<mat-form-field class="col-sm-6 example-full-width">
+				<mat-label>Fecha de bautismo</mat-label>
+				<!-- <input matInput formControlName="baptismDate" required> -->
+				<input matInput [matDatepicker]="baptismPicker" formControlName="baptismDate"
+					(dateChange)="saveEnrollmentInfo(2,'baptismDate')" required>
+				<mat-datepicker-toggle matSuffix [for]="baptismPicker"></mat-datepicker-toggle>
+				<mat-datepicker touchUi #baptismPicker></mat-datepicker>
+				<mat-error *ngIf="enrollmentInfoFormGroup[2].controls['baptismDate'].invalid">
+					Este campo es <strong>requerido</strong>
+				</mat-error>
+			</mat-form-field>
+		</div>
+		<div class="form-row">
+			<mat-form-field class="col-sm-4 example-full-width">
+				<mat-label>Nombre de iglesia actual</mat-label>
+				<input matInput formControlName="churchName" (blur)="saveEnrollmentInfo(2,'churchName')" required>
+				<mat-error *ngIf="enrollmentInfoFormGroup[2].controls['churchName'].invalid">
+					Este campo es <strong>requerido</strong>
+				</mat-error>
+			</mat-form-field>
+			<mat-form-field class="col-sm-4 example-full-width">
+				<mat-label>Denominación</mat-label>
+				<input matInput formControlName="denomination" (blur)="saveEnrollmentInfo(2,'denomination')" required>
+				<mat-error *ngIf="enrollmentInfoFormGroup[2].controls['denomination'].invalid">
+					Este campo es <strong>requerido</strong>
+				</mat-error>
+			</mat-form-field>
+			<mat-form-field class="col-sm-4 example-full-width">
+				<mat-label>Nombre del pastor principal</mat-label>
+				<input matInput formControlName="pastorName" (blur)="saveEnrollmentInfo(2,'pastorName')" required>
+				<mat-error *ngIf="enrollmentInfoFormGroup[2].controls['pastorName'].invalid">
+					Este campo es <strong>requerido</strong>
+				</mat-error>
+			</mat-form-field>
+		</div>
+		<div class="form-row">
+			<mat-form-field class="col-sm-6 example-full-width">
+				<mat-label>Dirección</mat-label>
+				<input matInput formControlName="churchAddress" (blur)="saveEnrollmentInfo(2,'churchAddress')" required>
+				<mat-error *ngIf="enrollmentInfoFormGroup[2].controls['churchAddress'].invalid">
+					Este campo es <strong>requerido</strong>
+				</mat-error>
+			</mat-form-field>
+			<mat-form-field class="col-sm-6 example-full-width">
+				<mat-label>Teléfono</mat-label>
+				<input matInput formControlName="churchPhone" (blur)="saveEnrollmentInfo(2,'churchPhone')" required>
+				<mat-error *ngIf="enrollmentInfoFormGroup[2].controls['churchAddress'].invalid">
+					Este campo es <strong>requerido</strong>
+				</mat-error>
+			</mat-form-field>
+		</div>
+		<div class="form-row">
+			<mat-form-field class="col-sm-4 example-full-width">
+				<mat-label>Ciudad</mat-label>
+				<input matInput formControlName="churchCity" (blur)="saveEnrollmentInfo(2,'churchCity')">
+				<mat-error *ngIf="enrollmentInfoFormGroup[2].controls['churchCity'].invalid">
+					Este campo es <strong>requerido</strong>
+				</mat-error>
+			</mat-form-field>
+			<mat-form-field class="col-sm-4 example-full-width">
+				<mat-label>Estado</mat-label>
+				<input matInput formControlName="churchState" (blur)="saveEnrollmentInfo(2,'churchState')" required>
+				<mat-error *ngIf="enrollmentInfoFormGroup[2].controls['churchState'].invalid">
+					Este campo es <strong>requerido</strong>
+				</mat-error>
+			</mat-form-field>
+			<mat-form-field class="col-sm-4 example-full-width">
+				<mat-label>Código postal</mat-label>
+				<input type="number" matInput formControlName="churchZipCode"
+					(blur)="saveEnrollmentInfo(2,'churchZipCode')" required>
+				<mat-error *ngIf="enrollmentInfoFormGroup[2].controls['churchZipCode'].invalid">
+					Este campo es <strong>requerido</strong>
+				</mat-error>
+			</mat-form-field>
+		</div>
+		<div class="form-row">
+			<mat-form-field class="col-sm-12 example-full-width">
+				<mat-label>Describa a grandes razgos la vida de su iglesia</mat-label>
+				<textarea matInput formControlName="churchLifeDescription"
+					(blur)="saveEnrollmentInfo(2,'churchLifeDescription')" required rows="4"></textarea>
+				<mat-error *ngIf="enrollmentInfoFormGroup[2].controls['churchLifeDescription'].invalid">
+					Este campo es <strong>requerido</strong>
+				</mat-error>
+			</mat-form-field>
+			<mat-form-field class="col-sm-12 example-full-width">
+				<mat-label>Describa los ministerios que ha desarrollado y el tiempo invertido</mat-label>
+				<textarea matInput formControlName="churchMinistres" (blur)="saveEnrollmentInfo(2,'churchMinistres')"
+					required rows="4"></textarea>
+				<mat-error *ngIf="enrollmentInfoFormGroup[2].controls['churchMinistres'].invalid">
+					Este campo es <strong>requerido</strong>
+				</mat-error>
+			</mat-form-field>
+		</div>
+	</form>
+</ng-template>
+
+<ng-template #f3>
 	<form [formGroup]="enrollmentInfoFormGroup[3]" #enrollmentInfoForm3="ngForm">
 		<div class="form-title">Datos del tutor</div>
 		<div class="form-row">
-			<div class="col-sm-6">
-				<mat-form-field class="example-full-width">
-					<mat-label>Nombre</mat-label>
-					<input matInput formControlName="name" (blur)="saveEnrollmentInfo(3,'name')" required>
-					<mat-error *ngIf="enrollmentInfoFormGroup[3].controls['name'].invalid">
-						Nombre es <strong>requerido</strong>
-					  </mat-error>
-				</mat-form-field>
-			</div>
-			<div class="col-sm-6">
-				<mat-form-field class="example-full-width">
-					<mat-label>Apellidos</mat-label>
-					<input matInput formControlName="lastname" (blur)="saveEnrollmentInfo(3,'lastname')" required>
-					<mat-error *ngIf="enrollmentInfoFormGroup[3].controls['lastname'].invalid">
-						Apellidos es <strong>requerido</strong>
-					  </mat-error>
-				</mat-form-field>
-			</div>
+			<mat-form-field class="col-sm-6 example-full-width">
+				<mat-label>Nombre</mat-label>
+				<input matInput formControlName="name" (blur)="saveEnrollmentInfo(3,'name')" required>
+				<mat-error *ngIf="enrollmentInfoFormGroup[3].controls['name'].invalid">
+					Nombre es <strong>requerido</strong>
+				</mat-error>
+			</mat-form-field>
+			<mat-form-field class="col-sm-6 example-full-width">
+				<mat-label>Apellidos</mat-label>
+				<input matInput formControlName="lastname" (blur)="saveEnrollmentInfo(3,'lastname')" required>
+				<mat-error *ngIf="enrollmentInfoFormGroup[3].controls['lastname'].invalid">
+					Apellidos es <strong>requerido</strong>
+				</mat-error>
+			</mat-form-field>
 		</div>
 		<div class="form-row">
-			<div class="col-sm-6">
-				<mat-form-field class="example-full-width">
-					<mat-label>Escolaridad</mat-label>
-					<input matInput formControlName="academicDegree" (blur)="saveEnrollmentInfo(3,'academicDegree')" required>
-					<mat-error *ngIf="enrollmentInfoFormGroup[3].controls['academicDegree'].invalid">
-						Escolaridad es <strong>requerido</strong>
-					  </mat-error>
-				</mat-form-field>
-			</div>
-			<div class="col-sm-6">
-				<mat-form-field class="example-full-width">
-					<mat-label>Ocupación</mat-label>
-					<input matInput formControlName="occupation" (blur)="saveEnrollmentInfo(3,'occupation')" required>
-					<mat-error *ngIf="enrollmentInfoFormGroup[3].controls['occupation'].invalid">
-						Ocupación es <strong>requerido</strong>
-					  </mat-error>
-				</mat-form-field>
-			</div>
+			<mat-form-field class="col-sm-6 example-full-width">
+				<mat-label>Escolaridad</mat-label>
+				<input matInput formControlName="academicDegree" (blur)="saveEnrollmentInfo(3,'academicDegree')"
+					required>
+				<mat-error *ngIf="enrollmentInfoFormGroup[3].controls['academicDegree'].invalid">
+					Escolaridad es <strong>requerido</strong>
+				</mat-error>
+			</mat-form-field>
+			<mat-form-field class="col-sm-6 example-full-width">
+				<mat-label>Ocupación</mat-label>
+				<input matInput formControlName="occupation" (blur)="saveEnrollmentInfo(3,'occupation')" required>
+				<mat-error *ngIf="enrollmentInfoFormGroup[3].controls['occupation'].invalid">
+					Ocupación es <strong>requerido</strong>
+				</mat-error>
+			</mat-form-field>
 		</div>
 		<div class="form-row">
-			<div class="col-sm-6">
-				<mat-form-field class="example-full-width">
-					<mat-label>Dirección</mat-label>
-					<input matInput formControlName="address" (blur)="saveEnrollmentInfo(3,'address')" required>
-					<mat-error *ngIf="enrollmentInfoFormGroup[3].controls['address'].invalid">
-						Dirección es <strong>requerido</strong>
-					  </mat-error>
-				</mat-form-field>
-			</div>
-			<div class="col-sm-6">
-				<mat-form-field class="example-full-width">
-					<mat-label>Teléfono</mat-label>
-					<input matInput formControlName="phone" (blur)="saveEnrollmentInfo(3,'phone')" required>
-					<mat-error *ngIf="enrollmentInfoFormGroup[3].controls['phone'].invalid">
-						Teléfono es <strong>requerido</strong>
-					  </mat-error>
-				</mat-form-field>
-			</div>
+			<mat-form-field class="col-sm-6 example-full-width">
+				<mat-label>Dirección</mat-label>
+				<input matInput formControlName="address" (blur)="saveEnrollmentInfo(3,'address')" required>
+				<mat-error *ngIf="enrollmentInfoFormGroup[3].controls['address'].invalid">
+					Dirección es <strong>requerido</strong>
+				</mat-error>
+			</mat-form-field>
+			<mat-form-field class="col-sm-6 example-full-width">
+				<mat-label>Teléfono</mat-label>
+				<input matInput formControlName="phone" (blur)="saveEnrollmentInfo(3,'phone')" required>
+				<mat-error *ngIf="enrollmentInfoFormGroup[3].controls['phone'].invalid">
+					Teléfono es <strong>requerido</strong>
+				</mat-error>
+			</mat-form-field>
 		</div>
 		<div class="form-row">
-			<div class="col-sm-4">
-				<mat-form-field class="example-full-width">
-					<mat-label>Ciudad</mat-label>
-					<input matInput formControlName="city" (blur)="saveEnrollmentInfo(3,'city')" required>
-					<mat-error *ngIf="enrollmentInfoFormGroup[3].controls['city'].invalid">
-						Ciudad es <strong>requerido</strong>
-					  </mat-error>
-				</mat-form-field>
-			</div>
-			<div class="col-sm-4">
-				<mat-form-field class="example-full-width">
-					<mat-label>Estado</mat-label>
-					<input matInput formControlName="state" (blur)="saveEnrollmentInfo(3,'state')" required>
-					<mat-error *ngIf="enrollmentInfoFormGroup[3].controls['state'].invalid">
-						Estado es <strong>requerido</strong>
-					  </mat-error>
-				</mat-form-field>
-			</div>
-			<div class="col-sm-4">
-				<mat-form-field class="example-full-width">
-					<mat-label>Código postal</mat-label>
-					<input type="number" matInput formControlName="zipCode" (blur)="saveEnrollmentInfo(3,'zipCode')" required>
-					<mat-error *ngIf="enrollmentInfoFormGroup[3].controls['zipCode'].invalid">
-						Código postal es <strong>requerido</strong>
-					  </mat-error>
-				</mat-form-field>
-			</div>
-		  </div>
+			<mat-form-field class="col-sm-4 example-full-width">
+				<mat-label>Ciudad</mat-label>
+				<input matInput formControlName="city" (blur)="saveEnrollmentInfo(3,'city')" required>
+				<mat-error *ngIf="enrollmentInfoFormGroup[3].controls['city'].invalid">
+					Ciudad es <strong>requerido</strong>
+				</mat-error>
+			</mat-form-field>
+			<mat-form-field class="col-sm-4 example-full-width">
+				<mat-label>Estado</mat-label>
+				<input matInput formControlName="state" (blur)="saveEnrollmentInfo(3,'state')" required>
+				<mat-error *ngIf="enrollmentInfoFormGroup[3].controls['state'].invalid">
+					Estado es <strong>requerido</strong>
+				</mat-error>
+			</mat-form-field>
+			<mat-form-field class="col-sm-4 example-full-width">
+				<mat-label>Código postal</mat-label>
+				<input type="number" matInput formControlName="zipCode" (blur)="saveEnrollmentInfo(3,'zipCode')"
+					required>
+				<mat-error *ngIf="enrollmentInfoFormGroup[3].controls['zipCode'].invalid">
+					Código postal es <strong>requerido</strong>
+				</mat-error>
+			</mat-form-field>
+		</div>
 		<div class="form-row">
 			<div class="col-sm-12">
 				<label id="example-radio-group-label">¿Son sus padres cristianos?</label>
-				<mat-radio-group aria-label="Seleccione una opción" class="radio-style" formControlName="christianParents" (change)="saveEnrollmentInfo(3,'christianParents')" required>
+				<mat-radio-group aria-label="Seleccione una opción" class="radio-style"
+					formControlName="christianParents" (change)="saveEnrollmentInfo(3,'christianParents')" required>
 					<mat-radio-button value="Yes">Sí</mat-radio-button>
 					<mat-radio-button value="No">No</mat-radio-button>
-				  </mat-radio-group>
-				  <mat-error *ngIf="enrollmentInfoFormGroup[3].controls['christianParents'].invalid">
+				</mat-radio-group>
+				<mat-error *ngIf="enrollmentInfoFormGroup[3].controls['christianParents'].invalid">
 					Este campo es <strong>requerido</strong>
-				  </mat-error>
-			</div>								
+				</mat-error>
+			</div>
 		</div>
 	</form>
 </ng-template>
@@ -630,120 +581,106 @@
 	<form [formGroup]="enrollmentInfoFormGroup[4]" #enrollmentInfoForm4="ngForm">
 		<div class="form-title">Datos para la institución</div>
 		<div class="form-row">
-			<div class="col-sm-12">
-				<mat-form-field class="example-full-width">
-					<mat-label>Seleccione el programa a cursar</mat-label>
-					<mat-select [(value)]="selected" formControlName="programTarget" (blur)="saveEnrollmentInfo(4,'programTarget')" required>
-					  <mat-option value="Certificado en Ministerio">Certificado en Ministerio</mat-option>
-					  <mat-option value="Bachillerato en Ministerio">Bachillerato en Ministerio</mat-option>
-					  <mat-option value="Licenciatura en teología STN">Licenciatura en teología STN</mat-option>
-					  <mat-option value="Licenciatura en teología acreditada por la SEP">Licenciatura en teología acreditada por la SEP</mat-option>
-					  <mat-option value="Técnico profesional en música y adoración">Técnico profesional en música y adoración</mat-option>
-					</mat-select>
-					<mat-error *ngIf="enrollmentInfoFormGroup[4].controls['programTarget'].invalid">
-						<strong>Debe</strong> seleccionar un programa a cursar
-					  </mat-error>	
-				  </mat-form-field>
-			</div>
+			<mat-form-field class="col-sm-12 example-full-width">
+				<mat-label>Seleccione el programa a cursar</mat-label>
+				<mat-select [(value)]="selected" formControlName="programTarget"
+					(blur)="saveEnrollmentInfo(4,'programTarget')" required>
+					<mat-option value="Certificado en Ministerio">Certificado en Ministerio</mat-option>
+					<mat-option value="Bachillerato en Ministerio">Bachillerato en Ministerio</mat-option>
+					<mat-option value="Licenciatura en teología STN">Licenciatura en teología STN</mat-option>
+					<mat-option value="Licenciatura en teología acreditada por la SEP">Licenciatura en teología
+						acreditada por la SEP</mat-option>
+					<mat-option value="Técnico profesional en música y adoración">Técnico profesional en música y
+						adoración</mat-option>
+				</mat-select>
+				<mat-error *ngIf="enrollmentInfoFormGroup[4].controls['programTarget'].invalid">
+					<strong>Debe</strong> seleccionar un programa a cursar
+				</mat-error>
+			</mat-form-field>
 		</div>
 		<div class="form-row">
-			<div class="col-sm-12">
-				<mat-form-field class="example-full-width">
-					<mat-label>¿Por qué escogió nuestro seminario para cursar sus estuios teológicos?</mat-label>
-					<textarea matInput formControlName="seminaryReason" rows="4" (blur)="saveEnrollmentInfo(4,'seminaryReason')" required></textarea>
-					<mat-error *ngIf="enrollmentInfoFormGroup[4].controls['seminaryReason'].invalid">
-						Este campo es <strong>requerido</strong>
-					  </mat-error>	
-				</mat-form-field>
-			</div>
+			<mat-form-field class="col-sm-12 example-full-width">
+				<mat-label>¿Por qué escogió nuestro seminario para cursar sus estuios teológicos?</mat-label>
+				<textarea matInput formControlName="seminaryReason" rows="4"
+					(blur)="saveEnrollmentInfo(4,'seminaryReason')" required></textarea>
+				<mat-error *ngIf="enrollmentInfoFormGroup[4].controls['seminaryReason'].invalid">
+					Este campo es <strong>requerido</strong>
+				</mat-error>
+			</mat-form-field>
 		</div>
 		<div class="form-row">
-			<div class="col-sm-12">
-				<mat-form-field class="example-full-width">
-					<mat-label>¿Cómo se enteró del Seminario Todas las Naciones?</mat-label>
-					<textarea matInput formControlName="seminaryKnow" (blur)="saveEnrollmentInfo(4,'seminaryKnow')" required rows="4"></textarea>
-					<mat-error *ngIf="enrollmentInfoFormGroup[4].controls['seminaryKnow'].invalid">
-						Este campo es <strong>requerido</strong>
-					  </mat-error>	
-				</mat-form-field>
-			</div>
+			<mat-form-field class="col-sm-12 example-full-width">
+				<mat-label>¿Cómo se enteró del Seminario Todas las Naciones?</mat-label>
+				<textarea matInput formControlName="seminaryKnow" (blur)="saveEnrollmentInfo(4,'seminaryKnow')" required
+					rows="4"></textarea>
+				<mat-error *ngIf="enrollmentInfoFormGroup[4].controls['seminaryKnow'].invalid">
+					Este campo es <strong>requerido</strong>
+				</mat-error>
+			</mat-form-field>
 		</div>
 		<div class="form-row">
-			<div class="col-sm-12">
-				<mat-form-field class="example-full-width">
-					<mat-label>¿Qué dones está convencido que Dios le ha dado?</mat-label>
-					<textarea matInput formControlName="giftsKnown" (blur)="saveEnrollmentInfo(4,'giftsKnown')" required rows="4"></textarea>
-					<mat-error *ngIf="enrollmentInfoFormGroup[4].controls['giftsKnown'].invalid">
-						Este campo es <strong>requerido</strong>
-					  </mat-error>	
-				</mat-form-field>
-			</div>
+			<mat-form-field class="col-sm-12 example-full-width">
+				<mat-label>¿Qué dones está convencido que Dios le ha dado?</mat-label>
+				<textarea matInput formControlName="giftsKnown" (blur)="saveEnrollmentInfo(4,'giftsKnown')" required
+					rows="4"></textarea>
+				<mat-error *ngIf="enrollmentInfoFormGroup[4].controls['giftsKnown'].invalid">
+					Este campo es <strong>requerido</strong>
+				</mat-error>
+			</mat-form-field>
 		</div>
 		<div class="form-row">
-			<div class="col-sm-12">
-				<mat-form-field class="example-full-width">
-					<mat-label>¿Qué dones está convencido que Dios le ha dado?</mat-label>
-					<textarea matInput formControlName="giftsUnknown" (blur)="saveEnrollmentInfo(4,'giftsUnknown')" required rows="4"></textarea>
-					<mat-error *ngIf="enrollmentInfoFormGroup[4].controls['giftsUnknown'].invalid">
-						Este campo es <strong>requerido</strong>
-					  </mat-error>	
-				</mat-form-field>
-			</div>
+			<mat-form-field class="col-sm-12 example-full-width">
+				<mat-label>¿Qué dones está convencido que Dios le ha dado?</mat-label>
+				<textarea matInput formControlName="giftsUnknown" (blur)="saveEnrollmentInfo(4,'giftsUnknown')" required
+					rows="4"></textarea>
+				<mat-error *ngIf="enrollmentInfoFormGroup[4].controls['giftsUnknown'].invalid">
+					Este campo es <strong>requerido</strong>
+				</mat-error>
+			</mat-form-field>
 		</div>
 		<div class="form-row">
-			<div class="col-sm-12">
-				<mat-form-field class="example-full-width">
-					<mat-label>¿De dónde obtendrá sus ingresos mientras estudia? Sea específico</mat-label>
-					<textarea matInput formControlName="moneyEntry" (blur)="saveEnrollmentInfo(4,'moneyEntry')" required></textarea>
-					<mat-error *ngIf="enrollmentInfoFormGroup[4].controls['giftsKnown'].invalid">
-						Este campo es <strong>requerido</strong>
-					  </mat-error>	
-				</mat-form-field>
-			</div>
+			<mat-form-field class="col-sm-12 example-full-width">
+				<mat-label>¿De dónde obtendrá sus ingresos mientras estudia? Sea específico</mat-label>
+				<textarea matInput formControlName="moneyEntry" (blur)="saveEnrollmentInfo(4,'moneyEntry')"
+					required></textarea>
+				<mat-error *ngIf="enrollmentInfoFormGroup[4].controls['giftsKnown'].invalid">
+					Este campo es <strong>requerido</strong>
+				</mat-error>
+			</mat-form-field>
 		</div>
 		<div class="form-row">
-			<div class="col-sm-12">
-				<mat-form-field class="example-full-width">
-					<mat-label>Describa su vida devocional privada</mat-label>
-					<textarea matInput formControlName="devotionalLife" (blur)="saveEnrollmentInfo(4,'devotionalLife')" required></textarea>
-					<mat-error *ngIf="enrollmentInfoFormGroup[4].controls['devotionalLife'].invalid">
-						Este campo es <strong>requerido</strong>
-					  </mat-error>	
-				</mat-form-field>
-			</div>
+			<mat-form-field class="col-sm-12 example-full-width">
+				<mat-label>Describa su vida devocional privada</mat-label>
+				<textarea matInput formControlName="devotionalLife" (blur)="saveEnrollmentInfo(4,'devotionalLife')"
+					required></textarea>
+				<mat-error *ngIf="enrollmentInfoFormGroup[4].controls['devotionalLife'].invalid">
+					Este campo es <strong>requerido</strong>
+				</mat-error>
+			</mat-form-field>
 		</div>
 		<div class="form-row">
-			<div class="col-sm-12">
-				<mat-checkbox
-					class="example-margin"
-					labelPosition="after"
-					(change)="saveEnrollmentInfo(4,'trustworthyAgreement')"
-					formControlName="trustworthyAgreement">
-					Certifico que la información proporcionada es fidedigna y que nada ha sido ocultado. Entiendo que el hecho de ocultar o falsificar información puede descalificar mi admisión, y estoy dispuesto a mantener las reglas del Seminario tal y como están expresadas en el reglamento de la institución hasta el término de mis estudios.
-				</mat-checkbox>
-			</div>
+			<mat-checkbox class="col-sm-12 example-margin" labelPosition="after"
+				(change)="saveEnrollmentInfo(4,'trustworthyAgreement')" formControlName="trustworthyAgreement">
+				Certifico que la información proporcionada es fidedigna y que nada ha sido ocultado. Entiendo que el
+				hecho de ocultar o falsificar información puede descalificar mi admisión, y estoy dispuesto a mantener
+				las reglas del Seminario tal y como están expresadas en el reglamento de la institución hasta el término
+				de mis estudios.
+			</mat-checkbox>
 		</div>
 		<div class="form-row">
-			<div class="col-sm-12">
-				<mat-checkbox
-					class="example-margin"
-					labelPosition="after"
-					(change)="saveEnrollmentInfo(4,'rulesAgreement')"
-					formControlName="rulesAgreement">
-					<label>Entiendo que la universidad pondrá normas para la seguridad, crecimiento espiritual y feliz convivencia del alumnado prometo apoyar a la administración de la escuela y responsable del área estudiantil en el cumplimiento de las normas establecidas.</label>
-				</mat-checkbox>
-			</div>
+			<mat-checkbox class="col-sm-12 example-margin" labelPosition="after"
+				(change)="saveEnrollmentInfo(4,'rulesAgreement')" formControlName="rulesAgreement">
+				<label>Entiendo que la universidad pondrá normas para la seguridad, crecimiento espiritual y feliz
+					convivencia del alumnado prometo apoyar a la administración de la escuela y responsable del área
+					estudiantil en el cumplimiento de las normas establecidas.</label>
+			</mat-checkbox>
 		</div>
 		<div class="form-row">
-			<div class="col-sm-12">
-				<mat-checkbox
-					class="example-margin"
-					labelPosition="after"
-					(change)="saveEnrollmentInfo(4,'paymentAgreement')"
-					formControlName="paymentAgreement">
-					Enterado de las cuotas que se tendrán que cubrir anual y mensualmente, me comprometo a realizar los pagos, en las fechas establecidas y hasta el término de la carrera.
-				</mat-checkbox>
-			</div>
+			<mat-checkbox class="col-sm-12 example-margin" labelPosition="after"
+				(change)="saveEnrollmentInfo(4,'paymentAgreement')" formControlName="paymentAgreement">
+				Enterado de las cuotas que se tendrán que cubrir anual y mensualmente, me comprometo a realizar los
+				pagos, en las fechas establecidas y hasta el término de la carrera.
+			</mat-checkbox>
 		</div>
 	</form>
 </ng-template>
