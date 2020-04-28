@@ -1,553 +1,552 @@
 <div class="report-body">
-<div class="container">
-<table style="width: 100%;">
-	<thead>
-		<tr>
-			<th>
-					<img class="text-center docs-angular-logo img-fluid" src="../../../../assets/images/logo_seminario_horizontal.png" alt="angular">
-					<span class="headline example-app-name" class="title-header">Sistema de Admisión de Estudiantes</span>
-			</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>
-				<mat-card class="example-card">
-				<form [formGroup]="enrollmentInfoFormGroup[0]" #enrollmentInfoForm0="ngForm">
-					<div class="form-title">Información personal</div>
-					<div class="form-row">
-						<div class="col-sm-4">
-							<mat-form-field class="example-full-width">
-								<mat-label>Nombre(s)</mat-label>
-								<input matInput formControlName="name" (blur)="saveEnrollmentInfo(0,'name')" required>
-							</mat-form-field>
-						</div>
-						<div class="col-sm-4">
-							<mat-form-field class="example-full-width">
-								<mat-label>Apellidos</mat-label>
-								<input matInput formControlName="lastname" required>
-							</mat-form-field>
-						</div>
-						<div class="col-sm-4">
-							<div class="form-row">
-								<div class="col-sm-6">
-									<mat-form-field class="example-full-width">
-										<mat-label>Fecha de nacimiento</mat-label>
-										<input matInput [matDatepicker]="picker" formControlName="bornDate" required>
-										<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-										<mat-datepicker touchUi #picker></mat-datepicker>
-									</mat-form-field>
+	<div class="container">
+		<table style="width: 100%;">
+			<thead>
+				<tr>
+					<th>
+						<span class="row">
+							<span class="col-sm-4"><img class="text-center docs-angular-logo img-fluid"
+									src="../../../../assets/images/logo_seminario_horizontal.png" alt="angular"></span>
+							<span class="col-sm-8" style="align-self: center; text-align: end;"><span
+									class="headline example-app-name" class="title-header">Sistema de Admisión de
+									Estudiantes</span></span>
+						</span>
+						<span class="row"><span class="col-sm-12">
+								<mat-divider></mat-divider>
+							</span></span>
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>
+						<mat-card class="example-card">
+							<form [formGroup]="enrollmentInfoFormGroup[0]" #enrollmentInfoForm0="ngForm">
+								<div class="form-title">Información personal</div>
+								<div class="form-row">
+									<div class="col-sm-4">
+										<mat-form-field class="example-full-width">
+											<mat-label>Nombre(s)</mat-label>
+											<input matInput formControlName="name" (blur)="saveEnrollmentInfo(0,'name')"
+												required>
+										</mat-form-field>
+									</div>
+									<div class="col-sm-4">
+										<mat-form-field class="example-full-width">
+											<mat-label>Apellidos</mat-label>
+											<input matInput formControlName="lastname" required>
+										</mat-form-field>
+									</div>
+									<div class="col-sm-4">
+										<div class="form-row">
+											<div class="col-sm-6">
+												<mat-form-field class="example-full-width">
+													<mat-label>Fecha de nacimiento</mat-label>
+													<input matInput formControlName="bornDate"
+														required>
+												</mat-form-field>
+											</div>
+											<div class="col-sm-6">
+												<mat-form-field class="example-full-width">
+													<mat-label>Sexo</mat-label>
+													<input matInput formControlName="gender"
+														required>
+												</mat-form-field>
+											</div>
+										</div>
+									</div>
 								</div>
-								<div class="col-sm-6">
-									<mat-form-field class="example-full-width">
-										<mat-label>Sexo</mat-label>
-										<mat-select [(value)]="selected" formControlName="gender" required>
-											<mat-option value="Hombre">Hombre</mat-option>
-											<mat-option value="Mujer">Mujer</mat-option>
-										</mat-select>
-									</mat-form-field>
+								<div class="form-row">
+									<div class="col-sm-4">
+										<mat-form-field class="example-full-width">
+											<mat-label>CURP</mat-label>
+											<input matInput formControlName="curp" required>
+										</mat-form-field>
+									</div>
+									<div class="col-sm-4">
+										<mat-form-field class="example-full-width">
+											<mat-label>Estado Civil</mat-label>
+											<input matInput formControlName="maritalStatus" required>
+										</mat-form-field>
+									</div>
+									<div class="col-sm-4">
+										<mat-form-field class="example-full-width">
+											<mat-label>Nacionalidad</mat-label>
+											<input matInput formControlName="nationality" required>
+										</mat-form-field>
+									</div>
 								</div>
-							</div>
-						</div>
-					</div>
-					<div class="form-row">
-						<div class="col-sm-4">
-							<mat-form-field class="example-full-width">
-								<mat-label>CURP</mat-label>
-								<input matInput formControlName="curp" required>
-							</mat-form-field>
-						</div>
-						<div class="col-sm-4">
-							<mat-form-field class="example-full-width">
-								<mat-label>Estado Civil</mat-label>
-								<input matInput formControlName="maritalStatus" required>
-							</mat-form-field>
-						</div>
-						<div class="col-sm-4">
-							<mat-form-field class="example-full-width">
-								<mat-label>Nacionalidad</mat-label>
-								<input matInput formControlName="nationality" required>
-							</mat-form-field>
-						</div>
-					</div>
-					<div class="form-row">
-						<div class="col-sm-12">
-							<mat-form-field class="example-full-width">
-								<mat-label>Dirección</mat-label>
-								<input matInput formControlName="address" required>
-							</mat-form-field>
-						</div>
-					</div>
-					<div class="form-row">
-						<div class="col-sm-4">
-							<mat-form-field class="example-full-width">
-								<mat-label>Ciudad</mat-label>
-								<input matInput formControlName="city" required>
-							</mat-form-field>
-						</div>
-						<div class="col-sm-4">
-							<mat-form-field class="example-full-width">
-								<mat-label>Estado</mat-label>
-								<input matInput formControlName="state" required>
-							</mat-form-field>
-						</div>
-						<div class="col-sm-4">
-							<mat-form-field class="example-full-width">
-								<mat-label>Código postal</mat-label>
-								<input type="number" matInput formControlName="zipCode" required>
-							</mat-form-field>
-						</div>
-					</div>
-					<div class="form-row">
-						<div class="col-sm-6">
-							<mat-form-field class="example-full-width">
-								<mat-label>Teléfono</mat-label>
-								<input type="tel" matInput formControlName="phone" required>
-							</mat-form-field>
-						</div>
-						<div class="col-sm-6">
-							<mat-form-field class="example-full-width">
-								<mat-label>Celular</mat-label>
-								<input type="tel" matInput formControlName="cellphone" required>
-							</mat-form-field>
-						</div>
-					</div>
-					<div class="form-row">
-						<div class="col-sm-6">
-							<mat-checkbox class="example-margin" labelPosition="before" formControlName="disability">
-								¿Sufre alguna discapacidad?
-							</mat-checkbox>
-						</div>
-						<div class="col-sm-6">
-							<mat-form-field class="example-full-width">
-								<mat-label>Especifique su discapacidad</mat-label>
-								<input matInput formControlName="disabilityDescription"
-									[required]="enrollmentInfoFormGroup[0].controls['disability'].value">
-							</mat-form-field>
-						</div>
-					</div>
-				</form>	
-				</mat-card>			
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<mat-card class="example-card">
-				<form [formGroup]="enrollmentInfoFormGroup[1]" #enrollmentInfoForm1="ngForm">
-					<div class="form-title">Información profesional y académica</div>
-					<div class="form-row">
-						<div class="col-sm-4">
-							<mat-form-field class="example-full-width">
-								<mat-label>Secundaria</mat-label>
-								<input matInput formControlName="highschoolName" required>
-							</mat-form-field>
-						</div>
-						<div class="col-sm-4">
-							<mat-form-field class="example-full-width">
-								<mat-label>Año de inicio</mat-label>
-								<input type="number" matInput formControlName="highschoolStartYear" required>
-							</mat-form-field>
-						</div>
-						<div class="col-sm-4">
-							<mat-form-field class="example-full-width">
-								<mat-label>Año de fin</mat-label>
-								<input type="number" matInput formControlName="highschoolEndYear" required>
-							</mat-form-field>
-						</div>
-					</div>
-					<div class="form-row">
-						<div class="col-sm-4">
-							<mat-form-field class="example-full-width">
-								<mat-label>Grado de estudios</mat-label>
-								<mat-select [(value)]="selected" formControlName="academicDegree" required>
-									<mat-option value="Preparatoria">Preparatoria</mat-option>
-									<mat-option value="Licenciatura">Licenciatura</mat-option>
-									<mat-option value="Maestria">Maestría</mat-option>
-									<mat-option value="Tecnica">Carrera técnica</mat-option>
-								</mat-select>
-							</mat-form-field>
-						</div>
-						<div class="col-sm-4">
-							<mat-form-field class="example-full-width">
-								<mat-label>Año de inicio</mat-label>
-								<input type="number" matInput formControlName="academicDegreeStartYear" required>
-							</mat-form-field>
-						</div>
-						<div class="col-sm-4">
-							<mat-form-field class="example-full-width">
-								<mat-label>Año de fin</mat-label>
-								<input type="number" matInput formControlName="academicDegreeEndYear" required>
-							</mat-form-field>
-						</div>
-					</div>
-					<div class="form-row">
-						<div class="col-sm-4">
-							<label id="example-radio-group-label">¿Estudió en algún seminario o instituto bíblico?</label>
-							<mat-radio-group aria-label="Seleccione una opción" formControlName="theologicalStudy" required>
-								<mat-radio-button value="Yes">Sí</mat-radio-button>
-								<mat-radio-button value="No">No</mat-radio-button>
-							</mat-radio-group>
-						</div>
-						<div class="col-sm-4">
-							<mat-form-field class="example-full-width">
-								<mat-label>Nombre de la institución</mat-label>
-								<input matInput formControlName="theologicalInstitutionName">
-							</mat-form-field>
-						</div>
-						<div class="col-sm-4">
-							<mat-form-field class="example-full-width">
-								<mat-label>Título recibido</mat-label>
-								<input matInput formControlName="theologicalDegree">
-							</mat-form-field>
-						</div>
-					</div>
-					<div class="form-row">
-						<div class="col-sm-12">
-							<mat-form-field class="example-full-width">
-								<mat-label>Describa los diplomados que haya recibido</mat-label>
-								<textarea 
-								cdkTextareaAutosize matInput 
-								cdkAutosizeMinRows="1"
-								cdkAutosizeMaxRows="15"
-								formControlName="certifications"></textarea>
-							</mat-form-field>
-						</div>
-					</div>
-					<div class="form-row">
-						<div class="col-sm-4">
-							<mat-form-field class="example-full-width">
-								<mat-label>Ocupación actual</mat-label>
-								<input matInput formControlName="occupation" required>
-							</mat-form-field>
-						</div>
-						<div class="col-sm-4">
-							<mat-form-field class="example-full-width">
-								<mat-label>Antecedentes laborales</mat-label>
-								<input matInput formControlName="workHistory" required>
-							</mat-form-field>
-						</div>
-						<div class="col-sm-4">
-							<mat-form-field class="example-full-width">
-								<mat-label>Habilidades y/o talentos</mat-label>
-								<input matInput formControlName="abilities" required>
-							</mat-form-field>
-						</div>
-					</div>
-					<div class="form-row">
-						<div class="col-sm-4">
-							<mat-label>Porcentaje de inglés</mat-label>
-							<mat-slider class="example-margin" max=100 min=0 step=5 thumbLabel=true tickInterval=5
-								formControlName="englishLevel" required>
-							</mat-slider>
-						</div>
-					</div>
-				</form>
-				</mat-card>
+								<div class="form-row">
+									<div class="col-sm-12">
+										<mat-form-field class="example-full-width">
+											<mat-label>Dirección</mat-label>
+											<input matInput formControlName="address" required>
+										</mat-form-field>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="col-sm-4">
+										<mat-form-field class="example-full-width">
+											<mat-label>Ciudad</mat-label>
+											<input matInput formControlName="city" required>
+										</mat-form-field>
+									</div>
+									<div class="col-sm-4">
+										<mat-form-field class="example-full-width">
+											<mat-label>Estado</mat-label>
+											<input matInput formControlName="state" required>
+										</mat-form-field>
+									</div>
+									<div class="col-sm-4">
+										<mat-form-field class="example-full-width">
+											<mat-label>Código postal</mat-label>
+											<input type="number" matInput formControlName="zipCode" required>
+										</mat-form-field>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="col-sm-6">
+										<mat-form-field class="example-full-width">
+											<mat-label>Teléfono</mat-label>
+											<input type="tel" matInput formControlName="phone" required>
+										</mat-form-field>
+									</div>
+									<div class="col-sm-6">
+										<mat-form-field class="example-full-width">
+											<mat-label>Celular</mat-label>
+											<input type="tel" matInput formControlName="cellphone" required>
+										</mat-form-field>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="col-sm-6">
+										<mat-checkbox class="example-margin" labelPosition="before"
+											formControlName="disability">
+											¿Sufre alguna discapacidad?
+										</mat-checkbox>
+									</div>
+									<div class="col-sm-6">
+										<mat-form-field class="example-full-width">
+											<mat-label>Especifique su discapacidad</mat-label>
+											<input matInput formControlName="disabilityDescription"
+												[required]="enrollmentInfoFormGroup[0].controls['disability'].value">
+										</mat-form-field>
+									</div>
+								</div>
+							</form>
+						</mat-card>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<mat-card class="example-card">
+							<form [formGroup]="enrollmentInfoFormGroup[1]" #enrollmentInfoForm1="ngForm">
+								<div class="form-title">Información profesional y académica</div>
+								<div class="form-row">
+									<div class="col-sm-4">
+										<mat-form-field class="example-full-width">
+											<mat-label>Secundaria</mat-label>
+											<input matInput formControlName="highschoolName" required>
+										</mat-form-field>
+									</div>
+									<div class="col-sm-4">
+										<mat-form-field class="example-full-width">
+											<mat-label>Año de inicio</mat-label>
+											<input type="number" matInput formControlName="highschoolStartYear"
+												required>
+										</mat-form-field>
+									</div>
+									<div class="col-sm-4">
+										<mat-form-field class="example-full-width">
+											<mat-label>Año de fin</mat-label>
+											<input type="number" matInput formControlName="highschoolEndYear" required>
+										</mat-form-field>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="col-sm-4">
+										<mat-form-field class="example-full-width">
+											<mat-label>Grado de estudios</mat-label>
+											<input matInput formControlName="academicDegree" required>
+										</mat-form-field>
+									</div>
+									<div class="col-sm-4">
+										<mat-form-field class="example-full-width">
+											<mat-label>Año de inicio</mat-label>
+											<input type="number" matInput formControlName="academicDegreeStartYear"
+												required>
+										</mat-form-field>
+									</div>
+									<div class="col-sm-4">
+										<mat-form-field class="example-full-width">
+											<mat-label>Año de fin</mat-label>
+											<input type="number" matInput formControlName="academicDegreeEndYear"
+												required>
+										</mat-form-field>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="col-sm-4">
+										<div><label id="example-radio-group-label">¿Estudió en algún seminario o
+												instituto bíblico?</label></div>
+										<mat-radio-group aria-label="Seleccione una opción"
+											formControlName="theologicalStudy" required>
+											<mat-radio-button value="Yes">Sí</mat-radio-button>
+											<mat-radio-button value="No">No</mat-radio-button>
+										</mat-radio-group>
+									</div>
+									<div class="col-sm-4">
+										<mat-form-field class="example-full-width">
+											<mat-label>Nombre de la institución</mat-label>
+											<input matInput formControlName="theologicalInstitutionName">
+										</mat-form-field>
+									</div>
+									<div class="col-sm-4">
+										<mat-form-field class="example-full-width">
+											<mat-label>Título recibido</mat-label>
+											<input matInput formControlName="theologicalDegree">
+										</mat-form-field>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="col-sm-12">
+										<mat-form-field class="example-full-width">
+											<mat-label>Describa los diplomados que haya recibido</mat-label>
+											<textarea cdkTextareaAutosize matInput cdkAutosizeMinRows="1"
+												cdkAutosizeMaxRows="15" formControlName="certifications"></textarea>
+										</mat-form-field>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="col-sm-4">
+										<mat-form-field class="example-full-width">
+											<mat-label>Ocupación actual</mat-label>
+											<input matInput formControlName="occupation" required>
+										</mat-form-field>
+									</div>
+									<div class="col-sm-4">
+										<mat-form-field class="example-full-width">
+											<mat-label>Antecedentes laborales</mat-label>
+											<input matInput formControlName="workHistory" required>
+										</mat-form-field>
+									</div>
+									<div class="col-sm-4">
+										<mat-form-field class="example-full-width">
+											<mat-label>Habilidades y/o talentos</mat-label>
+											<input matInput formControlName="abilities" required>
+										</mat-form-field>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="col-sm-12">
+										<mat-form-field class="example-full-width">
+										<mat-label>Porcentaje de inglés</mat-label>
+										<input matInput formControlName="englishLevel" required>
+										<span matSuffix>%</span>
+										</mat-form-field>
+									</div>
+								</div>
+							</form>
+						</mat-card>
 
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<mat-card class="example-card">
-				<form [formGroup]="enrollmentInfoFormGroup[2]" #enrollmentInfoForm2="ngForm">
-					<div class="form-title">Experiencia cristiana</div>
-					<div class="form-row">
-						<div class="col-sm-6">
-							<mat-form-field class="example-full-width">
-								<mat-label>Fecha de conversión</mat-label>
-								<input matInput [matDatepicker]="newbirthPicker" formControlName="newbirthDate" required>
-								<mat-datepicker-toggle matSuffix [for]="newbirthPicker"></mat-datepicker-toggle>
-								<mat-datepicker touchUi #newbirthPicker></mat-datepicker>
-							</mat-form-field>
-						</div>
-						<div class="col-sm-6">
-							<mat-form-field class="example-full-width">
-								<mat-label>Fecha de bautismo</mat-label>
-								<!-- <input matInput formControlName="baptismDate" required> -->
-								<input matInput [matDatepicker]="baptismPicker" formControlName="baptismDate" required>
-								<mat-datepicker-toggle matSuffix [for]="baptismPicker"></mat-datepicker-toggle>
-								<mat-datepicker touchUi #baptismPicker></mat-datepicker>
-							</mat-form-field>
-						</div>
-					</div>
-					<div class="form-row">
-						<div class="col-sm-4">
-							<mat-form-field class="example-full-width">
-								<mat-label>Nombre de iglesia actual</mat-label>
-								<input matInput formControlName="churchName" required>
-							</mat-form-field>
-						</div>
-						<div class="col-sm-4">
-							<mat-form-field class="example-full-width">
-								<mat-label>Denominación</mat-label>
-								<input matInput formControlName="denomination" required>
-							</mat-form-field>
-						</div>
-						<div class="col-sm-4">
-							<mat-form-field class="example-full-width">
-								<mat-label>Nombre del pastor principal</mat-label>
-								<input matInput formControlName="pastorName" required>
-							</mat-form-field>
-						</div>
-					</div>
-					<div class="form-row">
-						<div class="col-sm-6">
-							<mat-form-field class="example-full-width">
-								<mat-label>Dirección</mat-label>
-								<input matInput formControlName="churchAddress" required>
-							</mat-form-field>
-						</div>
-						<div class="col-sm-6">
-							<mat-form-field class="example-full-width">
-								<mat-label>Teléfono</mat-label>
-								<input matInput formControlName="churchPhone" required>
-							</mat-form-field>
-						</div>
-					</div>
-					<div class="form-row">
-						<div class="col-sm-4">
-							<mat-form-field class="example-full-width">
-								<mat-label>Ciudad</mat-label>
-								<input matInput formControlName="churchCity">
-							</mat-form-field>
-						</div>
-						<div class="col-sm-4">
-							<mat-form-field class="example-full-width">
-								<mat-label>Estado</mat-label>
-								<input matInput formControlName="churchState" required>
-							</mat-form-field>
-						</div>
-						<div class="col-sm-4">
-							<mat-form-field class="example-full-width">
-								<mat-label>Código postal</mat-label>
-								<input type="number" matInput formControlName="churchZipCode" required>
-							</mat-form-field>
-						</div>
-					</div>
-					<div class="form-row">
-						<div class="col-sm-12">
-							<mat-form-field class="example-full-width">
-								<mat-label>Describa a grandes razgos la vida de su iglesia</mat-label>
-								<textarea 
-								cdkTextareaAutosize matInput 
-								cdkAutosizeMinRows="1"
-								cdkAutosizeMaxRows="15" matInput formControlName="churchLifeDescription" required></textarea>
-							</mat-form-field>
-						</div>
-						<div class="col-sm-12">
-							<mat-form-field class="example-full-width">
-								<mat-label>Describa los ministerios que ha desarrollado y el tiempo invertido</mat-label>
-								<textarea 
-								cdkTextareaAutosize matInput 
-								cdkAutosizeMinRows="1"
-								cdkAutosizeMaxRows="15" matInput formControlName="churchMinistres" required></textarea>
-							</mat-form-field>
-						</div>
-					</div>
-				</form>
-				</mat-card>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<mat-card class="example-card">
-				<form [formGroup]="enrollmentInfoFormGroup[3]" #enrollmentInfoForm3="ngForm">
-					<div class="form-title">Datos del tutor</div>
-					<div class="form-row">
-						<div class="col-sm-6">
-							<mat-form-field class="example-full-width">
-								<mat-label>Nombre</mat-label>
-								<input matInput formControlName="name" required>
-							</mat-form-field>
-						</div>
-						<div class="col-sm-6">
-							<mat-form-field class="example-full-width">
-								<mat-label>Apellidos</mat-label>
-								<input matInput formControlName="lastname" required>
-							</mat-form-field>
-						</div>
-					</div>
-					<div class="form-row">
-						<div class="col-sm-6">
-							<mat-form-field class="example-full-width">
-								<mat-label>Escolaridad</mat-label>
-								<input matInput formControlName="academicDegree" required>
-							</mat-form-field>
-						</div>
-						<div class="col-sm-6">
-							<mat-form-field class="example-full-width">
-								<mat-label>Ocupación</mat-label>
-								<input matInput formControlName="occupation" required>
-							</mat-form-field>
-						</div>
-					</div>
-					<div class="form-row">
-						<div class="col-sm-6">
-							<mat-form-field class="example-full-width">
-								<mat-label>Dirección</mat-label>
-								<input matInput formControlName="address" required>
-							</mat-form-field>
-						</div>
-						<div class="col-sm-6">
-							<mat-form-field class="example-full-width">
-								<mat-label>Teléfono</mat-label>
-								<input matInput formControlName="phone" required>
-							</mat-form-field>
-						</div>
-					</div>
-					<div class="form-row">
-						<div class="col-sm-4">
-							<mat-form-field class="example-full-width">
-								<mat-label>Ciudad</mat-label>
-								<input matInput formControlName="city" required>
-							</mat-form-field>
-						</div>
-						<div class="col-sm-4">
-							<mat-form-field class="example-full-width">
-								<mat-label>Estado</mat-label>
-								<input matInput formControlName="state" required>
-							</mat-form-field>
-						</div>
-						<div class="col-sm-4">
-							<mat-form-field class="example-full-width">
-								<mat-label>Código postal</mat-label>
-								<input type="number" matInput formControlName="zipCode" required>
-							</mat-form-field>
-						</div>
-					</div>
-					<div class="form-row">
-						<div class="col-sm-12">
-							<label id="example-radio-group-label">¿Son sus padres cristianos?</label>
-							<mat-radio-group aria-label="Seleccione una opción" class="radio-style" formControlName="christianParents"
-								required>
-								<mat-radio-button value="Yes">Sí</mat-radio-button>
-								<mat-radio-button value="No">No</mat-radio-button>
-							</mat-radio-group>
-						</div>
-					</div>
-				</form>
-				</mat-card>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<mat-card class="example-card">
-				<form [formGroup]="enrollmentInfoFormGroup[4]" #enrollmentInfoForm4="ngForm">
-					<div class="form-title">Datos para la institución</div>
-					<div class="form-row">
-						<div class="col-sm-12">
-							<mat-form-field class="example-full-width">
-								<mat-label>Seleccione el programa a cursar</mat-label>
-								<mat-select [(value)]="selected" formControlName="programTarget" required>
-									<mat-option value="Certificado en Ministerio">Certificado en Ministerio</mat-option>
-									<mat-option value="Bachillerato en Ministerio">Bachillerato en Ministerio</mat-option>
-									<mat-option value="Licenciatura en teología STN">Licenciatura en teología STN</mat-option>
-									<mat-option value="Licenciatura en teología acreditada por la SEP">Licenciatura en teología
-										acreditada por la SEP</mat-option>
-									<mat-option value="Técnico profesional en música y adoración">Técnico profesional en música y
-										adoración</mat-option>
-								</mat-select>
-							</mat-form-field>
-						</div>
-					</div>
-					<div class="form-row">
-						<div class="col-sm-12">
-							<mat-form-field class="example-full-width">
-								<mat-label>¿Por qué escogió nuestro seminario para cursar sus estuios teológicos?</mat-label>
-								<textarea 
-								cdkTextareaAutosize matInput 
-								cdkAutosizeMinRows="1"
-								cdkAutosizeMaxRows="15" matInput formControlName="seminaryReason" required></textarea>
-							</mat-form-field>
-						</div>
-					</div>
-					<div class="form-row">
-						<div class="col-sm-12">
-							<mat-form-field class="example-full-width">
-								<mat-label>¿Cómo se enteró del Seminario Todas las Naciones?</mat-label>
-								<textarea 
-								cdkTextareaAutosize matInput 
-								cdkAutosizeMinRows="1"
-								cdkAutosizeMaxRows="15" matInput formControlName="seminaryKnow" required></textarea>
-							</mat-form-field>
-						</div>
-					</div>
-					<div class="form-row">
-						<div class="col-sm-12">
-							<mat-form-field class="example-full-width">
-								<mat-label>¿Qué dones está convencido que Dios le ha dado?</mat-label>
-								<textarea 
-								cdkTextareaAutosize matInput 
-								cdkAutosizeMinRows="1"
-								cdkAutosizeMaxRows="15" matInput formControlName="giftsKnown" required></textarea>
-							</mat-form-field>
-						</div>
-					</div>
-					<div class="form-row">
-						<div class="col-sm-12">
-							<mat-form-field class="example-full-width">
-								<mat-label>¿Qué dones está convencido que Dios le ha dado?</mat-label>
-								<textarea 
-								cdkTextareaAutosize matInput 
-								cdkAutosizeMinRows="1"
-								cdkAutosizeMaxRows="15" matInput formControlName="giftsUnknown" required></textarea>
-							</mat-form-field>
-						</div>
-					</div>
-					<div class="form-row">
-						<div class="col-sm-12">
-							<mat-form-field class="example-full-width">
-								<mat-label>¿De dónde obtendrá sus ingresos mientras estudia? Sea específico</mat-label>
-								<textarea 
-								cdkTextareaAutosize matInput 
-								cdkAutosizeMinRows="1"
-								cdkAutosizeMaxRows="15" matInput formControlName="moneyEntry" required></textarea>
-							</mat-form-field>
-						</div>
-					</div>
-					<div class="form-row">
-						<div class="col-sm-12">
-							<mat-form-field class="example-full-width">
-								<mat-label>Describa su vida devocional privada</mat-label>
-								<textarea 
-								cdkTextareaAutosize matInput 
-								cdkAutosizeMinRows="1"
-								cdkAutosizeMaxRows="15" matInput formControlName="devotionalLife" required></textarea>
-							</mat-form-field>
-						</div>
-					</div>
-					<div class="form-row">
-						<div class="col-sm-12">
-							<mat-checkbox class="example-margin" labelPosition="after" formControlName="trustworthyAgreement">
-								Certifico que la información proporcionada es fidedigna y que nada ha sido ocultado. Entiendo que el
-								hecho de ocultar o falsificar información puede descalificar mi admisión, y estoy dispuesto a mantener
-								las reglas del Seminario tal y como están expresadas en el reglamento de la institución hasta el término
-								de mis estudios.
-							</mat-checkbox>
-						</div>
-					</div>
-					<div class="form-row">
-						<div class="col-sm-12">
-							<mat-checkbox class="example-margin" labelPosition="after" formControlName="rulesAgreement">
-								<label>Entiendo que la universidad pondrá normas para la seguridad, crecimiento espiritual y feliz
-									convivencia del alumnado prometo apoyar a la administración de la escuela y responsable del área
-									estudiantil en el cumplimiento de las normas establecidas.</label>
-							</mat-checkbox>
-						</div>
-					</div>
-					<div class="form-row">
-						<div class="col-sm-12">
-							<mat-checkbox class="example-margin" labelPosition="after" formControlName="paymentAgreement">
-								Enterado de las cuotas que se tendrán que cubrir anual y mensualmente, me comprometo a realizar los
-								pagos, en las fechas establecidas y hasta el término de la carrera.
-							</mat-checkbox>
-						</div>
-					</div>
-				</form>
-				</mat-card>
-			</td>
-		</tr>
-	</tbody>
-</table>
-</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<mat-card class="example-card">
+							<form [formGroup]="enrollmentInfoFormGroup[2]" #enrollmentInfoForm2="ngForm">
+								<div class="form-title">Experiencia cristiana</div>
+								<div class="form-row">
+									<div class="col-sm-6">
+										<mat-form-field class="example-full-width">
+											<mat-label>Fecha de conversión</mat-label>
+											<input matInput
+												formControlName="newbirthDate" required>
+										</mat-form-field>
+									</div>
+									<div class="col-sm-6">
+										<mat-form-field class="example-full-width">
+											<mat-label>Fecha de bautismo</mat-label>
+											<!-- <input matInput formControlName="baptismDate" required> -->
+											<input matInput 
+												formControlName="baptismDate" required>
+										</mat-form-field>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="col-sm-4">
+										<mat-form-field class="example-full-width">
+											<mat-label>Nombre de iglesia actual</mat-label>
+											<input matInput formControlName="churchName" required>
+										</mat-form-field>
+									</div>
+									<div class="col-sm-4">
+										<mat-form-field class="example-full-width">
+											<mat-label>Denominación</mat-label>
+											<input matInput formControlName="denomination" required>
+										</mat-form-field>
+									</div>
+									<div class="col-sm-4">
+										<mat-form-field class="example-full-width">
+											<mat-label>Nombre del pastor principal</mat-label>
+											<input matInput formControlName="pastorName" required>
+										</mat-form-field>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="col-sm-6">
+										<mat-form-field class="example-full-width">
+											<mat-label>Dirección</mat-label>
+											<input matInput formControlName="churchAddress" required>
+										</mat-form-field>
+									</div>
+									<div class="col-sm-6">
+										<mat-form-field class="example-full-width">
+											<mat-label>Teléfono</mat-label>
+											<input matInput formControlName="churchPhone" required>
+										</mat-form-field>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="col-sm-4">
+										<mat-form-field class="example-full-width">
+											<mat-label>Ciudad</mat-label>
+											<input matInput formControlName="churchCity">
+										</mat-form-field>
+									</div>
+									<div class="col-sm-4">
+										<mat-form-field class="example-full-width">
+											<mat-label>Estado</mat-label>
+											<input matInput formControlName="churchState" required>
+										</mat-form-field>
+									</div>
+									<div class="col-sm-4">
+										<mat-form-field class="example-full-width">
+											<mat-label>Código postal</mat-label>
+											<input type="number" matInput formControlName="churchZipCode" required>
+										</mat-form-field>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="col-sm-12">
+										<mat-form-field class="example-full-width">
+											<mat-label>Describa a grandes razgos la vida de su iglesia</mat-label>
+											<textarea cdkTextareaAutosize matInput cdkAutosizeMinRows="1"
+												cdkAutosizeMaxRows="15" matInput formControlName="churchLifeDescription"
+												required></textarea>
+										</mat-form-field>
+									</div>
+									<div class="col-sm-12">
+										<mat-form-field class="example-full-width">
+											<mat-label>Describa los ministerios que ha desarrollado y el tiempo
+												invertido</mat-label>
+											<textarea cdkTextareaAutosize matInput cdkAutosizeMinRows="1"
+												cdkAutosizeMaxRows="15" matInput formControlName="churchMinistres"
+												required></textarea>
+										</mat-form-field>
+									</div>
+								</div>
+							</form>
+						</mat-card>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<mat-card class="example-card">
+							<form [formGroup]="enrollmentInfoFormGroup[3]" #enrollmentInfoForm3="ngForm">
+								<div class="form-title">Datos del tutor</div>
+								<div class="form-row">
+									<div class="col-sm-6">
+										<mat-form-field class="example-full-width">
+											<mat-label>Nombre</mat-label>
+											<input matInput formControlName="name" required>
+										</mat-form-field>
+									</div>
+									<div class="col-sm-6">
+										<mat-form-field class="example-full-width">
+											<mat-label>Apellidos</mat-label>
+											<input matInput formControlName="lastname" required>
+										</mat-form-field>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="col-sm-6">
+										<mat-form-field class="example-full-width">
+											<mat-label>Escolaridad</mat-label>
+											<input matInput formControlName="academicDegree" required>
+										</mat-form-field>
+									</div>
+									<div class="col-sm-6">
+										<mat-form-field class="example-full-width">
+											<mat-label>Ocupación</mat-label>
+											<input matInput formControlName="occupation" required>
+										</mat-form-field>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="col-sm-6">
+										<mat-form-field class="example-full-width">
+											<mat-label>Dirección</mat-label>
+											<input matInput formControlName="address" required>
+										</mat-form-field>
+									</div>
+									<div class="col-sm-6">
+										<mat-form-field class="example-full-width">
+											<mat-label>Teléfono</mat-label>
+											<input matInput formControlName="phone" required>
+										</mat-form-field>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="col-sm-4">
+										<mat-form-field class="example-full-width">
+											<mat-label>Ciudad</mat-label>
+											<input matInput formControlName="city" required>
+										</mat-form-field>
+									</div>
+									<div class="col-sm-4">
+										<mat-form-field class="example-full-width">
+											<mat-label>Estado</mat-label>
+											<input matInput formControlName="state" required>
+										</mat-form-field>
+									</div>
+									<div class="col-sm-4">
+										<mat-form-field class="example-full-width">
+											<mat-label>Código postal</mat-label>
+											<input type="number" matInput formControlName="zipCode" required>
+										</mat-form-field>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="col-sm-12">
+										<label id="example-radio-group-label">¿Son sus padres cristianos?</label>
+										<mat-radio-group aria-label="Seleccione una opción" class="radio-style"
+											formControlName="christianParents" required>
+											<mat-radio-button value="Yes">Sí</mat-radio-button>
+											<mat-radio-button value="No">No</mat-radio-button>
+										</mat-radio-group>
+									</div>
+								</div>
+							</form>
+						</mat-card>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<mat-card class="example-card">
+							<form [formGroup]="enrollmentInfoFormGroup[4]" #enrollmentInfoForm4="ngForm">
+								<div class="form-title">Datos para la institución</div>
+								<div class="form-row">
+									<div class="col-sm-12">
+										<mat-form-field class="example-full-width">
+											<mat-label>Programa a cursar</mat-label>
+											<input matInput formControlName="programTarget" required>
+										</mat-form-field>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="col-sm-12">
+										<mat-form-field class="example-full-width">
+											<mat-label>¿Por qué escogió nuestro seminario para cursar sus estuios
+												teológicos?</mat-label>
+											<textarea cdkTextareaAutosize matInput cdkAutosizeMinRows="1"
+												cdkAutosizeMaxRows="15" matInput formControlName="seminaryReason"
+												required></textarea>
+										</mat-form-field>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="col-sm-12">
+										<mat-form-field class="example-full-width">
+											<mat-label>¿Cómo se enteró del Seminario Todas las Naciones?</mat-label>
+											<textarea cdkTextareaAutosize matInput cdkAutosizeMinRows="1"
+												cdkAutosizeMaxRows="15" matInput formControlName="seminaryKnow"
+												required></textarea>
+										</mat-form-field>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="col-sm-12">
+										<mat-form-field class="example-full-width">
+											<mat-label>¿Qué dones está convencido que Dios le ha dado?</mat-label>
+											<textarea cdkTextareaAutosize matInput cdkAutosizeMinRows="1"
+												cdkAutosizeMaxRows="15" matInput formControlName="giftsKnown"
+												required></textarea>
+										</mat-form-field>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="col-sm-12">
+										<mat-form-field class="example-full-width">
+											<mat-label>¿Qué dones está convencido que Dios le ha dado?</mat-label>
+											<textarea cdkTextareaAutosize matInput cdkAutosizeMinRows="1"
+												cdkAutosizeMaxRows="15" matInput formControlName="giftsUnknown"
+												required></textarea>
+										</mat-form-field>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="col-sm-12">
+										<mat-form-field class="example-full-width">
+											<mat-label>¿De dónde obtendrá sus ingresos mientras estudia? Sea específico
+											</mat-label>
+											<textarea cdkTextareaAutosize matInput cdkAutosizeMinRows="1"
+												cdkAutosizeMaxRows="15" matInput formControlName="moneyEntry"
+												required></textarea>
+										</mat-form-field>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="col-sm-12">
+										<mat-form-field class="example-full-width">
+											<mat-label>Describa su vida devocional privada</mat-label>
+											<textarea cdkTextareaAutosize matInput cdkAutosizeMinRows="1"
+												cdkAutosizeMaxRows="15" matInput formControlName="devotionalLife"
+												required></textarea>
+										</mat-form-field>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="col-sm-12">
+										<mat-checkbox class="example-margin" labelPosition="after"
+											formControlName="trustworthyAgreement">
+											Certifico que la información proporcionada es fidedigna y que nada ha sido
+											ocultado. Entiendo que el
+											hecho de ocultar o falsificar información puede descalificar mi admisión, y
+											estoy dispuesto a mantener
+											las reglas del Seminario tal y como están expresadas en el reglamento de la
+											institución hasta el término
+											de mis estudios.
+										</mat-checkbox>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="col-sm-12">
+										<mat-checkbox class="example-margin" labelPosition="after"
+											formControlName="rulesAgreement">
+											<label>Entiendo que la universidad pondrá normas para la seguridad,
+												crecimiento espiritual y feliz
+												convivencia del alumnado prometo apoyar a la administración de la
+												escuela y responsable del área
+												estudiantil en el cumplimiento de las normas establecidas.</label>
+										</mat-checkbox>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="col-sm-12">
+										<mat-checkbox class="example-margin" labelPosition="after"
+											formControlName="paymentAgreement">
+											Enterado de las cuotas que se tendrán que cubrir anual y mensualmente, me
+											comprometo a realizar los
+											pagos, en las fechas establecidas y hasta el término de la carrera.
+										</mat-checkbox>
+									</div>
+								</div>
+							</form>
+						</mat-card>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 </div>

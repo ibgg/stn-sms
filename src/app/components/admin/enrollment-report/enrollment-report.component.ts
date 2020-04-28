@@ -4,11 +4,13 @@ import { EnrollmentServiceService } from 'src/app/shared/services/db/enrollment-
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ActivatedRoute } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 @Component({
 	selector: 'app-enrollment-report',
 	templateUrl: './enrollment-report.component.html',
-	styleUrls: ['./enrollment-report.component.css']
+	styleUrls: ['./enrollment-report.component.css'],
+	providers: [ DatePipe ] 
 })
 export class EnrollmentReportComponent implements OnInit, AfterViewInit {
 	private mobileQuery: MediaQueryList;
@@ -21,7 +23,8 @@ export class EnrollmentReportComponent implements OnInit, AfterViewInit {
 	constructor(private formBuilder: FormBuilder,
 		private enrollmentService: EnrollmentServiceService,
 		changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,
-		private route: ActivatedRoute
+		private route: ActivatedRoute,
+		private datePipe: DatePipe
 	) {
 		this.mobileQuery = media.matchMedia('(max-width: 600px)');
 		this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -29,18 +32,15 @@ export class EnrollmentReportComponent implements OnInit, AfterViewInit {
 	}
 
 	ngOnInit(): void {
-		console.log(this.route.snapshot.params.student);
 		this.userId = this.route.snapshot.params.student;
 		this.initializeForms();
 	}
 
 	ngAfterViewInit() {
-		console.log("---ngAfterViewInit()---");
 		this.fillForms();
 	}
 
 	private async initializeForms() {
-		console.log("report for userid", this.userId);
 		this.enrollmentService.setUserId(this.userId);
 
 		this.enrollmentInfoFormGroup[0] = this.formBuilder.group({
@@ -122,28 +122,29 @@ export class EnrollmentReportComponent implements OnInit, AfterViewInit {
 	}
 
 	private fillForms(): void {
-		console.log("Trying fill form...", this.userId);
 		for (let i = 0; i < this.enrollmentInfoFormGroup.length; i++) {
 			this.enrollmentService.getEnrollmentInformation(i).then(snap => {
-				console.log(snap.data());
 				if (snap.data() != undefined && snap.data() != null) {
 					this.enrollmentInfoFormGroup[i].patchValue(snap.data());
 					for (let key in snap.data()) {
 						if (snap.data()[key] != null && snap.data()[key] != null && (snap.data()[key].constructor.name == "Timestamp" || snap.data()[key].constructor.name == 't')) {
 							snap.data()[key].seconds += 100;
-							this.enrollmentInfoFormGroup[i].get(key).setValue(snap.data()[key].toDate());
+							this.enrollmentInfoFormGroup[i].get(key).setValue(this.datePipe.transform(snap.data()[key].toDate(), 'yyyy-MM-dd'));
+							//; 
 						}
-						this.enrollmentInfoFormGroup[i].get(key).disable();
 					}
 					this.enrollmentInfoFormGroup[i].markAsDirty();
-
+					//this.enrollmentInfoFormGroup[i].disable();
 					this.filledOneTest = true;
+				}else{
+					//this.enrollmentInfoFormGroup[i].disable();
 				}
+				this.enrollmentInfoFormGroup[i].disable();
 				if (this.enrollmentInfoFormGroup[i].invalid && !this.enrollmentInfoFormGroup[0].invalid && this.selectedIndex < 1) {
 					this.selectedIndex = i;
 				}
 			});
-			this.enrollmentInfoFormGroup[i].disable();
+			//this.enrollmentInfoFormGroup[i].disable();
 		}
 	}
 }
