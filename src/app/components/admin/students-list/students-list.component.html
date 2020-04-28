@@ -37,7 +37,7 @@
 	
 		  <ng-container matColumnDef="biblicalTestCompleteness">
 			<mat-header-cell *matHeaderCellDef class="students-list-header mat-column-percents"> % Test Bíblico </mat-header-cell>
-			<mat-cell *matCellDef="let student" data-label="% Test Bíblico" class="mat-column-percents"><a target="_blank" [routerLink]="'/enrollment-report/'+student.uid"><mat-icon class="material-icons primary" style="margin-right: 5px;">launch</mat-icon></a> {{ student.biblicalTestCompleteness }} </mat-cell>
+			<mat-cell *matCellDef="let student" data-label="% Test Bíblico" class="mat-column-percents"><a target="_blank" [routerLink]="'/biblical-test-report/'+student.uid"><mat-icon class="material-icons primary" style="margin-right: 5px;">launch</mat-icon></a> {{ student.biblicalTestCompleteness }} </mat-cell>
 		  </ng-container>
 	
 		  <ng-container matColumnDef="agreementCompleteness">

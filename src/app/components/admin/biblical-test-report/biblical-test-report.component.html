@@ -1,0 +1,388 @@
+<div class="report-body">
+	<div class="container">
+		<table style="width: 100%;">
+			<thead>
+				<tr>
+					<th>
+						<span class="row">
+							<span class="col-sm-4"><img class="text-center docs-angular-logo img-fluid"
+									src="../../../../assets/images/logo_seminario_horizontal.png" alt="angular"></span>
+							<span class="col-sm-8" style="align-self: center; text-align: end;"><span
+									class="headline example-app-name" class="title-header">Sistema de Admisión de
+									Estudiantes</span></span>
+						</span>
+						<span class="row"><span class="col-sm-12">
+								<mat-divider></mat-divider>
+							</span></span>
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>
+						<mat-card class="example-card">
+							<form [formGroup]="biblicalTestFG[0]" #biblicalTestForm0="ngForm">
+								<div class="form-title">Sobre la vida de nuestro Señor Jesucristo</div>
+								<div class="form-row">
+									<mat-form-field class="col-sm-12 example-full-width">
+										<mat-label>Redacta en un mínimo de {{MINJESUSLIFEWORDS}} palabras la vida de Jesús el Hijo de Dios
+										</mat-label>
+										<textarea cdkTextareaAutosize matInput cdkAutosizeMinRows="1"
+																		cdkAutosizeMaxRows="80" formControlName="jesusLifeDescription"
+											#message></textarea>
+										<mat-hint align="end" *ngIf="message.value.match(regex)!=null">{{message.value.match(regex).length}}
+											/ {{MINJESUSLIFEWORDS}}</mat-hint>
+									</mat-form-field>
+								</div>
+							</form>
+						</mat-card>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<mat-card class="example-card">
+							<form [formGroup]="biblicalTestFG[1]" #biblicalTestForm1="ngForm">
+								<div class="form-title">Conocimiento Bíblico General</div>
+								<div class="form-row">
+									<mat-form-field class="col-sm-12 example-full-width">
+										<mat-label>Describa de forma general sobre que trata el libro de Génesis</mat-label>
+										<textarea cdkTextareaAutosize matInput cdkAutosizeMinRows="1"
+																		cdkAutosizeMaxRows="15" formControlName="genesisDesc" 
+											></textarea>
+									</mat-form-field>
+								</div>
+								<div class="form-row">
+									<mat-form-field class="col-sm-12 example-full-width">
+										<mat-label>Describa de forma general sobre que trata el libro de Éxodo</mat-label>
+										<textarea cdkTextareaAutosize matInput cdkAutosizeMinRows="1"
+																		cdkAutosizeMaxRows="15" formControlName="exodusDesc" (blur)="saveBiblicalTestInfo(1,'exodusDesc')"
+											></textarea>
+									</mat-form-field>
+								</div>
+								<div class="form-row">
+									<mat-form-field class="col-sm-12 example-full-width">
+										<mat-label>Describa de forma general sobre que trata el libro de Números</mat-label>
+										<textarea cdkTextareaAutosize matInput cdkAutosizeMinRows="1"
+																		cdkAutosizeMaxRows="15" formControlName="numbersDesc" 
+											></textarea>
+									</mat-form-field>
+								</div>
+								<div class="form-row">
+									<mat-form-field class="col-sm-12 example-full-width">
+										<mat-label>Describa de forma general sobre que trata el libro de Deuteronomio</mat-label>
+										<textarea cdkTextareaAutosize matInput cdkAutosizeMinRows="1"
+																		cdkAutosizeMaxRows="15" formControlName="deuteronomyDesc" 
+											></textarea>
+									</mat-form-field>
+								</div>
+								<div class="form-row">
+									<mat-form-field class="col-sm-12 example-full-width">
+										<mat-label>¿Sobre qué tratan los libros de las crónicas y los reyes?</mat-label>
+										<textarea cdkTextareaAutosize matInput cdkAutosizeMinRows="1"
+																		cdkAutosizeMaxRows="15" formControlName="chrKingsDesc" 
+											></textarea>
+									</mat-form-field>
+								</div>
+								<div class="form-row">
+									<mat-form-field class="col-sm-12 example-full-width">
+										<mat-label>¿Sobre qué tratan los libros de los profetas?</mat-label>
+										<textarea cdkTextareaAutosize matInput cdkAutosizeMinRows="1"
+																		cdkAutosizeMaxRows="15" formControlName="prophetsDesc" 
+											></textarea>
+									</mat-form-field>
+								</div>
+								<div class="form-row">
+									<mat-form-field class="col-sm-12 example-full-width">
+										<mat-label>Mencione los evangelios</mat-label>
+										<textarea cdkTextareaAutosize matInput cdkAutosizeMinRows="1"
+																		cdkAutosizeMaxRows="15" formControlName="gospelsDesc" 
+											></textarea>
+									</mat-form-field>
+								</div>
+								<div class="form-row">
+									<mat-form-field class="col-sm-12 example-full-width">
+										<mat-label>¿Sobre qué trata el libro de los hechos?</mat-label>
+										<textarea cdkTextareaAutosize matInput cdkAutosizeMinRows="1"
+																		cdkAutosizeMaxRows="15" formControlName="actsDesc" 
+											></textarea>
+									</mat-form-field>
+								</div>
+								<div class="form-row">
+									<mat-form-field class="col-sm-12 example-full-width">
+										<mat-label>¿Sobre qué trata el apocalipsis?</mat-label>
+										<textarea cdkTextareaAutosize matInput cdkAutosizeMinRows="1"
+																		cdkAutosizeMaxRows="15" formControlName="revelationsDesc" 
+											></textarea>
+									</mat-form-field>
+								</div>
+							</form>
+						</mat-card>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<mat-card class="example-card">
+							<form [formGroup]="biblicalTestFG[2]" #biblicalTestForm2="ngForm">
+								<div class="form-title">Examen de Conocimiento Bíblico</div>
+								<div class="form-row">
+									<mat-radio-group class="col-sm-12 question-radio-group" aria-label="Seleccione una opción"
+										formControlName="bibleBooksNumber" required>
+										<mat-label>¿Cuántos libros contiene la Biblia?</mat-label>
+										<mat-radio-button value="150">150</mat-radio-button>
+										<mat-radio-button value="66">66</mat-radio-button>
+										<mat-radio-button value="37">37</mat-radio-button>
+										<mat-radio-button value="29">29</mat-radio-button>
+									</mat-radio-group>
+								</div>
+								<div class="form-row">
+									<div class="col-sm-12">
+										<mat-label>Mencione algunas características de los siguientes personajes bíblicos:</mat-label>
+										<div>
+											<div class="row">
+											<mat-form-field class="col-sm-12 example-full-width">
+												<mat-label>Abraham:</mat-label>
+												<input matInput formControlName="abrahamDescription"
+													 required>
+											</mat-form-field>
+											</div>
+											<div class="row">
+											<mat-form-field class="col-sm-12 example-full-width">
+												<mat-label>Samuel:</mat-label>
+												<input matInput formControlName="samDescription"
+													required>
+											</mat-form-field>
+											</div>
+											<div class="row">
+											<mat-form-field class="col-sm-12 example-full-width">
+												<mat-label>Moisés:</mat-label>
+												<input matInput formControlName="mosesDescription"
+													required>
+											</mat-form-field>
+											</div>
+											<div class="row">
+											<mat-form-field class="col-sm-12 example-full-width">
+												<mat-label>David:</mat-label>
+												<input matInput formControlName="davidDescription"
+													required>
+											</mat-form-field>
+											</div>
+											<div class="row">
+											<mat-form-field class="col-sm-12 example-full-width">
+												<mat-label>Pablo:</mat-label>
+												<input matInput formControlName="pabloDescription"
+													 required>
+											</mat-form-field>
+											</div>
+											<div class="row">
+											<mat-form-field class="col-sm-12 example-full-width">
+												<mat-label>Pedro:</mat-label>
+												<input matInput formControlName="pedroDescription"
+													required>
+											</mat-form-field>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="form-row">
+									<mat-radio-group class="col-sm-12 question-radio-group" aria-label="Seleccione una opción"
+										formControlName="salomonsWifes" required>
+										<mat-label>¿Cuántas esposas tenia Salomón?</mat-label>
+										<mat-radio-button value="1 esposa y 3 concubinas">1 esposa y 3 concubinas</mat-radio-button>
+										<mat-radio-button value="1000 esposas">1000 esposas</mat-radio-button>
+										<mat-radio-button value="700 esposas y 300 concubinas">700 esposas y 300 concubinas
+										</mat-radio-button>
+										<mat-radio-button value="300 esposas y 700 concubinas">300 esposas y 700 concubinas
+										</mat-radio-button>
+									</mat-radio-group>
+								</div>
+								<div class="form-row">
+									<mat-radio-group class="col-sm-12 question-radio-group" aria-label="Seleccione una opción"
+										formControlName="abrahamProof" required>
+										<mat-label>Una de las pruebas más difíciles para Abraham involucro a su hijo, ¿Cuál fue?</mat-label>
+										<mat-radio-button value="Llevarlo a Egipto">Llevarlo a Egipto</mat-radio-button>
+										<mat-radio-button value="Desheredarlo">Desheredarlo</mat-radio-button>
+										<mat-radio-button value="Asesinarlo como sacrificio">Asesinarlo como sacrificio
+										</mat-radio-button>
+										<mat-radio-button value="Mandarlo al frente de la batalla">Mandarlo al frente de la batalla
+										</mat-radio-button>
+									</mat-radio-group>
+								</div>
+								<div class="form-row">
+									<mat-radio-group class="col-sm-12 question-radio-group" aria-label="Seleccione una opción"
+										formControlName="proverbsWriter" required>
+										<mat-label>¿Quién escribió la mayoría de los Proverbios?</mat-label>
+										<mat-radio-button value="David">David</mat-radio-button>
+										<mat-radio-button value="Moisés">Moisés</mat-radio-button>
+										<mat-radio-button value="Salomón">Salomón</mat-radio-button>
+										<mat-radio-button value="Los hijos de Coré">Los hijos de Coré</mat-radio-button>
+									</mat-radio-group>
+								</div>
+								<div class="form-row">
+									<mat-radio-group class="col-sm-12 question-radio-group" aria-label="Seleccione una opción"
+										formControlName="israelsLandVictory" required>
+										<mat-label>¿Dónde fue la primera victoria de Israel en la Tierra Prometida?</mat-label>
+										<mat-radio-button value="Jerusalén">Jerusalén</mat-radio-button>
+										<mat-radio-button value="Jericó">Jericó</mat-radio-button>
+										<mat-radio-button value="Samaria">Samaria</mat-radio-button>
+										<mat-radio-button value="Gilgal">Gilgal</mat-radio-button>
+									</mat-radio-group>
+								</div>
+								<div class="form-row">
+									<mat-radio-group class="col-sm-12 question-radio-group" aria-label="Seleccione una opción"
+										formControlName="psalmsTopic" required>
+										<mat-label>¿Cuál es el tema general que abunda en los Salmos?</mat-label>
+										<mat-radio-button value="Arrepentimiento">Arrepentimiento</mat-radio-button>
+										<mat-radio-button value="Súplica">Súplica</mat-radio-button>
+										<mat-radio-button value="Guerra espiritual">Guerra espiritual</mat-radio-button>
+										<mat-radio-button value="Alabanza">Alabanza</mat-radio-button>
+									</mat-radio-group>
+								</div>
+								<div class="form-row">
+									<mat-radio-group class="col-sm-12 question-radio-group" aria-label="Seleccione una opción"
+										formControlName="mesianicProphet" required>
+										<mat-label>¿A quién de estos se le denomina el “Profeta Mesiánico”?</mat-label>
+										<mat-radio-button value="Isaías">Isaías</mat-radio-button>
+										<mat-radio-button value="Ezequiel">Ezequiel</mat-radio-button>
+										<mat-radio-button value="Jeremías">Jeremías</mat-radio-button>
+										<mat-radio-button value="Oseas">Oseas</mat-radio-button>
+									</mat-radio-group>
+								</div>
+								<div class="form-row">
+									<mat-radio-group class="col-sm-12 question-radio-group" aria-label="Seleccione una opción"
+										formControlName="mayMinProphets" required>
+										<mat-label>¿Qué diferencia hay para describir quienes son “profetas mayores o menores”?</mat-label>
+										<mat-radio-button value="Su edad">Su edad</mat-radio-button>
+										<mat-radio-button value="Su profundidad">Su profundidad</mat-radio-button>
+										<mat-radio-button value="Época en que vivió">Época en que vivió</mat-radio-button>
+										<mat-radio-button value="Numero de capítulos">Numero de capítulos</mat-radio-button>
+									</mat-radio-group>
+								</div>
+								<div class="form-row">
+									<mat-radio-group class="col-sm-12 question-radio-group" aria-label="Seleccione una opción"
+										formControlName="firstIsraelKing" required>
+										<mat-label>¿Quién fue el primer rey de Israel?</mat-label>
+										<mat-radio-button value="Jeroboam">Jeroboam</mat-radio-button>
+										<mat-radio-button value="Saúl">Saúl</mat-radio-button>
+										<mat-radio-button value="Acab">Acab</mat-radio-button>
+										<mat-radio-button value="Joram">Joram</mat-radio-button>
+									</mat-radio-group>
+								</div>
+								<div class="form-row">
+									<mat-radio-group class="col-sm-12 question-radio-group" aria-label="Seleccione una opción"
+										formControlName="godsHearth" required>
+										<mat-label>¿De quién se dice que era “conforme al corazón de Dios”?</mat-label>
+										<mat-radio-button value="David">David</mat-radio-button>
+										<mat-radio-button value="Daniel">Daniel</mat-radio-button>
+										<mat-radio-button value="Salomón">Salomón</mat-radio-button>
+										<mat-radio-button value="Samuel">Samuel</mat-radio-button>
+									</mat-radio-group>
+								</div>
+								<div class="form-row">
+									<mat-radio-group class="col-sm-12 question-radio-group" aria-label="Seleccione una opción"
+										formControlName="treasureDis" required>
+										<mat-label>¿Quién fue el tesorero de los discípulos?</mat-label>
+										<mat-radio-button value="Mateo">Mateo</mat-radio-button>
+										<mat-radio-button value="Juan">Juan</mat-radio-button>
+										<mat-radio-button value="Judas">Judas</mat-radio-button>
+										<mat-radio-button value="Jacobo">Jacobo</mat-radio-button>
+									</mat-radio-group>
+								</div>
+								<div class="form-row">
+									<mat-radio-group class="col-sm-12 question-radio-group" aria-label="Seleccione una opción"
+										formControlName="motherinlawHeal" required>
+										<mat-label>Jesús sano a la suegra de uno de los apóstoles ¿Quién fue?</mat-label>
+										<mat-radio-button value="Juan">Juan</mat-radio-button>
+										<mat-radio-button value="Pedro">Pedro</mat-radio-button>
+										<mat-radio-button value="Bartolomé">Bartolomé</mat-radio-button>
+										<mat-radio-button value="Lucas">Lucas</mat-radio-button>
+									</mat-radio-group>
+								</div>
+								<div class="form-row">
+									<mat-radio-group class="col-sm-12 question-radio-group" aria-label="Seleccione una opción"
+										formControlName="paulsBefConv" required>
+										<mat-label>Antes de su conversión ¿Qué hacía Pablo?</mat-label>
+										<mat-radio-button value="Enseñaba en la iglesia">Enseñaba en la iglesia</mat-radio-button>
+										<mat-radio-button value="Perseguía a los cristianos">Perseguía a los cristianos
+										</mat-radio-button>
+										<mat-radio-button value="Pescaba en Galilea">Pescaba en Galilea</mat-radio-button>
+										<mat-radio-button value="Era médico">Era médico</mat-radio-button>
+									</mat-radio-group>
+								</div>
+								<div class="form-row">
+									<mat-radio-group class="col-sm-12 question-radio-group" aria-label="Seleccione una opción"
+										formControlName="ntWriter" required>
+										<mat-label>¿Quién escribió la mayoría de las cartas de Nuevo Testamento?</mat-label>
+										<mat-radio-button value="Pedro">Pedro</mat-radio-button>
+										<mat-radio-button value="Pablo">Pablo</mat-radio-button>
+										<mat-radio-button value="Santiago">Santiago</mat-radio-button>
+										<mat-radio-button value="Juan">Juan</mat-radio-button>
+									</mat-radio-group>
+								</div>
+								<div class="form-row">
+									<mat-radio-group class="col-sm-12 question-radio-group" aria-label="Seleccione una opción"
+										formControlName="lawsResume" required>
+										<mat-label>¿Cómo resumió Jesús toda la ley?</mat-label>
+										<mat-radio-button value="Debemos ser perfectos">Debemos ser perfectos</mat-radio-button>
+										<mat-radio-button value="Amar a Dios sobre todo, y al prójimo como a uno mismo">Amar a Dios
+											sobre todo, y al prójimo como a uno mismo</mat-radio-button>
+										<mat-radio-button value="Uno debe “Vivir y dejar vivir”">Uno debe “Vivir y dejar vivir”
+										</mat-radio-button>
+										<mat-radio-button value="Ojo por ojo y diente por diente.">Ojo por ojo y diente por diente.
+										</mat-radio-button>
+									</mat-radio-group>
+								</div>
+								<div class="form-row">
+									<mat-radio-group class="col-sm-12 question-radio-group" aria-label="Seleccione una opción"
+										formControlName="graceMeaning" required>
+										<mat-label>¿Qué significa la palabra “gracia” en su uso bíblico?</mat-label>
+										<mat-radio-button value="Una habilidad especial">Una habilidad especial</mat-radio-button>
+										<mat-radio-button value="Favor inmerecido">Favor inmerecido</mat-radio-button>
+										<mat-radio-button value="Buen sentido del humor">Buen sentido del humor</mat-radio-button>
+										<mat-radio-button value="Elegancia">Elegancia</mat-radio-button>
+									</mat-radio-group>
+								</div>
+								<div class="form-row">
+									<mat-radio-group class="col-sm-12 question-radio-group" aria-label="Seleccione una opción"
+										formControlName="ntCommands" required>
+										<mat-label>¿Cuáles son las dos ordenanzas o sacramentos de la iglesia cristiana?</mat-label>
+										<mat-radio-button value="Matrimonio y Bautismo">Matrimonio y Bautismo</mat-radio-button>
+										<mat-radio-button value="Santa Cena y Extremaunción">Santa Cena y Extremaunción
+										</mat-radio-button>
+										<mat-radio-button value="Confesión y Confirmación">Confesión y Confirmación</mat-radio-button>
+										<mat-radio-button value="Bautismo y Santa Cena">Bautismo y Santa Cena</mat-radio-button>
+									</mat-radio-group>
+								</div>
+								<div class="form-row">
+									<mat-form-field class="col-sm-12 example-full-width">
+										<mat-label>Escriba por lo menos tres pasajes que hablen de la Salvación, la gracia, el perdón divino
+											y el amor incondicional de Dios.</mat-label>
+										<input matInput formControlName="salvationPassages" 
+											required>
+									</mat-form-field>
+								</div>
+								<div class="form-row">
+									<mat-form-field class="col-sm-12 example-full-width">
+										<mat-label>Escriba algunos de los dones espirituales que la Biblia menciona.</mat-label>
+										<input matInput formControlName="spiritualGifts" 
+											required>
+									</mat-form-field>
+								</div>
+								<div class="form-row">
+									<mat-form-field class="col-sm-12 example-full-width">
+										<mat-label>Escriba en orden todos los libros de la Biblia.</mat-label>
+										<textarea cdkTextareaAutosize matInput cdkAutosizeMinRows="1"
+																		cdkAutosizeMaxRows="15" formControlName="bibleBooks" 
+											required></textarea>
+									</mat-form-field>
+								</div>
+							</form>						
+						</mat-card>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+
+

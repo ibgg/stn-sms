@@ -79,6 +79,7 @@ import { StudentsListComponent } from './components/admin/students-list/students
 import { EnrollmentReportComponent } from './components/admin/enrollment-report/enrollment-report.component';
 import { PersonalTestReportComponent } from './components/admin/personal-test-report/personal-test-report.component';
 import { PsychoTestReportComponent } from './components/admin/psycho-test-report/psycho-test-report.component';
+import { BiblicalTestReportComponent } from './components/admin/biblical-test-report/biblical-test-report.component';
 
 
 @NgModule({
@@ -101,6 +102,7 @@ import { PsychoTestReportComponent } from './components/admin/psycho-test-report
 	EnrollmentReportComponent,
 	PersonalTestReportComponent,
 	PsychoTestReportComponent,
+	BiblicalTestReportComponent,
 ],
   imports: [
 	BrowserModule,
