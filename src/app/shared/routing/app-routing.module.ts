@@ -22,6 +22,7 @@ import { AdminComponent } from 'src/app/components/admin/admin.component';
 import { StudentsListComponent } from 'src/app/components/admin/students-list/students-list.component';
 import { EnrollmentReportComponent } from 'src/app/components/admin/enrollment-report/enrollment-report.component';
 import { PersonalTestReportComponent } from 'src/app/components/admin/personal-test-report/personal-test-report.component';
+import { PsychoTestReportComponent } from 'src/app/components/admin/psycho-test-report/psycho-test-report.component';
 
 
 const routes: Routes = [
@@ -36,6 +37,9 @@ const routes: Routes = [
 	},
 	{
 		path: 'personal-test-report/:student', component:PersonalTestReportComponent
+	},
+	{
+		path: 'psycho-test-report/:student', component:PsychoTestReportComponent
 	},
 	{ path: 'dashboard', component: DashboardComponent, children: [
 		{

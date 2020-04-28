@@ -32,7 +32,7 @@
 	
 		  <ng-container matColumnDef="psychologicalTestCompleteness">
 			<mat-header-cell *matHeaderCellDef class="students-list-header mat-column-percents"> % Test Psicológico </mat-header-cell>
-			<mat-cell *matCellDef="let student" data-label="% Test Psic." class="mat-column-percents"><a target="_blank" [routerLink]="'/enrollment-report/'+student.uid"><mat-icon class="material-icons primary" style="margin-right: 5px;">launch</mat-icon></a> {{ student.psychologicalTestCompleteness }} </mat-cell>
+			<mat-cell *matCellDef="let student" data-label="% Test Psic." class="mat-column-percents"><a target="_blank" [routerLink]="'/psycho-test-report/'+student.uid"><mat-icon class="material-icons primary" style="margin-right: 5px;">launch</mat-icon></a> {{ student.psychologicalTestCompleteness }} </mat-cell>
 		  </ng-container>
 	
 		  <ng-container matColumnDef="biblicalTestCompleteness">
