@@ -21,6 +21,7 @@ import { UsermgmtComponent } from 'src/app/components/usermgmt/usermgmt.componen
 import { AdminComponent } from 'src/app/components/admin/admin.component';
 import { StudentsListComponent } from 'src/app/components/admin/students-list/students-list.component';
 import { EnrollmentReportComponent } from 'src/app/components/admin/enrollment-report/enrollment-report.component';
+import { PersonalTestReportComponent } from 'src/app/components/admin/personal-test-report/personal-test-report.component';
 
 
 const routes: Routes = [
@@ -32,6 +33,9 @@ const routes: Routes = [
 	] },
 	{
 		path: 'enrollment-report/:student', component:EnrollmentReportComponent
+	},
+	{
+		path: 'personal-test-report/:student', component:PersonalTestReportComponent
 	},
 	{ path: 'dashboard', component: DashboardComponent, children: [
 		{

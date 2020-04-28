@@ -20,7 +20,8 @@ export class EnrollmentReportComponent implements OnInit, AfterViewInit {
 	private selectedIndex: number = 0;
 	private enrollmentInfoFormGroup: FormGroup[] = new Array(5);
 
-	constructor(private formBuilder: FormBuilder,
+	constructor(
+		private formBuilder: FormBuilder,
 		private enrollmentService: EnrollmentServiceService,
 		changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,
 		private route: ActivatedRoute,

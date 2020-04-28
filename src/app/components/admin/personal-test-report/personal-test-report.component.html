@@ -1,0 +1,298 @@
+<div class="report-body">
+	<div class="container">
+		<table style="width: 100%;">
+			<thead>
+				<tr>
+					<th>
+						<span class="row">
+							<span class="col-sm-4"><img class="text-center docs-angular-logo img-fluid"
+									src="../../../../assets/images/logo_seminario_horizontal.png" alt="angular"></span>
+							<span class="col-sm-8" style="align-self: center; text-align: end;"><span
+									class="headline example-app-name" class="title-header">Sistema de Admisión de
+									Estudiantes</span></span>
+						</span>
+						<span class="row"><span class="col-sm-12">
+								<mat-divider></mat-divider>
+							</span></span>
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>
+						<mat-card class="example-card">
+							<form [formGroup]="testPersonalFG[0]" #personalTestForm0="ngForm">
+								<div class="form-title">Testimonio de Conversión</div>
+								<div class="mat-card-subtitle">Le suplicamos que sea tan amable de responder con toda verdad y claridad cada una
+									de las preguntas.</div>
+								<div class="form-row">
+									<mat-form-field class="col-sm-12 example-full-width">
+										<mat-label>¿Cómo conoció a Cristo? Explique la manera como lo aceptó.</mat-label>
+										<textarea cdkTextareaAutosize matInput cdkAutosizeMinRows="1"
+																		cdkAutosizeMaxRows="15" formControlName="christEncounterDescription" required></textarea>
+									</mat-form-field>
+								</div>
+								<div class="form-row">
+									<mat-form-field class="col-sm-12 example-full-width">
+										<mat-label>¿Cómo era su vida antes de conocer a Cristo?</mat-label>
+										<textarea cdkTextareaAutosize matInput cdkAutosizeMinRows="1"
+																		cdkAutosizeMaxRows="15" formControlName="christBeforeDescription"
+											required></textarea>
+									</mat-form-field>
+								</div>
+								<div class="form-row">
+									<mat-form-field class="col-sm-12 example-full-width">
+										<mat-label>¿Qué ha pasado en su vida desde su conversión?</mat-label>
+										<textarea cdkTextareaAutosize matInput cdkAutosizeMinRows="1"
+																		cdkAutosizeMaxRows="15" formControlName="christAfterDescription" required
+											></textarea>
+									</mat-form-field>
+								</div>
+								<div class="form-row">
+									<mat-form-field class="col-sm-12 example-full-width">
+										<mat-label>Describa su experiencia de bautismo en agua.</mat-label>
+										<textarea cdkTextareaAutosize matInput cdkAutosizeMinRows="1"
+																		cdkAutosizeMaxRows="15" formControlName="baptismDescription" required
+											></textarea>
+									</mat-form-field>
+								</div>
+							</form>
+						</mat-card>
+					</td>
+				</tr>	
+				<tr>
+					<td>
+						<mat-card class="example-card">
+							<form [formGroup]="testPersonalFG[1]" #personalTestForm1="ngForm">
+								<div class="form-title">Convicciones Morales</div>
+								<div class="mat-card-subtitle">Le suplicamos que sea tan amable de responder con toda verdad y claridad cada una
+									de las preguntas.</div>
+								<div class="form-row">
+									<mat-form-field class="col-sm-12 example-full-width">
+										<mat-label>Explique ¿Cual es su convicción personal sobre los siguientes problemas de tipo moral?
+											Homosexualidad, lesbianismo, masturbación, pornografía, adulterio y fornicación.</mat-label>
+										<textarea cdkTextareaAutosize matInput cdkAutosizeMinRows="1"
+																		cdkAutosizeMaxRows="15" formControlName="moralConvictionsDescription" required
+											></textarea>
+									</mat-form-field>
+								</div>
+								<div class="form-row">
+									<mat-form-field class="col-sm-12 example-full-width">
+										<mat-label>¿Se ha visto usted inmiscuido en algunos de estos problemas de tipo moral? Explique su
+											respuesta.</mat-label>
+										<textarea cdkTextareaAutosize matInput cdkAutosizeMinRows="1"
+																		cdkAutosizeMaxRows="15" formControlName="moralInvolvementDescription"
+											required></textarea>
+									</mat-form-field>
+								</div>
+								<div class="form-row">
+									<mat-form-field class="col-sm-12 example-full-width">
+										<mat-label>¿Ha consumido alcohol o algún tipo de droga? Si su respuesta es positiva ¿cuál?</mat-label>
+										<textarea cdkTextareaAutosize matInput cdkAutosizeMinRows="1"
+																		cdkAutosizeMaxRows="15" formControlName="alcoholDrugsDescription" required
+											></textarea>
+									</mat-form-field>
+								</div>
+							</form>
+						</mat-card>
+					</td>
+				</tr>	
+				<tr>
+					<td>
+						<mat-card class="example-card">
+							<form [formGroup]="testPersonalFG[2]" #personalTestForm2="ngForm">
+								<div class="form-title">Noviazgo y Matrimonio</div>
+								<div class="mat-card-subtitle">Le suplicamos que sea tan amable de responder con toda verdad y claridad cada una
+									de las preguntas.</div>
+								<div class="form-row">
+									<mat-form-field class="col-sm-12 example-full-width">
+										<mat-label>¿Qué piensa sobre el noviazgo?</mat-label>
+										<textarea cdkTextareaAutosize matInput cdkAutosizeMinRows="1"
+																		cdkAutosizeMaxRows="15" formControlName="courtshipThought"
+											required></textarea>
+									</mat-form-field>
+								</div>
+								<div class="form-row">
+									<mat-form-field class="col-sm-12 example-full-width">
+										<mat-label>¿Qué piensa sobre el matrimonio?</mat-label>
+										<textarea cdkTextareaAutosize matInput cdkAutosizeMinRows="1"
+																		cdkAutosizeMaxRows="15" formControlName="marriageThought"
+											required></textarea>
+									</mat-form-field>
+								</div>
+							</form>						
+						</mat-card>
+					</td>
+				</tr>	
+				<tr>
+					<td>
+						<mat-card class="example-card">
+							<form [formGroup]="testPersonalFG[3]" #personalTestForm3="ngForm">
+								<div class="form-title">Crecimiento Espiritual</div>
+								<div class="mat-card-subtitle">Le suplicamos que sea tan amable de responder con toda verdad y claridad cada una
+									de las preguntas.</div>
+								<div class="form-row">
+									<mat-form-field class="col-sm-12 example-full-width">
+										<mat-label>Explique la importancia de mantener una relación intima con Dios, y las estrategias que usted
+											sigue para experimentar esa comunión plena con su Señor.</mat-label>
+										<textarea cdkTextareaAutosize matInput cdkAutosizeMinRows="1"
+																		cdkAutosizeMaxRows="15" formControlName="godsRelationshipDescription"
+											required></textarea>
+									</mat-form-field>
+								</div>
+								<div class="form-row">
+									<mat-form-field class="col-sm-12 example-full-width">
+										<mat-label>Explique cuán importante es la obediencia en la vida cristiana hacia las autoridades
+											espirituales que Dios ha puesto en nuestro entorno. Sean estos pastores, lideres juveniles,
+											profesores u otros.</mat-label>
+										<textarea cdkTextareaAutosize matInput cdkAutosizeMinRows="1"
+																		cdkAutosizeMaxRows="15" formControlName="authorityThought"
+											required></textarea>
+									</mat-form-field>
+								</div>
+							</form>
+						</mat-card>
+					</td>
+				</tr>	
+				<tr>
+					<td>
+						<mat-card class="example-card">
+							<form [formGroup]="testPersonalFG[4]" #personalTestForm4="ngForm">
+								<div class="form-title">Llamado ministerial</div>
+								<div class="mat-card-subtitle">Le suplicamos que sea tan amable de responder con toda verdad y claridad cada una
+									de las preguntas.</div>
+								<div class="form-row">
+									<mat-form-field class="col-sm-12 example-full-width">
+										<mat-label>Explique de que manera recibió el llamado de servir al Señor y que fruto ha habido hasta hoy.
+										</mat-label>
+										<textarea cdkTextareaAutosize matInput cdkAutosizeMinRows="1"
+																		cdkAutosizeMaxRows="15" formControlName="calledDescription"
+											required></textarea>
+									</mat-form-field>
+								</div>
+								<div class="form-row">
+									<mat-form-field class="col-sm-12 example-full-width">
+										<mat-label>Explique cómo se visualiza de aquí a cinco años en su vida personal y ministerial.
+										</mat-label>
+										<textarea cdkTextareaAutosize matInput cdkAutosizeMinRows="1"
+																		cdkAutosizeMaxRows="15" formControlName="personalMinisterialGoals"
+											required></textarea>
+									</mat-form-field>
+								</div>
+								<div class="form-row">
+									<mat-form-field class="col-sm-12 example-full-width">
+										<mat-label>Entendiendo que las implicaciones del discipulado y del llamamiento cristiano son grandes
+											¿Estaría usted dispuesto a perder la vida por causa del evangelio? Explique su respuesta.
+										</mat-label>
+										<textarea cdkTextareaAutosize matInput cdkAutosizeMinRows="1"
+																		cdkAutosizeMaxRows="15" formControlName="personalGospelUnderstanding"
+											required></textarea>
+									</mat-form-field>
+								</div>
+							</form>
+						</mat-card>
+					</td>
+				</tr>	
+				<tr>
+					<td>
+						<mat-card class="example-card">
+							<form [formGroup]="testPersonalFG[5]" #personalTestForm5="ngForm">
+								<div class="form-title">Llamado ministerial</div>
+								<div class="mat-card-subtitle">Le suplicamos que sea tan amable de responder con toda verdad y claridad cada una
+									de las preguntas.</div>
+								<div class="form-row">
+									<div class="col-sm-12">
+										<label id="example-radio-group-label">¿Cómo considera su estado de salud?</label>
+										<div>
+											<mat-radio-group aria-label="Seleccione una opción" formControlName="healthCondition"
+												required>
+												<mat-radio-button value="Bueno">Bueno</mat-radio-button>
+												<mat-radio-button value="Muy bueno">Muy bueno</mat-radio-button>
+												<mat-radio-button value="Regular">Regular</mat-radio-button>
+												<mat-radio-button value="Malo">Malo</mat-radio-button>
+											</mat-radio-group>
+										</div>
+									</div>
+								</div>
+								<div class="form-row">
+									<mat-form-field class="col-sm-12 example-full-width">
+										<mat-label>¿Es usted alérgico a algún medicamento, alimento o alguna otra cosa? Si, ¿a cuál?</mat-label>
+										<textarea cdkTextareaAutosize matInput cdkAutosizeMinRows="1"
+																		cdkAutosizeMaxRows="15" formControlName="drugAllergy" required 
+											></textarea>
+									</mat-form-field>
+								</div>
+								<div class="form-row">
+									<mat-form-field class="col-sm-12 example-full-width">
+										<mat-label>¿Padece alguna enfermedad crónica degenerativa? (Diabetes, osteoporosis, etc.)</mat-label>
+										<textarea cdkTextareaAutosize matInput cdkAutosizeMinRows="1"
+																		cdkAutosizeMaxRows="15" formControlName="chronicIllness" required
+											></textarea>
+									</mat-form-field>
+								</div>
+								<div class="form-row">
+									<mat-form-field class="col-sm-12 example-full-width">
+										<mat-label>¿Está actualmente tomando algún medicamento o tratamiento natural para controlar alguna
+											enfermedad?</mat-label>
+										<textarea cdkTextareaAutosize matInput cdkAutosizeMinRows="1"
+																		cdkAutosizeMaxRows="15" formControlName="controlledDrug" 
+											required></textarea>
+									</mat-form-field>
+								</div>
+								<div class="form-row">
+									<mat-form-field class="col-sm-12 example-full-width">
+										<mat-label>¿Tiene problemas visuales? Especifique</mat-label>
+										<textarea cdkTextareaAutosize matInput cdkAutosizeMinRows="1"
+																		cdkAutosizeMaxRows="15" formControlName="visualProblems"
+											required></textarea>
+									</mat-form-field>
+								</div>
+								<div class="form-row">
+									<mat-form-field class="col-sm-12 example-full-width">
+										<mat-label>¿Padece algún problema del habla? Especifique</mat-label>
+										<textarea cdkTextareaAutosize matInput cdkAutosizeMinRows="1"
+																		cdkAutosizeMaxRows="15" formControlName="speakingIllness" 
+											required></textarea>
+									</mat-form-field>
+								</div>
+								<div class="form-row">
+									<div class="col-sm-12">
+										<label id="example-radio-group-label">¿Tiene usted todas sus vacunas?</label>
+										<div>
+											<mat-radio-group aria-label="Seleccione una opción" formControlName="vaccinesCompletition"
+												required>
+												<mat-radio-button value="Yes">Sí</mat-radio-button>
+												<mat-radio-button value="No">No</mat-radio-button>
+											</mat-radio-group>
+										</div>
+									</div>
+								</div>
+								<div class="form-row">
+									<mat-form-field class="col-sm-12 example-full-width">
+										<mat-label>¿Tiene alguna enfermedad contagiosa? ¿Cuál?</mat-label>
+										<textarea cdkTextareaAutosize matInput cdkAutosizeMinRows="1"
+																		cdkAutosizeMaxRows="15" formControlName="contagiousIllness"
+											required></textarea>
+									</mat-form-field>
+								</div>
+								<div class="form-row">
+									<mat-form-field class="col-sm-12 example-full-width">
+										<mat-label>¿Ha tenido alguna enfermedad de transmisión sexual?</mat-label>
+										<textarea cdkTextareaAutosize matInput cdkAutosizeMinRows="1"
+																		cdkAutosizeMaxRows="15" formControlName="sexualTransmisionIllness"
+											required></textarea>
+									</mat-form-field>
+								</div>
+								<div class="form-row">
+									<mat-checkbox class="col-sm-12 example-margin" labelPosition="after" formControlName="agrementCheck">
+										Protesto decir verdad de todo lo anterior
+									</mat-checkbox>
+								</div>
+							</form>
+						</mat-card>
+					</td>
+				</tr>	
+			</tbody>
+		</table>
+	</div>
+</div>
