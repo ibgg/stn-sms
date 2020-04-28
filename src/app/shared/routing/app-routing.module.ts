@@ -20,6 +20,7 @@ import { AgreementComponent } from 'src/app/components/dashboard/agreement/agree
 import { UsermgmtComponent } from 'src/app/components/usermgmt/usermgmt.component';
 import { AdminComponent } from 'src/app/components/admin/admin.component';
 import { StudentsListComponent } from 'src/app/components/admin/students-list/students-list.component';
+import { EnrollmentReportComponent } from 'src/app/components/admin/enrollment-report/enrollment-report.component';
 
 
 const routes: Routes = [
@@ -29,6 +30,9 @@ const routes: Routes = [
 	{ path: 'admin', component: AdminComponent, children: [
 		{path: '', component:StudentsListComponent}
 	] },
+	{
+		path: 'enrollment-report/:student', component:EnrollmentReportComponent
+	},
 	{ path: 'dashboard', component: DashboardComponent, children: [
 		{
 			path:'', component: RegisterIndexComponent

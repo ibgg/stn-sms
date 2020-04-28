@@ -67,7 +67,8 @@ export class StudentsListComponent implements AfterViewInit {
 					element.biblicalTestCompleteness = element['biblicalTestCompleteness'] != undefined ? element.biblicalTestCompleteness.toFixed(1) : 0;
 	
 					element.agreementCompleteness = element['agreementCompleteness'] != undefined && element.agreementCompleteness ? 'Sí' : 'No';
-	
+
+					console.log(element);
 					students.push(element);
 				})
 	

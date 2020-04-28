@@ -1,0 +1,38 @@
+.docs-angular-logo {
+	margin: 0 4px 3px 5px;
+	vertical-align: middle;
+}
+
+.title-header {
+	font: 400 26px/32px Roboto, 'Helvetica Neue', 'sans-serif'; 
+	margin-left: 20px;
+	vertical-align: middle;
+	color: #5E2129;
+}
+
+.report-body{
+	background-color: #fff;
+}
+
+body {
+background-color: #fff !important;	
+}
+
+th {
+	padding-bottom: 10px;
+}
+
+.mat-input-element:disabled {
+	color: #000 !important;
+}
+
+::ng-deep.mat-form-field-disabled .mat-form-field-underline 
+{ 
+background-image: linear-gradient( to right, rgba(0, 0, 0, .5) 0, rgba(0, 0, 0, 0.42) 33%, #c2c7cc 0 ) !important; 
+background-size: 1px 100% !important;
+ background-repeat: repeat-x !important; 
+} 
+
+.example-card{
+	margin-top: 20px;
+}

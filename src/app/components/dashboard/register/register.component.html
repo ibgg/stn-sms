@@ -118,7 +118,7 @@
 </mat-card>
 
 <ng-template #f0>
-	<form [formGroup]="enrollmentInfoFormGroup[0]" #enrollmentInfoForm0="ngForm">
+	<div [formGroup]="enrollmentInfoFormGroup[0]" #enrollmentInfoForm0="ngForm">
 		<div class="form-title">Información personal</div>
 		<div class="form-row">
 			<mat-form-field class="col-sm-4 example-full-width">
@@ -246,11 +246,11 @@
 					[required]="enrollmentInfoFormGroup[0].controls['disability'].value">
 			</mat-form-field>
 		</div>
-	</form>
+	</div>
 </ng-template>
 
 <ng-template #f1>
-	<form [formGroup]="enrollmentInfoFormGroup[1]" #enrollmentInfoForm1="ngForm">
+	<div [formGroup]="enrollmentInfoFormGroup[1]" #enrollmentInfoForm1="ngForm">
 		<div class="form-title">Información profesional y académica</div>
 		<div class="form-row">
 			<mat-form-field class="col-sm-4 example-full-width">
@@ -372,11 +372,11 @@
 				</mat-slider>
 			</div>
 		</div>
-	</form>
+	</div>
 </ng-template>
 
 <ng-template #f2>
-	<form [formGroup]="enrollmentInfoFormGroup[2]" #enrollmentInfoForm2="ngForm">
+	<div [formGroup]="enrollmentInfoFormGroup[2]" #enrollmentInfoForm2="ngForm">
 		<div class="form-title">Experiencia cristiana</div>
 		<div class="form-row">
 			<mat-form-field class="col-sm-6 example-full-width">
@@ -482,11 +482,11 @@
 				</mat-error>
 			</mat-form-field>
 		</div>
-	</form>
+	</div>
 </ng-template>
 
 <ng-template #f3>
-	<form [formGroup]="enrollmentInfoFormGroup[3]" #enrollmentInfoForm3="ngForm">
+	<div [formGroup]="enrollmentInfoFormGroup[3]" #enrollmentInfoForm3="ngForm">
 		<div class="form-title">Datos del tutor</div>
 		<div class="form-row">
 			<mat-form-field class="col-sm-6 example-full-width">
@@ -574,11 +574,11 @@
 				</mat-error>
 			</div>
 		</div>
-	</form>
+	</div>
 </ng-template>
 
 <ng-template #f4>
-	<form [formGroup]="enrollmentInfoFormGroup[4]" #enrollmentInfoForm4="ngForm">
+	<div [formGroup]="enrollmentInfoFormGroup[4]" #enrollmentInfoForm4="ngForm">
 		<div class="form-title">Datos para la institución</div>
 		<div class="form-row">
 			<mat-form-field class="col-sm-12 example-full-width">
@@ -682,5 +682,5 @@
 				pagos, en las fechas establecidas y hasta el término de la carrera.
 			</mat-checkbox>
 		</div>
-	</form>
+	</div>
 </ng-template>

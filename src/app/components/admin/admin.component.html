@@ -1,12 +1,12 @@
 <div class="example-container">
 	<nav  color="primary"  class="docs-navbar-header" aria-label="Top Toolbar">
-		<a mat-list-item routerLink="/dashboard" style="margin-left: 10px;">
+		<a mat-list-item routerLink="/admin" style="margin-left: 10px;">
 			<img class="docs-angular-logo img-fluid" src="../../../assets/images/logo-horizontal-blanco.png" alt="angular">
 			<span class="headline example-app-name" class="title-header">Sistema de Admisión de Estudiantes</span>
 		</a>
 		<div class="flex-spacer"></div>
 		<div class="nav-item dropdown no-arrow" *ngIf="authService.userData as user">
-			<a mat-list-item routerLink="/dashboard">
+			<a mat-list-item routerLink="/admin">
 			<span class="username-header">{{authService.userData.displayName}}</span>
 				<span *ngIf="authService.userData.photoURL != null && authService.userData.photoURL != undefined; else elseBlock" style="vertical-align:middle; top:10%; position:absolute;">
 					<img class="img-profile rounded-circle img-fluid"
