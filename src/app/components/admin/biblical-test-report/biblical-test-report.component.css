@@ -50,7 +50,7 @@ tfoot {display: table-header-group;}
 
 tr td{
     page-break-inside: avoid;
-    white-space: nowrap;
+    /* white-space: nowrap; */
 }
 
 @media print {

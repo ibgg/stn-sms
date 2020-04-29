@@ -53,5 +53,5 @@ table{
 
 tr td{
     page-break-inside: avoid;
-    white-space: nowrap;
+    /* white-space: nowrap; */
 }
