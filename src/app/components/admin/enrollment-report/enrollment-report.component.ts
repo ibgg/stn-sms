@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { EnrollmentServiceService } from 'src/app/shared/services/db/enrollment-service.service';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
@@ -10,7 +10,8 @@ import { DatePipe } from '@angular/common';
 	selector: 'app-enrollment-report',
 	templateUrl: './enrollment-report.component.html',
 	styleUrls: ['./enrollment-report.component.css'],
-	providers: [ DatePipe ] 
+	providers: [ DatePipe ],
+	encapsulation: ViewEncapsulation.None,
 })
 export class EnrollmentReportComponent implements OnInit, AfterViewInit {
 	private mobileQuery: MediaQueryList;

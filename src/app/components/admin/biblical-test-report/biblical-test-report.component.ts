@@ -1,8 +1,9 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 import { BiblicalTestService } from 'src/app/shared/services/db/biblical-test.service';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ActivatedRoute } from '@angular/router';
+import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 
 @Component({
 	selector: 'app-biblical-test-report',
@@ -39,7 +40,7 @@ export class BiblicalTestReportComponent implements OnInit {
 	buildForms() {
 		//this.jesusLifeFG = this.formBuilder.group({
 		this.biblicalTestFG[0] = this.formBuilder.group({
-			jesusLifeDescription: ['', [Validators.required, this.minWordsValidator()]],
+			jesusLifeDescription: ['\n\n', [Validators.required, this.minWordsValidator()]],
 		});
 
 		//this.bibleDescriptionFG = this.formBuilder.group({
@@ -92,19 +93,23 @@ export class BiblicalTestReportComponent implements OnInit {
 		for (let i = 0; i < this.biblicalTestFG.length; i++){
 			this.biblicalTestService.getBiblicalTestInformation(i).then(snap => {
 				if (snap.data() != undefined && snap.data() != null){
-					this.biblicalTestFG[i].patchValue(snap.data());	
+					//this.biblicalTestFG[i].patchValue(snap.data());	
 					for (let key in snap.data()) {
 						if (snap.data()[key] != null && snap.data()[key] != null && (snap.data()[key].constructor.name == "Timestamp" || snap.data()[key].constructor.name == 't')) {
 							snap.data()[key].seconds += 100;
 							this.biblicalTestFG[i].get(key).setValue(snap.data()[key].toDate());
+						}else{
+							this.biblicalTestFG[i].get(key).setValue(snap.data()[key] + this.biblicalTestFG[i].get(key).value);
 						}
 					}
 					this.biblicalTestFG[i].markAsDirty();
 					this.filledOneTest = true;
 				}
 				if (this.biblicalTestFG[i].invalid && !this.biblicalTestFG[0].invalid && this.selectedIndex < 1){
-					this.selectedIndex = i;
+					this.
+					selectedIndex = i;
 				}
+				this.biblicalTestFG[i].disable();
 			});	
 		}
 	}

@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ActivatedRoute } from '@angular/router';
@@ -9,6 +9,7 @@ import { PersonalTestService } from 'src/app/shared/services/db/personal-test.se
 	selector: 'app-personal-test-report',
 	templateUrl: './personal-test-report.component.html',
 	styleUrls: ['./personal-test-report.component.css'],
+	encapsulation: ViewEncapsulation.None,
 	providers: [DatePipe]
 })
 export class PersonalTestReportComponent implements OnInit {

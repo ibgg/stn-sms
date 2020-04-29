@@ -2,8 +2,8 @@
 	<div class="container">
 		<table style="width: 100%;">
 			<thead>
-				<tr>
-					<th>
+				<tr class="d-flex">
+					<th class="col-sm-12">
 						<span class="row">
 							<span class="col-sm-4"><img class="text-center docs-angular-logo img-fluid"
 									src="../../../../assets/images/logo_seminario_horizontal.png" alt="angular"></span>
@@ -18,28 +18,26 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>
+				<tr class="d-flex">
+					<td class="col-sm-12">
 						<mat-card class="example-card">
 							<form [formGroup]="biblicalTestFG[0]" #biblicalTestForm0="ngForm">
 								<div class="form-title">Sobre la vida de nuestro Señor Jesucristo</div>
 								<div class="form-row">
-									<mat-form-field class="col-sm-12 example-full-width">
+									<mat-form-field class="col-sm-12">
 										<mat-label>Redacta en un mínimo de {{MINJESUSLIFEWORDS}} palabras la vida de Jesús el Hijo de Dios
 										</mat-label>
-										<textarea cdkTextareaAutosize matInput cdkAutosizeMinRows="1"
-																		cdkAutosizeMaxRows="80" formControlName="jesusLifeDescription"
-											#message></textarea>
-										<mat-hint align="end" *ngIf="message.value.match(regex)!=null">{{message.value.match(regex).length}}
-											/ {{MINJESUSLIFEWORDS}}</mat-hint>
+										<textarea cdkTextareaAutosize matInput cdkAutosizeMinRows="3"
+																		cdkAutosizeMaxRows="500" formControlName="jesusLifeDescription"
+											#message></textarea> 
 									</mat-form-field>
 								</div>
 							</form>
 						</mat-card>
 					</td>
 				</tr>
-				<tr>
-					<td>
+				<tr class="d-flex">
+					<td class="col-sm-12">
 						<mat-card class="example-card">
 							<form [formGroup]="biblicalTestFG[1]" #biblicalTestForm1="ngForm">
 								<div class="form-title">Conocimiento Bíblico General</div>
@@ -119,8 +117,8 @@
 						</mat-card>
 					</td>
 				</tr>
-				<tr>
-					<td>
+				<tr class="d-flex">
+					<td class="col-sm-12">
 						<mat-card class="example-card">
 							<form [formGroup]="biblicalTestFG[2]" #biblicalTestForm2="ngForm">
 								<div class="form-title">Examen de Conocimiento Bíblico</div>
@@ -375,8 +373,8 @@
 											required></textarea>
 									</mat-form-field>
 								</div>
-							</form>						
-						</mat-card>
+							</form>		
+						</mat-card>				
 					</td>
 				</tr>
 			</tbody>

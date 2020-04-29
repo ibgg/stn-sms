@@ -47,11 +47,18 @@ background-size: 1px 100% !important;
 thead {display: table-header-group;}
 tfoot {display: table-header-group;}
 
-table{
-    border-collapse:collapse;
-}
 
 tr td{
     page-break-inside: avoid;
     white-space: nowrap;
 }
+
+@media print {
+	thead {display: table-header-group;} 
+	tfoot {display: table-footer-group;}
+ }
+
+
+ textarea {
+	line-height: 1.5;
+  }
