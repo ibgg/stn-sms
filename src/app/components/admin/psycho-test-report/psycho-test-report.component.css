@@ -24,7 +24,7 @@ background-color: #fff !important;
 
 ::ng-deep.mat-form-field-disabled .mat-form-field-underline 
 { 
-background-image:linear-gradient( to right, rgba(0, 0, 0, .5) 33%, rgba(0, 0, 0, 0.5) 33%, rgba(0, 0, 0, 0.5) 33% ) !important; /*linear-gradient( to right, rgba(0, 0, 0, .5) 0, rgba(0, 0, 0, 0.42) 33%, #c2c7cc 0 ) !important; */
+	background-image:linear-gradient( to right, rgba(0, 0, 0, .5) 0, rgba(0, 0, 0, 0.42) 33%, #c2c7cc 0 ) !important;/*linear-gradient( to right, rgba(0, 0, 0, .5) 0, rgba(0, 0, 0, 0.42) 33%, #c2c7cc 0 ) !important; */
 background-size: 1px 100% !important;
  background-repeat: repeat-x !important; 
 } 

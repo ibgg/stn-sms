@@ -12,7 +12,7 @@
 	  
 		  <ng-container matColumnDef="email">
 			<mat-header-cell *matHeaderCellDef class="students-list-header">Email</mat-header-cell>
-			<mat-cell *matCellDef="let student" data-label="Email"> {{ student.email }} </mat-cell>
+			<mat-cell *matCellDef="let student" data-label="Email"> <a href="mailto:{{ student.email }}" target="_blank" rel="noopener noreferrer">{{ student.email }}</a> </mat-cell>
 		  </ng-container>
 	  
 		  <ng-container matColumnDef="emailVerified">
