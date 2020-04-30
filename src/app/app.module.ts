@@ -67,7 +67,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TextFieldModule} from '@angular/cdk/text-field';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { NgCircleProgressModule } from 'ng-circle-progress';
-import { RegisterComponent } from './components/dashboard/register/register.component';
+import { EnrollmentTestComponent } from './components/dashboard/enrollment-test/enrollment-test.component';
 import { TestPersonalComponent } from './components/dashboard/test-personal/test-personal.component';
 import { TestPsicologicoComponent } from './components/dashboard/test-psicologico/test-psicologico.component';
 import { TestBiblicoComponent } from './components/dashboard/test-biblico/test-biblico.component';
@@ -91,7 +91,7 @@ import { AgreementReportComponent } from './components/admin/agreement-report/ag
     SignUpComponent,
 	ForgotPasswordComponent,
 	VerifyEmailComponent,
-	RegisterComponent,
+	EnrollmentTestComponent,
 	TestPersonalComponent,
 	TestPsicologicoComponent,
 	TestBiblicoComponent,

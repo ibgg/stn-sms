@@ -6,15 +6,15 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
 @Component({
-	selector: 'app-register',
-	templateUrl: './register.component.html',
-	styleUrls: ['./register.component.css'],
+	selector: 'app-enrollment-test',
+	templateUrl: './enrollment-test.component.html',
+	styleUrls: ['./enrollment-test.component.css'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	providers: [{
 		provide: STEPPER_GLOBAL_OPTIONS, useValue: {displayDefaultIndicatorType: false, showError: true}
 	  }]
 })
-export class RegisterComponent implements OnInit, AfterViewInit {
+export class EnrollmentTestComponent implements OnInit, AfterViewInit {
 	private errorMessage:string = "Formulario incompleto";
 	private mobileQuery: MediaQueryList;
 	private _mobileQueryListener: () => void;

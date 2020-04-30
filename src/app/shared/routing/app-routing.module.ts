@@ -11,7 +11,7 @@ import { VerifyEmailComponent } from '../../components/verify-email/verify-email
 // Import canActivate guard services
 import { AuthGuard } from "../guard/auth.guard";
 import { SecureInnerPagesGuard } from "../guard/secure-inner-pages.guard";
-import { RegisterComponent } from 'src/app/components/dashboard/register/register.component';
+import { EnrollmentTestComponent } from 'src/app/components/dashboard/enrollment-test/enrollment-test.component';
 import { TestsListComponent } from 'src/app/components/dashboard/tests-list/tests-list.component';
 import { TestPersonalComponent } from 'src/app/components/dashboard/test-personal/test-personal.component';
 import { TestPsicologicoComponent } from 'src/app/components/dashboard/test-psicologico/test-psicologico.component';
@@ -54,7 +54,7 @@ const routes: Routes = [
 			path:'', component: TestsListComponent
 		},
 		{
-			path:'enrollment', component: RegisterComponent
+			path:'enrollment-test', component: EnrollmentTestComponent
 		},
 		{
 			path:'personal-test', component: TestPersonalComponent
