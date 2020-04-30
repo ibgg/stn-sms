@@ -71,7 +71,7 @@ import { RegisterComponent } from './components/dashboard/register/register.comp
 import { TestPersonalComponent } from './components/dashboard/test-personal/test-personal.component';
 import { TestPsicologicoComponent } from './components/dashboard/test-psicologico/test-psicologico.component';
 import { TestBiblicoComponent } from './components/dashboard/test-biblico/test-biblico.component';
-import { RegisterIndexComponent } from './components/dashboard/register-index/register-index.component';
+import { TestsListComponent } from './components/dashboard/tests-list/tests-list.component';
 import { AgreementComponent } from './components/dashboard/agreement/agreement.component';
 import { UsermgmtComponent } from './components/usermgmt/usermgmt.component';
 import { AdminComponent } from './components/admin/admin.component';
@@ -80,6 +80,7 @@ import { EnrollmentReportComponent } from './components/admin/enrollment-report/
 import { PersonalTestReportComponent } from './components/admin/personal-test-report/personal-test-report.component';
 import { PsychoTestReportComponent } from './components/admin/psycho-test-report/psycho-test-report.component';
 import { BiblicalTestReportComponent } from './components/admin/biblical-test-report/biblical-test-report.component';
+import { AgreementReportComponent } from './components/admin/agreement-report/agreement-report.component';
 
 
 @NgModule({
@@ -94,7 +95,7 @@ import { BiblicalTestReportComponent } from './components/admin/biblical-test-re
 	TestPersonalComponent,
 	TestPsicologicoComponent,
 	TestBiblicoComponent,
-	RegisterIndexComponent,
+	TestsListComponent,
 	AgreementComponent,
 	UsermgmtComponent,
 	AdminComponent,
@@ -103,6 +104,7 @@ import { BiblicalTestReportComponent } from './components/admin/biblical-test-re
 	PersonalTestReportComponent,
 	PsychoTestReportComponent,
 	BiblicalTestReportComponent,
+	AgreementReportComponent,
 ],
   imports: [
 	BrowserModule,

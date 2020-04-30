@@ -50,7 +50,6 @@ export class StudentsListComponent implements AfterViewInit {
 		return new Observable((observer) => {
 			this.studentsService.listenUserData().subscribe((studentsData) => {
 				let students = [];
-				console.log(studentsData);
 				studentsData.forEach((element) => {
 					let progress = 0;
 					element.emailVerified = element['emailVerified'] != undefined && element.emailVerified ? VERIFIED_EMAIL : NON_VERIFIED_EMAIL;
@@ -67,8 +66,7 @@ export class StudentsListComponent implements AfterViewInit {
 					element.biblicalTestCompleteness = element['biblicalTestCompleteness'] != undefined ? element.biblicalTestCompleteness.toFixed(1) : 0;
 	
 					element.agreementCompleteness = element['agreementCompleteness'] != undefined && element.agreementCompleteness ? 'Sí' : 'No';
-
-					console.log(element);
+					
 					students.push(element);
 				})
 	

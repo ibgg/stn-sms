@@ -15,7 +15,6 @@ export class AgreementComponent implements OnInit {
 
 	// Getting agreement status from database
 	private saveAgreementStatus(event:any):void {
-		console.log(event.checked);
 		this.authService.setFormCompletude(this.authService.userData.uid, {"agreementCompleteness": event.checked});
 	}
 }

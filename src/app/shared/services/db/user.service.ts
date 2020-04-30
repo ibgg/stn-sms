@@ -9,6 +9,10 @@ import { User } from '../../models/user';
 export class UserService {
 	constructor(private afs: AngularFirestore) { }
 
+	public getUserData(userId: string):Promise<any> {
+		return this.afs.doc<User>(`users/${userId}`).ref.get();
+	}
+
 	public listenUserData(userId:string):Observable<User> {
 	  return this.afs.doc<User>(`users/${userId}`).valueChanges();
 	}

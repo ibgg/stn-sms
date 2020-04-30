@@ -12,7 +12,7 @@ import { VerifyEmailComponent } from '../../components/verify-email/verify-email
 import { AuthGuard } from "../guard/auth.guard";
 import { SecureInnerPagesGuard } from "../guard/secure-inner-pages.guard";
 import { RegisterComponent } from 'src/app/components/dashboard/register/register.component';
-import { RegisterIndexComponent } from 'src/app/components/dashboard/register-index/register-index.component';
+import { TestsListComponent } from 'src/app/components/dashboard/tests-list/tests-list.component';
 import { TestPersonalComponent } from 'src/app/components/dashboard/test-personal/test-personal.component';
 import { TestPsicologicoComponent } from 'src/app/components/dashboard/test-psicologico/test-psicologico.component';
 import { TestBiblicoComponent } from 'src/app/components/dashboard/test-biblico/test-biblico.component';
@@ -24,6 +24,7 @@ import { EnrollmentReportComponent } from 'src/app/components/admin/enrollment-r
 import { PersonalTestReportComponent } from 'src/app/components/admin/personal-test-report/personal-test-report.component';
 import { PsychoTestReportComponent } from 'src/app/components/admin/psycho-test-report/psycho-test-report.component';
 import { BiblicalTestReportComponent } from 'src/app/components/admin/biblical-test-report/biblical-test-report.component';
+import { AgreementReportComponent } from 'src/app/components/admin/agreement-report/agreement-report.component';
 
 
 const routes: Routes = [
@@ -45,9 +46,12 @@ const routes: Routes = [
 	{
 		path: 'biblical-test-report/:student', component:BiblicalTestReportComponent
 	},
+	{
+		path: 'agreement-report/:student', component:AgreementReportComponent
+	},
 	{ path: 'dashboard', component: DashboardComponent, children: [
 		{
-			path:'', component: RegisterIndexComponent
+			path:'', component: TestsListComponent
 		},
 		{
 			path:'enrollment', component: RegisterComponent

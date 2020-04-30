@@ -1,0 +1,64 @@
+.docs-angular-logo {
+	margin: 0 4px 3px 5px;
+	vertical-align: middle;
+}
+
+.title-header {
+	font: 400 26px/32px Roboto, 'Helvetica Neue', 'sans-serif'; 
+	margin-left: 20px;
+	vertical-align: middle;
+	color: #5E2129;
+}
+
+.report-body{
+	background-color: #fff;
+}
+
+body {
+background-color: #fff !important;	
+}
+
+.mat-input-element:disabled {
+	color: #000 !important;
+}
+
+::ng-deep.mat-form-field-disabled .mat-form-field-underline 
+{ 
+background-image:linear-gradient( to right, rgba(0, 0, 0, .5) 0, rgba(0, 0, 0, 0.42) 33%, #c2c7cc 0 ) !important; /*linear-gradient( to right, rgba(0, 0, 0, .5) 0, rgba(0, 0, 0, 0.42) 33%, #c2c7cc 0 ) !important; */
+background-size: 1px 100% !important;
+ background-repeat: repeat-x !important; 
+} 
+
+.example-card{
+	margin-top: 20px;
+}
+
+.mat-divider {
+	border-top-width: 2px;
+    margin-top: 10px;
+	border-top-style: solid;
+	border-top-color: #5E2129;
+}
+
+.flex-spacer {
+	flex-grow: 1;
+}
+
+thead {display: table-header-group;}
+tfoot {display: table-header-group;}
+
+
+tr td{
+    page-break-inside: avoid;
+    /* white-space: nowrap; */
+}
+
+@media print {
+	thead {display: table-header-group;} 
+	tfoot {display: table-footer-group;}
+ }
+
+
+ textarea {
+	line-height: 1.5;
+  }

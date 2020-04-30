@@ -12,7 +12,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 })
 export class DashboardComponent implements OnInit, OnDestroy {
 	mobileQuery: MediaQueryList;
-	private currentComponent: string = "register-index";
+	private currentComponent: string = "tests-list";
 	private _mobileQueryListener: () => void;
 
 	constructor(
