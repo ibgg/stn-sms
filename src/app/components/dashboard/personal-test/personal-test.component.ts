@@ -6,14 +6,14 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
 @Component({
-	selector: 'app-test-personal',
-	templateUrl: './test-personal.component.html',
-	styleUrls: ['./test-personal.component.css'],
+	selector: 'app-personal-test',
+	templateUrl: './personal-test.component.html',
+	styleUrls: ['./personal-test.component.css'],
 	providers: [{
 		provide: STEPPER_GLOBAL_OPTIONS, useValue: {displayDefaultIndicatorType: false, showError: true}
 	  }]
 })
-export class TestPersonalComponent implements OnInit {
+export class PersonalTestComponent implements OnInit {
 	private errorMessage:string = "Formulario incompleto";
 	private mobileQuery: MediaQueryList;
 	private _mobileQueryListener: () => void;
