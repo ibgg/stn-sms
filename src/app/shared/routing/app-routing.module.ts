@@ -15,7 +15,7 @@ import { EnrollmentTestComponent } from 'src/app/components/dashboard/enrollment
 import { TestsListComponent } from 'src/app/components/dashboard/tests-list/tests-list.component';
 import { TestPersonalComponent } from 'src/app/components/dashboard/test-personal/test-personal.component';
 import { TestPsicologicoComponent } from 'src/app/components/dashboard/test-psicologico/test-psicologico.component';
-import { TestBiblicoComponent } from 'src/app/components/dashboard/test-biblico/test-biblico.component';
+import { BiblicalTestComponent } from 'src/app/components/dashboard/biblical-test/biblical-test';
 import { AgreementComponent } from 'src/app/components/dashboard/agreement/agreement.component';
 import { UsermgmtComponent } from 'src/app/components/usermgmt/usermgmt.component';
 import { AdminComponent } from 'src/app/components/admin/admin.component';
@@ -63,7 +63,7 @@ const routes: Routes = [
 			path:'psychological-test', component: TestPsicologicoComponent
 		},
 		{
-			path:'biblical-test', component: TestBiblicoComponent
+			path:'biblical-test', component: BiblicalTestComponent
 		},
 		{
 			path:'agreement', component: AgreementComponent

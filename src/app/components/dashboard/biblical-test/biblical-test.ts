@@ -6,14 +6,14 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
 @Component({
-	selector: 'app-test-biblico',
-	templateUrl: './test-biblico.component.html',
-	styleUrls: ['./test-biblico.component.css'],
+	selector: 'app-biblical-test',
+	templateUrl: './biblical-test.component.html',
+	styleUrls: ['./biblical-test.component.css'],
 	providers: [{
 		provide: STEPPER_GLOBAL_OPTIONS, useValue: {displayDefaultIndicatorType: false, showError: true}
 	  }]
 })
-export class TestBiblicoComponent implements OnInit, OnDestroy {
+export class BiblicalTestComponent implements OnInit, OnDestroy {
 	private errorMessage:string = "Formulario incompleto";
 	private mobileQuery: MediaQueryList;
 	private _mobileQueryListener: () => void;

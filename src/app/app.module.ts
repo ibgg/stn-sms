@@ -70,7 +70,7 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
 import { EnrollmentTestComponent } from './components/dashboard/enrollment-test/enrollment-test.component';
 import { TestPersonalComponent } from './components/dashboard/test-personal/test-personal.component';
 import { TestPsicologicoComponent } from './components/dashboard/test-psicologico/test-psicologico.component';
-import { TestBiblicoComponent } from './components/dashboard/test-biblico/test-biblico.component';
+import { BiblicalTestComponent } from './components/dashboard/biblical-test/biblical-test';
 import { TestsListComponent } from './components/dashboard/tests-list/tests-list.component';
 import { AgreementComponent } from './components/dashboard/agreement/agreement.component';
 import { UsermgmtComponent } from './components/usermgmt/usermgmt.component';
@@ -94,7 +94,7 @@ import { AgreementReportComponent } from './components/admin/agreement-report/ag
 	EnrollmentTestComponent,
 	TestPersonalComponent,
 	TestPsicologicoComponent,
-	TestBiblicoComponent,
+	BiblicalTestComponent,
 	TestsListComponent,
 	AgreementComponent,
 	UsermgmtComponent,
