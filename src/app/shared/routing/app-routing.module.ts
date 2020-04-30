@@ -14,7 +14,7 @@ import { SecureInnerPagesGuard } from "../guard/secure-inner-pages.guard";
 import { EnrollmentTestComponent } from 'src/app/components/dashboard/enrollment-test/enrollment-test.component';
 import { TestsListComponent } from 'src/app/components/dashboard/tests-list/tests-list.component';
 import { PersonalTestComponent } from 'src/app/components/dashboard/personal-test/personal-test.component';
-import { TestPsicologicoComponent } from 'src/app/components/dashboard/test-psicologico/test-psicologico.component';
+import { PsychologicalTestComponent } from 'src/app/components/dashboard/psychological-test/psychological-test.component';
 import { BiblicalTestComponent } from 'src/app/components/dashboard/biblical-test/biblical-test';
 import { AgreementComponent } from 'src/app/components/dashboard/agreement/agreement.component';
 import { UsermgmtComponent } from 'src/app/components/usermgmt/usermgmt.component';
@@ -60,7 +60,7 @@ const routes: Routes = [
 			path:'personal-test', component: PersonalTestComponent
 		},
 		{
-			path:'psychological-test', component: TestPsicologicoComponent
+			path:'psychological-test', component: PsychologicalTestComponent
 		},
 		{
 			path:'biblical-test', component: BiblicalTestComponent

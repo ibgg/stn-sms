@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PsychologicalService } from 'src/app/shared/services/db/psychological.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { PsicoQuestions } from '../../dashboard/test-psicologico/psico-questions';
+import { PsicoQuestions } from '../../dashboard/psychological-test/psico-questions';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({

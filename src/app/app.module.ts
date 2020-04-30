@@ -69,7 +69,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { EnrollmentTestComponent } from './components/dashboard/enrollment-test/enrollment-test.component';
 import { PersonalTestComponent } from './components/dashboard/personal-test/personal-test.component';
-import { TestPsicologicoComponent } from './components/dashboard/test-psicologico/test-psicologico.component';
+import { PsychologicalTestComponent } from './components/dashboard/psychological-test/psychological-test.component';
 import { BiblicalTestComponent } from './components/dashboard/biblical-test/biblical-test';
 import { TestsListComponent } from './components/dashboard/tests-list/tests-list.component';
 import { AgreementComponent } from './components/dashboard/agreement/agreement.component';
@@ -93,7 +93,7 @@ import { AgreementReportComponent } from './components/admin/agreement-report/ag
 	VerifyEmailComponent,
 	EnrollmentTestComponent,
 	PersonalTestComponent,
-	TestPsicologicoComponent,
+	PsychologicalTestComponent,
 	BiblicalTestComponent,
 	TestsListComponent,
 	AgreementComponent,

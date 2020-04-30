@@ -7,11 +7,11 @@ import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 
 @Component({
-	selector: 'app-test-psicologico',
-	templateUrl: './test-psicologico.component.html',
-	styleUrls: ['./test-psicologico.component.css']
+	selector: 'app-psychological-test',
+	templateUrl: './psychological-test.component.html',
+	styleUrls: ['./psychological-test.component.css']
 })
-export class TestPsicologicoComponent implements OnInit {
+export class PsychologicalTestComponent implements OnInit {
 	private userId: string;
 	private psicologicalTestFG: FormGroup;
 
