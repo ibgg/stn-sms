@@ -30,7 +30,6 @@ export class AuthService {
 			if (user) {
 				if (this.userData == null) {
 					if (user.emailVerified) {
-						console.log("userdata null anda verified user");
 						this.userData = this.buildUserDataFromAuthService(user, undefined);
 						this.userData.emailVerified = true;
 						this.getUserDataFormServer();
@@ -39,18 +38,15 @@ export class AuthService {
 						console.info("Non verified email");
 					}
 				} else {
-					console.log("userdata NOT null anda verified user");
 					if (user.emailVerified) {
 						this.userData.emailVerified = true;
 						this.getUserDataFormServer();
 						this.listenUserData();
 					} else {
-						console.log("non verified user, and non userdataNul... trying logout");
 						this.signOut();
 					}
 				}
 			} else {
-				console.log("user null");
 				this.userData = null;
 				window.localStorage.setItem('userData', this.userData);
 				sessionStorage.setItem('userData', null);
@@ -293,7 +289,6 @@ export class AuthService {
 				this.userData.emailVerified=true;
 				this.setVerifiedUserDataOnDB(this.userData.uid, true);
 				if (snap.data().role != undefined && snap.data().role =="admin"){
-					console.log("Trying navigate admin...");
 					this.router.navigate(['admin']);
 				}else if (this.router.url.search("dashboard") <= 0) {
 					this.ngZone.run(() => {
