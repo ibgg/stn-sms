@@ -82,7 +82,7 @@
 							  </div>
 						</form>
 						<!-- Form -->
-						<button mat-stroked-button style="color: #dd4b39;" (click)="authService.googleAuth()" class="button-large"><fa-icon [icon]="['fab', 'google']"></fa-icon> Iniciar sesión con Google</button>
+						<button mat-stroked-button style="color: #dd4b39;" (click)="authService.googleAuth(rememberme.checked, true)" class="button-large"><fa-icon [icon]="['fab', 'google']"></fa-icon> Iniciar sesión con Google</button>
 		
 						<!-- Register -->
 						<div class="span-vspaced">¿Ya tienes una cuenta?<a class="redirect" routerLink="/sign-in"> Inicia sesión</a></div>

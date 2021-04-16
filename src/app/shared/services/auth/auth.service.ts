@@ -59,26 +59,26 @@ export class AuthService {
 		});
 	}
 
-	public async googleAuth(rememberMe: boolean) {
+	public async googleAuth(rememberMe: boolean, updateUserData:boolean) {
 		let me = this;
 		this.error = "";
 		if (rememberMe !== null && !rememberMe) {
 			this.afAuth.auth.setPersistence(auth.Auth.Persistence.SESSION).then(async () => {
-				this.loginMeByGoogle(new auth.GoogleAuthProvider(), rememberMe);
+				this.loginMeByGoogle(new auth.GoogleAuthProvider(), rememberMe, updateUserData);
 			}).catch(function (error) {
 				me.error = error.message;
 			});
 		} else if (rememberMe) {
 			this.afAuth.auth.setPersistence(auth.Auth.Persistence.LOCAL).then(async () => {
-				this.loginMeByGoogle(new auth.GoogleAuthProvider(), rememberMe);
+				this.loginMeByGoogle(new auth.GoogleAuthProvider(), rememberMe,updateUserData);
 			}).catch(function (error) {
 				me.error = error.message;
 			})
 		}
-		return this.loginMeByGoogle(new auth.GoogleAuthProvider(), rememberMe);
+		return this.loginMeByGoogle(new auth.GoogleAuthProvider(), rememberMe,updateUserData);
 	}
 
-	private async loginMeByGoogle(provider: auth.GoogleAuthProvider, rememberMe: boolean) {
+	private async loginMeByGoogle(provider: auth.GoogleAuthProvider, rememberMe: boolean, updateUserData:boolean) {
 		this.error = "";
 		return this.afAuth.auth.signInWithPopup(provider)
 			.then((resp) => {
@@ -91,7 +91,7 @@ export class AuthService {
 					userData.emailVerified = user.emailVerified;
 					this.saveSessionUserData(userData);
 				}
-				this.setUserDataOnDB(userData);
+				if (updateUserData) this.setUserDataOnDB(userData);
 			}).catch((error) => {
 				this.error = error.message;
 			});
@@ -221,17 +221,19 @@ export class AuthService {
 	}
 
 	public async setUserDataOnDB(userData: any): Promise<void> {
+		userData.creationDate = new Date();
 		this.error = "";
 		const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${userData.uid}`);
 
 		return userRef.set(userData, { merge: true });
 	}
 
-	private async setVerifiedUserDataOnDB(uid, emailVerified: boolean): Promise<void> {
+	private async updateUserDataOnDB(uid:any, emailVerified: boolean): Promise<void> {
+		let lastAccess = new Date();
 		this.error = "";
 		const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${uid}`);
 
-		return userRef.set({emailVerified: emailVerified}, { merge: true });
+		return userRef.set({emailVerified: emailVerified, lastAccess: lastAccess}, { merge: true });
 	}
 
 	async signOut() {
@@ -287,7 +289,7 @@ export class AuthService {
 			if (snap.data()){
 				this.userData = snap.data();
 				this.userData.emailVerified=true;
-				this.setVerifiedUserDataOnDB(this.userData.uid, true);
+				this.updateUserDataOnDB(this.userData.uid, true);
 				if (snap.data().role != undefined && snap.data().role =="admin"){
 					this.router.navigate(['admin']);
 				}else if (this.router.url.search("dashboard") <= 0) {
