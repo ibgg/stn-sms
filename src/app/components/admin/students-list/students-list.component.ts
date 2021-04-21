@@ -28,8 +28,9 @@ const ITEMS_PER_PAGE_LABEL = 'Estudiantes a mostrar';
 	]
 })
 export class StudentsListComponent implements AfterViewInit {	
-	private columnsNames: string[] = ['displayName', 'email', 'emailVerified', 'enrollmentCompleteness', 'personalTestCompleteness', 'psychologicalTestCompleteness', 'biblicalTestCompleteness', 'agreementCompleteness', 'completeness'];
+	private columnsNames: string[] = ['displayName', 'email', 'creationLocaleDate', 'emailVerified', 'enrollmentCompleteness', 'personalTestCompleteness', 'psychologicalTestCompleteness', 'biblicalTestCompleteness', 'agreementCompleteness', 'completeness'];
 	private dataSource: MatTableDataSource<any>;
+	private bkDataSource: MatTableDataSource<any>;
 	@ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
 	constructor(private studentsService:StudentsDataService) { 
@@ -60,6 +61,12 @@ export class StudentsListComponent implements AfterViewInit {
 					progress += element['psychologicalTestCompleteness'] != undefined ? element.psychologicalTestCompleteness : 0;
 					element.completeness = (progress / 5).toFixed(2) + '%';
 	
+					if (element['creationDate'] != undefined && element['creationDate'] != null){
+						let creationDate = element['creationDate'].toDate();
+						let _creationDate = creationDate.toLocaleDateString('es-MX');
+						element.creationLocaleDate = _creationDate;
+						element.creationDate = element['creationDate'].toDate(); 
+					}
 					element.enrollmentCompleteness = element['enrollmentCompleteness'] != undefined ? element.enrollmentCompleteness.toFixed(1) : 0;
 					element.personalTestCompleteness = element['personalTestCompleteness'] != undefined ? element.personalTestCompleteness.toFixed(1) : 0;
 					element.psychologicalTestCompleteness = element['psychologicalTestCompleteness'] != undefined ? element.psychologicalTestCompleteness.toFixed(1) : 0;
@@ -71,6 +78,7 @@ export class StudentsListComponent implements AfterViewInit {
 				})
 	
 				this.dataSource = new MatTableDataSource(students);
+				this.bkDataSource = new MatTableDataSource(students);
 				observer.next();
 				observer.complete();
 			});
@@ -78,10 +86,27 @@ export class StudentsListComponent implements AfterViewInit {
 
 	}
 
-	private applyFilter(filterValue: string) {
-		filterValue = filterValue.trim(); // Remove whitespace
-		filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
-		this.dataSource.filter = filterValue;
+	private applyFilter(nameFilter: string, startDateFilter: string, endDateFilter: string) {
+		let dtStartDateFilter = startDateFilter != null && startDateFilter != undefined && startDateFilter != '' ? new Date(startDateFilter) : null;
+		let dtEndDateFilter = endDateFilter != null && endDateFilter != undefined && endDateFilter != '' ? new Date(endDateFilter): null;
+		nameFilter = nameFilter.trim();
+		nameFilter = nameFilter.toLowerCase();
+		this.dataSource = new MatTableDataSource (this.bkDataSource.data);
+		this.dataSource.data = this.dataSource.data.filter(function (e){
+			let displayName = (e.displayName + '').toLowerCase();
+			if (startDateFilter && endDateFilter)
+				return displayName.includes(nameFilter) && (e.creationDate > dtStartDateFilter && e.creationDate < dtEndDateFilter);
+			else if (startDateFilter)
+				return displayName.includes(nameFilter) && e.creationDate > dtStartDateFilter;
+			else if (endDateFilter)
+				return displayName.includes(nameFilter) && e.creationDate < dtEndDateFilter;
+			else if (nameFilter)
+				return displayName.includes(nameFilter);
+			return true;
+		});
 	  }
 	
+	private filterPeriod(data: any, filter: string) {
+		//return data.referenceDate > startDateFilter.value() && data.referenceDate < endDateFilter.value();
+	}
 }

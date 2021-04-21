@@ -1,7 +1,29 @@
 <div class="mat-elevation-z8">
-	<mat-form-field style="background-color: #fff;">
-		<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtrar">
-	</mat-form-field>
+	<div class="form-row">
+		<div class="col-sm-8">
+			<mat-form-field style="background-color: #fff;">
+				<input #nameFilter matInput (keyup)="applyFilter(nameFilter.value, startDate.value, endDate.value)" placeholder="Filtrar por nombre">
+			</mat-form-field>
+		</div>
+		<div class="col-sm-2">
+			<mat-form-field class="col-sm-12 example-full-width" style="background-color: #fff;">
+				<mat-label>Fecha creación (inicio)</mat-label>
+				<!-- <input matInput formControlName="baptismDate" required> -->
+				<input #startDate matInput [matDatepicker]="startCreationDatePicker" (dateChange)="applyFilter(nameFilter.value, startDate.value, endDate.value)">
+				<mat-datepicker-toggle matSuffix [for]="startCreationDatePicker"></mat-datepicker-toggle>
+				<mat-datepicker touchUi #startCreationDatePicker></mat-datepicker>
+			</mat-form-field>
+		</div>
+		<div class="col-sm-2">
+			<mat-form-field class="col-sm-12 example-full-width" style="background-color: #fff;">
+				<mat-label>Fecha de creación (fin)</mat-label>
+				<!-- <input matInput formControlName="baptismDate" required> -->
+				<input #endDate matInput [matDatepicker]="endCreationDatePicker" (dateChange)="applyFilter(nameFilter.value, startDate.value, endDate.value)">
+				<mat-datepicker-toggle matSuffix [for]="endCreationDatePicker"></mat-datepicker-toggle>
+				<mat-datepicker touchUi #endCreationDatePicker></mat-datepicker>
+			</mat-form-field>
+		</div>
+	</div>
 	
 	<table mat-table
 		[dataSource]="dataSource">
@@ -15,6 +37,11 @@
 			<mat-cell *matCellDef="let student" data-label="Email"> <a href="mailto:{{ student.email }}" target="_blank" rel="noopener noreferrer">{{ student.email }}</a> </mat-cell>
 		  </ng-container>
 	  
+		  <ng-container matColumnDef="creationLocaleDate">
+			<mat-header-cell *matHeaderCellDef class="students-list-header">Fecha de creación</mat-header-cell>
+			<mat-cell *matCellDef="let student" data-label="Email"> {{ student.creationLocaleDate }} </mat-cell>
+		  </ng-container>
+
 		  <ng-container matColumnDef="emailVerified">
 			<mat-header-cell *matHeaderCellDef class="students-list-header mat-column-percents"> Estado </mat-header-cell>
 			<mat-cell *matCellDef="let student" data-label="Estado" class="mat-column-percents"> <div *ngIf="student.emailVerified == 'Verificado'; else pending"> <mat-icon class="material-icons primary" style="margin-right: 5px;">check</mat-icon></div> <ng-template #pending><mat-icon class="material-icons primary" style="margin-right: 5px;">close</mat-icon></ng-template></mat-cell>
