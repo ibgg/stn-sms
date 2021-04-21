@@ -43,7 +43,7 @@ export class StudentsListComponent implements AfterViewInit {
 		this.listenStudentsData().subscribe(()=>{
 			this.dataSource.paginator = this.paginator;
 			this.dataSource.paginator._intl.itemsPerPageLabel="Estudiantes a mostrar";
-			this.dataSource.paginator._intl.getRangeLabel = (page: number, pageSize: number, length: number) => { if (length == 0 || pageSize == 0) { return `0 of ${length}`; } length = Math.max(length, 0); const startIndex = page * pageSize; const endIndex = startIndex < length ? Math.min(startIndex + pageSize, length) : startIndex + pageSize; return `${startIndex + 1} – ${endIndex} de ${length}`; }
+			this.dataSource.paginator._intl.getRangeLabel = (page: number, pageSize: number, length: number) => { if (length == 0 || pageSize == 0) { return `0 de ${length}`; } length = Math.max(length, 0); const startIndex = page * pageSize; const endIndex = startIndex < length ? Math.min(startIndex + pageSize, length) : startIndex + pageSize; return `${startIndex + 1} – ${endIndex} de ${length}`; }
 		});
 	}
 
@@ -62,8 +62,9 @@ export class StudentsListComponent implements AfterViewInit {
 					element.completeness = (progress / 5).toFixed(2) + '%';
 	
 					if (element['creationDate'] != undefined && element['creationDate'] != null){
+						let options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
 						let creationDate = element['creationDate'].toDate();
-						let _creationDate = creationDate.toLocaleDateString('es-MX');
+						let _creationDate = creationDate.toLocaleDateString('es-MX', options).toLowerCase().replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());;
 						element.creationLocaleDate = _creationDate;
 						element.creationDate = element['creationDate'].toDate(); 
 					}
@@ -73,6 +74,7 @@ export class StudentsListComponent implements AfterViewInit {
 					element.biblicalTestCompleteness = element['biblicalTestCompleteness'] != undefined ? element.biblicalTestCompleteness.toFixed(1) : 0;
 	
 					element.agreementCompleteness = element['agreementCompleteness'] != undefined && element.agreementCompleteness ? 'Sí' : 'No';
+					element.displayName = element.displayName.toLowerCase().replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
 					
 					students.push(element);
 				})

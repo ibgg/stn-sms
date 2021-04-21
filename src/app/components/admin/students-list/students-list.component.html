@@ -34,12 +34,12 @@
 	  
 		  <ng-container matColumnDef="email">
 			<mat-header-cell *matHeaderCellDef class="students-list-header">Email</mat-header-cell>
-			<mat-cell *matCellDef="let student" data-label="Email"> <a href="mailto:{{ student.email }}" target="_blank" rel="noopener noreferrer">{{ student.email }}</a> </mat-cell>
+			<mat-cell *matCellDef="let student" data-label="Email"> <a href="mailto:{{ student.email }}" target="_blank" rel="noopener noreferrer" style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;" matTooltip="{{ student.email }}" matTooltipPosition="above">{{ student.email }}</a> </mat-cell>
 		  </ng-container>
 	  
 		  <ng-container matColumnDef="creationLocaleDate">
 			<mat-header-cell *matHeaderCellDef class="students-list-header">Fecha de creación</mat-header-cell>
-			<mat-cell *matCellDef="let student" data-label="Email"> {{ student.creationLocaleDate }} </mat-cell>
+			<mat-cell *matCellDef="let student" data-label="Fecha de creación"> {{ student.creationLocaleDate }} </mat-cell>
 		  </ng-container>
 
 		  <ng-container matColumnDef="emailVerified">
