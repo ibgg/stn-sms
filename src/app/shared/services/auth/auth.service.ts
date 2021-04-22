@@ -1,7 +1,12 @@
 import { Injectable, NgZone } from '@angular/core';
 
 import { User } from '../../models/user';
-import { auth } from 'firebase/app';
+import firebase from 'firebase/app';
+
+// These imports load individual services into the firebase namespace.
+import 'firebase/auth';
+import 'firebase/database';
+
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Router } from '@angular/router'
@@ -63,24 +68,24 @@ export class AuthService {
 		let me = this;
 		this.error = "";
 		if (rememberMe !== null && !rememberMe) {
-			this.afAuth.auth.setPersistence(auth.Auth.Persistence.SESSION).then(async () => {
-				this.loginMeByGoogle(new auth.GoogleAuthProvider(), rememberMe, updateUserData);
+			this.afAuth.setPersistence(firebase.auth.Auth.Persistence.SESSION).then(async () => {
+				this.loginMeByGoogle(new firebase.auth.GoogleAuthProvider(), rememberMe, updateUserData);
 			}).catch(function (error) {
 				me.error = error.message;
 			});
 		} else if (rememberMe) {
-			this.afAuth.auth.setPersistence(auth.Auth.Persistence.LOCAL).then(async () => {
-				this.loginMeByGoogle(new auth.GoogleAuthProvider(), rememberMe,updateUserData);
+			this.afAuth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(async () => {
+				this.loginMeByGoogle(new firebase.auth.GoogleAuthProvider(), rememberMe,updateUserData);
 			}).catch(function (error) {
 				me.error = error.message;
 			})
 		}
-		return this.loginMeByGoogle(new auth.GoogleAuthProvider(), rememberMe,updateUserData);
+		return this.loginMeByGoogle(new firebase.auth.GoogleAuthProvider(), rememberMe,updateUserData);
 	}
 
-	private async loginMeByGoogle(provider: auth.GoogleAuthProvider, rememberMe: boolean, updateUserData:boolean) {
+	private async loginMeByGoogle(provider: firebase.auth.GoogleAuthProvider, rememberMe: boolean, updateUserData:boolean) {
 		this.error = "";
-		return this.afAuth.auth.signInWithPopup(provider)
+		return this.afAuth.signInWithPopup(provider)
 			.then((resp) => {
 				let user = resp.user;
 				let userData = this.buildUserDataFromAuthService(user, undefined);
@@ -102,7 +107,7 @@ export class AuthService {
 		let me = this;
 		try {
 			//this.afAuth.auth.languageCode = 'es';
-			const result = await this.afAuth.auth.signInWithEmailAndPassword(email, password).then((resp) => {
+			const result = await this.afAuth.signInWithEmailAndPassword(email, password).then((resp) => {
 				let user = resp.user;
 				if (!user.emailVerified) {
 					this.ngZone.run(() => {
@@ -131,13 +136,13 @@ export class AuthService {
 		let me = this;
 		this.error = "";
 		if (rememberMe !== null && !rememberMe) {
-			this.afAuth.auth.setPersistence(auth.Auth.Persistence.SESSION).then(async () => {
+			this.afAuth.setPersistence(firebase.auth.Auth.Persistence.SESSION).then(async () => {
 				me.signInWithEmailAndPassword(email, password, rememberMe);
 			}).catch(function (error) {
 				me.error = error.message;
 			});
 		} else if (rememberMe) {
-			this.afAuth.auth.setPersistence(auth.Auth.Persistence.LOCAL).then(async () => {
+			this.afAuth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(async () => {
 				me.signInWithEmailAndPassword(email, password, rememberMe);
 			}).catch(function (error) {
 				me.error = error.message;
@@ -149,7 +154,7 @@ export class AuthService {
 		this.error = "";
 		try {
 			let me = this;
-			let result = await this.afAuth.auth.createUserWithEmailAndPassword(email, password).then((res) => {
+			let result = await this.afAuth.createUserWithEmailAndPassword(email, password).then((res) => {
 				let userData = this.buildUserDataFromAuthService(res.user, lastname);
 				userData.displayName = name + " " + lastname;
 				me.setUserDataOnDB(userData);
@@ -181,13 +186,13 @@ export class AuthService {
 		let me = this;
 		this.error = "";
 		if (rememberMe !== null && !rememberMe) {
-			this.afAuth.auth.setPersistence(auth.Auth.Persistence.SESSION).then(async () => {
+			this.afAuth.setPersistence(firebase.auth.Auth.Persistence.SESSION).then(async () => {
 				this.signUpWithEmailAndPassword(email, password, name, lastname, rememberMe);
 			}).catch(function (error) {
 				me.error = error.message;
 			});
 		} else if (rememberMe) {
-			this.afAuth.auth.setPersistence(auth.Auth.Persistence.LOCAL).then(async () => {
+			this.afAuth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(async () => {
 				this.signUpWithEmailAndPassword(email, password, name, lastname, rememberMe);
 			}).catch(function (error) {
 				me.error = error.message;
@@ -208,7 +213,7 @@ export class AuthService {
 
 	public async forgotPassword(email: string) {
 		this.error = "";
-		return this.afAuth.auth.sendPasswordResetEmail(email)
+		return this.afAuth.sendPasswordResetEmail(email)
 			.then(() => {
 				this.success = "Se ha enviado un correo para restablecer tu contraseña, por favor revisa tu correo";
 			}).catch((error) => {
@@ -237,7 +242,7 @@ export class AuthService {
 	}
 
 	async signOut() {
-		return this.afAuth.auth.signOut().then(() => {
+		return this.afAuth.signOut().then(() => {
 			this.userData = null;
 			window.localStorage.setItem('userData', this.userData);
 			window.sessionStorage.setItem('userData', null);
@@ -273,15 +278,15 @@ export class AuthService {
 	}
 
 	public async handleVerifyEmail(actionCode: string): Promise<void> {
-		return this.afAuth.auth.applyActionCode(actionCode).then();
+		return this.afAuth.applyActionCode(actionCode).then();
 	}
 
 	public verifyPasswordReset(actionCode: string): Promise<string> {
-		return this.afAuth.auth.verifyPasswordResetCode(actionCode);
+		return this.afAuth.verifyPasswordResetCode(actionCode);
 	}
 
 	public confirmPasswordReset(actionCode: string, newPassword: string): Promise<void> {
-		return this.afAuth.auth.confirmPasswordReset(actionCode, newPassword);
+		return this.afAuth.confirmPasswordReset(actionCode, newPassword);
 	}
 
 	public getUserDataFormServer():void{
