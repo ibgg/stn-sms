@@ -64,45 +64,32 @@ export class AuthService {
 		});
 	}
 
-	public async googleAuth(rememberMe: boolean, updateUserData:boolean) {
+	public async googleAuth(updateUserData:boolean) {
 		let me = this;
 		this.error = "";
-		if (rememberMe !== null && !rememberMe) {
-			this.afAuth.setPersistence(firebase.auth.Auth.Persistence.SESSION).then(async () => {
-				this.loginMeByGoogle(new firebase.auth.GoogleAuthProvider(), rememberMe, updateUserData);
-			}).catch(function (error) {
-				me.error = error.message;
-			});
-		} else if (rememberMe) {
-			this.afAuth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(async () => {
-				this.loginMeByGoogle(new firebase.auth.GoogleAuthProvider(), rememberMe,updateUserData);
-			}).catch(function (error) {
-				me.error = error.message;
-			})
-		}
-		return this.loginMeByGoogle(new firebase.auth.GoogleAuthProvider(), rememberMe,updateUserData);
+		this.afAuth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(async () => {
+			this.loginMeByGoogle(new firebase.auth.GoogleAuthProvider(), updateUserData);
+		}).catch(function (error) {
+			me.error = error.message;
+		});
+		return this.loginMeByGoogle(new firebase.auth.GoogleAuthProvider(), updateUserData);
 	}
 
-	private async loginMeByGoogle(provider: firebase.auth.GoogleAuthProvider, rememberMe: boolean, updateUserData:boolean) {
+	private async loginMeByGoogle(provider: firebase.auth.GoogleAuthProvider, updateUserData:boolean) {
 		this.error = "";
 		return this.afAuth.signInWithPopup(provider)
 			.then((resp) => {
 				let user = resp.user;
 				let userData = this.buildUserDataFromAuthService(user, undefined);
-				if (rememberMe) {
-					userData.emailVerified = user.emailVerified;
-					this.saveLocalUserData(userData);
-				}else{
-					userData.emailVerified = user.emailVerified;
-					this.saveSessionUserData(userData);
-				}
+				userData.emailVerified = user.emailVerified;
+				this.saveLocalUserData(userData);
 				if (updateUserData) this.setUserDataOnDB(userData);
 			}).catch((error) => {
 				this.error = error.message;
 			});
 	}
 
-	private async signInWithEmailAndPassword(email: string, password: string, rememberMe: boolean) {
+	private async signInWithEmailAndPassword(email: string, password: string) {
 		this.error = "";
 		let me = this;
 		try {
@@ -115,12 +102,8 @@ export class AuthService {
 					});
 				}else{
 					let userData = this.buildUserDataFromAuthService(user, undefined);
-					if (rememberMe) {
-						userData.emailVerified = user.emailVerified;
-						this.saveLocalUserData(userData);
-					}else{
-						this.saveSessionUserData(userData);
-					}	
+					userData.emailVerified = user.emailVerified;
+					this.saveLocalUserData(userData);
 				}
 			}).catch((error) => {
 				console.error("error trying sign with email and password", error.message);
@@ -132,25 +115,18 @@ export class AuthService {
 		}
 	}
 
-	public async signIn(email: string, password: string, rememberMe: boolean) {
+	public async signIn(email: string, password: string) {
 		let me = this;
 		this.error = "";
-		if (rememberMe !== null && !rememberMe) {
-			this.afAuth.setPersistence(firebase.auth.Auth.Persistence.SESSION).then(async () => {
-				me.signInWithEmailAndPassword(email, password, rememberMe);
-			}).catch(function (error) {
-				me.error = error.message;
-			});
-		} else if (rememberMe) {
-			this.afAuth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(async () => {
-				me.signInWithEmailAndPassword(email, password, rememberMe);
-			}).catch(function (error) {
-				me.error = error.message;
-			})
-		}
+
+		this.afAuth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(async () => {
+			me.signInWithEmailAndPassword(email, password);
+		}).catch(function (error) {
+			me.error = error.message;
+		});
 	}
 
-	public async signUpWithEmailAndPassword(email: string, password: string, name: string, lastname: string, rememberMe: boolean) {
+	public async signUpWithEmailAndPassword(email: string, password: string, name: string, lastname: string) {
 		this.error = "";
 		try {
 			let me = this;
@@ -158,11 +134,7 @@ export class AuthService {
 				let userData = this.buildUserDataFromAuthService(res.user, lastname);
 				userData.displayName = name + " " + lastname;
 				me.setUserDataOnDB(userData);
-				if (rememberMe) {
-					this.saveLocalUserData(userData);
-				}else{
-					//this.saveSessionUserData(userData);
-				}
+				this.saveLocalUserData(userData);
 
 				res.user.updateProfile({
 					displayName: name + " " + lastname	
@@ -182,22 +154,14 @@ export class AuthService {
 		}
 	}
 
-	public async signUp(email: string, password: string, name: string, lastname: string, rememberMe: boolean) {
+	public async signUp(email: string, password: string, name: string, lastname: string) {
 		let me = this;
 		this.error = "";
-		if (rememberMe !== null && !rememberMe) {
-			this.afAuth.setPersistence(firebase.auth.Auth.Persistence.SESSION).then(async () => {
-				this.signUpWithEmailAndPassword(email, password, name, lastname, rememberMe);
-			}).catch(function (error) {
-				me.error = error.message;
-			});
-		} else if (rememberMe) {
-			this.afAuth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(async () => {
-				this.signUpWithEmailAndPassword(email, password, name, lastname, rememberMe);
-			}).catch(function (error) {
-				me.error = error.message;
-			})
-		}
+		this.afAuth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(async () => {
+			this.signUpWithEmailAndPassword(email, password, name, lastname);
+		}).catch(function (error) {
+			me.error = error.message;
+		});
 	}
 
 	public async sendVerificationMail(user: firebase.User) {
