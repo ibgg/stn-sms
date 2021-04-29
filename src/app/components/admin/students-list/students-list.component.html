@@ -25,10 +25,10 @@
 		</div>
 	</div>
 	
-	<table mat-table
-		[dataSource]="dataSource">
-		<ng-container matColumnDef="displayName">
-			<mat-header-cell *matHeaderCellDef class="students-list-header">Nombre</mat-header-cell>
+	<mat-table
+		[dataSource]="dataSource" matSort>
+		  <ng-container matColumnDef="displayName">
+			<mat-header-cell *matHeaderCellDef class="students-list-header" mat-sort-header>Nombre</mat-header-cell>
 			<mat-cell *matCellDef="let student" data-label="Nombre"> {{ student.displayName }} </mat-cell>
 		  </ng-container>  
 	  
@@ -79,7 +79,6 @@
 	  
 		  <mat-header-row *matHeaderRowDef="columnsNames; sticky: true"></mat-header-row>
 		  <mat-row *matRowDef="let row; columns: columnsNames;" class="animate row-element"> </mat-row>  
-	</table>
-	<mat-paginator [pageSizeOptions]="[10, 10, 25, 100]"></mat-paginator>
-	
+		</mat-table>
+	<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>

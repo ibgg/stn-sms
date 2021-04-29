@@ -3,6 +3,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 import { StudentsDataService } from 'src/app/shared/services/db/students-data.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
 import { Observable } from 'rxjs';
 
 interface StudentsColumns{
@@ -31,19 +32,19 @@ export class StudentsListComponent implements AfterViewInit {
 	private columnsNames: string[] = ['displayName', 'email', 'creationLocaleDate', 'emailVerified', 'enrollmentCompleteness', 'personalTestCompleteness', 'psychologicalTestCompleteness', 'biblicalTestCompleteness', 'agreementCompleteness', 'completeness'];
 	private dataSource: MatTableDataSource<any>;
 	private bkDataSource: MatTableDataSource<any>;
-	@ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+	@ViewChild(MatPaginator) paginator: MatPaginator;
+	@ViewChild(MatSort) sort: MatSort;
 
-	constructor(private studentsService:StudentsDataService) { 
-	}
+	constructor(private studentsService:StudentsDataService) { }
 
-
-
-
-	ngAfterViewInit(): void {
+	ngAfterViewInit() {
 		this.listenStudentsData().subscribe(()=>{
-			this.dataSource.paginator = this.paginator;
-			this.dataSource.paginator._intl.itemsPerPageLabel="Estudiantes a mostrar";
-			this.dataSource.paginator._intl.getRangeLabel = (page: number, pageSize: number, length: number) => { if (length == 0 || pageSize == 0) { return `0 de ${length}`; } length = Math.max(length, 0); const startIndex = page * pageSize; const endIndex = startIndex < length ? Math.min(startIndex + pageSize, length) : startIndex + pageSize; return `${startIndex + 1} – ${endIndex} de ${length}`; }
+			//if (this.dataSource.paginator == null || this.dataSource.paginator == undefined){
+				this.dataSource.sort = this.sort;
+				this.dataSource.paginator = this.paginator;
+				this.dataSource.paginator._intl.itemsPerPageLabel= ITEMS_PER_PAGE_LABEL;
+				this.dataSource.paginator._intl.getRangeLabel = (page: number, pageSize: number, length: number) => { if (length == 0 || pageSize == 0) { return `0 de ${length}`; } length = Math.max(length, 0); const startIndex = page * pageSize; const endIndex = startIndex < length ? Math.min(startIndex + pageSize, length) : startIndex + pageSize; return `${startIndex + 1} – ${endIndex} de ${length}`; }
+			//}
 		});
 	}
 
@@ -106,9 +107,9 @@ export class StudentsListComponent implements AfterViewInit {
 				return displayName.includes(nameFilter);
 			return true;
 		});
+
+		if (this.dataSource.paginator) {
+			this.dataSource.paginator.firstPage();
+		}
 	  }
-	
-	private filterPeriod(data: any, filter: string) {
-		//return data.referenceDate > startDateFilter.value() && data.referenceDate < endDateFilter.value();
-	}
 }
