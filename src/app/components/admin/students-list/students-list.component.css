@@ -108,7 +108,15 @@ table {
 .tooltip:hover .tooltiptext {
   visibility: visible;
 } 
+
+.example-table-container {
+	position: relative;
+	height: 65vh;
+	overflow: auto;
+	}
+
   @media screen and (max-width: 720px) {
+	
 	.mat-table {
 	  border: 0;
 	  vertical-align: middle
@@ -205,3 +213,26 @@ table {
 .row-element:hover {
 	background: whitesmoke;
   }
+
+  .example-container {
+	position: relative;
+	min-height: 200px;
+  }
+  
+.example-loading-shade {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 56px;
+	right: 0;
+	background: rgba(0, 0, 0, 0.15);
+	z-index: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.mat-paginator {
+    display: block;
+    border-top: 1px #d2cfcf solid;
+}

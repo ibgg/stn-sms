@@ -1,5 +1,5 @@
-<div class="mat-elevation-z8">
-	<div class="form-row">
+<div class="example-container mat-elevation-z8">
+	<div class="form-row" style="z-index:100;">
 		<div class="col-sm-8">
 			<mat-form-field style="background-color: #fff;">
 				<input #nameFilter matInput (keyup)="applyFilter(nameFilter.value, startDate.value, endDate.value)" placeholder="Filtrar por nombre">
@@ -24,61 +24,65 @@
 			</mat-form-field>
 		</div>
 	</div>
+	<div class="example-loading-shade" *ngIf="isLoadingResults">
+		<mat-spinner diameter="40" *ngIf="isLoadingResults"></mat-spinner>
+	</div>
+	<div class="example-table-container">
+		<mat-table
+			[dataSource]="dataSource" matSort>
+			  <ng-container matColumnDef="displayName">
+				<mat-header-cell *matHeaderCellDef class="students-list-header" mat-sort-header>Nombre</mat-header-cell>
+				<mat-cell *matCellDef="let student" data-label="Nombre"> {{ student.displayName }} </mat-cell>
+			  </ng-container>  
+		  
+			  <ng-container matColumnDef="email">
+				<mat-header-cell *matHeaderCellDef class="students-list-header" mat-sort-header>Email</mat-header-cell>
+				<mat-cell *matCellDef="let student" data-label="Email"> <a href="mailto:{{ student.email }}" target="_blank" rel="noopener noreferrer" style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;" matTooltip="{{ student.email }}" matTooltipPosition="above">{{ student.email }}</a> </mat-cell>
+			  </ng-container>
+		  
+			  <ng-container matColumnDef="creationLocaleDate">
+				<mat-header-cell *matHeaderCellDef class="students-list-header" mat-sort-header>Fecha de creación</mat-header-cell>
+				<mat-cell *matCellDef="let student" data-label="Fecha de creación"> {{ student.creationLocaleDate }} </mat-cell>
+			  </ng-container>
 	
-	<mat-table
-		[dataSource]="dataSource" matSort>
-		  <ng-container matColumnDef="displayName">
-			<mat-header-cell *matHeaderCellDef class="students-list-header" mat-sort-header>Nombre</mat-header-cell>
-			<mat-cell *matCellDef="let student" data-label="Nombre"> {{ student.displayName }} </mat-cell>
-		  </ng-container>  
-	  
-		  <ng-container matColumnDef="email">
-			<mat-header-cell *matHeaderCellDef class="students-list-header">Email</mat-header-cell>
-			<mat-cell *matCellDef="let student" data-label="Email"> <a href="mailto:{{ student.email }}" target="_blank" rel="noopener noreferrer" style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;" matTooltip="{{ student.email }}" matTooltipPosition="above">{{ student.email }}</a> </mat-cell>
-		  </ng-container>
-	  
-		  <ng-container matColumnDef="creationLocaleDate">
-			<mat-header-cell *matHeaderCellDef class="students-list-header">Fecha de creación</mat-header-cell>
-			<mat-cell *matCellDef="let student" data-label="Fecha de creación"> {{ student.creationLocaleDate }} </mat-cell>
-		  </ng-container>
-
-		  <ng-container matColumnDef="emailVerified">
-			<mat-header-cell *matHeaderCellDef class="students-list-header mat-column-percents"> Estado </mat-header-cell>
-			<mat-cell *matCellDef="let student" data-label="Estado" class="mat-column-percents"> <div *ngIf="student.emailVerified == 'Verificado'; else pending"> <mat-icon class="material-icons primary" style="margin-right: 5px;">check</mat-icon></div> <ng-template #pending><mat-icon class="material-icons primary" style="margin-right: 5px;">close</mat-icon></ng-template></mat-cell>
-		  </ng-container>
-	
-		  <ng-container matColumnDef="enrollmentCompleteness">
-			<mat-header-cell *matHeaderCellDef class="students-list-header mat-column-percents">% Solicitud </mat-header-cell>
-			<mat-cell *matCellDef="let student" data-label="% Solicitud" class="mat-column-percents"><a target="_blank" [routerLink]="'/enrollment-report/'+student.uid"><mat-icon class="material-icons primary" style="margin-right: 5px;">launch</mat-icon></a> {{ student.enrollmentCompleteness }} </mat-cell>
-		  </ng-container>
-	
-		  <ng-container matColumnDef="personalTestCompleteness">
-			<mat-header-cell *matHeaderCellDef class="students-list-header mat-column-percents"> % Test Personal </mat-header-cell>
-			<mat-cell *matCellDef="let student" data-label="% Test Personal" class="mat-column-percents"><a target="_blank" [routerLink]="'/personal-test-report/'+student.uid"><mat-icon class="material-icons primary" style="margin-right: 5px;">launch</mat-icon></a> {{ student.personalTestCompleteness }} </mat-cell>
-		  </ng-container>
-	
-		  <ng-container matColumnDef="psychologicalTestCompleteness">
-			<mat-header-cell *matHeaderCellDef class="students-list-header mat-column-percents"> % Test Psicológico </mat-header-cell>
-			<mat-cell *matCellDef="let student" data-label="% Test Psic." class="mat-column-percents"><a target="_blank" [routerLink]="'/psycho-test-report/'+student.uid"><mat-icon class="material-icons primary" style="margin-right: 5px;">launch</mat-icon></a> {{ student.psychologicalTestCompleteness }} </mat-cell>
-		  </ng-container>
-	
-		  <ng-container matColumnDef="biblicalTestCompleteness">
-			<mat-header-cell *matHeaderCellDef class="students-list-header mat-column-percents"> % Test Bíblico </mat-header-cell>
-			<mat-cell *matCellDef="let student" data-label="% Test Bíblico" class="mat-column-percents"><a target="_blank" [routerLink]="'/biblical-test-report/'+student.uid"><mat-icon class="material-icons primary" style="margin-right: 5px;">launch</mat-icon></a> {{ student.biblicalTestCompleteness }} </mat-cell>
-		  </ng-container>
-	
-		  <ng-container matColumnDef="agreementCompleteness">
-			<mat-header-cell *matHeaderCellDef class="students-list-header mat-column-percents">Acuerdo firmado</mat-header-cell>
-			<mat-cell *matCellDef="let student" data-label="Acuerdo firmado" class="mat-column-percents"><a target="_blank" [routerLink]="'/agreement-report/'+student.uid"><mat-icon class="material-icons primary" style="margin-right: 5px;">launch</mat-icon></a> {{ student.agreementCompleteness }} </mat-cell>
-		  </ng-container>
-	
-		  <ng-container matColumnDef="completeness">
-			<mat-header-cell *matHeaderCellDef class="students-list-header mat-column-percents"> Progreso </mat-header-cell>
-			<mat-cell *matCellDef="let student" data-label="Progreso" class="mat-column-percents"> {{ student.completeness }} </mat-cell>
-		  </ng-container>
-	  
-		  <mat-header-row *matHeaderRowDef="columnsNames; sticky: true"></mat-header-row>
-		  <mat-row *matRowDef="let row; columns: columnsNames;" class="animate row-element"> </mat-row>  
-		</mat-table>
-	<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+			  <ng-container matColumnDef="emailVerified">
+				<mat-header-cell *matHeaderCellDef class="students-list-header mat-column-percents" mat-sort-header> Estado </mat-header-cell>
+				<mat-cell *matCellDef="let student" data-label="Estado" class="mat-column-percents"> <div *ngIf="student.emailVerified == 'Verificado'; else pending"> <mat-icon class="material-icons primary" style="margin-right: 5px;">check</mat-icon></div> <ng-template #pending><mat-icon class="material-icons primary" style="margin-right: 5px;">close</mat-icon></ng-template></mat-cell>
+			  </ng-container>
+		
+			  <ng-container matColumnDef="enrollmentCompleteness">
+				<mat-header-cell *matHeaderCellDef class="students-list-header mat-column-percents" mat-sort-header>% Solicitud </mat-header-cell>
+				<mat-cell *matCellDef="let student" data-label="% Solicitud" class="mat-column-percents"><a target="_blank" [routerLink]="'/enrollment-report/'+student.uid"><mat-icon class="material-icons primary" style="margin-right: 5px;">launch</mat-icon></a> {{ student.enrollmentCompleteness }} </mat-cell>
+			  </ng-container>
+		
+			  <ng-container matColumnDef="personalTestCompleteness">
+				<mat-header-cell *matHeaderCellDef class="students-list-header mat-column-percents" mat-sort-header> % Test Personal </mat-header-cell>
+				<mat-cell *matCellDef="let student" data-label="% Test Personal" class="mat-column-percents"><a target="_blank" [routerLink]="'/personal-test-report/'+student.uid"><mat-icon class="material-icons primary" style="margin-right: 5px;">launch</mat-icon></a> {{ student.personalTestCompleteness }} </mat-cell>
+			  </ng-container>
+		
+			  <ng-container matColumnDef="psychologicalTestCompleteness">
+				<mat-header-cell *matHeaderCellDef class="students-list-header mat-column-percents" mat-sort-header> % Test Psicológico </mat-header-cell>
+				<mat-cell *matCellDef="let student" data-label="% Test Psic." class="mat-column-percents"><a target="_blank" [routerLink]="'/psycho-test-report/'+student.uid"><mat-icon class="material-icons primary" style="margin-right: 5px;">launch</mat-icon></a> {{ student.psychologicalTestCompleteness }} </mat-cell>
+			  </ng-container>
+		
+			  <ng-container matColumnDef="biblicalTestCompleteness">
+				<mat-header-cell *matHeaderCellDef class="students-list-header mat-column-percents" mat-sort-header> % Test Bíblico </mat-header-cell>
+				<mat-cell *matCellDef="let student" data-label="% Test Bíblico" class="mat-column-percents"><a target="_blank" [routerLink]="'/biblical-test-report/'+student.uid"><mat-icon class="material-icons primary" style="margin-right: 5px;">launch</mat-icon></a> {{ student.biblicalTestCompleteness }} </mat-cell>
+			  </ng-container>
+		
+			  <ng-container matColumnDef="agreementCompleteness">
+				<mat-header-cell *matHeaderCellDef class="students-list-header mat-column-percents" mat-sort-header>Acuerdo firmado</mat-header-cell>
+				<mat-cell *matCellDef="let student" data-label="Acuerdo firmado" class="mat-column-percents"><a target="_blank" [routerLink]="'/agreement-report/'+student.uid"><mat-icon class="material-icons primary" style="margin-right: 5px;">launch</mat-icon></a> {{ student.agreementCompleteness }} </mat-cell>
+			  </ng-container>
+		
+			  <ng-container matColumnDef="completeness">
+				<mat-header-cell *matHeaderCellDef class="students-list-header mat-column-percents" mat-sort-header> Progreso (%) </mat-header-cell>
+				<mat-cell *matCellDef="let student" data-label="Progreso" class="mat-column-percents"> {{ student.completeness }} </mat-cell>
+			  </ng-container>
+		  
+			  <mat-header-row *matHeaderRowDef="columnsNames; sticky: true"></mat-header-row>
+			  <mat-row *matRowDef="let row; columns: columnsNames;" class="animate row-element"> </mat-row>  
+			</mat-table>
+	</div>
+	<mat-paginator [pageSizeOptions]="[10, 20, 100]" showFirstLastButtons></mat-paginator>
 </div>

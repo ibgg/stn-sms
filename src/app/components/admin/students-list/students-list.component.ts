@@ -6,9 +6,18 @@ import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import { Observable } from 'rxjs';
 
-interface StudentsColumns{
-	name:string;
-	label:string
+export interface StudentsColumns{
+	displayName:string,
+	email:string,
+	creationDate:Date,
+	creationLocaleDate:string,
+	emailVerified:string,
+	enrollmentCompleteness:number,
+	personalTestCompleteness:number,
+	psychologicalTestCompleteness:number,
+	biblicalTestCompleteness:number,
+	agreementCompleteness:string,
+	completeness:number
 }
 
 const VERIFIED_EMAIL = 'Verificado';
@@ -30,12 +39,32 @@ const ITEMS_PER_PAGE_LABEL = 'Estudiantes a mostrar';
 })
 export class StudentsListComponent implements AfterViewInit {	
 	private columnsNames: string[] = ['displayName', 'email', 'creationLocaleDate', 'emailVerified', 'enrollmentCompleteness', 'personalTestCompleteness', 'psychologicalTestCompleteness', 'biblicalTestCompleteness', 'agreementCompleteness', 'completeness'];
-	private dataSource: MatTableDataSource<any>;
-	private bkDataSource: MatTableDataSource<any>;
-	@ViewChild(MatPaginator) paginator: MatPaginator;
-	@ViewChild(MatSort) sort: MatSort;
+	private dataSource: MatTableDataSource<StudentsColumns>;
+	private bkDataSource: MatTableDataSource<StudentsColumns>;
+	private isLoadingResults = true;
+
+	@ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+	@ViewChild(MatSort, { static: false }) sort: MatSort;
+
+	@ViewChild(MatSort) set matSort(ms: MatSort) {
+		this.sort = ms;
+		//this.setDataSourceAttributes();
+	}		
 
 	constructor(private studentsService:StudentsDataService) { }
+
+	setDataSourceAttributes() {
+		this.dataSource.sortingDataAccessor = (item, property) => {
+			console.log(item);
+			switch (property) {
+			  case 'creationLocaleDate': return new Date(item.creationDate);
+			  default: return item[property];
+			}
+		  };
+
+		this.dataSource.paginator = this.paginator;
+		this.dataSource.sort = this.sort;
+	}
 
 	ngAfterViewInit() {
 		this.listenStudentsData().subscribe(()=>{
@@ -54,13 +83,15 @@ export class StudentsListComponent implements AfterViewInit {
 				let students = [];
 				studentsData.filter((element) => element['role'] == undefined ||  element.role != "admin").forEach((element) => {
 					let progress = 0;
+					//let element: StudentsColumn;
+
 					element.emailVerified = element['emailVerified'] != undefined && element.emailVerified ? VERIFIED_EMAIL : NON_VERIFIED_EMAIL;
 					progress += element['agreementCompleteness'] != undefined && element['agreementCompleteness'] == true ? 100 : 0;
 					progress += element['enrollmentCompleteness'] != undefined ? element.enrollmentCompleteness : 0;
 					progress += element['personalTestCompleteness'] != undefined ? element.personalTestCompleteness : 0;
 					progress += element['biblicalTestCompleteness'] != undefined ? element.biblicalTestCompleteness : 0;
 					progress += element['psychologicalTestCompleteness'] != undefined ? element.psychologicalTestCompleteness : 0;
-					element.completeness = (progress / 5).toFixed(2) + '%';
+					element.completeness = parseFloat((progress / 5).toFixed(2));
 	
 					if (element['creationDate'] != undefined && element['creationDate'] != null){
 						let options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
@@ -69,10 +100,10 @@ export class StudentsListComponent implements AfterViewInit {
 						element.creationLocaleDate = _creationDate;
 						element.creationDate = element['creationDate'].toDate(); 
 					}
-					element.enrollmentCompleteness = element['enrollmentCompleteness'] != undefined ? element.enrollmentCompleteness.toFixed(1) : 0;
-					element.personalTestCompleteness = element['personalTestCompleteness'] != undefined ? element.personalTestCompleteness.toFixed(1) : 0;
-					element.psychologicalTestCompleteness = element['psychologicalTestCompleteness'] != undefined ? element.psychologicalTestCompleteness.toFixed(1) : 0;
-					element.biblicalTestCompleteness = element['biblicalTestCompleteness'] != undefined ? element.biblicalTestCompleteness.toFixed(1) : 0;
+					element.enrollmentCompleteness = element['enrollmentCompleteness'] != undefined ? parseFloat(element.enrollmentCompleteness.toFixed(1)) : 0;
+					element.personalTestCompleteness = element['personalTestCompleteness'] != undefined ? parseFloat(element.personalTestCompleteness.toFixed(1)) : 0;
+					element.psychologicalTestCompleteness = element['psychologicalTestCompleteness'] != undefined ? parseFloat(element.psychologicalTestCompleteness.toFixed(1)) : 0;
+					element.biblicalTestCompleteness = element['biblicalTestCompleteness'] != undefined ? parseFloat(element.biblicalTestCompleteness.toFixed(1)) : 0;
 	
 					element.agreementCompleteness = element['agreementCompleteness'] != undefined && element.agreementCompleteness ? 'Sí' : 'No';
 					element.displayName = element.displayName.toLowerCase().replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
@@ -82,6 +113,8 @@ export class StudentsListComponent implements AfterViewInit {
 	
 				this.dataSource = new MatTableDataSource(students);
 				this.bkDataSource = new MatTableDataSource(students);
+				this.isLoadingResults = false;
+				this.setDataSourceAttributes();
 				observer.next();
 				observer.complete();
 			});
