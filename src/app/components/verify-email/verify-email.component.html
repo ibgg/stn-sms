@@ -14,15 +14,15 @@
 					<div class="card-body px-lg-4 pt-0 form-login-signup-container">
 						<h3 style="text-align: center;">¡Gracias por registrarte en la plataforma de admisiones para el <strong>Seminario Todas las Naciones!</strong></h3>
 
-						<div class="formGroup" *ngIf="authService.afAuth.auth.currentUser.email as email">
+						<div class="formGroup" *ngIf="email">
 							<p class="text-center">Hemos enviado un correo electrónico a <strong>{{email}}</strong>.</p>
 							<p class="text-center">Por favor, revisa tu bandeja de entrada y haz click en el link para verificar el correo para poder acceder.</p>
-						  </div>
-						  
+						</div>
+						
 						  <!-- Calling SendVerificationMail() method using authService Api -->
 						  <div class="formGroup">
 							<button mat-stroked-button color="primary"
-							(click)="authService.sendVerificationMail(authService.afAuth.auth.currentUser)"
+							(click)="authService.sendVerificationMail(user)"
 							class="button-large">Reenviar correo de verificación</button>
 						  </div>				  
 
